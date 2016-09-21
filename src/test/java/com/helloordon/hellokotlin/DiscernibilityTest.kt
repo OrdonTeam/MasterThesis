@@ -12,7 +12,14 @@ class DiscernibilityTest {
         Assert.assertEquals(emptyList<Int>(), findDiscernibility(a, b))
     }
 
+    @Test
+    fun shouldReturnFullDiscernibility() {
+        val a = listOf(true)
+        val b = listOf(false)
+        Assert.assertEquals(listOf(0), findDiscernibility(a, b))
+    }
+
     private fun findDiscernibility(vectorA: List<Boolean>, vectorB: List<Boolean>): List<Int> {
-        return emptyList()
+        return if(vectorB[0]) emptyList() else listOf(0)
     }
 }
