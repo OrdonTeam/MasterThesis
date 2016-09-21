@@ -29,11 +29,25 @@ class DiscernibilityTest {
                 listOf(0))
     }
 
+    @Test
+    fun shouldReturnMixedDiscernibility() {
+        assertDiscernibility(
+                listOf(true, true),
+                listOf(true, false),
+                listOf(1))
+        assertDiscernibility(
+                listOf(false, true),
+                listOf(true, true),
+                listOf(0))
+    }
+
     private fun assertDiscernibility(a: List<Boolean>, b: List<Boolean>, discernibility: List<Int>) {
         Assert.assertEquals(discernibility, findDiscernibility(a, b))
     }
 
     private fun findDiscernibility(vectorA: List<Boolean>, vectorB: List<Boolean>): List<Int> {
-        return if (vectorA[0] == vectorB[0]) emptyList() else listOf(0)
+        return (0 until vectorA.size).filter {
+            vectorA[it] != vectorB[it]
+        }
     }
 }
