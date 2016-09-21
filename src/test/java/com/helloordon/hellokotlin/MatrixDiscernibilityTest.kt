@@ -32,12 +32,4 @@ class MatrixDiscernibilityTest {
     private fun assertMatrixDiscernibility(a: List<List<Boolean>>, b: List<List<Boolean>>, discernibility: List<List<Int>>) {
         Assert.assertEquals(discernibility, findMatrixDiscernibility(a, b))
     }
-
-    private fun findMatrixDiscernibility(groupA: List<List<Boolean>>, groupB: List<List<Boolean>>): List<List<Int>> {
-        return groupA.flatMap { vectorA ->
-            groupB.map { vectorB ->
-                findDiscernibility(vectorA, vectorB)
-            }
-        }
-    }
 }
