@@ -11,6 +11,10 @@ class DiscernibilityTest {
                 listOf(true),
                 listOf(true),
                 listOf())
+        assertDiscernibility(
+                listOf(false),
+                listOf(false),
+                listOf())
     }
 
     @Test
@@ -19,6 +23,10 @@ class DiscernibilityTest {
                 listOf(true),
                 listOf(false),
                 listOf(0))
+        assertDiscernibility(
+                listOf(false),
+                listOf(true),
+                listOf(0))
     }
 
     private fun assertDiscernibility(a: List<Boolean>, b: List<Boolean>, discernibility: List<Int>) {
@@ -26,6 +34,6 @@ class DiscernibilityTest {
     }
 
     private fun findDiscernibility(vectorA: List<Boolean>, vectorB: List<Boolean>): List<Int> {
-        return if (vectorB[0]) emptyList() else listOf(0)
+        return if (vectorA[0] == vectorB[0]) emptyList() else listOf(0)
     }
 }
