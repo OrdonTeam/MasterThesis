@@ -44,10 +44,4 @@ class DiscernibilityTest {
     private fun assertDiscernibility(a: List<Boolean>, b: List<Boolean>, discernibility: List<Int>) {
         Assert.assertEquals(discernibility, findDiscernibility(a, b))
     }
-
-    private fun findDiscernibility(vectorA: List<Boolean>, vectorB: List<Boolean>): List<Int> {
-        return (0 until vectorA.size).filter {
-            vectorA[it] != vectorB[it]
-        }
-    }
 }
