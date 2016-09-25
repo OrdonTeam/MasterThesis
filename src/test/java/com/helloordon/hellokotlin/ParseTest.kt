@@ -9,11 +9,23 @@ class ParseTest {
 
     @Test
     fun shouldParseSingleInputFunction() {
-        Assert.assertEquals(listOf(listOf(false), listOf(true)), readFunctionFromFile(fileFromResources("singleInputFile")))
+        Assert.assertEquals(
+                mapOf(
+                        false to listOf(listOf(false)),
+                        true to listOf(listOf(true))),
+                readFunctionFromFile(fileFromResources("singleInputFile")))
     }
 
+    @Test
+    fun shouldParseTwoInputFunction() {
+        Assert.assertEquals(
+                mapOf(
+                        false to listOf(listOf(false, false), listOf(false, true)),
+                        true to listOf(listOf(true, false))),
+                readFunctionFromFile(fileFromResources("twoInputFile")))
+    }
 }
 
-private fun readFunctionFromFile(file: File): List<List<Boolean>> {
-    return listOf(listOf(false), listOf(true))
+private fun readFunctionFromFile(file: File): Map<Boolean, List<List<Boolean>>> {
+    return file.readLines().map { it.split(" ").map { Integer.parseInt(it) != 0 } }.groupBy({ it.last() }, { it.dropLast(1) })
 }
