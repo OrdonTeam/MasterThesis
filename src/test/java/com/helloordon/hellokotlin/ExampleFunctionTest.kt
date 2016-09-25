@@ -57,6 +57,19 @@ class ExampleFunctionTest {
                         findMatrixDiscernibility(zeroRows, oneRows)))
     }
 
+    @Test
+    fun shouldPairPairsNotFoundInCpqFromFile() {
+        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val zeroRows = function[false]!!
+        val oneRows = function[true]!!
+        Assert.assertEquals(
+                listOf(listOf(0, 4) to listOf(2, 3)),
+                getSeparatePairs(
+                        getMissingPairs(
+                                zeroRows.first().size,
+                                findMatrixDiscernibility(zeroRows, oneRows))))
+    }
+
     private fun List<List<Int>>.toBoolean() = map { it.map { if (it == 0) false else true } }
 }
 
