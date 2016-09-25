@@ -26,6 +26,24 @@ class ExampleFunctionTest {
                 ))
     }
 
+    @Test
+    fun shouldFindMissingPairsInCpq() {
+        val zeroRows = listOf(
+                listOf(0, 0, 0, 0, 0),
+                listOf(0, 0, 1, 1, 1),
+                listOf(0, 1, 0, 1, 0),
+                listOf(0, 1, 1, 1, 1),
+                listOf(0, 1, 1, 0, 0)).toBoolean()
+        val oneRows = listOf(
+                listOf(0, 0, 0, 1, 1),
+                listOf(0, 1, 0, 0, 0),
+                listOf(0, 1, 1, 0, 1),
+                listOf(1, 1, 0, 1, 0),
+                listOf(1, 0, 0, 1, 1),
+                listOf(1, 0, 0, 1, 0)).toBoolean()
+        Assert.assertEquals(listOf(listOf(0, 4), listOf(2, 3), listOf(2, 4)), getMissingPairs(5, findMatrixDiscernibility(zeroRows, oneRows)))
+    }
+
     private fun List<List<Int>>.toBoolean() = map { it.map { if (it == 0) false else true } }
 }
 
