@@ -22,6 +22,12 @@ class WriteTest {
         Assert.assertEquals(listOf("x0 * x1 + x2", "x0 * x2 + x1"), file.readLines())
     }
 
+    @Test
+    fun shouldSaveMissingPairFor4Arguments() {
+        saveMissingPairsToFile(file, 4, listOf(listOf(0, 1)))
+        Assert.assertEquals(listOf("x0 * x1 + x2 + x3"), file.readLines())
+    }
+
     @After
     fun tearDown() {
         file.delete()
