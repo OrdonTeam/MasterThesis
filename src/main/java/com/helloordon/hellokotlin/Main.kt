@@ -9,9 +9,12 @@ object Main {
         val function = readFunctionFromFile(File(args[0]))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
-        saveMissingPairsToFile(File(args[1]), zeroRows.first().size,
-                getMissingPairs(
-                        zeroRows.first().size,
-                        findMatrixDiscernibility(zeroRows, oneRows)))
+
+        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        val missingPairs = getMissingPairs(zeroRows.first().size, discernibility)
+        saveMissingPairsToFile(File(args[1]), zeroRows.first().size, missingPairs)
+
+        val separatePairs = getSeparatePairs(missingPairs)
+
     }
 }
