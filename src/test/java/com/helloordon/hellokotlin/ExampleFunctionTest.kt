@@ -92,6 +92,20 @@ class ExampleFunctionTest {
                 file.readLines())
     }
 
+    @Test
+    fun shouldFindMissingFours() {
+        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val zeroRows = function[false]!!
+        val oneRows = function[true]!!
+        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        Assert.assertEquals(
+                listOf(listOf(0, 4) to listOf(2, 3)),
+                getMissingFours(discernibility, getSeparatePairs(
+                        getMissingPairs(
+                                zeroRows.first().size,
+                                discernibility))))
+    }
+
     @After
     fun tearDown() {
         file.delete()
