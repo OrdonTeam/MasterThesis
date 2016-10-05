@@ -32,12 +32,6 @@ class FindMissingFoursTest {
     private fun verifyFoundMissingFours(expected: List<Pair<List<Int>, List<Int>>>,
                                         separatePairs: List<Pair<List<Int>, List<Int>>>,
                                         discernibility: List<List<Int>>) {
-        Assert.assertEquals(expected, findMissingFours(discernibility, separatePairs))
-    }
-
-    private fun findMissingFours(discernibility: List<List<Int>>, separatePairs: List<Pair<List<Int>, List<Int>>>): List<Pair<List<Int>, List<Int>>> {
-        return separatePairs.filterNot {
-            discernibility.contains((it.first + it.second).sorted())
-        }
+        Assert.assertEquals(expected, getMissingFours(discernibility, separatePairs))
     }
 }
