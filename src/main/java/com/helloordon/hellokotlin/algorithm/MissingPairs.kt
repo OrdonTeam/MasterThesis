@@ -1,11 +1,9 @@
 package com.helloordon.hellokotlin.algorithm
 
+import com.helloordon.hellokotlin.util.allPairs
+
 fun getMissingPairs(argumentsCount: Int, pairs: List<List<Int>>): List<List<Int>> {
-    val list = (0..(argumentsCount - 1)).flatMap { first ->
-        ((first + 1)..(argumentsCount - 1)).map { second ->
-            listOf(first, second)
-        }
-    }
+    val list = (0 until argumentsCount).allPairs().map { listOf(it.first, it.second) }
     return list.filter {
         !pairs.contains(it)
     }
