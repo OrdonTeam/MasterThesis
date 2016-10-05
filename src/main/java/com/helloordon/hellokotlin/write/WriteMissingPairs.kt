@@ -1,9 +1,9 @@
 package com.helloordon.hellokotlin.write
 
-import java.io.File
+import java.io.OutputStream
 
-fun writeMissingPairs(file: File, argumentsCount: Int, pairs: List<List<Int>>) {
-    file.writer().use {
+fun writeMissingPairs(outputStream: OutputStream, argumentsCount: Int, pairs: List<List<Int>>) {
+    outputStream.writer().use {
         pairs.map { pair ->
             val otherArguments = (0..(argumentsCount - 1)).filterNot { it == pair[0] || it == pair[1] }.map { " + x$it" }.joinToString("")
             "x${pair[0]} * x${pair[1]}" + otherArguments
