@@ -7,7 +7,18 @@ class FindMissingFoursTest {
 
     @Test
     fun shouldFindNoMissingFours() {
-        verifyFoundMissingFours(emptyList(), emptyList(), emptyList())
+        verifyFoundMissingFours(
+                emptyList(),
+                emptyList(),
+                emptyList())
+    }
+
+    @Test
+    fun shouldFindMissingFour() {
+        verifyFoundMissingFours(
+                listOf(listOf(0, 4) to listOf(2, 3)),
+                listOf(listOf(0, 4) to listOf(2, 3)),
+                emptyList())
     }
 
     private fun verifyFoundMissingFours(expected: List<Pair<List<Int>, List<Int>>>,
@@ -17,6 +28,6 @@ class FindMissingFoursTest {
     }
 
     private fun findMissingFours(discernibility: List<List<Int>>, separatePairs: List<Pair<List<Int>, List<Int>>>): List<Pair<List<Int>, List<Int>>> {
-        return emptyList()
+        return separatePairs
     }
 }
