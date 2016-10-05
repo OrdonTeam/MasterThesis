@@ -1,6 +1,7 @@
 package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.utils.fileFromResources
+import com.helloordon.hellokotlin.write.writeMissingFours
 import com.helloordon.hellokotlin.write.writeMissingPairs
 import org.junit.After
 import org.junit.Assert
@@ -105,6 +106,23 @@ class ExampleFunctionTest {
                         getMissingPairs(
                                 zeroRows.first().size,
                                 discernibility))))
+    }
+
+    @Test
+    fun shouldSaveMissingFoursToFile() {
+        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val zeroRows = function[false]!!
+        val oneRows = function[true]!!
+        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        writeMissingFours(file, zeroRows.first().size,
+                getMissingFours(discernibility, getSeparatePairs(
+                        getMissingPairs(
+                                zeroRows.first().size,
+                                discernibility))))
+
+        Assert.assertEquals(
+                listOf("(x0 * x4) * (x2 * x3) + x1"),
+                file.readLines())
     }
 
     @After
