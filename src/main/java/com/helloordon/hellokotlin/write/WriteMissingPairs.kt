@@ -2,7 +2,7 @@ package com.helloordon.hellokotlin.write
 
 import java.io.File
 
-fun saveMissingPairsToFile(file: File, argumentsCount: Int, pairs: List<List<Int>>) {
+fun writeMissingPairs(file: File, argumentsCount: Int, pairs: List<List<Int>>) {
     file.writer().use {
         pairs.map { pair ->
             val otherArguments = (0..(argumentsCount - 1)).filterNot { it == pair[0] || it == pair[1] }.map { " + x$it" }.joinToString("")

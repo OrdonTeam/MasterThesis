@@ -1,7 +1,7 @@
 package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.utils.fileFromResources
-import com.helloordon.hellokotlin.write.saveMissingPairsToFile
+import com.helloordon.hellokotlin.write.writeMissingPairs
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
@@ -81,7 +81,7 @@ class ExampleFunctionTest {
         val function = readFunctionFromFile(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
-        saveMissingPairsToFile(file, zeroRows.first().size,
+        writeMissingPairs(file, zeroRows.first().size,
                 getMissingPairs(
                         zeroRows.first().size,
                         findMatrixDiscernibility(zeroRows, oneRows)))

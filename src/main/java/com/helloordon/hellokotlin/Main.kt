@@ -1,6 +1,6 @@
 package com.helloordon.hellokotlin
 
-import com.helloordon.hellokotlin.write.saveMissingPairsToFile
+import com.helloordon.hellokotlin.write.writeMissingPairs
 import java.io.File
 
 object Main {
@@ -13,7 +13,7 @@ object Main {
 
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         val missingPairs = getMissingPairs(zeroRows.first().size, discernibility)
-        saveMissingPairsToFile(File(args[1]), zeroRows.first().size, missingPairs)
+        writeMissingPairs(File(args[1]), zeroRows.first().size, missingPairs)
 
         val separatePairs = getSeparatePairs(missingPairs)
 
