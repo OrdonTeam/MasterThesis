@@ -11,3 +11,7 @@ fun <E> List<E>.allPairs(): List<Pair<E, E>> {
         }
     }
 }
+
+infix fun List<Int>.isDisjointWith(other: List<Int>): Boolean {
+    return all { !other.contains(it) }
+}
