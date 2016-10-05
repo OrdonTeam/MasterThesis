@@ -1,5 +1,10 @@
 package com.helloordon.hellokotlin
 
+import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
+import com.helloordon.hellokotlin.algorithm.getMissingFours
+import com.helloordon.hellokotlin.algorithm.getMissingPairs
+import com.helloordon.hellokotlin.algorithm.getSeparatePairs
+import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.write.appendingOutputStream
 import com.helloordon.hellokotlin.write.clear
 import com.helloordon.hellokotlin.write.writeMissingFours
@@ -11,7 +16,7 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         File(args[1]).clear()
-        val function = readFunctionFromFile(File(args[0]))
+        val function = readFunction(File(args[0]))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
 

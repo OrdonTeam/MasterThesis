@@ -1,5 +1,6 @@
-package com.helloordon.hellokotlin
+package com.helloordon.hellokotlin.algorithm
 
+import com.helloordon.hellokotlin.algorithm.getSeparatePairs
 import org.junit.Assert
 import org.junit.Test
 

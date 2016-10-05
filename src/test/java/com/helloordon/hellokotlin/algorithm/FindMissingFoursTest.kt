@@ -1,5 +1,6 @@
-package com.helloordon.hellokotlin
+package com.helloordon.hellokotlin.algorithm
 
+import com.helloordon.hellokotlin.algorithm.getMissingFours
 import org.junit.Assert
 import org.junit.Test
 

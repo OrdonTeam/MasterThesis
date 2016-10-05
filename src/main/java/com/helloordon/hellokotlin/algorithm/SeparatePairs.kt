@@ -1,4 +1,4 @@
-package com.helloordon.hellokotlin
+package com.helloordon.hellokotlin.algorithm
 
 fun getSeparatePairs(collections: List<List<Int>>): List<Pair<List<Int>, List<Int>>> {
     return (0..(collections.size - 1)).flatMap { first ->

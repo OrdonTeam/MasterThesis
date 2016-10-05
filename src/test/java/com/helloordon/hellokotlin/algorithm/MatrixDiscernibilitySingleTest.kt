@@ -1,9 +1,9 @@
-package com.helloordon.hellokotlin
+package com.helloordon.hellokotlin.algorithm
 
 import org.junit.Assert
 import org.junit.Test
 
-class DiscernibilityTest {
+class MatrixDiscernibilitySingleTest {
 
     @Test
     fun shouldReturnEmptyDiscernibility() {

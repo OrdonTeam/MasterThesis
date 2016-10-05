@@ -1,10 +1,11 @@
-package com.helloordon.hellokotlin
+package com.helloordon.hellokotlin.read
 
+import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
 import org.junit.Assert
 import org.junit.Test
 
-class ParseTest {
+class ReadFunctionTest {
 
     @Test
     fun shouldParseSingleInputFunction() {
@@ -12,7 +13,7 @@ class ParseTest {
                 mapOf(
                         false to listOf(listOf(false)),
                         true to listOf(listOf(true))),
-                readFunctionFromFile(fileFromResources("singleInputFile")))
+                readFunction(fileFromResources("singleInputFile")))
     }
 
     @Test
@@ -21,6 +22,6 @@ class ParseTest {
                 mapOf(
                         false to listOf(listOf(false, false), listOf(false, true)),
                         true to listOf(listOf(true, false))),
-                readFunctionFromFile(fileFromResources("twoInputFile")))
+                readFunction(fileFromResources("twoInputFile")))
     }
 }

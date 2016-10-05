@@ -1,5 +1,10 @@
 package com.helloordon.hellokotlin
 
+import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
+import com.helloordon.hellokotlin.algorithm.getMissingFours
+import com.helloordon.hellokotlin.algorithm.getMissingPairs
+import com.helloordon.hellokotlin.algorithm.getSeparatePairs
+import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
 import com.helloordon.hellokotlin.write.appendingOutputStream
 import com.helloordon.hellokotlin.write.writeMissingFours
@@ -56,7 +61,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldFindMissingPairsInCpqInFunctionFromFile() {
-        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
         Assert.assertEquals(
@@ -68,7 +73,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldPairPairsNotFoundInCpqFromFile() {
-        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
         Assert.assertEquals(
@@ -81,7 +86,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldSaveMissingPairsToFile() {
-        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
         writeMissingPairs(out, zeroRows.first().size,
@@ -98,7 +103,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldFindMissingFours() {
-        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
@@ -112,7 +117,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldSaveMissingFoursToFile() {
-        val function = readFunctionFromFile(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)

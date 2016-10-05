@@ -1,4 +1,4 @@
-package com.helloordon.hellokotlin
+package com.helloordon.hellokotlin.algorithm
 
 fun getMissingPairs(argumentsCount: Int, pairs: List<List<Int>>): List<List<Int>> {
     val list = (0..(argumentsCount - 1)).flatMap { first ->
