@@ -1,20 +1,23 @@
 package com.helloordon.hellokotlin
 
-import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.getMissingFours
-import com.helloordon.hellokotlin.algorithm.getMissingPairs
-import com.helloordon.hellokotlin.algorithm.getSeparatePairs
+import com.helloordon.hellokotlin.algorithm.*
 import com.helloordon.hellokotlin.read.readFunction
-import com.helloordon.hellokotlin.write.appendingOutputStream
-import com.helloordon.hellokotlin.write.clear
-import com.helloordon.hellokotlin.write.writeMissingFours
-import com.helloordon.hellokotlin.write.writeMissingPairs
+import com.helloordon.hellokotlin.write.*
 import java.io.File
 
 object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        println(System.currentTimeMillis())
+        try {
+            mainInternal(args)
+        } finally {
+            println(System.currentTimeMillis())
+        }
+    }
+
+    private fun mainInternal(args: Array<String>) {
         File(args[1]).clear()
         val function = readFunction(File(args[0]))
         val zeroRows = function[false]!!
@@ -27,5 +30,9 @@ object Main {
         val separatePairs = getSeparatePairs(missingPairs)
         val missingFours = getMissingFours(discernibility, separatePairs)
         writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingFours)
+
+        val separateFours = getSeparateFours(missingFours)
+        val missingEights = getMissingEights(discernibility, separateFours)
+        writeMissingEights(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingEights)
     }
 }
