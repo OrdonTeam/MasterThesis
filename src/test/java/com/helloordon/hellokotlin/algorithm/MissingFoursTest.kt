@@ -4,7 +4,7 @@ import com.helloordon.hellokotlin.algorithm.getMissingFours
 import org.junit.Assert
 import org.junit.Test
 
-class FindMissingFoursTest {
+class MissingFoursTest {
 
     @Test
     fun shouldFindNoMissingFours() {
