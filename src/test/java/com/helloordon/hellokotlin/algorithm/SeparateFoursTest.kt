@@ -1,6 +1,6 @@
 package com.helloordon.hellokotlin.algorithm
 
-import org.junit.Assert
+import io.reactivex.Observable
 import org.junit.Test
 
 class SeparateFoursTest {
@@ -31,6 +31,9 @@ class SeparateFoursTest {
     }
 
     private fun verify(expected: List<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>>, collections: List<Pair<List<Int>, List<Int>>>) {
-        Assert.assertEquals(expected, getSeparateFours(collections))
+        Observable.fromIterable(collections)
+                .compose(::getSeparateFours)
+                .test()
+                .assertValueSequence(expected)
     }
 }
