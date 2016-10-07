@@ -32,7 +32,7 @@ object Main {
         writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingFours.toList().blockingGet())
 
         val separateFours = missingFours.toSeparateFours()
-        val missingEights = getMissingEights(discernibility, separateFours)
+        val missingEights = separateFours.toMissingEights(discernibility)
         writeMissingEights(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingEights.toList().blockingGet())
     }
 }
