@@ -5,7 +5,7 @@ import com.helloordon.hellokotlin.dto.pair
 import io.reactivex.Observable
 import org.junit.Test
 
-class SeparatePairsTest {
+class DisjointDecompositions_Pairs_Test {
 
     @Test
     fun shouldFindNoSeparatePairs() {

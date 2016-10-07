@@ -5,7 +5,7 @@ import com.helloordon.hellokotlin.dto.pair
 import io.reactivex.Observable
 import org.junit.Test
 
-class SeparateFoursTest {
+class DisjointDecompositions_Fours_Test {
 
     @Test
     fun shouldFindNoSeparateFours() {

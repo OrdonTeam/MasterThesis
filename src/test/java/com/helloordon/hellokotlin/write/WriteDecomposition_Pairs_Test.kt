@@ -7,7 +7,7 @@ import org.junit.Test
 import java.io.File
 import java.util.*
 
-class WriteMissingPairsTest {
+class WriteDecomposition_Pairs_Test {
 
     private val file = File(UUID.randomUUID().toString())
 

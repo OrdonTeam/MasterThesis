@@ -7,7 +7,7 @@ import org.junit.Test
 import java.io.File
 import java.util.*
 
-class WriteMissingFoursTest {
+class WriteDecomposition_Fours_Test {
 
     val file = File(UUID.randomUUID().toString())
 

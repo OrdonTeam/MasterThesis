@@ -5,7 +5,7 @@ import com.helloordon.hellokotlin.dto.pair
 import io.reactivex.Observable
 import org.junit.Test
 
-class MissingEightsTest {
+class MissingDecompositions_Eights_Test {
 
     @Test
     fun shouldFindNoMissingEights() {

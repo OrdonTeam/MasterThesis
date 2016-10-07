@@ -7,7 +7,7 @@ import org.junit.Test
 import java.io.File
 import java.util.*
 
-class WriteMissingEightsTest {
+class WriteDecomposition_Eights_Test {
 
     val file = File(UUID.randomUUID().toString())
     val first = pair(pair(pair(0, 1), pair(2, 3)), pair(pair(4, 5), pair(6, 7)))

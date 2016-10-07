@@ -4,7 +4,7 @@ import com.helloordon.hellokotlin.dto.Argument
 import com.helloordon.hellokotlin.dto.pair
 import org.junit.Test
 
-class MissingPairTest {
+class MissingDecompositions_Pairs_Test {
 
     @Test
     fun shouldFindNoMissingPairs() {
