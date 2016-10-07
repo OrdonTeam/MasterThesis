@@ -1,6 +1,6 @@
 package com.helloordon.hellokotlin.algorithm
 
-import org.junit.Assert
+import io.reactivex.Observable
 import org.junit.Test
 
 class MissingEightsTest {
@@ -38,6 +38,9 @@ class MissingEightsTest {
     private fun verifyFoundMissingFours(expected: List<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>>,
                                         separatePairs: List<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>>,
                                         discernibility: List<List<Int>>) {
-        Assert.assertEquals(expected, getMissingEights(discernibility, separatePairs))
+        Observable.fromIterable(separatePairs)
+                .compose { getMissingEights(discernibility, it) }
+                .test()
+                .assertValueSequence(expected)
     }
 }
