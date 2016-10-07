@@ -28,10 +28,10 @@ object Main {
         writeMissingPairs(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingPairs.toList().blockingGet())
 
         val separatePairs = getSeparatePairs(missingPairs)
-        val missingFours = getMissingFours(discernibility, separatePairs.toList().blockingGet())
-        writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingFours)
+        val missingFours = getMissingFours(discernibility, separatePairs)
+        writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingFours.toList().blockingGet())
 
-        val separateFours = getSeparateFours(missingFours)
+        val separateFours = getSeparateFours(missingFours.toList().blockingGet())
         val missingEights = getMissingEights(discernibility, separateFours)
         writeMissingEights(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingEights)
     }
