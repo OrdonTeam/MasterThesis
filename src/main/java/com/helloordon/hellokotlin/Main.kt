@@ -31,7 +31,7 @@ object Main {
         val missingFours =  separatePairs.toMissingFours(discernibility)
         writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingFours.toList().blockingGet())
 
-        val separateFours = getSeparateFours(missingFours)
+        val separateFours = missingFours.toSeparateFours()
         val missingEights = getMissingEights(discernibility, separateFours)
         writeMissingEights(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingEights.toList().blockingGet())
     }

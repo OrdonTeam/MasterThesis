@@ -7,7 +7,11 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.*
 
-fun getSeparateFours(missingFours: Observable<Pair<List<Int>, List<Int>>>): Observable<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>> {
+fun Observable<Pair<List<Int>, List<Int>>>.toSeparateFours(): Observable<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>> {
+    return compose(::getSeparateFours)
+}
+
+private fun getSeparateFours(missingFours: Observable<Pair<List<Int>, List<Int>>>): Observable<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>> {
     return Observable.create { source ->
         missingFours.subscribe(SeparateFoursConsumer(source))
     }

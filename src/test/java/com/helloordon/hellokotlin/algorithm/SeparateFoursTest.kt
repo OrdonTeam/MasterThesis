@@ -32,7 +32,7 @@ class SeparateFoursTest {
 
     private fun verify(expected: List<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>>, collections: List<Pair<List<Int>, List<Int>>>) {
         Observable.fromIterable(collections)
-                .compose(::getSeparateFours)
+                .toSeparateFours()
                 .test()
                 .assertValueSequence(expected)
     }
