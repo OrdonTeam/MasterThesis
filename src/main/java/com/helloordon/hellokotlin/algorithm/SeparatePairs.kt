@@ -7,7 +7,7 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.*
 
-fun Observable<Argument>.toSeparatePairs(): Observable<Argument> {
+fun Observable<Argument>.findDisjointDecompositions(): Observable<Argument> {
     return compose(::getSeparatePairs)
 }
 

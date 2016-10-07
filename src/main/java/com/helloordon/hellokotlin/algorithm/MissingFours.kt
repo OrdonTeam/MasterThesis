@@ -3,7 +3,7 @@ package com.helloordon.hellokotlin.algorithm
 import com.helloordon.hellokotlin.dto.Argument
 import io.reactivex.Observable
 
-fun Observable<Argument>.toMissingFours(discernibility: List<List<Int>>): Observable<Argument> {
+fun Observable<Argument>.findMissing(discernibility: List<List<Int>>): Observable<Argument> {
     return compose { getMissingFours(discernibility, it) }
 }
 

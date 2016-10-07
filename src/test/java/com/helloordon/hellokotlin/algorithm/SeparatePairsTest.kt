@@ -24,7 +24,7 @@ class SeparatePairsTest {
 
     private fun verify(expected: List<Argument>, collections: List<Argument>) {
         Observable.fromIterable(collections)
-                .toSeparatePairs()
+                .findDisjointDecompositions()
                 .test()
                 .assertValueSequence(expected)
     }

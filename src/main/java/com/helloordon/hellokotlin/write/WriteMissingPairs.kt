@@ -4,7 +4,7 @@ import com.helloordon.hellokotlin.dto.Argument
 import io.reactivex.Observable
 import java.io.OutputStreamWriter
 
-fun Observable<Argument>.writePair(writer: OutputStreamWriter, argumentsCount: Int): Observable<Argument> {
+fun Observable<Argument>.writeDecomposition(writer: OutputStreamWriter, argumentsCount: Int): Observable<Argument> {
     return doOnNext { writeArgument(writer, argumentsCount, it) }
 }
 

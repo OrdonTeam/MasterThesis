@@ -1,11 +1,11 @@
 package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.algorithm.allPairs
+import com.helloordon.hellokotlin.algorithm.findDisjointDecompositions
 import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.toMissingFours
-import com.helloordon.hellokotlin.algorithm.toSeparatePairs
+import com.helloordon.hellokotlin.algorithm.findMissing
 import com.helloordon.hellokotlin.read.readFunction
-import com.helloordon.hellokotlin.write.writePair
+import com.helloordon.hellokotlin.write.writeDecomposition
 import java.io.File
 
 object Main {
@@ -31,14 +31,14 @@ object Main {
             val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
 
             allPairs(zeroRows.first().size)
-                    .toMissingFours(discernibility)
-                    .writePair(writer, zeroRows.first().size)
-                    .toSeparatePairs()
-                    .toMissingFours(discernibility)
-                    .writePair(writer, zeroRows.first().size)
-                    .toSeparatePairs()
-                    .toMissingFours(discernibility)
-                    .writePair(writer, zeroRows.first().size)
+                    .findMissing(discernibility)
+                    .writeDecomposition(writer, zeroRows.first().size)
+                    .findDisjointDecompositions()
+                    .findMissing(discernibility)
+                    .writeDecomposition(writer, zeroRows.first().size)
+                    .findDisjointDecompositions()
+                    .findMissing(discernibility)
+                    .writeDecomposition(writer, zeroRows.first().size)
                     .take(1)
                     .subscribe()
         }

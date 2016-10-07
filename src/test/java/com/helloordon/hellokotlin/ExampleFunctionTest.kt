@@ -2,12 +2,12 @@ package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.algorithm.allPairs
 import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.toMissingFours
-import com.helloordon.hellokotlin.algorithm.toSeparatePairs
+import com.helloordon.hellokotlin.algorithm.findMissing
+import com.helloordon.hellokotlin.algorithm.findDisjointDecompositions
 import com.helloordon.hellokotlin.dto.pair
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
-import com.helloordon.hellokotlin.write.writePair
+import com.helloordon.hellokotlin.write.writeDecomposition
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
@@ -55,7 +55,7 @@ class ExampleFunctionTest {
                 listOf(1, 0, 0, 1, 1),
                 listOf(1, 0, 0, 1, 0)).toBoolean()
         Assert.assertEquals(listOf(pair(0, 4), pair(2, 3), pair(2, 4)),
-                allPairs(5).toMissingFours(findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
+                allPairs(5).findMissing(findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
     }
 
     @Test
@@ -66,7 +66,7 @@ class ExampleFunctionTest {
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         Assert.assertEquals(
                 listOf(pair(0, 4), pair(2, 3), pair(2, 4)),
-                allPairs(zeroRows.first().size).toMissingFours(discernibility).toList().blockingGet())
+                allPairs(zeroRows.first().size).findMissing(discernibility).toList().blockingGet())
     }
 
     @Test
@@ -78,8 +78,8 @@ class ExampleFunctionTest {
         Assert.assertEquals(
                 pair(pair(0, 4), pair(2, 3)),
                 allPairs(zeroRows.first().size)
-                        .toMissingFours(discernibility)
-                        .toSeparatePairs().firstOrError().blockingGet())
+                        .findMissing(discernibility)
+                        .findDisjointDecompositions().firstOrError().blockingGet())
     }
 
     @Test
@@ -90,8 +90,8 @@ class ExampleFunctionTest {
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         file.writer().use { writer ->
             allPairs(zeroRows.first().size)
-                    .toMissingFours(discernibility)
-                    .writePair(writer, zeroRows.first().size)
+                    .findMissing(discernibility)
+                    .writeDecomposition(writer, zeroRows.first().size)
                     .subscribe()
         }
         Assert.assertEquals(
@@ -111,9 +111,9 @@ class ExampleFunctionTest {
         Assert.assertEquals(
                 pair(pair(0, 4), pair(2, 3)),
                 allPairs(zeroRows.first().size)
-                        .toMissingFours(discernibility)
-                        .toSeparatePairs()
-                        .toMissingFours(discernibility).firstOrError().blockingGet())
+                        .findMissing(discernibility)
+                        .findDisjointDecompositions()
+                        .findMissing(discernibility).firstOrError().blockingGet())
     }
 
     @Test
@@ -124,9 +124,9 @@ class ExampleFunctionTest {
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         file.writer().use { writer ->
             allPairs(zeroRows.first().size)
-                    .toMissingFours(discernibility)
-                    .toSeparatePairs().toMissingFours(discernibility)
-                    .writePair(writer, zeroRows.first().size)
+                    .findMissing(discernibility)
+                    .findDisjointDecompositions().findMissing(discernibility)
+                    .writeDecomposition(writer, zeroRows.first().size)
                     .subscribe()
         }
         Assert.assertEquals(
