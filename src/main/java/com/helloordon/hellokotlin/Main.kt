@@ -1,8 +1,8 @@
 package com.helloordon.hellokotlin
 
+import com.helloordon.hellokotlin.algorithm.allPairs
 import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
 import com.helloordon.hellokotlin.algorithm.toMissingFours
-import com.helloordon.hellokotlin.algorithm.toMissingPairs
 import com.helloordon.hellokotlin.algorithm.toSeparatePairs
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.write.writePair
@@ -30,8 +30,8 @@ object Main {
             val oneRows = function[true]!!
             val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
 
-            discernibility
-                    .toMissingPairs(zeroRows.first().size)
+            allPairs(zeroRows.first().size)
+                    .toMissingFours(discernibility)
                     .writePair(writer, zeroRows.first().size)
                     .toSeparatePairs()
                     .toMissingFours(discernibility)
