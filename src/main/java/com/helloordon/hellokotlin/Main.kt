@@ -24,11 +24,11 @@ object Main {
         val oneRows = function[true]!!
 
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
-        val missingPairs = getMissingPairs(zeroRows.first().size, discernibility).toList().blockingGet()
-        writeMissingPairs(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingPairs)
+        val missingPairs = getMissingPairs(zeroRows.first().size, discernibility)
+        writeMissingPairs(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingPairs.toList().blockingGet())
 
         val separatePairs = getSeparatePairs(missingPairs)
-        val missingFours = getMissingFours(discernibility, separatePairs)
+        val missingFours = getMissingFours(discernibility, separatePairs.toList().blockingGet())
         writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingFours)
 
         val separateFours = getSeparateFours(missingFours)
