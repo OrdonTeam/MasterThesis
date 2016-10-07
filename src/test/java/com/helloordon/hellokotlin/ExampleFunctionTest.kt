@@ -1,8 +1,8 @@
 package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.getMissingFours
 import com.helloordon.hellokotlin.algorithm.getMissingPairs
+import com.helloordon.hellokotlin.algorithm.toMissingFours
 import com.helloordon.hellokotlin.algorithm.toSeparatePairs
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
@@ -78,9 +78,9 @@ class ExampleFunctionTest {
         val oneRows = function[true]!!
         Assert.assertEquals(
                 listOf(listOf(0, 4) to listOf(2, 3)),
-                        getMissingPairs(
-                                zeroRows.first().size,
-                                findMatrixDiscernibility(zeroRows, oneRows)).toSeparatePairs().toList().blockingGet())
+                getMissingPairs(
+                        zeroRows.first().size,
+                        findMatrixDiscernibility(zeroRows, oneRows)).toSeparatePairs().toList().blockingGet())
     }
 
     @Test
@@ -108,10 +108,11 @@ class ExampleFunctionTest {
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         Assert.assertEquals(
                 listOf(listOf(0, 4) to listOf(2, 3)),
-                getMissingFours(discernibility,
-                        getMissingPairs(
-                                zeroRows.first().size,
-                                discernibility).toSeparatePairs()).toList().blockingGet())
+                getMissingPairs(
+                        zeroRows.first().size,
+                        discernibility)
+                        .toSeparatePairs()
+                        .toMissingFours(discernibility).toList().blockingGet())
     }
 
     @Test
@@ -121,10 +122,9 @@ class ExampleFunctionTest {
         val oneRows = function[true]!!
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         writeMissingFours(out, zeroRows.first().size,
-                getMissingFours(discernibility,
                         getMissingPairs(
                                 zeroRows.first().size,
-                                discernibility).toSeparatePairs()).toList().blockingGet())
+                                discernibility).toSeparatePairs().toMissingFours(discernibility).toList().blockingGet())
 
         Assert.assertEquals(
                 listOf("(x0 * x4) * (x2 * x3) + x1"),

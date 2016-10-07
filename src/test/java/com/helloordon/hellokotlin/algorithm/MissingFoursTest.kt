@@ -33,7 +33,7 @@ class MissingFoursTest {
                                         separatePairs: List<Pair<List<Int>, List<Int>>>,
                                         discernibility: List<List<Int>>) {
         Observable.fromIterable(separatePairs)
-                .compose { getMissingFours(discernibility, it) }
+                .toMissingFours(discernibility)
                 .test()
                 .assertValueSequence(expected)
     }
