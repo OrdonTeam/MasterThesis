@@ -1,24 +1,17 @@
 package com.helloordon.hellokotlin.write
 
-import java.io.OutputStream
+import java.io.OutputStreamWriter
 
-fun writeMissingEights(outputStream: OutputStream, argumentsCount: Int, eights: List<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>>) {
-    outputStream.writer().use {
-        eights.map { eight ->
-            val otherArguments = notIncludedArguments(argumentsCount, eight).map { " + x$it" }.joinToString("")
-            parseEight(eight) + otherArguments
-        }.forEach { line ->
-            it.appendln(line)
-        }
-    }
+fun writeMissingEights(writer: OutputStreamWriter, argumentsCount: Int, eight: Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>) {
+    writer.appendln(eight.formatEight() + eight.notIncludedArguments(argumentsCount).formatArguments())
 }
 
-private fun notIncludedArguments(argumentsCount: Int, eight: Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>): List<Int> {
+private fun Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>.notIncludedArguments(argumentsCount: Int): List<Int> {
     return (0..(argumentsCount - 1)).filterNot {
-        (eight.first.first + eight.first.second + eight.second.first + eight.second.second).contains(it)
+        (first.first + first.second + second.first + second.second).contains(it)
     }
 }
 
-private fun parseEight(eight: Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>): String {
-    return "(${parseFour(eight.first)}) * (${parseFour(eight.second)})"
+private fun Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>.formatEight(): String {
+    return "(${first.formatFour()}) * (${second.formatFour()})"
 }

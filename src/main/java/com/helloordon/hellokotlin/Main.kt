@@ -2,7 +2,9 @@ package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.algorithm.*
 import com.helloordon.hellokotlin.read.readFunction
-import com.helloordon.hellokotlin.write.*
+import com.helloordon.hellokotlin.write.writeMissingEights
+import com.helloordon.hellokotlin.write.writeMissingFours
+import com.helloordon.hellokotlin.write.writeMissingPair
 import java.io.File
 
 object Main {
@@ -18,21 +20,22 @@ object Main {
     }
 
     private fun mainInternal(args: Array<String>) {
-        File(args[1]).clear()
-        val function = readFunction(File(args[0]))
-        val zeroRows = function[false]!!
-        val oneRows = function[true]!!
-        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        File(args[1]).writer().use { writer ->
+            val function = readFunction(File(args[0]))
+            val zeroRows = function[false]!!
+            val oneRows = function[true]!!
+            val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
 
-        getMissingPairs(zeroRows.first().size, discernibility)
-                .doOnNext { writeMissingPairs(File(args[1]).appendingOutputStream(), zeroRows.first().size, listOf(it)) }
-                .toSeparatePairs()
-                .toMissingFours(discernibility)
-                .doOnNext { writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, listOf(it)) }
-                .toSeparateFours()
-                .toMissingEights(discernibility)
-                .doOnNext { writeMissingEights(File(args[1]).appendingOutputStream(), zeroRows.first().size, listOf(it)) }
-                .take(1)
-                .subscribe()
+            getMissingPairs(zeroRows.first().size, discernibility)
+                    .doOnNext { writeMissingPair(writer, zeroRows.first().size, it) }
+                    .toSeparatePairs()
+                    .toMissingFours(discernibility)
+                    .doOnNext { writeMissingFours(writer, zeroRows.first().size, it) }
+                    .toSeparateFours()
+                    .toMissingEights(discernibility)
+                    .doOnNext { writeMissingEights(writer, zeroRows.first().size, it) }
+                    .take(1)
+                    .subscribe()
+        }
     }
 }

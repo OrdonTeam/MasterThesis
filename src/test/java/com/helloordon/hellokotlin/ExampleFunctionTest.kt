@@ -8,7 +8,7 @@ import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
 import com.helloordon.hellokotlin.write.appendingOutputStream
 import com.helloordon.hellokotlin.write.writeMissingFours
-import com.helloordon.hellokotlin.write.writeMissingPairs
+import com.helloordon.hellokotlin.write.writeMissingPair
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
@@ -18,7 +18,7 @@ import java.util.*
 class ExampleFunctionTest {
 
     val file = File(UUID.randomUUID().toString())
-    val out by lazy { file.appendingOutputStream() }
+    val out by lazy { file.appendingOutputStream().writer() }
 
     @Test
     fun shouldCalculateCpq() {
@@ -88,10 +88,13 @@ class ExampleFunctionTest {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
-        writeMissingPairs(out, zeroRows.first().size,
-                getMissingPairs(
-                        zeroRows.first().size,
-                        findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
+        out.use { writer ->
+            getMissingPairs(
+                    zeroRows.first().size,
+                    findMatrixDiscernibility(zeroRows, oneRows))
+                    .doOnNext { writeMissingPair(writer, zeroRows.first().size, it) }
+                    .subscribe()
+        }
         Assert.assertEquals(
                 listOf(
                         "x0 * x4 + x1 + x2 + x3",
@@ -121,11 +124,13 @@ class ExampleFunctionTest {
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
-        writeMissingFours(out, zeroRows.first().size,
-                        getMissingPairs(
-                                zeroRows.first().size,
-                                discernibility).toSeparatePairs().toMissingFours(discernibility).toList().blockingGet())
-
+        out.use { writer ->
+            getMissingPairs(
+                    zeroRows.first().size,
+                    discernibility).toSeparatePairs().toMissingFours(discernibility)
+                    .doOnNext { writeMissingFours(writer, zeroRows.first().size, it) }
+                    .subscribe()
+        }
         Assert.assertEquals(
                 listOf("(x0 * x4) * (x2 * x3) + x1"),
                 file.readLines())

@@ -1,18 +1,15 @@
 package com.helloordon.hellokotlin.write
 
-import java.io.OutputStream
+import java.io.OutputStreamWriter
 
-fun writeMissingFours(outputStream: OutputStream, argumentsCount: Int, fours: List<Pair<List<Int>, List<Int>>>) {
-    outputStream.writer().use {
-        fours.map { four ->
-            val otherArguments = (0..(argumentsCount - 1)).filterNot { (four.first + four.second).contains(it) }.map { " + x$it" }.joinToString("")
-            parseFour(four) + otherArguments
-        }.forEach { line ->
-            it.appendln(line)
-        }
-    }
+fun writeMissingFours(writer: OutputStreamWriter, argumentsCount: Int, four: Pair<List<Int>, List<Int>>) {
+    writer.appendln(four.formatFour() + four.notIncludedArguments(argumentsCount).formatArguments())
 }
 
-fun parseFour(four: Pair<List<Int>, List<Int>>): String {
-    return "(${parsePair(four.first)}) * (${parsePair(four.second)})"
+private fun Pair<List<Int>, List<Int>>.notIncludedArguments(argumentsCount: Int): List<Int> {
+    return (0..(argumentsCount - 1)).filterNot { (first + second).contains(it) }
+}
+
+fun Pair<List<Int>, List<Int>>.formatFour(): String {
+    return "(${first.formatPair()}) * (${second.formatPair()})"
 }

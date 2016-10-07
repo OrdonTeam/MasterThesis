@@ -1,18 +1,19 @@
 package com.helloordon.hellokotlin.write
 
-import java.io.OutputStream
+import java.io.OutputStreamWriter
 
-fun writeMissingPairs(outputStream: OutputStream, argumentsCount: Int, pairs: List<List<Int>>) {
-    outputStream.writer().use {
-        pairs.map { pair ->
-            val otherArguments = (0..(argumentsCount - 1)).filterNot { it == pair[0] || it == pair[1] }.map { " + x$it" }.joinToString("")
-            parsePair(pair) + otherArguments
-        }.forEach { line ->
-            it.appendln(line)
-        }
-    }
+fun writeMissingPair(writer: OutputStreamWriter, argumentsCount: Int, pair: List<Int>) {
+    writer.appendln(pair.formatPair() + pair.notIncludedArguments(argumentsCount).formatArguments())
 }
 
-fun parsePair(pair: List<Int>): String {
-    return "x${pair[0]} * x${pair[1]}"
+private fun List<Int>.notIncludedArguments(argumentsCount: Int): List<Int> {
+    return (0..(argumentsCount - 1)).filterNot { it == this[0] || it == this[1] }
+}
+
+fun List<Int>.formatArguments(): String {
+    return map { " + x$it" }.joinToString("")
+}
+
+fun List<Int>.formatPair(): String {
+    return "x${this[0]} * x${this[1]}"
 }
