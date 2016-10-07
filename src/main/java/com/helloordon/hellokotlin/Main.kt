@@ -11,11 +11,14 @@ object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        println(System.currentTimeMillis())
+        val start = System.currentTimeMillis()
+        println(start)
         try {
             mainInternal(args)
         } finally {
-            println(System.currentTimeMillis())
+            val end = System.currentTimeMillis()
+            println(end)
+            println("${(end - start) / 1000.0} sec")
         }
     }
 
