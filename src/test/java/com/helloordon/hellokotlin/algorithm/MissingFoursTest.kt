@@ -35,7 +35,7 @@ class MissingFoursTest {
                                         separatePairs: List<Argument>,
                                         discernibility: List<List<Int>>) {
         Observable.fromIterable(separatePairs)
-                .findMissing(discernibility)
+                .findMissingDecompositions(discernibility)
                 .test()
                 .assertValueSequence(expected)
     }

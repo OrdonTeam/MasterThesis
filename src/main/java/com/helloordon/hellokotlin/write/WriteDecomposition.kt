@@ -8,19 +8,19 @@ fun Observable<Argument>.writeDecomposition(writer: OutputStreamWriter, argument
     return doOnNext { writeArgument(writer, argumentsCount, it) }
 }
 
-fun writeArgument(writer: OutputStreamWriter, argumentsCount: Int, pair: Argument) {
+private fun writeArgument(writer: OutputStreamWriter, argumentsCount: Int, pair: Argument) {
     writer.appendln(pair.format() + pair.notIncludedArguments(argumentsCount).formatArguments())
 }
 
-fun Argument.notIncludedArguments(argumentsCount: Int): List<Int> {
+private fun Argument.notIncludedArguments(argumentsCount: Int): List<Int> {
     return (0..(argumentsCount - 1)).filterNot { asList().contains(it) }
 }
 
-fun List<Int>.formatArguments(): String {
+private fun List<Int>.formatArguments(): String {
     return map { " + x$it" }.joinToString("")
 }
 
-fun Argument.format(): String {
+private fun Argument.format(): String {
     return when (this) {
         is Argument.Single -> "x$x"
         is Argument.Pair -> when(first) {

@@ -3,7 +3,7 @@ package com.helloordon.hellokotlin
 import com.helloordon.hellokotlin.algorithm.allPairs
 import com.helloordon.hellokotlin.algorithm.findDisjointDecompositions
 import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.findMissing
+import com.helloordon.hellokotlin.algorithm.findMissingDecompositions
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.write.writeDecomposition
 import java.io.File
@@ -31,13 +31,13 @@ object Main {
             val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
 
             allPairs(zeroRows.first().size)
-                    .findMissing(discernibility)
+                    .findMissingDecompositions(discernibility)
                     .writeDecomposition(writer, zeroRows.first().size)
                     .findDisjointDecompositions()
-                    .findMissing(discernibility)
+                    .findMissingDecompositions(discernibility)
                     .writeDecomposition(writer, zeroRows.first().size)
                     .findDisjointDecompositions()
-                    .findMissing(discernibility)
+                    .findMissingDecompositions(discernibility)
                     .writeDecomposition(writer, zeroRows.first().size)
                     .take(1)
                     .subscribe()

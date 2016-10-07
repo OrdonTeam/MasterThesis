@@ -8,16 +8,14 @@ import io.reactivex.disposables.Disposable
 import java.util.*
 
 fun Observable<Argument>.findDisjointDecompositions(): Observable<Argument> {
-    return compose(::getSeparatePairs)
+    return compose({
+        Observable.create<Argument> { source ->
+            subscribe(DisjointObserver(source))
+        }
+    })
 }
 
-private fun getSeparatePairs(missingPairs: Observable<Argument>): Observable<Argument> {
-    return Observable.create { source ->
-        missingPairs.subscribe(SeparatePairsConsumer(source))
-    }
-}
-
-private class SeparatePairsConsumer(val source: ObservableEmitter<Argument>) : Observer<Argument> {
+private class DisjointObserver(val source: ObservableEmitter<Argument>) : Observer<Argument> {
     val buffer = ArrayList<Argument>()
 
     override fun onSubscribe(d: Disposable) {
