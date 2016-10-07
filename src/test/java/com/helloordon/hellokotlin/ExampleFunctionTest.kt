@@ -1,8 +1,8 @@
 package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.getMissingPairs
 import com.helloordon.hellokotlin.algorithm.toMissingFours
+import com.helloordon.hellokotlin.algorithm.toMissingPairs
 import com.helloordon.hellokotlin.algorithm.toSeparatePairs
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
@@ -54,7 +54,7 @@ class ExampleFunctionTest {
                 listOf(1, 1, 0, 1, 0),
                 listOf(1, 0, 0, 1, 1),
                 listOf(1, 0, 0, 1, 0)).toBoolean()
-        Assert.assertEquals(listOf(listOf(0, 4), listOf(2, 3), listOf(2, 4)), getMissingPairs(5, findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
+        Assert.assertEquals(listOf(listOf(0, 4), listOf(2, 3), listOf(2, 4)), findMatrixDiscernibility(zeroRows, oneRows).toMissingPairs(5).toList().blockingGet())
     }
 
     @Test
@@ -62,11 +62,11 @@ class ExampleFunctionTest {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
+        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         Assert.assertEquals(
                 listOf(listOf(0, 4), listOf(2, 3), listOf(2, 4)),
-                getMissingPairs(
-                        zeroRows.first().size,
-                        findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
+                discernibility
+                        .toMissingPairs(zeroRows.first().size).toList().blockingGet())
     }
 
     @Test
@@ -74,11 +74,12 @@ class ExampleFunctionTest {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
+        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         Assert.assertEquals(
                 listOf(listOf(0, 4) to listOf(2, 3)),
-                getMissingPairs(
-                        zeroRows.first().size,
-                        findMatrixDiscernibility(zeroRows, oneRows)).toSeparatePairs().toList().blockingGet())
+                discernibility
+                        .toMissingPairs(zeroRows.first().size)
+                        .toSeparatePairs().toList().blockingGet())
     }
 
     @Test
@@ -86,10 +87,10 @@ class ExampleFunctionTest {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
+        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         file.writer().use { writer ->
-            getMissingPairs(
-                    zeroRows.first().size,
-                    findMatrixDiscernibility(zeroRows, oneRows))
+            discernibility
+                    .toMissingPairs(zeroRows.first().size)
                     .writePair(writer, zeroRows.first().size)
                     .subscribe()
         }
@@ -109,9 +110,8 @@ class ExampleFunctionTest {
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         Assert.assertEquals(
                 listOf(listOf(0, 4) to listOf(2, 3)),
-                getMissingPairs(
-                        zeroRows.first().size,
-                        discernibility)
+                discernibility
+                        .toMissingPairs(zeroRows.first().size)
                         .toSeparatePairs()
                         .toMissingFours(discernibility).toList().blockingGet())
     }
@@ -123,9 +123,9 @@ class ExampleFunctionTest {
         val oneRows = function[true]!!
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
         file.writer().use { writer ->
-            getMissingPairs(
-                    zeroRows.first().size,
-                    discernibility).toSeparatePairs().toMissingFours(discernibility)
+            discernibility
+                    .toMissingPairs(zeroRows.first().size)
+                    .toSeparatePairs().toMissingFours(discernibility)
                     .writeFour(writer, zeroRows.first().size)
                     .subscribe()
         }

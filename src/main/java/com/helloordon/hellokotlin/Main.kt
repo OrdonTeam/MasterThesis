@@ -26,7 +26,8 @@ object Main {
             val oneRows = function[true]!!
             val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
 
-            getMissingPairs(zeroRows.first().size, discernibility)
+            discernibility
+                    .toMissingPairs(zeroRows.first().size)
                     .writePair(writer, zeroRows.first().size)
                     .toSeparatePairs()
                     .toMissingFours(discernibility)

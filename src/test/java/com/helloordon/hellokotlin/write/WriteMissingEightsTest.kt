@@ -15,7 +15,7 @@ class WriteMissingEightsTest {
     @Test
     fun shouldSaveMissingFour() {
         file.writer().use { writer ->
-            writeMissingEights(writer, 8, first)
+            writeMissingEight(writer, 8, first)
         }
         Assert.assertEquals(listOf("((x0 * x1) * (x2 * x3)) * ((x4 * x5) * (x6 * x7))"), file.readLines())
     }
@@ -23,8 +23,8 @@ class WriteMissingEightsTest {
     @Test
     fun shouldSaveMissingFours() {
         file.writer().use { writer ->
-            writeMissingEights(writer, 9, first)
-            writeMissingEights(writer, 9, second)
+            writeMissingEight(writer, 9, first)
+            writeMissingEight(writer, 9, second)
         }
         Assert.assertEquals(listOf(
                 "((x0 * x1) * (x2 * x3)) * ((x4 * x5) * (x6 * x7)) + x8",

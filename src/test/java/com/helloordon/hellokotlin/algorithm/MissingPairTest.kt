@@ -21,7 +21,7 @@ class MissingPairTest {
     }
 
     private fun verifyFoundPairs(expected: List<List<Int>>, argumentsCount: Int, pairs: List<List<Int>>) {
-        getMissingPairs(argumentsCount, pairs)
+        pairs.toMissingPairs(argumentsCount)
                 .test()
                 .assertValueSequence(expected)
     }
