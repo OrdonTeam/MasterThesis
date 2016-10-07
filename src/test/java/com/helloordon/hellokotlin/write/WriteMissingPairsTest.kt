@@ -12,7 +12,7 @@ class WriteMissingPairsTest {
 
     @Test
     fun shouldSaveMissingPair() {
-        file.appendingOutputStream().writer().use {
+        file.writer().use {
             writeMissingPair(it, 3, listOf(0, 1))
         }
         Assert.assertEquals(listOf("x0 * x1 + x2"), file.readLines())
@@ -20,7 +20,7 @@ class WriteMissingPairsTest {
 
     @Test
     fun shouldSaveMissingPairs() {
-        file.appendingOutputStream().writer().use {
+        file.writer().use {
             writeMissingPair(it, 3, listOf(0, 1))
             writeMissingPair(it, 3, listOf(0, 2))
         }
@@ -29,7 +29,7 @@ class WriteMissingPairsTest {
 
     @Test
     fun shouldSaveMissingPairFor4Arguments() {
-        file.appendingOutputStream().writer().use {
+        file.writer().use {
             writeMissingPair(it, 4, listOf(0, 1))
         }
         Assert.assertEquals(listOf("x0 * x1 + x2 + x3"), file.readLines())

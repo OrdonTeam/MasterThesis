@@ -6,7 +6,6 @@ import com.helloordon.hellokotlin.algorithm.toMissingFours
 import com.helloordon.hellokotlin.algorithm.toSeparatePairs
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
-import com.helloordon.hellokotlin.write.appendingOutputStream
 import com.helloordon.hellokotlin.write.writeMissingFours
 import com.helloordon.hellokotlin.write.writeMissingPair
 import org.junit.After
@@ -18,7 +17,6 @@ import java.util.*
 class ExampleFunctionTest {
 
     val file = File(UUID.randomUUID().toString())
-    val out by lazy { file.appendingOutputStream().writer() }
 
     @Test
     fun shouldCalculateCpq() {
@@ -88,7 +86,7 @@ class ExampleFunctionTest {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
-        out.use { writer ->
+        file.writer().use { writer ->
             getMissingPairs(
                     zeroRows.first().size,
                     findMatrixDiscernibility(zeroRows, oneRows))
@@ -124,7 +122,7 @@ class ExampleFunctionTest {
         val zeroRows = function[false]!!
         val oneRows = function[true]!!
         val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
-        out.use { writer ->
+        file.writer().use { writer ->
             getMissingPairs(
                     zeroRows.first().size,
                     discernibility).toSeparatePairs().toMissingFours(discernibility)
