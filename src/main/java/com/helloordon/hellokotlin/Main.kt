@@ -27,7 +27,7 @@ object Main {
         val missingPairs = getMissingPairs(zeroRows.first().size, discernibility)
         writeMissingPairs(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingPairs.toList().blockingGet())
 
-        val separatePairs = getSeparatePairs(missingPairs)
+        val separatePairs = missingPairs.toSeparatePairs()
         val missingFours = getMissingFours(discernibility, separatePairs)
         writeMissingFours(File(args[1]).appendingOutputStream(), zeroRows.first().size, missingFours.toList().blockingGet())
 

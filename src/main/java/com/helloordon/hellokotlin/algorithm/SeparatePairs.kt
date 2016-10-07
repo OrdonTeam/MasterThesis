@@ -7,7 +7,11 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.*
 
-fun getSeparatePairs(missingPairs: Observable<List<Int>>): Observable<Pair<List<Int>, List<Int>>> {
+fun Observable<List<Int>>.toSeparatePairs(): Observable<Pair<List<Int>, List<Int>>> {
+    return compose(::getSeparatePairs)
+}
+
+private fun getSeparatePairs(missingPairs: Observable<List<Int>>): Observable<Pair<List<Int>, List<Int>>> {
     return Observable.create { source ->
         missingPairs.subscribe(SeparatePairsConsumer(source))
     }

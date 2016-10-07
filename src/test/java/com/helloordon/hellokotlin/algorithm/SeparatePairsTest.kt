@@ -22,7 +22,7 @@ class SeparatePairsTest {
 
     private fun verify(expected: List<Pair<List<Int>, List<Int>>>, collections: List<List<Int>>) {
         Observable.fromIterable(collections)
-                .compose(::getSeparatePairs)
+                .toSeparatePairs()
                 .test()
                 .assertValueSequence(expected)
     }
