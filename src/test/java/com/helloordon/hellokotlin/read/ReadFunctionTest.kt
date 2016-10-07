@@ -1,6 +1,5 @@
 package com.helloordon.hellokotlin.read
 
-import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
 import org.junit.Assert
 import org.junit.Test

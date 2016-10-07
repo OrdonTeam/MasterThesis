@@ -1,9 +1,9 @@
 package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.algorithm.allPairs
+import com.helloordon.hellokotlin.algorithm.findDisjointDecompositions
 import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
 import com.helloordon.hellokotlin.algorithm.findMissingDecompositions
-import com.helloordon.hellokotlin.algorithm.findDisjointDecompositions
 import com.helloordon.hellokotlin.dto.pair
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources

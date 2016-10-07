@@ -1,6 +1,5 @@
 package com.helloordon.hellokotlin.algorithm
 
-import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
 import org.junit.Assert
 import org.junit.Test
 

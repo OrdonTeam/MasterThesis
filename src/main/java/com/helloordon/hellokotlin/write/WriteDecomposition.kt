@@ -23,7 +23,7 @@ private fun List<Int>.formatArguments(): String {
 private fun Argument.format(): String {
     return when (this) {
         is Argument.Single -> "x$x"
-        is Argument.Pair -> when(first) {
+        is Argument.Pair -> when (first) {
             is Argument.Single -> "${first.format()} * ${second.format()}"
             is Argument.Pair -> "(${first.format()}) * (${second.format()})"
         }
