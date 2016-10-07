@@ -12,7 +12,7 @@ fun writeMissingPair(writer: OutputStreamWriter, argumentsCount: Int, pair: List
 }
 
 private fun List<Int>.notIncludedArguments(argumentsCount: Int): List<Int> {
-    return (0..(argumentsCount - 1)).filterNot { it == this[0] || it == this[1] }
+    return (0..(argumentsCount - 1)).filterNot { contains(it) }
 }
 
 fun List<Int>.formatArguments(): String {
