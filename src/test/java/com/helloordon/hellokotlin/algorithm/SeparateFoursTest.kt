@@ -1,5 +1,7 @@
 package com.helloordon.hellokotlin.algorithm
 
+import com.helloordon.hellokotlin.dto.Argument
+import com.helloordon.hellokotlin.dto.pair
 import io.reactivex.Observable
 import org.junit.Test
 
@@ -9,30 +11,30 @@ class SeparateFoursTest {
     fun shouldFindNoSeparateFours() {
         verify(
                 emptyList(),
-                listOf(listOf(0, 1) to listOf(2, 3)))
+                listOf(pair(pair(0, 1), pair(2, 3))))
     }
 
     @Test
     fun shouldFindOnePairOfFours() {
-        val one = listOf(0, 1) to listOf(2, 3)
-        val two = listOf(4, 5) to listOf(6, 7)
+        val one = pair(pair(0, 1), pair(2, 3))
+        val two = pair(pair(4, 5), pair(6, 7))
         verify(
-                listOf(one to two),
+                listOf(pair(one, two)),
                 listOf(one, two))
     }
 
     @Test
     fun shouldNotFindOnePairOfFours() {
-        val one = listOf(0, 1) to listOf(2, 3)
-        val two = listOf(4, 5) to listOf(2, 7)
+        val one = pair(pair(0, 1), pair(2, 3))
+        val two = pair(pair(4, 5), pair(2, 7))
         verify(
                 emptyList(),
                 listOf(one, two))
     }
 
-    private fun verify(expected: List<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>>, collections: List<Pair<List<Int>, List<Int>>>) {
+    private fun verify(expected: List<Argument>, collections: List<Argument>) {
         Observable.fromIterable(collections)
-                .toSeparateFours()
+                .toSeparatePairs()
                 .test()
                 .assertValueSequence(expected)
     }

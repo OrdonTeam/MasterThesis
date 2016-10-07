@@ -1,5 +1,6 @@
 package com.helloordon.hellokotlin.write
 
+import com.helloordon.hellokotlin.dto.Argument
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
@@ -13,7 +14,7 @@ class WriteMissingPairsTest {
     @Test
     fun shouldSaveMissingPair() {
         file.writer().use {
-            writeMissingPair(it, 3, listOf(0, 1))
+            writeArgument(it, 3, Argument.Single(0) with Argument.Single(1))
         }
         Assert.assertEquals(listOf("x0 * x1 + x2"), file.readLines())
     }
@@ -21,8 +22,8 @@ class WriteMissingPairsTest {
     @Test
     fun shouldSaveMissingPairs() {
         file.writer().use {
-            writeMissingPair(it, 3, listOf(0, 1))
-            writeMissingPair(it, 3, listOf(0, 2))
+            writeArgument(it, 3, Argument.Single(0) with Argument.Single(1))
+            writeArgument(it, 3, Argument.Single(0) with Argument.Single(2))
         }
         Assert.assertEquals(listOf("x0 * x1 + x2", "x0 * x2 + x1"), file.readLines())
     }
@@ -30,7 +31,7 @@ class WriteMissingPairsTest {
     @Test
     fun shouldSaveMissingPairFor4Arguments() {
         file.writer().use {
-            writeMissingPair(it, 4, listOf(0, 1))
+            writeArgument(it, 4, Argument.Single(0) with Argument.Single(1))
         }
         Assert.assertEquals(listOf("x0 * x1 + x2 + x3"), file.readLines())
     }

@@ -1,13 +1,14 @@
 package com.helloordon.hellokotlin.algorithm
 
+import com.helloordon.hellokotlin.dto.Argument
 import io.reactivex.Observable
 
-fun Observable<Pair<List<Int>, List<Int>>>.toMissingFours(discernibility: List<List<Int>>): Observable<Pair<List<Int>, List<Int>>> {
+fun Observable<Argument>.toMissingFours(discernibility: List<List<Int>>): Observable<Argument> {
     return compose { getMissingFours(discernibility, it) }
 }
 
-private fun getMissingFours(discernibility: List<List<Int>>, separatePairs: Observable<Pair<List<Int>, List<Int>>>): Observable<Pair<List<Int>, List<Int>>> {
+private fun getMissingFours(discernibility: List<List<Int>>, separatePairs: Observable<Argument>): Observable<Argument> {
     return separatePairs.filter {
-        !discernibility.contains((it.first + it.second).sorted())
+        !discernibility.contains(it.asList().sorted())
     }
 }

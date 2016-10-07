@@ -1,5 +1,7 @@
 package com.helloordon.hellokotlin.algorithm
 
+import com.helloordon.hellokotlin.dto.Argument
+import com.helloordon.hellokotlin.dto.pair
 import io.reactivex.Observable
 import org.junit.Test
 
@@ -16,8 +18,8 @@ class MissingFoursTest {
     @Test
     fun shouldFindMissingFour() {
         verifyFoundMissingFours(
-                listOf(listOf(0, 4) to listOf(2, 3)),
-                listOf(listOf(0, 4) to listOf(2, 3)),
+                listOf(pair(pair(0, 4), pair(2, 3))),
+                listOf(pair(pair(0, 4), pair(2, 3))),
                 emptyList())
     }
 
@@ -25,12 +27,12 @@ class MissingFoursTest {
     fun shouldFilterOurFour() {
         verifyFoundMissingFours(
                 emptyList(),
-                listOf(listOf(0, 4) to listOf(2, 3)),
+                listOf(pair(pair(0, 4), pair(2, 3))),
                 listOf(listOf(0, 2, 3, 4)))
     }
 
-    private fun verifyFoundMissingFours(expected: List<Pair<List<Int>, List<Int>>>,
-                                        separatePairs: List<Pair<List<Int>, List<Int>>>,
+    private fun verifyFoundMissingFours(expected: List<Argument>,
+                                        separatePairs: List<Argument>,
                                         discernibility: List<List<Int>>) {
         Observable.fromIterable(separatePairs)
                 .toMissingFours(discernibility)

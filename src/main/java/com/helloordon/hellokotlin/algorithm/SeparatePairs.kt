@@ -1,33 +1,33 @@
 package com.helloordon.hellokotlin.algorithm
 
-import com.helloordon.hellokotlin.util.isDisjointWith
+import com.helloordon.hellokotlin.dto.Argument
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import java.util.*
 
-fun Observable<List<Int>>.toSeparatePairs(): Observable<Pair<List<Int>, List<Int>>> {
+fun Observable<Argument>.toSeparatePairs(): Observable<Argument> {
     return compose(::getSeparatePairs)
 }
 
-private fun getSeparatePairs(missingPairs: Observable<List<Int>>): Observable<Pair<List<Int>, List<Int>>> {
+private fun getSeparatePairs(missingPairs: Observable<Argument>): Observable<Argument> {
     return Observable.create { source ->
         missingPairs.subscribe(SeparatePairsConsumer(source))
     }
 }
 
-private class SeparatePairsConsumer(val source: ObservableEmitter<Pair<List<Int>, List<Int>>>) : Observer<List<Int>> {
-    val buffer = ArrayList<List<Int>>()
+private class SeparatePairsConsumer(val source: ObservableEmitter<Argument>) : Observer<Argument> {
+    val buffer = ArrayList<Argument>()
 
     override fun onSubscribe(d: Disposable) {
         source.setDisposable(d)
     }
 
-    override fun onNext(next: List<Int>) {
+    override fun onNext(next: Argument) {
         buffer.forEach {
             if (it isDisjointWith next) {
-                source.onNext(it to next)
+                source.onNext(it with next)
             }
         }
         buffer.add(next)

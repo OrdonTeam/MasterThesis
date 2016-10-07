@@ -1,24 +1,31 @@
 package com.helloordon.hellokotlin.write
 
+import com.helloordon.hellokotlin.dto.Argument
 import io.reactivex.Observable
 import java.io.OutputStreamWriter
 
-fun Observable<List<Int>>.writePair(writer: OutputStreamWriter, argumentsCount: Int): Observable<List<Int>> {
-    return doOnNext { writeMissingPair(writer, argumentsCount, it) }
+fun Observable<Argument>.writePair(writer: OutputStreamWriter, argumentsCount: Int): Observable<Argument> {
+    return doOnNext { writeArgument(writer, argumentsCount, it) }
 }
 
-fun writeMissingPair(writer: OutputStreamWriter, argumentsCount: Int, pair: List<Int>) {
-    writer.appendln(pair.formatPair() + pair.notIncludedArguments(argumentsCount).formatArguments())
+fun writeArgument(writer: OutputStreamWriter, argumentsCount: Int, pair: Argument) {
+    writer.appendln(pair.format() + pair.notIncludedArguments(argumentsCount).formatArguments())
 }
 
-private fun List<Int>.notIncludedArguments(argumentsCount: Int): List<Int> {
-    return (0..(argumentsCount - 1)).filterNot { contains(it) }
+fun Argument.notIncludedArguments(argumentsCount: Int): List<Int> {
+    return (0..(argumentsCount - 1)).filterNot { asList().contains(it) }
 }
 
 fun List<Int>.formatArguments(): String {
     return map { " + x$it" }.joinToString("")
 }
 
-fun List<Int>.formatPair(): String {
-    return "x${this[0]} * x${this[1]}"
+fun Argument.format(): String {
+    return when (this) {
+        is Argument.Single -> "x$x"
+        is Argument.Pair -> when(first) {
+            is Argument.Single -> "${first.format()} * ${second.format()}"
+            is Argument.Pair -> "(${first.format()}) * (${second.format()})"
+        }
+    }
 }
