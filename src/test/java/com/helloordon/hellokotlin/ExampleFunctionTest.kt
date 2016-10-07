@@ -56,7 +56,7 @@ class ExampleFunctionTest {
                 listOf(1, 1, 0, 1, 0),
                 listOf(1, 0, 0, 1, 1),
                 listOf(1, 0, 0, 1, 0)).toBoolean()
-        Assert.assertEquals(listOf(listOf(0, 4), listOf(2, 3), listOf(2, 4)), getMissingPairs(5, findMatrixDiscernibility(zeroRows, oneRows)))
+        Assert.assertEquals(listOf(listOf(0, 4), listOf(2, 3), listOf(2, 4)), getMissingPairs(5, findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
     }
 
     @Test
@@ -68,7 +68,7 @@ class ExampleFunctionTest {
                 listOf(listOf(0, 4), listOf(2, 3), listOf(2, 4)),
                 getMissingPairs(
                         zeroRows.first().size,
-                        findMatrixDiscernibility(zeroRows, oneRows)))
+                        findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
     }
 
     @Test
@@ -81,7 +81,7 @@ class ExampleFunctionTest {
                 getSeparatePairs(
                         getMissingPairs(
                                 zeroRows.first().size,
-                                findMatrixDiscernibility(zeroRows, oneRows))))
+                                findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet()))
     }
 
     @Test
@@ -92,7 +92,7 @@ class ExampleFunctionTest {
         writeMissingPairs(out, zeroRows.first().size,
                 getMissingPairs(
                         zeroRows.first().size,
-                        findMatrixDiscernibility(zeroRows, oneRows)))
+                        findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
         Assert.assertEquals(
                 listOf(
                         "x0 * x4 + x1 + x2 + x3",
@@ -112,7 +112,7 @@ class ExampleFunctionTest {
                 getMissingFours(discernibility, getSeparatePairs(
                         getMissingPairs(
                                 zeroRows.first().size,
-                                discernibility))))
+                                discernibility).toList().blockingGet())))
     }
 
     @Test
@@ -125,7 +125,7 @@ class ExampleFunctionTest {
                 getMissingFours(discernibility, getSeparatePairs(
                         getMissingPairs(
                                 zeroRows.first().size,
-                                discernibility))))
+                                discernibility).toList().blockingGet())))
 
         Assert.assertEquals(
                 listOf("(x0 * x4) * (x2 * x3) + x1"),

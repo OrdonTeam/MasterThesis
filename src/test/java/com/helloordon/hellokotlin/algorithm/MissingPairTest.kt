@@ -1,7 +1,5 @@
 package com.helloordon.hellokotlin.algorithm
 
-import com.helloordon.hellokotlin.algorithm.getMissingPairs
-import org.junit.Assert
 import org.junit.Test
 
 class MissingPairTest {
@@ -23,7 +21,9 @@ class MissingPairTest {
     }
 
     private fun verifyFoundPairs(expected: List<List<Int>>, argumentsCount: Int, pairs: List<List<Int>>) {
-        Assert.assertEquals(expected, getMissingPairs(argumentsCount, pairs))
+        getMissingPairs(argumentsCount, pairs)
+                .test()
+                .assertValueSequence(expected)
     }
 }
 
