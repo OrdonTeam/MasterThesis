@@ -1,8 +1,14 @@
 package com.helloordon.hellokotlin.write
 
+import io.reactivex.Observable
 import java.io.OutputStreamWriter
 
-fun writeMissingEights(writer: OutputStreamWriter, argumentsCount: Int, eight: Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>) {
+
+fun Observable<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>>.writeEight(writer: OutputStreamWriter, argumentsCount: Int): Observable<Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>> {
+    return doOnNext { writeMissingEight(writer, argumentsCount, it) }
+}
+
+fun writeMissingEight(writer: OutputStreamWriter, argumentsCount: Int, eight: Pair<Pair<List<Int>, List<Int>>, Pair<List<Int>, List<Int>>>) {
     writer.appendln(eight.formatEight() + eight.notIncludedArguments(argumentsCount).formatArguments())
 }
 

@@ -1,6 +1,11 @@
 package com.helloordon.hellokotlin.write
 
+import io.reactivex.Observable
 import java.io.OutputStreamWriter
+
+fun Observable<List<Int>>.writePair(writer: OutputStreamWriter, argumentsCount: Int): Observable<List<Int>> {
+    return doOnNext { writeMissingPair(writer, argumentsCount, it) }
+}
 
 fun writeMissingPair(writer: OutputStreamWriter, argumentsCount: Int, pair: List<Int>) {
     writer.appendln(pair.formatPair() + pair.notIncludedArguments(argumentsCount).formatArguments())

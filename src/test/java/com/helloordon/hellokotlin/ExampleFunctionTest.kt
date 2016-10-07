@@ -6,8 +6,8 @@ import com.helloordon.hellokotlin.algorithm.toMissingFours
 import com.helloordon.hellokotlin.algorithm.toSeparatePairs
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
-import com.helloordon.hellokotlin.write.writeMissingFours
-import com.helloordon.hellokotlin.write.writeMissingPair
+import com.helloordon.hellokotlin.write.writeFour
+import com.helloordon.hellokotlin.write.writePair
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
@@ -90,7 +90,7 @@ class ExampleFunctionTest {
             getMissingPairs(
                     zeroRows.first().size,
                     findMatrixDiscernibility(zeroRows, oneRows))
-                    .doOnNext { writeMissingPair(writer, zeroRows.first().size, it) }
+                    .writePair(writer, zeroRows.first().size)
                     .subscribe()
         }
         Assert.assertEquals(
@@ -126,7 +126,7 @@ class ExampleFunctionTest {
             getMissingPairs(
                     zeroRows.first().size,
                     discernibility).toSeparatePairs().toMissingFours(discernibility)
-                    .doOnNext { writeMissingFours(writer, zeroRows.first().size, it) }
+                    .writeFour(writer, zeroRows.first().size)
                     .subscribe()
         }
         Assert.assertEquals(

@@ -2,9 +2,9 @@ package com.helloordon.hellokotlin
 
 import com.helloordon.hellokotlin.algorithm.*
 import com.helloordon.hellokotlin.read.readFunction
-import com.helloordon.hellokotlin.write.writeMissingEights
-import com.helloordon.hellokotlin.write.writeMissingFours
-import com.helloordon.hellokotlin.write.writeMissingPair
+import com.helloordon.hellokotlin.write.writeEight
+import com.helloordon.hellokotlin.write.writeFour
+import com.helloordon.hellokotlin.write.writePair
 import java.io.File
 
 object Main {
@@ -27,13 +27,13 @@ object Main {
             val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
 
             getMissingPairs(zeroRows.first().size, discernibility)
-                    .doOnNext { writeMissingPair(writer, zeroRows.first().size, it) }
+                    .writePair(writer, zeroRows.first().size)
                     .toSeparatePairs()
                     .toMissingFours(discernibility)
-                    .doOnNext { writeMissingFours(writer, zeroRows.first().size, it) }
+                    .writeFour(writer, zeroRows.first().size)
                     .toSeparateFours()
                     .toMissingEights(discernibility)
-                    .doOnNext { writeMissingEights(writer, zeroRows.first().size, it) }
+                    .writeEight(writer, zeroRows.first().size)
                     .take(1)
                     .subscribe()
         }
