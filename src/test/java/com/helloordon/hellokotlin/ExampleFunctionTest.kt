@@ -21,10 +21,7 @@ class ExampleFunctionTest {
     @Test
     fun shouldFindMissingPairsInCpqInFunctionFromFile() {
         val function = readFunction(fileFromResources("example_function.pla"))
-        val values = function.values
-        val first = values.first()
-        val first1 = first.first()
-        val argumentsCount = first1.size
+        val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
                 listOf(pair(0, 4), pair(2, 3), pair(2, 4)),
