@@ -19,51 +19,10 @@ class ExampleFunctionTest {
     val file = File(UUID.randomUUID().toString())
 
     @Test
-    fun shouldCalculateCpq() {
-        val zeroRows = listOf(
-                listOf(0, 0, 0, 0, 0),
-                listOf(0, 0, 1, 1, 1),
-                listOf(0, 1, 0, 1, 0),
-                listOf(0, 1, 1, 1, 1),
-                listOf(0, 1, 1, 0, 0)).toBoolean()
-        val oneRows = listOf(
-                listOf(0, 0, 0, 1, 1),
-                listOf(0, 1, 0, 0, 0),
-                listOf(0, 1, 1, 0, 1),
-                listOf(1, 1, 0, 1, 0),
-                listOf(1, 0, 0, 1, 1),
-                listOf(1, 0, 0, 1, 0)).toBoolean()
-        Assert.assertTrue(
-                findMatrixDiscernibility(zeroRows, oneRows).filter { it.size == 2 }.containsAll(
-                        listOf(listOf(3, 4), listOf(0, 3), listOf(1, 3), listOf(0, 2), listOf(1, 4), listOf(0, 1), listOf(1, 2))
-                ))
-    }
-
-    @Test
-    fun shouldFindMissingPairsInCpq() {
-        val zeroRows = listOf(
-                listOf(0, 0, 0, 0, 0),
-                listOf(0, 0, 1, 1, 1),
-                listOf(0, 1, 0, 1, 0),
-                listOf(0, 1, 1, 1, 1),
-                listOf(0, 1, 1, 0, 0)).toBoolean()
-        val oneRows = listOf(
-                listOf(0, 0, 0, 1, 1),
-                listOf(0, 1, 0, 0, 0),
-                listOf(0, 1, 1, 0, 1),
-                listOf(1, 1, 0, 1, 0),
-                listOf(1, 0, 0, 1, 1),
-                listOf(1, 0, 0, 1, 0)).toBoolean()
-        Assert.assertEquals(listOf(pair(0, 4), pair(2, 3), pair(2, 4)),
-                allPairs(5).findMissingDecompositions(findMatrixDiscernibility(zeroRows, oneRows)).toList().blockingGet())
-    }
-
-    @Test
     fun shouldFindMissingPairsInCpqInFunctionFromFile() {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
-        val oneRows = function[true]!!
-        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
                 listOf(pair(0, 4), pair(2, 3), pair(2, 4)),
                 allPairs(zeroRows.first().size).findMissingDecompositions(discernibility).toList().blockingGet())
@@ -73,8 +32,7 @@ class ExampleFunctionTest {
     fun shouldPairPairsNotFoundInCpqFromFile() {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
-        val oneRows = function[true]!!
-        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
                 pair(pair(0, 4), pair(2, 3)),
                 allPairs(zeroRows.first().size)
@@ -86,8 +44,7 @@ class ExampleFunctionTest {
     fun shouldSaveMissingPairsToFile() {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
-        val oneRows = function[true]!!
-        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        val discernibility = findMatrixDiscernibility(function.values.toList())
         file.writer().use { writer ->
             allPairs(zeroRows.first().size)
                     .findMissingDecompositions(discernibility)
@@ -106,8 +63,7 @@ class ExampleFunctionTest {
     fun shouldFindMissingFours() {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
-        val oneRows = function[true]!!
-        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
                 pair(pair(0, 4), pair(2, 3)),
                 allPairs(zeroRows.first().size)
@@ -120,8 +76,7 @@ class ExampleFunctionTest {
     fun shouldSaveMissingFoursToFile() {
         val function = readFunction(fileFromResources("example_function"))
         val zeroRows = function[false]!!
-        val oneRows = function[true]!!
-        val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+        val discernibility = findMatrixDiscernibility(function.values.toList())
         file.writer().use { writer ->
             allPairs(zeroRows.first().size)
                     .findMissingDecompositions(discernibility)
@@ -138,7 +93,4 @@ class ExampleFunctionTest {
     fun tearDown() {
         file.delete()
     }
-
-    private fun List<List<Int>>.toBoolean() = map { it.map { if (it == 0) false else true } }
 }
-

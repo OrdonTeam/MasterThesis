@@ -27,8 +27,7 @@ object Main {
         File(args[1]).writer().use { writer ->
             val function = readFunction(File(args[0]))
             val zeroRows = function[false]!!
-            val oneRows = function[true]!!
-            val discernibility = findMatrixDiscernibility(zeroRows, oneRows)
+            val discernibility = findMatrixDiscernibility(function.values.toList())
 
             allPairs(zeroRows.first().size)
                     .findMissingDecompositions(discernibility)
