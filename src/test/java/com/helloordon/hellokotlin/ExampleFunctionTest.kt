@@ -20,7 +20,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldFindMissingPairsInCpqInFunctionFromFile() {
-        val function = readFunction(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function.pla"))
         val values = function.values
         val first = values.first()
         val first1 = first.first()
@@ -33,7 +33,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldPairPairsNotFoundInCpqFromFile() {
-        val function = readFunction(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function.pla"))
         val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
@@ -45,7 +45,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldSaveMissingPairsToFile() {
-        val function = readFunction(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function.pla"))
         val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         file.writer().use { writer ->
@@ -64,7 +64,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldFindMissingFours() {
-        val function = readFunction(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function.pla"))
         val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
@@ -77,7 +77,7 @@ class ExampleFunctionTest {
 
     @Test
     fun shouldSaveMissingFoursToFile() {
-        val function = readFunction(fileFromResources("example_function"))
+        val function = readFunction(fileFromResources("example_function.pla"))
         val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         file.writer().use { writer ->

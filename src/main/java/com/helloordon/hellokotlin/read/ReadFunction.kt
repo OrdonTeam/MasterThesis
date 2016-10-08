@@ -3,10 +3,17 @@ package com.helloordon.hellokotlin.read
 import java.io.File
 
 fun readFunction(file: File): Map<String, List<List<Boolean>>> {
-    return file.readLines().map(::parseLine).groupBy({ it.first }, { it.second })
+    val readFile = file.readLines().groupBy { it.startsWith(".") }
+    val argumentCount = getArgumentCount(readFile)
+    return parseFunction(argumentCount, readFile)
 }
 
-private fun parseLine(it: String): Pair<String, List<Boolean>> {
-    val split = it.split(" ")
-    return split.last() to split.dropLast(1).map { Integer.parseInt(it) != 0 }
+private fun parseFunction(argumentCount: Int, readFile: Map<Boolean, List<String>>) = readFile[false]!!.map { parseLine(it, argumentCount) }.groupBy({ it.first }, { it.second })
+
+private fun getArgumentCount(readFile: Map<Boolean, List<String>>) = readFile[true]!!.first { it.startsWith(".i") }.split(" ")[1].toInt()
+
+private fun parseLine(line: String, argumentCount: Int): Pair<String, List<Boolean>> {
+    val noSpaces = line.replace(" ", "")
+    return noSpaces.drop(argumentCount) to
+            noSpaces.take(argumentCount).toCharArray().map { it == '1' }
 }
