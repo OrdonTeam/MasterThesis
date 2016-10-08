@@ -10,8 +10,8 @@ class ReadFunctionTest {
     fun shouldParseSingleInputFunction() {
         Assert.assertEquals(
                 mapOf(
-                        false to listOf(listOf(false)),
-                        true to listOf(listOf(true))),
+                        "0" to listOf(listOf(false)),
+                        "1" to listOf(listOf(true))),
                 readFunction(fileFromResources("singleInputFile")))
     }
 
@@ -19,8 +19,8 @@ class ReadFunctionTest {
     fun shouldParseTwoInputFunction() {
         Assert.assertEquals(
                 mapOf(
-                        false to listOf(listOf(false, false), listOf(false, true)),
-                        true to listOf(listOf(true, false))),
+                        "0" to listOf(listOf(false, false), listOf(false, true)),
+                        "1" to listOf(listOf(true, false))),
                 readFunction(fileFromResources("twoInputFile")))
     }
 }

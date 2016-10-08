@@ -26,18 +26,18 @@ object Main {
     private fun mainInternal(args: Array<String>) {
         File(args[1]).writer().use { writer ->
             val function = readFunction(File(args[0]))
-            val zeroRows = function[false]!!
+            val argumentsCount = function.values.first().first().size
             val discernibility = findMatrixDiscernibility(function.values.toList())
 
-            allPairs(zeroRows.first().size)
+            allPairs(argumentsCount)
                     .findMissingDecompositions(discernibility)
-                    .writeDecomposition(writer, zeroRows.first().size)
+                    .writeDecomposition(writer, argumentsCount)
                     .findDisjointDecompositions()
                     .findMissingDecompositions(discernibility)
-                    .writeDecomposition(writer, zeroRows.first().size)
+                    .writeDecomposition(writer, argumentsCount)
                     .findDisjointDecompositions()
                     .findMissingDecompositions(discernibility)
-                    .writeDecomposition(writer, zeroRows.first().size)
+                    .writeDecomposition(writer, argumentsCount)
                     .take(1)
                     .subscribe()
         }

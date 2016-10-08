@@ -21,21 +21,24 @@ class ExampleFunctionTest {
     @Test
     fun shouldFindMissingPairsInCpqInFunctionFromFile() {
         val function = readFunction(fileFromResources("example_function"))
-        val zeroRows = function[false]!!
+        val values = function.values
+        val first = values.first()
+        val first1 = first.first()
+        val argumentsCount = first1.size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
                 listOf(pair(0, 4), pair(2, 3), pair(2, 4)),
-                allPairs(zeroRows.first().size).findMissingDecompositions(discernibility).toList().blockingGet())
+                allPairs(argumentsCount).findMissingDecompositions(discernibility).toList().blockingGet())
     }
 
     @Test
     fun shouldPairPairsNotFoundInCpqFromFile() {
         val function = readFunction(fileFromResources("example_function"))
-        val zeroRows = function[false]!!
+        val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
                 pair(pair(0, 4), pair(2, 3)),
-                allPairs(zeroRows.first().size)
+                allPairs(argumentsCount)
                         .findMissingDecompositions(discernibility)
                         .findDisjointDecompositions().firstOrError().blockingGet())
     }
@@ -43,12 +46,12 @@ class ExampleFunctionTest {
     @Test
     fun shouldSaveMissingPairsToFile() {
         val function = readFunction(fileFromResources("example_function"))
-        val zeroRows = function[false]!!
+        val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         file.writer().use { writer ->
-            allPairs(zeroRows.first().size)
+            allPairs(argumentsCount)
                     .findMissingDecompositions(discernibility)
-                    .writeDecomposition(writer, zeroRows.first().size)
+                    .writeDecomposition(writer, argumentsCount)
                     .subscribe()
         }
         Assert.assertEquals(
@@ -62,11 +65,11 @@ class ExampleFunctionTest {
     @Test
     fun shouldFindMissingFours() {
         val function = readFunction(fileFromResources("example_function"))
-        val zeroRows = function[false]!!
+        val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         Assert.assertEquals(
                 pair(pair(0, 4), pair(2, 3)),
-                allPairs(zeroRows.first().size)
+                allPairs(argumentsCount)
                         .findMissingDecompositions(discernibility)
                         .findDisjointDecompositions()
                         .findMissingDecompositions(discernibility).firstOrError().blockingGet())
@@ -75,13 +78,13 @@ class ExampleFunctionTest {
     @Test
     fun shouldSaveMissingFoursToFile() {
         val function = readFunction(fileFromResources("example_function"))
-        val zeroRows = function[false]!!
+        val argumentsCount = function.values.first().first().size
         val discernibility = findMatrixDiscernibility(function.values.toList())
         file.writer().use { writer ->
-            allPairs(zeroRows.first().size)
+            allPairs(argumentsCount)
                     .findMissingDecompositions(discernibility)
                     .findDisjointDecompositions().findMissingDecompositions(discernibility)
-                    .writeDecomposition(writer, zeroRows.first().size)
+                    .writeDecomposition(writer, argumentsCount)
                     .subscribe()
         }
         Assert.assertEquals(
