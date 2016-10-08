@@ -65,4 +65,34 @@ sealed class Argument() {
             return "($first $second)"
         }
     }
+
+    class Triplet(val first: Argument, val second: Argument, val third: Argument) : Argument() {
+        override fun asList(): List<Int> {
+            return first.asList() + second.asList() + third.asList()
+        }
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (other?.javaClass != javaClass) return false
+
+            other as Triplet
+
+            if (first != other.first) return false
+            if (second != other.second) return false
+            if (third != other.third) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            var result = first.hashCode()
+            result = 31 * result + second.hashCode()
+            result = 31 * result + third.hashCode()
+            return result
+        }
+
+        override fun toString(): String {
+            return "($first $second $third)"
+        }
+    }
 }

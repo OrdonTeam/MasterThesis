@@ -9,5 +9,5 @@ fun pair(x: Argument, y: Argument): Argument {
 }
 
 fun triplet(x: Int, y: Int, z: Int): Argument {
-    return pair(x, y)
+    return Argument.Triplet(Argument.Single(x), Argument.Single(y), Argument.Single(z))
 }

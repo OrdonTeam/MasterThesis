@@ -8,7 +8,7 @@ fun allTriplets(argumentsCount: Int): Observable<Argument> {
         (0 until argumentsCount).forEach { first ->
             ((first + 1) until argumentsCount).forEach { second ->
                 ((second + 1) until argumentsCount).forEach { third ->
-                    source.onNext(Argument.Single(first) with Argument.Single(second))
+                    source.onNext(Argument.Triplet(Argument.Single(first), Argument.Single(second), Argument.Single(third)))
                 }
             }
         }
