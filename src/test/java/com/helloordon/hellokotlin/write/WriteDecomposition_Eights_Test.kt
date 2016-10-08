@@ -1,6 +1,7 @@
 package com.helloordon.hellokotlin.write
 
 import com.helloordon.hellokotlin.dto.pair
+import io.reactivex.Observable
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test
@@ -16,7 +17,9 @@ class WriteDecomposition_Eights_Test {
     @Test
     fun shouldSaveMissingFour() {
         file.writer().use { writer ->
-            writeArgument(writer, 8, first)
+            Observable.just(first)
+                    .writeDecomposition(writer, 8)
+                    .subscribe()
         }
         Assert.assertEquals(listOf("((x0 * x1) * (x2 * x3)) * ((x4 * x5) * (x6 * x7))"), file.readLines())
     }
@@ -24,8 +27,9 @@ class WriteDecomposition_Eights_Test {
     @Test
     fun shouldSaveMissingFours() {
         file.writer().use { writer ->
-            writeArgument(writer, 9, first)
-            writeArgument(writer, 9, second)
+            Observable.just(first, second)
+                    .writeDecomposition(writer, 9)
+                    .subscribe()
         }
         Assert.assertEquals(listOf(
                 "((x0 * x1) * (x2 * x3)) * ((x4 * x5) * (x6 * x7)) + x8",
