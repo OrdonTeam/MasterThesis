@@ -3,6 +3,13 @@ package com.helloordon.hellokotlin.algorithm
 import com.helloordon.hellokotlin.dto.Argument
 import io.reactivex.Observable
 
-fun allTriplets(argumentCount: Int) : Observable<Argument> {
-    return Observable.empty()
+fun allTriplets(argumentsCount: Int) : Observable<Argument> {
+    return Observable.create({ source ->
+        (0 until argumentsCount).forEach { first ->
+            ((first + 1) until argumentsCount-1).forEach { second ->
+                source.onNext(Argument.Single(first) with Argument.Single(second))
+            }
+        }
+        source.onComplete()
+    })
 }

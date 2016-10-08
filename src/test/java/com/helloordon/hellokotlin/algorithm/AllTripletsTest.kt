@@ -1,6 +1,7 @@
 package com.helloordon.hellokotlin.algorithm
 
 import com.helloordon.hellokotlin.dto.Argument
+import com.helloordon.hellokotlin.dto.triplet
 import org.junit.Test
 
 class AllTripletsTest {
@@ -11,8 +12,13 @@ class AllTripletsTest {
         verify(emptyList(), 2)
     }
 
-    private fun verify(expected: List<Argument>, argumentCount: Int) {
-        allTriplets(argumentCount)
+    @Test
+    fun shouldReturnOneTriplet() {
+        verify(listOf(triplet(0, 1, 2)), 3)
+    }
+
+    private fun verify(expected: List<Argument>, argumentsCount: Int) {
+        allTriplets(argumentsCount)
                 .test()
                 .assertValueSequence(expected)
     }

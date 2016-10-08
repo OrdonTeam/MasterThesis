@@ -7,3 +7,7 @@ fun pair(x: Int, y: Int): Argument {
 fun pair(x: Argument, y: Argument): Argument {
     return x with y
 }
+
+fun triplet(x: Int, y: Int, z: Int): Argument {
+    return pair(x, y)
+}
