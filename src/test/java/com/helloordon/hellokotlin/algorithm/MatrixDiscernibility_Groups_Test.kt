@@ -6,7 +6,7 @@ import org.junit.Test
 class MatrixDiscernibility_Groups_Test {
 
     @Test
-    fun shouldFindMatrixDiscernibilityForTwoRows() {
+    fun shouldFindMatrixDiscernibilityForTwoGroups() {
         assertMatrixDiscernibility(
                 listOf(listOf()),
                 listOf(
@@ -21,6 +21,16 @@ class MatrixDiscernibility_Groups_Test {
                 listOf(listOf(1)),
                 listOf(
                         listOf(listOf(true, true)),
+                        listOf(listOf(true, false))))
+    }
+
+    @Test
+    fun shouldFindMatrixDiscernibilityForThreeGroups() {
+        assertMatrixDiscernibility(
+                listOf(listOf(0), listOf(1), listOf(0, 1)),
+                listOf(
+                        listOf(listOf(true, true)),
+                        listOf(listOf(false, true)),
                         listOf(listOf(true, false))))
     }
 

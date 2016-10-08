@@ -13,4 +13,9 @@ fun findMatrixDiscernibility(groupA: List<List<Boolean>>, groupB: List<List<Bool
         }
 
 
-fun findMatrixDiscernibility(groups: List<List<List<Boolean>>>) = findMatrixDiscernibility(groups[0], groups[1])
+fun findMatrixDiscernibility(groups: List<List<List<Boolean>>>) =
+        (0 until groups.size).flatMap { first ->
+            ((first + 1) until groups.size).flatMap { second ->
+                findMatrixDiscernibility(groups[first], groups[second])
+            }
+        }
