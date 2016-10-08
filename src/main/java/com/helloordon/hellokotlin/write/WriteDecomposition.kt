@@ -28,6 +28,6 @@ private fun Argument.format(): String {
             is Argument.Pair -> "(${first.format()}) * (${second.format()})"
             is Argument.Triplet -> throw UnsupportedOperationException()
         }
-        is Argument.Triplet -> throw UnsupportedOperationException()
+        is Argument.Triplet -> "(${first.format()} * ${second.format()}) + (${second.format()} * ${third.format()})"
     }
 }
