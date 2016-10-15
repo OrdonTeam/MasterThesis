@@ -17,32 +17,28 @@ private fun listOfRanges(n: Int): List<IntRange> {
 }
 
 private fun mapToListOfSets(range: IntRange, n: Int, source: ObservableEmitter<List<Int>>) {
-    range.fold(consumer(source),
-            { action, i ->
-                operation(n - i, action)
-            }).get()
-}
-
-private fun consumer(source: ObservableEmitter<List<Int>>): (Int, List<Int>) -> Unit {
-    return { a, list ->
-        source.onNext(list)
-    }
-}
-
-private fun operation(to: Int, action: (Int, List<Int>) -> Unit): (Int, List<Int>) -> Unit {
-    return forFun(to).invoke(action)
-}
-
-private fun forFun(to: Int): ((Int, List<Int>) -> Unit) -> (Int, List<Int>) -> Unit {
-    return { action ->
-        { from, list ->
-            (from until to).forEach {
-                action(it + 1, list + it)
-            }
-        }
-    }
+    range.fold(
+            Consumer(source) as Action,
+            { action, i -> Wrapper(n - i, action) }
+    ).get()
 }
 
 private fun ((Int, List<Int>) -> Unit).get(): Unit {
     return this.invoke(0, emptyList())
+}
+
+private interface Action : (Int, List<Int>) -> Unit
+
+private class Consumer(val source: ObservableEmitter<List<Int>>) : Action {
+    override fun invoke(from: Int, list: List<Int>) {
+        source.onNext(list)
+    }
+}
+
+private class Wrapper(val to: Int, val action: Action) : Action {
+    override fun invoke(from: Int, list: List<Int>) {
+        (from until to).forEach {
+            action(it + 1, list + it)
+        }
+    }
 }
