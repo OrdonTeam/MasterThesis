@@ -12,19 +12,19 @@ fun listOfSets(setSize: Int): Observable<List<Int>> {
     }
 }
 
-private fun createSetGenerator(nestedLoopCount: Int, n: Int, source: ObservableEmitter<List<Int>>): Generator {
+private fun createSetGenerator(nestedLoopCount: Int, n: Int, source: ObservableEmitter<List<Int>>): SetGenerator {
     return if (nestedLoopCount < 2) {
-        Generator.Consumer(n, source)
+        SetGenerator.SingleElement(n, source)
     } else {
-        Generator.Wrapper(n, createSetGenerator(nestedLoopCount - 1, n, source))
+        SetGenerator.MultipleElements(n, createSetGenerator(nestedLoopCount - 1, n, source))
     }
 }
 
-private sealed class Generator {
+private sealed class SetGenerator {
 
     protected abstract fun appendSet(from: Int, setToAppend: List<Int>)
 
-    class Consumer(val to: Int, val source: ObservableEmitter<List<Int>>) : Generator() {
+    class SingleElement(val to: Int, val source: ObservableEmitter<List<Int>>) : SetGenerator() {
         override fun appendSet(from: Int, setToAppend: List<Int>) {
             (from until to).forEach {
                 source.onNext(setToAppend + it)
@@ -32,10 +32,10 @@ private sealed class Generator {
         }
     }
 
-    class Wrapper(val to: Int, val generator: Generator) : Generator() {
+    class MultipleElements(val to: Int, val setGenerator: SetGenerator) : SetGenerator() {
         override fun appendSet(from: Int, setToAppend: List<Int>) {
             (from until to).forEach {
-                generator.appendSet(it + 1, setToAppend + it)
+                setGenerator.appendSet(it + 1, setToAppend + it)
             }
         }
     }
