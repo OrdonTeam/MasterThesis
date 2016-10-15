@@ -16,7 +16,7 @@ private fun createSetGenerator(nestedLoopCount: Int, n: Int, source: ObservableE
     return if (nestedLoopCount < 2) {
         SetGenerator.SingleElement(n, source)
     } else {
-        SetGenerator.MultipleElements(n, createSetGenerator(nestedLoopCount - 1, n, source))
+        SetGenerator.MultipleElements(n - (nestedLoopCount - 1), createSetGenerator(nestedLoopCount - 1, n, source))
     }
 }
 
