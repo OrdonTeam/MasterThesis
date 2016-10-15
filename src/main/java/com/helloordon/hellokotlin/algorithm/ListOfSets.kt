@@ -1,18 +1,30 @@
 package com.helloordon.hellokotlin.algorithm
 
 import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
 
 fun listOfSets(n: Int): Observable<List<Int>> {
-    return Observable.fromIterable(listOfRanges(n).flatMap(mapToListOfSets(n)))
+    return Observable.create { source ->
+        listOfRanges(n).forEach {
+            mapToListOfSets(it, n, initial(source))
+        }
+        source.onComplete()
+    }
 }
 
-private fun listOfRanges(n: Int) = (1 until n).map { 0..it }
+private fun listOfRanges(n: Int): List<IntRange> {
+    return (1 until n).map { 0..it }
+}
 
-private fun mapToListOfSets(n: Int): (IntRange) -> List<List<Int>> {
-    val initial: (Int, List<Int>) -> List<List<Int>> = { a, list -> listOf(list) }
-    return {
-        it.fold(initial, operation(n)).get()
+private fun initial(source: ObservableEmitter<List<Int>>): (Int, List<Int>) -> List<List<Int>> {
+    return { a, list ->
+        source.onNext(list)
+        listOf(list)
     }
+}
+
+private fun mapToListOfSets(range: IntRange, n: Int, initial: (Int, List<Int>) -> List<List<Int>>) {
+    range.fold(initial, operation(n)).get()
 }
 
 private fun operation(n: Int): ((Int, List<Int>) -> List<List<Int>>, Int) -> (Int, List<Int>) -> List<List<Int>> = { action, i ->
