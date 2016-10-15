@@ -13,8 +13,8 @@ fun listOfSets(setSize: Int): Observable<List<Int>> {
 }
 
 private fun createSetGenerator(nestedLoopCount: Int, n: Int, source: ObservableEmitter<List<Int>>): Generator {
-    return if (nestedLoopCount < 1) {
-        Generator.Consumer(source)
+    return if (nestedLoopCount < 2) {
+        Generator.Consumer(n, source)
     } else {
         Generator.Wrapper(n, createSetGenerator(nestedLoopCount - 1, n, source))
     }
@@ -24,9 +24,11 @@ private sealed class Generator {
 
     protected abstract fun appendSet(from: Int, setToAppend: List<Int>)
 
-    class Consumer(val source: ObservableEmitter<List<Int>>) : Generator() {
+    class Consumer(val to: Int, val source: ObservableEmitter<List<Int>>) : Generator() {
         override fun appendSet(from: Int, setToAppend: List<Int>) {
-            source.onNext(setToAppend)
+            (from until to).forEach {
+                source.onNext(setToAppend + it)
+            }
         }
     }
 
