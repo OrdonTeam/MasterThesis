@@ -12,16 +12,16 @@ fun listOfSets(n: Int): Observable<List<Int>> {
     }
 }
 
-private fun listOfRanges(n: Int): List<IntRange> {
-    return (1 until n).map { 0..it }
+private fun listOfRanges(n: Int): List<List<Int>> {
+    return (1 until n).map { (0..it).toList() }
 }
 
-private fun mapToListOfSets(range: IntRange, n: Int, source: ObservableEmitter<List<Int>>): Action {
-    var action: Action = Action.Consumer(source)
-    for (i in range) {
-        action = Action.Wrapper(n - i, action)
+private fun mapToListOfSets(range: List<Int>, n: Int, source: ObservableEmitter<List<Int>>): Action {
+    return if (range.isEmpty()) {
+        Action.Consumer(source)
+    } else {
+        Action.Wrapper(n - range.last(), mapToListOfSets(range.dropLast(1), n, source))
     }
-    return action
 }
 
 private sealed class Action : (Int, List<Int>) -> Unit {
