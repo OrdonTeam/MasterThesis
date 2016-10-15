@@ -5,18 +5,18 @@ import io.reactivex.ObservableEmitter
 
 fun listOfSets(n: Int): Observable<List<Int>> {
     return Observable.create { source ->
-        (1 until n).forEach {
+        (2..n).forEach {
             mapToListOfSets(it, n, source).get()
         }
         source.onComplete()
     }
 }
 
-private fun mapToListOfSets(endOffset: Int, n: Int, source: ObservableEmitter<List<Int>>): Action {
-    return if (endOffset < 0) {
+private fun mapToListOfSets(nestedLoopCount: Int, n: Int, source: ObservableEmitter<List<Int>>): Action {
+    return if (nestedLoopCount < 1) {
         Action.Consumer(source)
     } else {
-        Action.Wrapper(n - endOffset, mapToListOfSets(endOffset - 1, n, source))
+        Action.Wrapper(n, mapToListOfSets(nestedLoopCount - 1, n, source))
     }
 }
 
