@@ -17,17 +17,20 @@ private fun listOfRanges(n: Int): List<IntRange> {
 }
 
 private fun mapToListOfSets(range: IntRange, n: Int, source: ObservableEmitter<List<Int>>) {
-    range.fold(initial(source), operation(n)).get()
+    range.fold(consumer(source),
+            { action, i ->
+                operation(n - i, action)
+            }).get()
 }
 
-private fun initial(source: ObservableEmitter<List<Int>>): (Int, List<Int>) -> Unit {
+private fun consumer(source: ObservableEmitter<List<Int>>): (Int, List<Int>) -> Unit {
     return { a, list ->
         source.onNext(list)
     }
 }
 
-private fun operation(n: Int): ((Int, List<Int>) -> Unit, Int) -> (Int, List<Int>) -> Unit = { action, i ->
-    forFun(n - i).invoke(action)
+private fun operation(to: Int, action: (Int, List<Int>) -> Unit): (Int, List<Int>) -> Unit {
+    return forFun(to).invoke(action)
 }
 
 private fun forFun(to: Int): ((Int, List<Int>) -> Unit) -> (Int, List<Int>) -> Unit {
