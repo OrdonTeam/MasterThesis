@@ -1,3 +1,6 @@
 build
 .idea
 .gradle
+.DS_Store
+package-release/MasterThesis.zip
+src/test/resources/*.out
