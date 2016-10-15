@@ -20,27 +20,26 @@ private fun mapToListOfSets(range: IntRange, n: Int, source: ObservableEmitter<L
     range.fold(initial(source), operation(n)).get()
 }
 
-private fun initial(source: ObservableEmitter<List<Int>>): (Int, List<Int>) -> List<List<Int>> {
+private fun initial(source: ObservableEmitter<List<Int>>): (Int, List<Int>) -> Unit {
     return { a, list ->
         source.onNext(list)
-        listOf(list)
     }
 }
 
-private fun operation(n: Int): ((Int, List<Int>) -> List<List<Int>>, Int) -> (Int, List<Int>) -> List<List<Int>> = { action, i ->
+private fun operation(n: Int): ((Int, List<Int>) -> Unit, Int) -> (Int, List<Int>) -> Unit = { action, i ->
     forFun(n - i).invoke(action)
 }
 
-private fun forFun(to: Int): ((Int, List<Int>) -> List<List<Int>>) -> (Int, List<Int>) -> List<List<Int>> {
+private fun forFun(to: Int): ((Int, List<Int>) -> Unit) -> (Int, List<Int>) -> Unit {
     return { action ->
         { from, list ->
-            (from until to).flatMap {
+            (from until to).forEach {
                 action(it + 1, list + it)
             }
         }
     }
 }
 
-private fun ((Int, List<Int>) -> List<List<Int>>).get(): List<List<Int>> {
+private fun ((Int, List<Int>) -> Unit).get(): Unit {
     return this.invoke(0, emptyList())
 }
