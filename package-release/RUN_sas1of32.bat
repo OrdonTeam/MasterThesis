@@ -1,0 +1,1 @@
+java -jar MasterThesis.jar sas1of32.pla sas1of32.txt
