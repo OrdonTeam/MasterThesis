@@ -1,23 +1,31 @@
 package com.helloordon.hellokotlin.read
 
+import com.helloordon.hellokotlin.dto.BooleanFunction
+import com.helloordon.hellokotlin.dto.BooleanFunctionRow
 import java.io.File
 
 fun readFunction(file: File): Map<String, List<List<Boolean>>> {
-    val readFile = file.readLines().groupBy { it.startsWith(".") }
     val argumentCount = getArgumentCount(file)
-    return parseFunction(argumentCount, readFile)
+    return parseFunction(argumentCount, file).asMap()
 }
 
-fun getArgumentCount(file: File) : Int {
+private fun getArgumentCount(file: File): Int {
     return file.reader().useLines {
         it.first { it.startsWith(".i") }.drop(3).trim().toInt()
     }
 }
 
-private fun parseFunction(argumentCount: Int, readFile: Map<Boolean, List<String>>) = readFile[false]!!.map { parseLine(it, argumentCount) }.groupBy({ it.first }, { it.second })
+private fun parseFunction(argumentCount: Int, file: File): BooleanFunction {
+    return file.reader().useLines {
+        BooleanFunction(it.filterNot { it.startsWith(".") }
+                .map { parseLine(it, argumentCount) }
+                .toList())
+    }
+}
 
-private fun parseLine(line: String, argumentCount: Int): Pair<String, List<Boolean>> {
+private fun parseLine(line: String, argumentCount: Int): BooleanFunctionRow {
     val noSpaces = line.replace(" ", "")
-    return noSpaces.drop(argumentCount) to
-            noSpaces.take(argumentCount).toCharArray().map { it == '1' }
+    return BooleanFunctionRow(
+            noSpaces.take(argumentCount).toCharArray().map { it == '1' },
+            noSpaces.drop(argumentCount))
 }
