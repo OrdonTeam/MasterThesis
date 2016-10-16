@@ -5,8 +5,12 @@ import io.reactivex.ObservableEmitter
 
 fun listOfSets(setSize: Int): Observable<List<Int>> {
     return Observable.create { source ->
-        (2..setSize).forEach { subSetSize ->
-            createSetGenerator(subSetSize, setSize, source).generate()
+        try {
+            (2..setSize).forEach { subSetSize ->
+                createSetGenerator(subSetSize, setSize, source).generate()
+            }
+        } catch(e: InterruptedException) {
+            //ok continue
         }
         source.onComplete()
     }
@@ -27,6 +31,7 @@ private sealed class SetGenerator {
     class SingleElement(val to: Int, val source: ObservableEmitter<List<Int>>) : SetGenerator() {
         override fun appendSet(from: Int, setToAppend: List<Int>) {
             (from until to).forEach {
+                if(source.isDisposed) throw InterruptedException()
                 source.onNext(setToAppend + it)
             }
         }

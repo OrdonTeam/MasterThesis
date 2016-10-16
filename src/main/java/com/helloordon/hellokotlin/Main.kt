@@ -9,6 +9,7 @@ import com.helloordon.hellokotlin.write.save
 import io.reactivex.Observable
 import java.io.File
 import java.io.OutputStreamWriter
+import java.util.*
 
 object Main {
 
@@ -27,10 +28,15 @@ object Main {
 
     private fun mainInternal(args: Array<String>) {
         File(args[1]).writer().use { writer ->
-            val function = readFunction(File(args[0]))
+            var function = readFunction(File(args[0]))
             function.save(writer)
             writer.appendln()
-            singleDecomposition(function, writer).subscribe()
+            try {
+                while (true) {
+                    function = singleDecomposition(function, writer).blockingFirst()
+                }
+            } catch(e: NoSuchElementException) {
+            }
         }
     }
 
@@ -46,6 +52,5 @@ object Main {
                 .map { function.applyDecomposition(it) }
                 .doOnNext { it.save(writer) }
                 .doOnNext { writer.appendln() }
-                .flatMap { singleDecomposition(it, writer) }
     }
 }
