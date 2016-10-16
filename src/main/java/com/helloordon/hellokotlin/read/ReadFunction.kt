@@ -4,9 +4,9 @@ import com.helloordon.hellokotlin.dto.BooleanFunction
 import com.helloordon.hellokotlin.dto.BooleanFunctionRow
 import java.io.File
 
-fun readFunction(file: File): Map<String, List<List<Boolean>>> {
+fun readFunction(file: File): BooleanFunction {
     val argumentCount = getArgumentCount(file)
-    return parseFunction(argumentCount, file).asMap()
+    return parseFunction(argumentCount, file)
 }
 
 private fun getArgumentCount(file: File): Int {

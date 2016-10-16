@@ -20,8 +20,8 @@ class Sas1Of12Test {
     @Test
     fun shouldFindNonDisjointDecomposition() {
         val function = readFunction(fileFromResources("sas1of12.pla"))
-        val argumentsCount = function.values.first().first().size
-        val discernibility = findMatrixDiscernibility(function.values.toList())
+        val argumentsCount = function.asMap().values.first().first().size
+        val discernibility = findMatrixDiscernibility(function.asMap().values.toList())
         file.writer().use { writer ->
             allTriplets(argumentsCount)
                     .findMissingDecompositions(discernibility)

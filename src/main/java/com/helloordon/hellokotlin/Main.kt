@@ -22,7 +22,7 @@ object Main {
 
     private fun mainInternal(args: Array<String>) {
         File(args[1]).writer().use { writer ->
-            val function = readFunction(File(args[0]))
+            val function = readFunction(File(args[0])).asMap()
             val argumentsCount = function.values.first().first().size
             val discernibility = findMatrixDiscernibility(function.values.toList())
 

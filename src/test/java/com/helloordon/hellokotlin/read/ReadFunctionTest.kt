@@ -12,7 +12,7 @@ class ReadFunctionTest {
                 mapOf(
                         "0" to listOf(listOf(false)),
                         "1" to listOf(listOf(true))),
-                readFunction(fileFromResources("singleInputFile")))
+                readFunction(fileFromResources("singleInputFile")).asMap())
     }
 
     @Test
@@ -21,6 +21,6 @@ class ReadFunctionTest {
                 mapOf(
                         "0" to listOf(listOf(false, false), listOf(false, true)),
                         "1" to listOf(listOf(true, false))),
-                readFunction(fileFromResources("twoInputFile")))
+                readFunction(fileFromResources("twoInputFile")).asMap())
     }
 }
