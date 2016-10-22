@@ -1,9 +1,9 @@
 package com.helloordon.hellokotlin
 
-import com.helloordon.hellokotlin.algorithm.allTriplets
-import com.helloordon.hellokotlin.algorithm.findDisjointDecompositions
-import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.findMissingDecompositions
+import com.helloordon.hellokotlin.algorithm.decomposition.allTriplets
+import com.helloordon.hellokotlin.algorithm.decomposition.findDisjointDecompositions
+import com.helloordon.hellokotlin.algorithm.decomposition.findMatrixDiscernibility
+import com.helloordon.hellokotlin.algorithm.decomposition.findMissingDecompositions
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.utils.fileFromResources
 import com.helloordon.hellokotlin.write.writeDecomposition

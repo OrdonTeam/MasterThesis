@@ -1,14 +1,14 @@
-package com.helloordon.hellokotlin.algorithm
+package com.helloordon.hellokotlin.algorithm.decomposition
 
 import com.helloordon.hellokotlin.dto.Argument
 import com.helloordon.hellokotlin.dto.pair
 import io.reactivex.Observable
 import org.junit.Test
 
-class MissingDecompositions_Eights_Test {
+class MissingDecompositions_Fours_Test {
 
     @Test
-    fun shouldFindNoMissingEights() {
+    fun shouldFindNoMissingFours() {
         verifyFoundMissingFours(
                 emptyList(),
                 emptyList(),
@@ -16,25 +16,19 @@ class MissingDecompositions_Eights_Test {
     }
 
     @Test
-    fun shouldFindMissingEight() {
-        val one = pair(pair(0, 1), pair(2, 3))
-        val two = pair(pair(4, 5), pair(6, 7))
-        val eight = pair(one, two)
+    fun shouldFindMissingFour() {
         verifyFoundMissingFours(
-                listOf(eight),
-                listOf(eight),
+                listOf(pair(pair(0, 4), pair(2, 3))),
+                listOf(pair(pair(0, 4), pair(2, 3))),
                 emptyList())
     }
 
     @Test
-    fun shouldFilterOurEight() {
-        val one = pair(pair(0, 1), pair(2, 3))
-        val two = pair(pair(4, 5), pair(6, 7))
-        val eight = pair(one, two)
+    fun shouldFilterOurFour() {
         verifyFoundMissingFours(
                 emptyList(),
-                listOf(eight),
-                listOf(listOf(0, 1, 2, 3, 4, 5, 6, 7)))
+                listOf(pair(pair(0, 4), pair(2, 3))),
+                listOf(listOf(0, 2, 3, 4)))
     }
 
     private fun verifyFoundMissingFours(expected: List<Argument>,

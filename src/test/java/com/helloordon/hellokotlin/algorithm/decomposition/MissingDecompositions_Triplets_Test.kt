@@ -1,4 +1,4 @@
-package com.helloordon.hellokotlin.algorithm
+package com.helloordon.hellokotlin.algorithm.decomposition
 
 import com.helloordon.hellokotlin.dto.Argument
 import org.junit.Test

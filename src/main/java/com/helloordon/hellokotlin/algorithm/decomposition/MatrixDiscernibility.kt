@@ -1,4 +1,4 @@
-package com.helloordon.hellokotlin.algorithm
+package com.helloordon.hellokotlin.algorithm.decomposition
 
 fun findDiscernibility(vectorA: List<Boolean>, vectorB: List<Boolean>) =
         (0 until vectorA.size).filter {

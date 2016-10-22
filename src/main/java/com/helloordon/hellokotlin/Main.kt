@@ -1,8 +1,8 @@
 package com.helloordon.hellokotlin
 
-import com.helloordon.hellokotlin.algorithm.applyDecomposition
-import com.helloordon.hellokotlin.algorithm.findMatrixDiscernibility
-import com.helloordon.hellokotlin.algorithm.listOfSets
+import com.helloordon.hellokotlin.algorithm.decomposition.applyDecomposition
+import com.helloordon.hellokotlin.algorithm.decomposition.findMatrixDiscernibility
+import com.helloordon.hellokotlin.algorithm.decomposition.listOfSets
 import com.helloordon.hellokotlin.dto.BooleanFunction
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.write.save
