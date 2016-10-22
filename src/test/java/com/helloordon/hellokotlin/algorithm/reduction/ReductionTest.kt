@@ -8,6 +8,7 @@ class ReductionTest {
     @Test
     fun shouldFindBestArgumentToReduction() {
         verifyBestArgument(0, listOf(listOf(0)), 1)
+        verifyBestArgument(1, listOf(listOf(1)), 2)
     }
 
     private fun verifyBestArgument(expected: Int, discernibility: List<List<Int>>, attributesCount: Int) {
@@ -15,6 +16,6 @@ class ReductionTest {
     }
 
     private fun findBestArgumentToReduction(discernibility: List<List<Int>>, attributesCount: Int): Int {
-        return 0
+        return discernibility.first().first()
     }
 }
