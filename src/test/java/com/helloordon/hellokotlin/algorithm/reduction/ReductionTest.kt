@@ -7,10 +7,7 @@ class ReductionTest {
 
     @Test
     fun shouldFindBestArgumentToReduction() {
-        val discernibility = listOf(listOf(0))
-        val attributesCount = 1
-        val expected = 0
-        verifyBestArgument(expected, discernibility, attributesCount)
+        verifyBestArgument(0, listOf(listOf(0)), 1)
     }
 
     private fun verifyBestArgument(expected: Int, discernibility: List<List<Int>>, attributesCount: Int) {
