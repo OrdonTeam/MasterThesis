@@ -1,5 +1,9 @@
 package com.helloordon.hellokotlin.dto
 
+fun function(vararg rows: BooleanFunctionRow) = BooleanFunction(rows.toList())
+
+fun row(decision: String, vararg arguments: Boolean) = BooleanFunctionRow(arguments.asList(), decision)
+
 fun pair(x: Int, y: Int): Argument {
     return Argument.Single(x) with Argument.Single(y)
 }

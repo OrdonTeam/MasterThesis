@@ -1,7 +1,8 @@
 package com.helloordon.hellokotlin.algorithm.decomposition
 
 import com.helloordon.hellokotlin.dto.BooleanFunction
-import com.helloordon.hellokotlin.dto.BooleanFunctionRow
+import com.helloordon.hellokotlin.dto.function
+import com.helloordon.hellokotlin.dto.row
 import org.junit.Assert
 import org.junit.Test
 
@@ -47,10 +48,6 @@ class ApplyDecompositionTest {
                         row("0", true, false, false)),
                 decomposition = listOf(0, 1, 2))
     }
-
-    private fun function(vararg rows: BooleanFunctionRow) = BooleanFunction(rows.toList())
-
-    private fun row(decision: String, vararg arguments: Boolean) = BooleanFunctionRow(arguments.asList(), decision)
 
     private fun verify(expected: BooleanFunction, function: BooleanFunction, decomposition: List<Int>) {
         Assert.assertEquals(expected, function.applyDecomposition(decomposition))
