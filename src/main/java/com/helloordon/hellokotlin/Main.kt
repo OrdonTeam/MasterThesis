@@ -25,8 +25,8 @@ object Main {
         File(args[1]).writer().use { writer ->
             readFunction(File(args[0])).let {
                 it.save(writer)
+                writer.appendln("Reducing arguments\n")
                 it.reduceArguments().let {
-                    writer.appendln("Reducing arguments\n")
                     it.save(writer)
                     writer.appendln("Compressing arguments\n")
                     singleDecomposition(it, writer).subscribe()
