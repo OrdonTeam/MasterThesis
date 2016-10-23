@@ -1,5 +1,7 @@
 package com.helloordon.hellokotlin.algorithm.reduction
 
+import com.helloordon.hellokotlin.dto.function
+import com.helloordon.hellokotlin.dto.row
 import org.junit.Assert
 import org.junit.Test
 
@@ -11,6 +13,10 @@ class ReductionTest {
         verifyBestArgument(1, listOf(listOf(1)))
         verifyBestArgument(0, listOf(listOf(1), listOf(0), listOf(0)))
         verifyBestArgument(2, listOf(listOf(0, 1, 2), listOf(0, 1), listOf(2)))
+    }
+
+    private fun verifyBestArgument(expected: Int, discernibility: List<List<Int>>) {
+        Assert.assertEquals(expected, findBestArgumentToReduction(discernibility))
     }
 
     @Test
@@ -26,7 +32,18 @@ class ReductionTest {
         Assert.assertEquals(listOf(1, 2), findReduct(listOf(listOf(1), listOf(2))))
     }
 
-    private fun verifyBestArgument(expected: Int, discernibility: List<List<Int>>) {
-        Assert.assertEquals(expected, findBestArgumentToReduction(discernibility))
+    @Test
+    fun shouldReduceFunctionArguments() {
+        Assert.assertEquals(
+                function(
+                        row("0", true, false, false),
+                        row("1", false, true, false),
+                        row("2", false, false, true),
+                        row("3", false, false, false)),
+                function(
+                        row("0", true, false, false, false),
+                        row("1", false, true, false, false),
+                        row("2", false, false, true, false),
+                        row("3", false, false, false, true)).reduceArguments())
     }
 }
