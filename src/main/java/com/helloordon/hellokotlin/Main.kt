@@ -24,9 +24,11 @@ object Main {
     private fun mainInternal(args: Array<String>) {
         File(args[1]).writer().use { writer ->
             readFunction(File(args[0])).let {
+                writer.appendln(it.argumentNames.toString())
                 it.save(writer)
                 writer.appendln("Reducing arguments\n")
                 it.reduceArguments().let {
+                    writer.appendln(it.argumentNames.toString())
                     it.save(writer)
                     writer.appendln("Compressing arguments\n")
                     singleDecomposition(it, writer).subscribe()
@@ -44,6 +46,7 @@ object Main {
                 .doOnNext { writer.appendln(it.toString()) }
                 .doOnNext { writer.appendln() }
                 .map { function.applyDecomposition(it) }
+                .doOnNext { writer.appendln(it.argumentNames.toString()) }
                 .doOnNext { it.save(writer) }
                 .flatMap { singleDecomposition(it, writer) }
     }
