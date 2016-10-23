@@ -15,8 +15,15 @@ class ReductionTest {
 
     @Test
     fun shouldRemoveRowsByArgument() {
-        Assert.assertEquals(emptyList<Int>(), removeRowsFromDiscernibility(listOf(listOf(0)),0))
-        Assert.assertEquals(listOf(listOf(0)), removeRowsFromDiscernibility(listOf(listOf(0)),1))
+        Assert.assertEquals(emptyList<Int>(), removeRowsFromDiscernibility(listOf(listOf(0)), 0))
+        Assert.assertEquals(listOf(listOf(0)), removeRowsFromDiscernibility(listOf(listOf(0)), 1))
+    }
+
+    @Test
+    fun shouldFindReduct() {
+        Assert.assertEquals(listOf(0), findReduct(listOf(listOf(0, 1), listOf(0, 2))))
+        Assert.assertEquals(listOf(1), findReduct(listOf(listOf(0, 1), listOf(1, 2))))
+        Assert.assertEquals(listOf(1, 2), findReduct(listOf(listOf(1), listOf(2))))
     }
 
     private fun verifyBestArgument(expected: Int, discernibility: List<List<Int>>) {
@@ -33,4 +40,11 @@ class ReductionTest {
     private fun removeRowsFromDiscernibility(discernibility: List<List<Int>>, argument: Int): List<List<Int>> {
         return discernibility.filterNot { it.contains(argument) }
     }
+
+    private fun findReduct(discernibility: List<List<Int>>): List<Int> {
+        if (discernibility.isEmpty()) return emptyList()
+        val bestArgument = findBestArgumentToReduction(discernibility)
+        return (findReduct(removeRowsFromDiscernibility(discernibility, bestArgument)) + bestArgument).sorted()
+    }
+
 }
