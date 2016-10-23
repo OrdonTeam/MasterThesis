@@ -36,14 +36,16 @@ class ReductionTest {
     fun shouldReduceFunctionArguments() {
         Assert.assertEquals(
                 function(
+                        listOf("x1", "x2", "x3"),
                         row("0", true, false, false),
                         row("1", false, true, false),
                         row("2", false, false, true),
                         row("3", false, false, false)),
                 function(
-                        row("0", true, false, false, false),
-                        row("1", false, true, false, false),
-                        row("2", false, false, true, false),
-                        row("3", false, false, false, true)).reduceArguments())
+                        listOf("x0", "x1", "x2", "x3", "x4"),
+                        row("0", false, true, false, false, false),
+                        row("1", false, false, true, false, false),
+                        row("2", false, false, false, true, false),
+                        row("3", false, false, false, false, true)).reduceArguments())
     }
 }

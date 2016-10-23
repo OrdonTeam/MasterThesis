@@ -1,5 +1,7 @@
 package com.helloordon.hellokotlin.dto
 
+fun function(argumentNames: List<String>, vararg rows: BooleanFunctionRow) = BooleanFunction(rows.toList(), argumentNames)
+
 fun function(vararg rows: BooleanFunctionRow) = BooleanFunction(rows.toList())
 
 fun row(decision: String, vararg arguments: Boolean) = BooleanFunctionRow(arguments.asList(), decision)
