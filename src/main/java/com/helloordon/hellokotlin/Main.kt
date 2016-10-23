@@ -1,5 +1,6 @@
 package com.helloordon.hellokotlin
 
+import com.helloordon.hellokotlin.algorithm.common.measureTime
 import com.helloordon.hellokotlin.algorithm.decomposition.applyDecomposition
 import com.helloordon.hellokotlin.algorithm.decomposition.findMatrixDiscernibility
 import com.helloordon.hellokotlin.algorithm.decomposition.listOfSets
@@ -15,14 +16,8 @@ object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val start = System.currentTimeMillis()
-        println(start)
-        try {
+        measureTime {
             mainInternal(args)
-        } finally {
-            val end = System.currentTimeMillis()
-            println(end)
-            println("${(end - start) / 1000.0} sec")
         }
     }
 
