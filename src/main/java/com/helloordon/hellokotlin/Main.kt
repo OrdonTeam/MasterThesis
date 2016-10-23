@@ -4,6 +4,7 @@ import com.helloordon.hellokotlin.algorithm.common.measureTime
 import com.helloordon.hellokotlin.algorithm.decomposition.applyDecomposition
 import com.helloordon.hellokotlin.algorithm.decomposition.findMatrixDiscernibility
 import com.helloordon.hellokotlin.algorithm.decomposition.listOfSets
+import com.helloordon.hellokotlin.algorithm.reduction.reduceArguments
 import com.helloordon.hellokotlin.dto.BooleanFunction
 import com.helloordon.hellokotlin.read.readFunction
 import com.helloordon.hellokotlin.write.save
@@ -24,7 +25,12 @@ object Main {
         File(args[1]).writer().use { writer ->
             readFunction(File(args[0])).let {
                 it.save(writer)
-                singleDecomposition(it, writer).subscribe()
+                it.reduceArguments().let {
+                    writer.appendln("Reducing arguments\n")
+                    it.save(writer)
+                    writer.appendln("Compressing arguments\n")
+                    singleDecomposition(it, writer).subscribe()
+                }
             }
         }
     }
