@@ -30,10 +30,9 @@ object Main {
     }
 
     private fun singleDecomposition(function: BooleanFunction, writer: OutputStreamWriter): Observable<BooleanFunction> {
-        val argumentsCount = function.asMap().values.first().first().size
-        val discernibility = findMatrixDiscernibility(function.asMap().values.toList())
+        val discernibility = function.findMatrixDiscernibility()
 
-        return listOfSets(argumentsCount)
+        return listOfSets(function.getArgumentCount())
                 .filter { !discernibility.contains(it) }
                 .take(1)
                 .doOnNext { writer.appendln(it.toString()) }

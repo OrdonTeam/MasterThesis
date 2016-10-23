@@ -6,6 +6,8 @@ data class BooleanFunction(
     fun asMap(): Map<String, List<List<Boolean>>> {
         return data.groupBy(BooleanFunctionRow::decision, BooleanFunctionRow::arguments)
     }
+
+    fun getArgumentCount() = data.first().arguments.count()
 }
 
 data class BooleanFunctionRow(

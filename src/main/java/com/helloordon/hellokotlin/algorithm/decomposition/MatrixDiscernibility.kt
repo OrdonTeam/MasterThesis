@@ -1,5 +1,7 @@
 package com.helloordon.hellokotlin.algorithm.decomposition
 
+import com.helloordon.hellokotlin.dto.BooleanFunction
+
 fun findDiscernibility(vectorA: List<Boolean>, vectorB: List<Boolean>) =
         (0 until vectorA.size).filter {
             vectorA[it] != vectorB[it]
@@ -19,3 +21,5 @@ fun findMatrixDiscernibility(groups: List<List<List<Boolean>>>) =
                 findMatrixDiscernibility(groups[first], groups[second])
             }
         }
+
+fun BooleanFunction.findMatrixDiscernibility() = findMatrixDiscernibility(asMap().values.toList())
