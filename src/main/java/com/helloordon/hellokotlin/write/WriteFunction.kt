@@ -12,4 +12,5 @@ fun BooleanFunction.save(writer: OutputStreamWriter) {
         writer.appendln("${it.arguments.map { if (it) 1 else 0 }.joinToString("")} ${it.decision}")
     }
     writer.appendln(".e")
+    writer.appendln()
 }

@@ -18,7 +18,7 @@ class WriteFunctionTest {
         output.writer().use {
             readFunction(input).save(it)
         }
-        Assert.assertEquals(input.readLines().map(String::trim), output.readLines())
+        Assert.assertEquals(input.readLines().map(String::trim), output.readLines().filterNot(String::isEmpty))
     }
 
     @After

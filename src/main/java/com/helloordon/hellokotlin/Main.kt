@@ -25,7 +25,6 @@ object Main {
         File(args[1]).writer().use { writer ->
             var function = readFunction(File(args[0]))
             function.save(writer)
-            writer.appendln()
             try {
                 while (true) {
                     function = singleDecomposition(function, writer).blockingFirst()
@@ -46,6 +45,5 @@ object Main {
                 .doOnNext { writer.appendln() }
                 .map { function.applyDecomposition(it) }
                 .doOnNext { it.save(writer) }
-                .doOnNext { writer.appendln() }
     }
 }
