@@ -13,9 +13,9 @@ class ArgumentsChangeAfterDecompositionTest {
         )
     }
 
-    fun applyDecompositionOnArgumentNames(argumentNames: List<String>, decompostion: List<Int>): List<String> {
-        return notInDecomposition(argumentNames, decompostion) +
-                afterDecomposition(argumentNames, decompostion)
+    fun applyDecompositionOnArgumentNames(argumentNames: List<String>, decomposition: List<Int>): List<String> {
+        return notInDecomposition(argumentNames, decomposition) +
+                afterDecomposition(argumentNames, decomposition)
     }
 
     private fun notInDecomposition(argumentNames: List<String>, decompostion: List<Int>): List<String> {
