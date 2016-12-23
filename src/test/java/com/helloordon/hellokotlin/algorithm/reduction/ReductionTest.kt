@@ -48,4 +48,18 @@ class ReductionTest {
                         row("2", false, false, false, true, false),
                         row("3", false, false, false, false, true)).reduceArguments())
     }
+
+    @Test
+    fun shouldRemoveRedundantRows() {
+        Assert.assertEquals(
+                function(
+                        listOf("x2"),
+                        row("0", false),
+                        row("1", true)),
+                function(
+                        listOf("x1", "x2"),
+                        row("0", false, false),
+                        row("0", true, false),
+                        row("1", false, true)).reduceArguments())
+    }
 }

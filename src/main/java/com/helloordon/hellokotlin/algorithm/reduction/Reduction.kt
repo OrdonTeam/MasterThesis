@@ -28,7 +28,7 @@ fun BooleanFunction.reduceArguments(): BooleanFunction {
 fun applyReduct(function: BooleanFunction, reduct: List<Int>): BooleanFunction {
     return BooleanFunction(function.data.map {
         BooleanFunctionRow(it.arguments.filterIndexed { index, value -> reduct.contains(index) }, it.decision)
-    }, applyReductionOnArgumentNames(function.argumentNames, reduct))
+    }.distinct(), applyReductionOnArgumentNames(function.argumentNames, reduct))
 }
 
 fun applyReductionOnArgumentNames(argumentNames: List<String>, reduct: List<Int>): List<String> {
