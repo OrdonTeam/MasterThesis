@@ -21,8 +21,12 @@ fun findReduct(discernibility: List<List<Int>>): List<Int> {
     return (findReduct(removeRowsFromDiscernibility(discernibility, bestArgument)) + bestArgument).sorted()
 }
 
+fun findMinimalReduct(discernibility: List<List<Int>>): List<Int> {
+    return findReduct(discernibility).removeRedundantAttributes(discernibility)
+}
+
 fun BooleanFunction.reduceArguments(): BooleanFunction {
-    return this.applyReduct(findReduct(findMatrixDiscernibility()))
+    return this.applyReduct(findMinimalReduct(findMatrixDiscernibility()))
 }
 
 fun BooleanFunction.applyReduct(reduct: List<Int>): BooleanFunction {
