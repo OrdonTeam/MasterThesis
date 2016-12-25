@@ -22,13 +22,13 @@ fun findReduct(discernibility: List<List<Int>>): List<Int> {
 }
 
 fun BooleanFunction.reduceArguments(): BooleanFunction {
-    return applyReduct(this, findReduct(findMatrixDiscernibility()))
+    return this.applyReduct(findReduct(findMatrixDiscernibility()))
 }
 
-fun applyReduct(function: BooleanFunction, reduct: List<Int>): BooleanFunction {
-    return BooleanFunction(function.data.map {
+fun BooleanFunction.applyReduct(reduct: List<Int>): BooleanFunction {
+    return BooleanFunction(data.map {
         BooleanFunctionRow(it.arguments.filterIndexed { index, value -> reduct.contains(index) }, it.decision)
-    }.distinct(), applyReductionOnArgumentNames(function.argumentNames, reduct))
+    }.distinct(), applyReductionOnArgumentNames(argumentNames, reduct))
 }
 
 fun applyReductionOnArgumentNames(argumentNames: List<String>, reduct: List<Int>): List<String> {
