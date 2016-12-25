@@ -62,4 +62,15 @@ class ReductionTest {
                         row("0", true, false),
                         row("1", false, true)).reduceArguments())
     }
+
+    @Test
+    fun shouldRemoveRedundantAttributesFromReduct() {
+        Assert.assertEquals(listOf(1,3), findMinimalReduct(listOf(
+                listOf(0, 1),
+                listOf(0, 3),
+                listOf(0, 3),
+                listOf(1, 2),
+                listOf(3, 4)
+        )))
+    }
 }
