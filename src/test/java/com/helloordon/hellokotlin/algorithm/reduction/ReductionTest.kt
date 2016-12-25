@@ -78,4 +78,9 @@ class ReductionTest {
     fun shouldRemoveAllRedundantAttributes() {
         Assert.assertEquals(emptyList<Int>(), listOf(0,1,2,3).removeRedundantAttributes(emptyList()))
     }
+
+    @Test
+    fun shouldRemoveSecondAttributeIfIsRedundant() {
+        Assert.assertEquals(listOf(0), listOf(0,1).removeRedundantAttributes(listOf(listOf(0))))
+    }
 }

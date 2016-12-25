@@ -1,17 +1,21 @@
 package com.helloordon.hellokotlin.algorithm.reduction
 
 fun List<Int>.removeRedundantAttributes(discernibility: List<List<Int>>): List<Int> {
-    if (this.isEmpty()) {
-        return this
-    } else if (isSufficient(this.drop(1), discernibility)) {
-        return this
+    return discernibility.removeRedundant(emptyList(), this)
+}
+
+private fun List<List<Int>>.removeRedundant(checked: List<Int>, unchecked: List<Int>): List<Int> {
+    if (unchecked.isEmpty()) {
+        return checked
+    } else if (isSufficient(checked + unchecked.drop(1))) {
+        return removeRedundant(checked + unchecked.first(), unchecked.drop(1))
     } else {
-        return this.drop(1).removeRedundantAttributes(discernibility)
+        return removeRedundant(checked, unchecked.drop(1))
     }
 }
 
-fun isSufficient(reduct: List<Int>, discernibility: List<List<Int>>): Boolean {
-    return !discernibility.all { row ->
+fun List<List<Int>>.isSufficient(reduct: List<Int>): Boolean {
+    return !all { row ->
         reduct.any { index ->
             row.contains(index)
         }
