@@ -65,7 +65,7 @@ class ReductionTest {
 
     @Test
     fun shouldRemoveRedundantAttributesFromReduct() {
-        Assert.assertEquals(listOf(1,3), findMinimalReduct(listOf(
+        Assert.assertEquals(listOf(1, 3), findMinimalReduct(listOf(
                 listOf(0, 1),
                 listOf(0, 3),
                 listOf(0, 3),
@@ -76,11 +76,11 @@ class ReductionTest {
 
     @Test
     fun shouldRemoveAllRedundantAttributes() {
-        Assert.assertEquals(emptyList<Int>(), listOf(0,1,2,3).removeRedundantAttributes(emptyList()))
+        Assert.assertEquals(emptyList<Int>(), listOf(0, 1, 2, 3).removeRedundantAttributes(emptyList()))
     }
 
     @Test
     fun shouldRemoveSecondAttributeIfIsRedundant() {
-        Assert.assertEquals(listOf(0), listOf(0,1).removeRedundantAttributes(listOf(listOf(0))))
+        Assert.assertEquals(listOf(0), listOf(0, 1).removeRedundantAttributes(listOf(listOf(0))))
     }
 }
