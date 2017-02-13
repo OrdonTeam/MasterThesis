@@ -17,7 +17,7 @@ private fun getArgumentCount(file: File): Int {
 
 private fun parseFunction(argumentCount: Int, file: File): BooleanFunction {
     return file.reader().useLines {
-        BooleanFunction(it.filterNot { it.startsWith(".") }
+        BooleanFunction(it.filterNot { it.startsWith(".") }.filter(String::isNotBlank)
                 .map { parseLine(it, argumentCount) }
                 .toList())
     }
