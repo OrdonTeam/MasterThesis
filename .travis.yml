@@ -5,6 +5,11 @@ dist: trusty
 before_install:
   sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 
+script:
+  ./gradlew check
+  mkdir paper/build
+  pdflatex -interaction=nonstopmode -halt-on-error -output-directory paper/build paper/main.tex
+
 after_success: sh package-release/package.sh
 
 deploy:
