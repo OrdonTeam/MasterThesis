@@ -1,22 +1,7 @@
 \input{style//documentclass.tex}
 \input{style//language.tex}
-\input{style.tex}			% do³¹czanie plików stylu
-\usepackage{pwtitle}
-\usepackage{multirow}
-\usepackage{tocloft}
-\usepackage{chngcntr}
-\usepackage{varwidth}
-\usepackage{indentfirst}
-\usepackage{polski}
-\usepackage{float}
-\usepackage[utf8]{inputenc}
-\usepackage{listings}
-%\usepackage{slashbox}
-%\usepackage[table]{xcolor}
-\usepackage{graphicx,pdflscape}
-\usepackage{placeins}
-\usepackage[final]{pdfpages}
-\usepackage{longtable}
+\input{dependencies.tex}
+\input{style.tex}
 
 %\input{listing.tex}
 \counterwithout{figure}{chapter}
@@ -27,10 +12,8 @@
 }
 %\counterwithout{lstlisting}{chapter}
 
-\usepackage{titlesec}
 
 \titleformat{\chapter}{\sffamily\huge\bf}{\thechapter.}{20pt}{\huge\bf}
-%\usepackage{geometry}
 \begin{document}
 \hyphenation{Par-tial-ac-ti-vi-ty}
 \hyphenation{zwra-ca}
