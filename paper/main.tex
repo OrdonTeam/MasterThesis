@@ -1,8 +1,63 @@
-\documentclass{article}
+\input{style.tex}			% do³¹czanie plików stylu
+\usepackage{pwtitle}
+\usepackage{multirow}
+\usepackage{tocloft}
+\usepackage{chngcntr}
+\usepackage{varwidth}
+\usepackage{indentfirst}
 \usepackage{polski}
+\usepackage{float}
 \usepackage[utf8]{inputenc}
-\begin{document}
-zażółć gęślą jażń
+\usepackage{listings}
+\usepackage{slashbox}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pdflscape}
+\usepackage{placeins}
+\usepackage[final]{pdfpages}
+\usepackage{longtable}
 
-ZAŻÓŁĆ GĘŚLĄ JAŹŃ
+\input{listing.tex}
+\counterwithout{figure}{chapter}
+\counterwithout{equation}{chapter}
+\lstset{
+  numberbychapter=false,
+	extendedchars=true
+}
+%\counterwithout{lstlisting}{chapter}
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}{\sffamily\huge\bf}{\thechapter.}{20pt}{\huge\bf}
+%\usepackage{geometry}
+\begin{document}
+\hyphenation{Par-tial-ac-ti-vi-ty}
+\hyphenation{zwra-ca}
+\hyphenation{get-Ho-ri-zon-tal-View-Angle}
+
+%===============================================================================
+% Front
+
+\frontmatter
+
+\input{front.tex}			% definicja strony tytu³owej
+
+%===============================================================================
+% Rozdzia³y - dla porz¹dku pliki dla ka¿dego z rozdzia³ów znajduj± siê w oddzielnych katalogach
+\mainmatter
+\newgeometry{inner=40mm, outer=20mm}
+
+\input{chapter01//chapter01.tex}
+
+
+\backmatter
+\pagestyle{empty}
+\input{bibl.tex}							% bibliografia
+
+%===============================================================================
+% Koniec
+
+\input{back.tex}
+
 \end{document}
+
+%===============================================================================
