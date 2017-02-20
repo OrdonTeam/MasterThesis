@@ -83,8 +83,10 @@ W przypadku ogólnym poruszanym w artykule jest jednak dużo łatwiej policzyć,
 Dodatkowo, ponieważ liczba wierszy jest identyczna dla każdej kolumny, obliczanie liczby wierszy nie jest potrzebne.
 Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o najmniejszej liczbie zer.
 Jeżeli podzielimy wiersze danych na grupy ze względu na wartość decyzji i argumentu, powstaną po dwa kubełki dla każdej decyzji.
-Jeżeli ich rozmiar oznaczymy K0d i K1dgdzie 0 i 1 oznaczają wartość argumentu, a d należy do zbioru decyzji, liczbę zer w kolumnie można wyrazić następującą sumą:
-0<d1<d2<DK0d1K0d2+K1d1K1d2
+Jeżeli ich rozmiar oznaczymy $K_{0d}$ i $K_{1d}$ gdzie $0$ i $1$ oznaczają wartość argumentu, a $d$ należy do zbioru decyzji, liczbę zer w kolumnie można wyrazić następującą sumą:
+\begin{equation}
+\sum_{0<d1<d2<D} K_{0d1} \cdot K_{0d2} + K_{1d1} \cdot K_{1d2}
+\end{equation}
 Obliczenie wyznacznika ma w takim wypadku złożoność pamięciową liniowo zależną od liczby wartości decyzji, czyli pomijalnie małą.
 Innymi słowy skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności.
 Dodatkowo mniejsza jest złożoność obliczeniowa.
