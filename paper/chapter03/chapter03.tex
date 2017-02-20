@@ -1,51 +1,114 @@
 \chapter{Redukcja argumentów}
 
-Algorytm generowania indeksów zaproponowany przez profesora Sasao, pozwala na zastosowanie pamięci o mniejszym rozmiarze niż wskazywałaby na to liczba argumentów. Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu. W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i kompresję argumentów.
-Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane. Po wykonaniu takiego procesu, usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o różnych decyzjach i tym samym utratę informacji. Zbiór argumentów powstały w wyniku redukcji nazywamy reduktem. Istnieje wiele sposobów redukcji argumentów, zarówno systematycznych, pozwalających na znalezienie wszystkich minimalnych rozwiązań, jak i heurystycznych, charakteryzujących się szybszym działaniem.
-Sama redukcja nie zawsze przynosi spektakularne rezultaty. W skrajnych przypadkach funkcji, w których każdy argument dostarcza niewielkiej ale niezbędnej porcji informacji, redukcja może nie przynieść żadnego efektu. W takich przypadkach niezbędna jest, opisana w dalszej części pracy, kompresja argumentów, świetnie sprawdzająca się właśnie w takich przypadkach.
+Algorytm generowania indeksów zaproponowany przez profesora Sasao, pozwala na zastosowanie pamięci o mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
+Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu.
+W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i kompresję argumentów.
+Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
+Po wykonaniu takiego procesu, usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o różnych decyzjach i tym samym utratę informacji.
+Zbiór argumentów powstały w wyniku redukcji nazywamy reduktem.
+Istnieje wiele sposobów redukcji argumentów, zarówno systematycznych, pozwalających na znalezienie wszystkich minimalnych rozwiązań, jak i heurystycznych, charakteryzujących się szybszym działaniem.
+Sama redukcja nie zawsze przynosi spektakularne rezultaty.
+W skrajnych przypadkach funkcji, w których każdy argument dostarcza niewielkiej ale niezbędnej porcji informacji, redukcja może nie przynieść żadnego efektu.
+W takich przypadkach niezbędna jest, opisana w dalszej części pracy, kompresja argumentów, świetnie sprawdzająca się właśnie w takich przypadkach.
 
 \section{Problem złożoności}
 
-Do problemu redukcji argumentów można podejść w sposób intuicyjny. Można próbować po kolei usuwać argumenty i weryfikować spójność danych. W przypadku utraty spójności taki argument musiałby się znaleźć w końcowym rozwiązaniu. W przeciwnym przypadku należałoby go usunąć i kolejne weryfikacje przeprowadzać z jego wyłączeniem.
-Pojedyncza weryfikacja wymaga porównania, każdych dwóch wierszy o różnej decyzji. Jeżeli funkcja ma n argumentów oraz m wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową n. Par wierszy do porównania jest w zależności od rozkładu decyzji od m do mRÓWNANIEPOTEGA2. Zatem złożoność obliczeniowa pojedynczej weryfikacji to n*mRÓWNANIEPOTEGA2. Taką weryfikację trzeba przeprowadzić dla każdego z n argumentów co daje końcową złożoność nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2.
-Problem takiego podejścia, poza złożonością, leży dodatkowo w jakości uzyskiwanego rozwiązania. W procesie redukcji argumentów, część z nich może być ważniejsza i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych. Innymi słowami wynik takiej redukcji, mimo że jest prawidłowy, często jest nieoptymalny.
+Do problemu redukcji argumentów można podejść w sposób intuicyjny.
+Można próbować po kolei usuwać argumenty i weryfikować spójność danych.
+W przypadku utraty spójności taki argument musiałby się znaleźć w końcowym rozwiązaniu.
+W przeciwnym przypadku należałoby go usunąć i kolejne weryfikacje przeprowadzać z jego wyłączeniem.
+Pojedyncza weryfikacja wymaga porównania, każdych dwóch wierszy o różnej decyzji.
+Jeżeli funkcja ma n argumentów oraz m wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową n.
+Par wierszy do porównania jest w zależności od rozkładu decyzji od m do mRÓWNANIEPOTEGA2.
+Zatem złożoność obliczeniowa pojedynczej weryfikacji to n*mRÓWNANIEPOTEGA2.
+Taką weryfikację trzeba przeprowadzić dla każdego z n argumentów co daje końcową złożoność nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2.
+Problem takiego podejścia, poza złożonością, leży dodatkowo w jakości uzyskiwanego rozwiązania.
+W procesie redukcji argumentów, część z nich może być ważniejsza i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
+Innymi słowami wynik takiej redukcji, mimo że jest prawidłowy, często jest nieoptymalny.
 
 \section{Minimalne pokrycie kolumnowe}
 
-Innym sposobem wyboru argumentów w czasie redukcji jest dobieranie argumentów, aż do zapewnienia pełnej rozróżnialności. Zaczynamy z jednym argumentem i kolejno wybieramy kolejne, które znajdą się w końcowym rozwiązaniu. Jeżeli przy takim podejściu dodatkowo będziemy w stanie ocenić, które argumenty są bardziej wartościowe, uzyskamy lepsze wyniki.
-Za miarę wartości argumentu w redukcie można przyjąć liczbę rozróżnień, których on dostarcza. Jeżeli dzięki jednemu argumentowi jesteśmy w stanie rozróżnić tylko jedną parę wierszy o różnych decyzjach to jest on mniej wartościowy od takiego, który rozróżnia kilka par wierszy. Z drugiej strony nawet argument, który dostarcza jednego rozróżnienia, będzie wartościowy jeżeli żaden inny go nie dostarcza.
-Informacje o tych zależnościach daje nam tablica rozróżnialności. Jest to macierz, która zawiera wynik operacji XOR wszystkich par wierszy o różnych decyzjach. Jedynki w takiej macierzy obrazują, które argumenty dostarczają jakich rozróżnień.
+Innym sposobem wyboru argumentów w czasie redukcji jest dobieranie argumentów, aż do zapewnienia pełnej rozróżnialności.
+Zaczynamy z jednym argumentem i kolejno wybieramy kolejne, które znajdą się w końcowym rozwiązaniu.
+Jeżeli przy takim podejściu dodatkowo będziemy w stanie ocenić, które argumenty są bardziej wartościowe, uzyskamy lepsze wyniki.
+Za miarę wartości argumentu w redukcie można przyjąć liczbę rozróżnień, których on dostarcza.
+Jeżeli dzięki jednemu argumentowi jesteśmy w stanie rozróżnić tylko jedną parę wierszy o różnych decyzjach to jest on mniej wartościowy od takiego, który rozróżnia kilka par wierszy.
+Z drugiej strony nawet argument, który dostarcza jednego rozróżnienia, będzie wartościowy jeżeli żaden inny go nie dostarcza.
+Informacje o tych zależnościach daje nam tablica rozróżnialności.
+Jest to macierz, która zawiera wynik operacji XOR wszystkich par wierszy o różnych decyzjach.
+Jedynki w takiej macierzy obrazują, które argumenty dostarczają jakich rozróżnień.
 
-Znalezienie reduktu, przy użyciu tablicy rozróżnialności sprowadza się do problemu znalezienia minimalnego pokrycia kolumnowego, czyli takiego zbioru kolumn, dla którego w każdym z wierszy znajduje się co najmniej jedna jedynka. Najprostszy algorytm znajdujący rozwiązanie sprowadzałby się do następujących kroków:
+Znalezienie reduktu, przy użyciu tablicy rozróżnialności sprowadza się do problemu znalezienia minimalnego pokrycia kolumnowego, czyli takiego zbioru kolumn, dla którego w każdym z wierszy znajduje się co najmniej jedna jedynka.
+Najprostszy algorytm znajdujący rozwiązanie sprowadzałby się do następujących kroków:
 Wybranie kolumny o największej liczbie jedynek
 Usunięcie wierszy z jedynkami w tej kolumnie
 Powtarzanie aż do uzyskania pustej macierzy
-Nie uwzględnia on jednak rozróżnień, które są dostarczane przez niewiele argumentów. Najłatwiej zauważyć to na przykładzie argumentów niezbędnych. W ich przypadku istnieje taki wiersz, który zawiera wyłącznie jedną jedynkę. Oznacza to, że argument odpowiadający tej jedynce jest niezbędny do uzyskania minimalnego pokrycia kolumnowego. Taki argument często dostarcza innych rozróżnień, które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wartość innych argumentów.
+Nie uwzględnia on jednak rozróżnień, które są dostarczane przez niewiele argumentów.
+Najłatwiej zauważyć to na przykładzie argumentów niezbędnych.
+W ich przypadku istnieje taki wiersz, który zawiera wyłącznie jedną jedynkę.
+Oznacza to, że argument odpowiadający tej jedynce jest niezbędny do uzyskania minimalnego pokrycia kolumnowego.
+Taki argument często dostarcza innych rozróżnień, które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wartość innych argumentów.
 
-Aby uwzględnić ten problem, w ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy. Najpierw znajdowany jest wiersz o najmniejszej liczbie jedynek, następnie wybierana jest taka kolumna, która ma najwięcej jedynek oraz jedynkę w wybranym wierszu. Takie rozwiązanie wyboru kolumn jest najbardziej optymalne i często prowadzi do uzyskania reduktu o najmniejszej liczności. Niestety w bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe w dalszym ciągu zawiera nadmiarowe argumenty. Z tego powodu na koniec wymagane jest przeprowadzenie weryfikacji rozwiązania.
+Aby uwzględnić ten problem, w ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy.
+Najpierw znajdowany jest wiersz o najmniejszej liczbie jedynek, następnie wybierana jest taka kolumna, która ma najwięcej jedynek oraz jedynkę w wybranym wierszu.
+Takie rozwiązanie wyboru kolumn jest najbardziej optymalne i często prowadzi do uzyskania reduktu o najmniejszej liczności.
+Niestety w bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe w dalszym ciągu zawiera nadmiarowe argumenty.
+Z tego powodu na koniec wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
-Dla takiej samej funkcji o n argumentach i m wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi n*mRÓWNANIEPOTEGA2. Następne kroki algorytmu operują na macierzy porównań dlatego przy szacowaniu ich złożoności musimy pamiętać o tym, że tablica ma mRÓWNANIEPOTEGA2 wierszy. Także kolejne złożoności znajdowania wiersza o najmniejszej liczbie jedynek oraz kolumny o największej liczbie jedynek wynoszą n*mRÓWNANIEPOTEGA2 każda. Maksymalna liczba powtórzeń, dla funkcji nieredukowalnej, wynosi n. Warto pamiętać, że każdy kolejny krok jest wykonywany dla pomniejszonej liczby wierszy, ale na potrzeby szacowania złożoności przyjmijmy skrajnie niekorzystny przykład, gdzie każdy argument usuwa tylko po jednym wierszu. W takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2. Ostatni krok ma taką złożoność jak poprzednio liczona złożoność weryfikacji. Ponownie warto zauważyć, że obliczenia przeprowadzane są już na redukcie, czyli zbiorze argumentów często mniejszym od n. Podsumowując końcowa złożoność obliczeniowa wynosi n*mRÓWNANIEPOTEGA2 + nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2 + nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2 czyli w dalszym ciągu nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2. Wynika stąd, że dzięki takiemu podejściu udało się uzyskać statystycznie lepszy redukt przy takiej samej złożoności obliczeniowej.
+Dla takiej samej funkcji o n argumentach i m wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi n*mRÓWNANIEPOTEGA2.
+Następne kroki algorytmu operują na macierzy porównań dlatego przy szacowaniu ich złożoności musimy pamiętać o tym, że tablica ma mRÓWNANIEPOTEGA2 wierszy.
+Także kolejne złożoności znajdowania wiersza o najmniejszej liczbie jedynek oraz kolumny o największej liczbie jedynek wynoszą n*mRÓWNANIEPOTEGA2 każda.
+Maksymalna liczba powtórzeń, dla funkcji nieredukowalnej, wynosi n.
+Warto pamiętać, że każdy kolejny krok jest wykonywany dla pomniejszonej liczby wierszy, ale na potrzeby szacowania złożoności przyjmijmy skrajnie niekorzystny przykład, gdzie każdy argument usuwa tylko po jednym wierszu.
+W takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2.
+Ostatni krok ma taką złożoność jak poprzednio liczona złożoność weryfikacji.
+Ponownie warto zauważyć, że obliczenia przeprowadzane są już na redukcie, czyli zbiorze argumentów często mniejszym od n.
+Podsumowując końcowa złożoność obliczeniowa wynosi n*mRÓWNANIEPOTEGA2 + nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2 + nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2 czyli w dalszym ciągu nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2.
+Wynika stąd, że dzięki takiemu podejściu udało się uzyskać statystycznie lepszy redukt przy takiej samej złożoności obliczeniowej.
 
 
 \section{Problem tablicy rozróżnialności}
 
-W czasie przeprowadzania badań, otrzymana złożoność nie stanowiła problemu. Warto jednak zauważyć, że rozmiar tablicy porównań dla bazy sygnatur wirusów o 1,3 mln wierszy, byłby zbyt duży dla większości komputerów. Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów) to o ile sama baza zajmowałaby ok 6 MB pamięci to tablica porównań ok 8 TB.
-Taka złożoność pamięciowa jest niepraktyczna nie tylko w tym konkretnym przypadku, ale również w wielu innych również poza domeną generowania indeksów. Powstały z tego powodu algorytmy niewymagające generowania tablicy porównań. Jednym z nich jest algorytm Marcina Korzenia i Szymona Jaroszewicza dokładnie przedstawiony w artykule “Finding Reducts Without Building the Discernibility Matrix”.
-Przy zastosowaniu ich rozwiązania jesteśmy w stanie policzyć liczbę jedynek w kolumnach tablicy rozróżnialności z praw kombinatoryki. W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych, jednak w ramach tej pracy, istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i jedynki wśród wartości argumentów. Jedynka w kolumnie macierzy rozróżnialności powstaje kiedy dwa wiersze o różnej decyzji mają różną wartość argumentu. Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i kilku decyzji jest stosunkowo łatwa do wyznaczenia. W przypadku ogólnym poruszanym w artykule jest jednak dużo łatwiej policzyć, kiedy jedynka nie występuje w tablicy i odjąć tą liczbę od liczby wierszy w macierzy. Dodatkowo, ponieważ liczba wierszy jest identyczna dla każdej kolumny, obliczanie liczby wierszy nie jest potrzebne. Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o najmniejszej liczbie zer.
-Jeżeli podzielimy wiersze danych na grupy ze względu na wartość decyzji i argumentu, powstaną po dwa kubełki dla każdej decyzji. Jeżeli ich rozmiar oznaczymy K0d i K1dgdzie 0 i 1 oznaczają wartość argumentu, a d należy do zbioru decyzji, liczbę zer w kolumnie można wyrazić następującą sumą:
+W czasie przeprowadzania badań, otrzymana złożoność nie stanowiła problemu.
+Warto jednak zauważyć, że rozmiar tablicy porównań dla bazy sygnatur wirusów o 1,3 mln wierszy, byłby zbyt duży dla większości komputerów.
+Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów) to o ile sama baza zajmowałaby ok 6 MB pamięci to tablica porównań ok 8 TB.
+Taka złożoność pamięciowa jest niepraktyczna nie tylko w tym konkretnym przypadku, ale również w wielu innych również poza domeną generowania indeksów.
+Powstały z tego powodu algorytmy niewymagające generowania tablicy porównań.
+Jednym z nich jest algorytm Marcina Korzenia i Szymona Jaroszewicza dokładnie przedstawiony w artykule “Finding Reducts Without Building the Discernibility Matrix”.
+Przy zastosowaniu ich rozwiązania jesteśmy w stanie policzyć liczbę jedynek w kolumnach tablicy rozróżnialności z praw kombinatoryki.
+W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych, jednak w ramach tej pracy, istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i jedynki wśród wartości argumentów.
+Jedynka w kolumnie macierzy rozróżnialności powstaje kiedy dwa wiersze o różnej decyzji mają różną wartość argumentu.
+Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i kilku decyzji jest stosunkowo łatwa do wyznaczenia.
+W przypadku ogólnym poruszanym w artykule jest jednak dużo łatwiej policzyć, kiedy jedynka nie występuje w tablicy i odjąć tą liczbę od liczby wierszy w macierzy.
+Dodatkowo, ponieważ liczba wierszy jest identyczna dla każdej kolumny, obliczanie liczby wierszy nie jest potrzebne.
+Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o najmniejszej liczbie zer.
+Jeżeli podzielimy wiersze danych na grupy ze względu na wartość decyzji i argumentu, powstaną po dwa kubełki dla każdej decyzji.
+Jeżeli ich rozmiar oznaczymy K0d i K1dgdzie 0 i 1 oznaczają wartość argumentu, a d należy do zbioru decyzji, liczbę zer w kolumnie można wyrazić następującą sumą:
 0<d1<d2<DK0d1K0d2+K1d1K1d2
-Obliczenie wyznacznika ma w takim wypadku złożoność pamięciową liniowo zależną od liczby wartości decyzji, czyli pomijalnie małą. Innymi słowy skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności. Dodatkowo mniejsza jest złożoność obliczeniowa. Znalezienie najlepszej kolumny do uwzględnienia w redukcie odbywa się ze złożonością n*m w porównaniu do poprzedniego n*mRÓWNANIEPOTEGA2.
-Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w pracy. Gdyby jednak dalsze badania lub konkretne zastosowania wymagały operacji na dużych bazach danych, wymagane byłoby użycie tego lub podobnego algorytmu o mniejszej złożoności pamięciowej.
+Obliczenie wyznacznika ma w takim wypadku złożoność pamięciową liniowo zależną od liczby wartości decyzji, czyli pomijalnie małą.
+Innymi słowy skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności.
+Dodatkowo mniejsza jest złożoność obliczeniowa.
+Znalezienie najlepszej kolumny do uwzględnienia w redukcie odbywa się ze złożonością n*m w porównaniu do poprzedniego n*mRÓWNANIEPOTEGA2.
+Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w pracy.
+Gdyby jednak dalsze badania lub konkretne zastosowania wymagały operacji na dużych bazach danych, wymagane byłoby użycie tego lub podobnego algorytmu o mniejszej złożoności pamięciowej.
 
 \section{Rozwiązania systematyczne}
 
-Żadne z przedstawionych do tej pory rozwiązań nie było systematyczne. Wszystko ze względu na zdecydowanie większą złożoność obliczeniową takich algorytmów. W przypadku problemu generowania indeksów, dane dla których przeprowadza się obliczenia zmieniają się w czasie, dlatego czas tych obliczeń jest bardzo istotny. Są jednak inne problemy, w których czas optymalizacji nie jest czynnikiem istotnym. Do takich zastosowań należą problemy dziedziny eksploracji danych, gdzie często dane są zbierane na długo przed przeprowadzeniem obliczeń, lub implementacji funkcji w układach FPGA czy też innych z pamięciami ROM.
-W zadaniach gdzie na wynik obliczeń możemy poczekać oraz nawet najmniejsza optymalizacja końcowego wyniku jest strasznie istotna, rozwiązania systematyczne pokazują prawdziwą potęgę. Na przykładzie redukcji argumentów, takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt, ale wszystkie najmniejsze redukty. Otwierają więc możliwość przeprowadzenia dalszych optymalizacji (np kompresji argumentów) z różnymi danymi początkowymi pozornie równie dobrymi.
+Żadne z przedstawionych do tej pory rozwiązań nie było systematyczne.
+Wszystko ze względu na zdecydowanie większą złożoność obliczeniową takich algorytmów.
+W przypadku problemu generowania indeksów, dane dla których przeprowadza się obliczenia zmieniają się w czasie, dlatego czas tych obliczeń jest bardzo istotny.
+Są jednak inne problemy, w których czas optymalizacji nie jest czynnikiem istotnym.
+Do takich zastosowań należą problemy dziedziny eksploracji danych, gdzie często dane są zbierane na długo przed przeprowadzeniem obliczeń, lub implementacji funkcji w układach FPGA czy też innych z pamięciami ROM.
+W zadaniach gdzie na wynik obliczeń możemy poczekać oraz nawet najmniejsza optymalizacja końcowego wyniku jest strasznie istotna, rozwiązania systematyczne pokazują prawdziwą potęgę.
+Na przykładzie redukcji argumentów, takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt, ale wszystkie najmniejsze redukty.
+Otwierają więc możliwość przeprowadzenia dalszych optymalizacji (np kompresji argumentów) z różnymi danymi początkowymi pozornie równie dobrymi.
 
 \section{Unate Complement}
 
-Ze względu na to, że algorytmy systematyczne dostarczają wszystkich rozwiązań, mogą w czasie badań służyć do weryfikacji jakości rozwiązań pochodzących z algorytmów heurystycznych. Algorytmem użytym w tym celu w ramach pracy był algorytm Unate Complement.
-Algorytm Unate Complement służy do wyznaczania dopełnienia funkcji jednorodnej, czyli takiej, dla której w żadnej kolumnie nie występują jednocześnie zera i jedynki. Tym samym pozwala na znalezienie wszystkich największych (najbardziej ogólnych) kostek dopełnienia funkcji jednorodnej, a zastosowany do tablicy porównań pozwala na wyznaczenie wszystkich minimalnych pokryć kolumnowych.
+Ze względu na to, że algorytmy systematyczne dostarczają wszystkich rozwiązań, mogą w czasie badań służyć do weryfikacji jakości rozwiązań pochodzących z algorytmów heurystycznych.
+Algorytmem użytym w tym celu w ramach pracy był algorytm Unate Complement.
+Algorytm Unate Complement służy do wyznaczania dopełnienia funkcji jednorodnej, czyli takiej, dla której w żadnej kolumnie nie występują jednocześnie zera i jedynki.
+Tym samym pozwala na znalezienie wszystkich największych (najbardziej ogólnych) kostek dopełnienia funkcji jednorodnej, a zastosowany do tablicy porównań pozwala na wyznaczenie wszystkich minimalnych pokryć kolumnowych.
 Sam algorytm składa się z czterech kroków:
 Rekurencyjnego rozkładu funkcji zgodnie ze wzorem Shannona
 Obliczania dopełnień w liściach zgodnie z prawami De Morgana

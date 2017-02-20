@@ -1,12 +1,24 @@
 \chapter{Wstęp}
 
-W dzisiejszych czasach gromadzimy ogromne ilości danych. W związku obserwujemy rozwój dziedziny eksploracji danych (data mining) i uczenia maszynowego (machine learning). Pewna część tych problemów jest ściśle związana z koniecznością precyzyjnego wyodrębniania właściwych danych z ogromnej masy danych niepotrzebnych. Te zagadnienie z kolei można dalej dzielić na grupy. Jednym kryterium może być zastosowanie w systemach czasu rzeczywistego, gdzie pewne decyzje muszą być podejmowane wraz z nowo napływającymi danymi, oraz w systemach, w których analizowane są dane wcześnie zebrane. Innym podziałem jest rozróżnienie problemów gdzie kryteria podejmowania działań zależą od z góry ustalonych czynników lub gdzie czynniki te zmieniają się w czasie.
+W dzisiejszych czasach gromadzimy ogromne ilości danych.
+W związku obserwujemy rozwój dziedziny eksploracji danych (data mining) i uczenia maszynowego (machine learning).
+Pewna część tych problemów jest ściśle związana z koniecznością precyzyjnego wyodrębniania właściwych danych z ogromnej masy danych niepotrzebnych.
+Te zagadnienie z kolei można dalej dzielić na grupy.
+Jednym kryterium może być zastosowanie w systemach czasu rzeczywistego, gdzie pewne decyzje muszą być podejmowane wraz z nowo napływającymi danymi, oraz w systemach, w których analizowane są dane wcześnie zebrane.
+Innym podziałem jest rozróżnienie problemów gdzie kryteria podejmowania działań zależą od z góry ustalonych czynników lub gdzie czynniki te zmieniają się w czasie.
 
 \section{Problem generowania indeksów w technice cyfrowej}
 
-Problem generowania indeksów (adresu) dotyczy szczególnie tej podgrupy problemów czasu rzeczywistego, w których warunki podejmowania decyzji są zmienne w czasie. Sztandarowym zastosowaniem algorytmów generowania indeksów jest obsługa pakietów w routerach IP. Spotykamy się tam z problemami filtrowania ruchu z niepożądanych adresów (firewall) lub wybierania portów wyjściowych (routing). W obu przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM ze względu na połączenie szybkości działania porównywalnej z rozwiązaniami ASIC oraz elastyczności jak w przypadku rozwiązań programowych.
-Wyzwania jakie są stawiane przed algorytmami generowania indeksów są związane częstymi zmianami danych. Indeksy często muszą być generowane w czasie rzeczywistym wraz ze zmianami danych. Ponadto ze względu na dużą liczbę argumentów, które muszą być brane pod uwagę (32 bity - adresy IPv4, 48 bitów - adresy mac), wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w strukturach programowalnych.
+Problem generowania indeksów (adresu) dotyczy szczególnie tej podgrupy problemów czasu rzeczywistego, w których warunki podejmowania decyzji są zmienne w czasie.
+Sztandarowym zastosowaniem algorytmów generowania indeksów jest obsługa pakietów w routerach IP.
+Spotykamy się tam z problemami filtrowania ruchu z niepożądanych adresów (firewall) lub wybierania portów wyjściowych (routing).
+W obu przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM ze względu na połączenie szybkości działania porównywalnej z rozwiązaniami ASIC oraz elastyczności jak w przypadku rozwiązań programowych.
+Wyzwania jakie są stawiane przed algorytmami generowania indeksów są związane częstymi zmianami danych.
+Indeksy często muszą być generowane w czasie rzeczywistym wraz ze zmianami danych.
+Ponadto ze względu na dużą liczbę argumentów, które muszą być brane pod uwagę (32 bity - adresy IPv4, 48 bitów - adresy mac), wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w strukturach programowalnych.
 
 \section{Cel pracy}
 
-Celem pracy było opracowanie algorytmu generowania indeksów na podstawie istniejących algorytmów z dziedziny syntezy logicznej oraz porównanie nowej metody z wynikami aktualnych prac badawczych z zakresu generowania indeksów. Wyniki obliczeń dla przykładu referencyjnego, przeprowadzone przed przystąpieniem do właściwych badań, potwierdziły możliwości algorytmu opartego na połączeniu redukcji argumentów oraz dekompozycji liniowej. W porównaniu z aktualnymi artykułami Profesora Sasao nowa metoda pozwala na zmniejszenie zużycia zasobów potrzebnych do realizacji funkcji w strukturach programowalnych.
+Celem pracy było opracowanie algorytmu generowania indeksów na podstawie istniejących algorytmów z dziedziny syntezy logicznej oraz porównanie nowej metody z wynikami aktualnych prac badawczych z zakresu generowania indeksów.
+Wyniki obliczeń dla przykładu referencyjnego, przeprowadzone przed przystąpieniem do właściwych badań, potwierdziły możliwości algorytmu opartego na połączeniu redukcji argumentów oraz dekompozycji liniowej.
+W porównaniu z aktualnymi artykułami Profesora Sasao nowa metoda pozwala na zmniejszenie zużycia zasobów potrzebnych do realizacji funkcji w strukturach programowalnych.
