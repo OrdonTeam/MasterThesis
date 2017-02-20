@@ -27,24 +27,27 @@ Inaczej mówiąc mając próbkę danych w postaci pojedynczego wektora boolowski
 Dla niewielkich wektorów można ten problem rozwiązać tablicując wynik dla wszystkich możliwy wektorów binarnych.
 Wiąże się to z dużym zużyciem pamięci.
 Przykładowo przy funkcji o 6 argumentach wszystkich wektorów binarnych jest 64 (26).
-Jeżeli spośród wszystkich wektorów poszukiwanych jest np 6 konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity (log26).
+Jeżeli spośród wszystkich wektorów poszukiwanych jest np 6 konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
 Dla takiego przykładu minimalna potrzebna pamięć to 192 bity.
 Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z 1.3 miliona poszukiwanych wektorów o 40 argumentach, taka pamięć miałaby rozmiar 21 terabitów.
-240 * log2 1 300 000 =
-= 210 * 210 * 210 * 210 * 21 =
-=21 * 210 * 210 * 210 k =
-=21 * 210 * 210 M =
-=21 * 210 G =
-=21 T bitów
-
+\begin{multline} \\
+2^{40} \cdot \log_2 1300000 = \\
+= 2^{10} \cdot 2^{10} \cdot 2^{10} \cdot 2^{10} \cdot 21 = \\
+=21 \cdot 2^{10} \cdot 2^{10} \cdot 2^{10} k = \\
+=21 \cdot 2^{10} \cdot 2^{10} M = \\
+=21 \cdot 2^{10} G = \\
+=21 [Tbit] \\
+\end{multline}
 
 \section{Algorytm Sasao}
 Rozwiązanie problemu rosnącej pamięci zaproponował Profesor Tsutomu Sasao.
 Częścią jego pomysłu jest ograniczenie liczby argumentów potrzebnych do adresowania pamięci.
 Idea stojąca za takim rozwiązaniem bierze się stąd, że do rozróżnienia 1.3 miliona wektorów z poprzedniego przykładu może wystarczyć jedynie 21 bitów.
 Gdyby udało się faktycznie zredukować liczbę wejść z 40 do 21 bitów, rozmiar pamięci zmniejszyłby się z 21 terabitów do 42 megabitów.
-221 * log2 1 300 000 =
-= 210 * 210 * 2 * 21 =42 M bity
+\begin{multline} \\
+2^{21} \cdot \log_2 1300000 = \\
+= 2^{10} \cdot 2^{10} \cdot 2 \cdot 21 = 42 [Mbit] \\
+\end{multline}
 Zmniejszenie rozmiaru pamięci głównej nie pozwalałoby na jednoznaczne określenie czy dany wektor jest wektorem poszukiwanym.
 Wskazywałoby jedynie numer jedynego wiersza z poszukiwanych, który ma szansę być identyczny z wektorem sprawdzanym.
 Potrzebne jest zatem przechowanie wszystkich kompletnych wektorów poszukiwanych w drugiej pamięci.
@@ -52,6 +55,6 @@ W naszym przykładzie wektorów jest 1,3 miliona i każdy ma 40 bitów.
 Rozmiar dodatkowej pamięci wyniósłby w takim razie 50 megabitów.
 
 W zaproponowanym rozwiązaniu częścią, która ma największe znaczenie na rozmiar niezbędnej pamięci jest wyznaczenie funkcji pozwalającej na jak największe zmniejszenie liczby wejść do głównej pamięci.
-(Wymaga uzupełnienia z artykułem) W pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z N do X.
-Sposobem zaproponowanym w pracy uzyskujemy zmniejszenie z N do Y.
+\textbf{(Wymaga uzupełnienia z artykułem)} W pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z \textbf{N do X}.
+Sposobem zaproponowanym w pracy uzyskujemy zmniejszenie z \textbf{N do Y}.
 Warto zauważyć, że zmniejszenie o jeden argument powoduje dwukrotne zmniejszenie wymaganej pamięci.
