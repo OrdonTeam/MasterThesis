@@ -8,9 +8,7 @@ before_install:
 
 script:
   - ./gradlew check
-  - cd paper; mkdir build
-  - pdflatex -interaction=nonstopmode -halt-on-error -output-directory build main.tex
-  - cd ..
+  - sh paper/build-paper.sh
 
 after_success: sh package-release/package.sh
 
