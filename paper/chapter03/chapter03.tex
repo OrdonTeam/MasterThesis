@@ -18,10 +18,10 @@ Można próbować po kolei usuwać argumenty i weryfikować spójność danych.
 W przypadku utraty spójności taki argument musiałby się znaleźć w końcowym rozwiązaniu.
 W przeciwnym przypadku należałoby go usunąć i kolejne weryfikacje przeprowadzać z jego wyłączeniem.
 Pojedyncza weryfikacja wymaga porównania, każdych dwóch wierszy o różnej decyzji.
-Jeżeli funkcja ma n argumentów oraz m wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową n.
-Par wierszy do porównania jest w zależności od rozkładu decyzji od m do mRÓWNANIEPOTEGA2.
-Zatem złożoność obliczeniowa pojedynczej weryfikacji to n*mRÓWNANIEPOTEGA2.
-Taką weryfikację trzeba przeprowadzić dla każdego z n argumentów co daje końcową złożoność nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2.
+Jeżeli funkcja ma $n$ argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową n.
+Par wierszy do porównania jest w zależności od rozkładu decyzji od $m$ do $m^2$.
+Zatem złożoność obliczeniowa pojedynczej weryfikacji to $n \cdot m^2$.
+Taką weryfikację trzeba przeprowadzić dla każdego z $n$ argumentów co daje końcową złożoność $n^2 \cdot m^2$.
 Problem takiego podejścia, poza złożonością, leży dodatkowo w jakości uzyskiwanego rozwiązania.
 W procesie redukcji argumentów, część z nich może być ważniejsza i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
 Innymi słowami wynik takiej redukcji, mimo że jest prawidłowy, często jest nieoptymalny.
@@ -55,15 +55,15 @@ Takie rozwiązanie wyboru kolumn jest najbardziej optymalne i często prowadzi d
 Niestety w bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe w dalszym ciągu zawiera nadmiarowe argumenty.
 Z tego powodu na koniec wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
-Dla takiej samej funkcji o n argumentach i m wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi n*mRÓWNANIEPOTEGA2.
-Następne kroki algorytmu operują na macierzy porównań dlatego przy szacowaniu ich złożoności musimy pamiętać o tym, że tablica ma mRÓWNANIEPOTEGA2 wierszy.
-Także kolejne złożoności znajdowania wiersza o najmniejszej liczbie jedynek oraz kolumny o największej liczbie jedynek wynoszą n*mRÓWNANIEPOTEGA2 każda.
-Maksymalna liczba powtórzeń, dla funkcji nieredukowalnej, wynosi n.
+Dla takiej samej funkcji o $n$ argumentach i $m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
+Następne kroki algorytmu operują na macierzy porównań dlatego przy szacowaniu ich złożoności musimy pamiętać o tym, że tablica ma $m^2$ wierszy.
+Także kolejne złożoności znajdowania wiersza o najmniejszej liczbie jedynek oraz kolumny o największej liczbie jedynek wynoszą $n \cdot m^2$ każda.
+Maksymalna liczba powtórzeń, dla funkcji nieredukowalnej, wynosi $n$.
 Warto pamiętać, że każdy kolejny krok jest wykonywany dla pomniejszonej liczby wierszy, ale na potrzeby szacowania złożoności przyjmijmy skrajnie niekorzystny przykład, gdzie każdy argument usuwa tylko po jednym wierszu.
-W takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2.
+W takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie $n^2 \cdot m^2$.
 Ostatni krok ma taką złożoność jak poprzednio liczona złożoność weryfikacji.
-Ponownie warto zauważyć, że obliczenia przeprowadzane są już na redukcie, czyli zbiorze argumentów często mniejszym od n.
-Podsumowując końcowa złożoność obliczeniowa wynosi n*mRÓWNANIEPOTEGA2 + nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2 + nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2 czyli w dalszym ciągu nRÓWNANIEPOTEGA2*mRÓWNANIEPOTEGA2.
+Ponownie warto zauważyć, że obliczenia przeprowadzane są już na redukcie, czyli zbiorze argumentów często mniejszym od $n$.
+Podsumowując końcowa złożoność obliczeniowa wynosi $n \cdot m^2 + n^2 \cdot m^2 + n^2 \cdot m^2$ czyli w dalszym ciągu $n^2 \cdot m^2$.
 Wynika stąd, że dzięki takiemu podejściu udało się uzyskać statystycznie lepszy redukt przy takiej samej złożoności obliczeniowej.
 
 
@@ -88,7 +88,7 @@ Jeżeli ich rozmiar oznaczymy K0d i K1dgdzie 0 i 1 oznaczają wartość argument
 Obliczenie wyznacznika ma w takim wypadku złożoność pamięciową liniowo zależną od liczby wartości decyzji, czyli pomijalnie małą.
 Innymi słowy skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności.
 Dodatkowo mniejsza jest złożoność obliczeniowa.
-Znalezienie najlepszej kolumny do uwzględnienia w redukcie odbywa się ze złożonością n*m w porównaniu do poprzedniego n*mRÓWNANIEPOTEGA2.
+Znalezienie najlepszej kolumny do uwzględnienia w redukcie odbywa się ze złożonością $n \cdot m$ w porównaniu do poprzedniego $n \cdot m^2$.
 Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w pracy.
 Gdyby jednak dalsze badania lub konkretne zastosowania wymagały operacji na dużych bazach danych, wymagane byłoby użycie tego lub podobnego algorytmu o mniejszej złożoności pamięciowej.
 
