@@ -11,18 +11,18 @@ W związku z tym rozwiązaniem tego problemu są struktury FPGA z wbudowanymi pa
 Ale kolejną barierą w realizacji tych układów są ograniczenia w nadmiernej pojemności pamięci ROM o dużej liczbie wejść – np. 40,
 co byłoby wymagane przy selekcji niewielkiej liczby wektorów (wzorców), np. 10.
 Można jednak przypuszczać, że binarna tablica takich wektorów: 40 kolumn oznaczanych x1,…,x40 i 10 wierszy zawiera kolumny xi, xj,…, xk,
-które ustawione obok siebie reprezentują różne liczby binarne [7].
+które ustawione obok siebie reprezentują różne liczby binarne \cite{sasao-workshop}.
 Zwykle takich kolumn jest wyraźnie mniej od liczby zmiennych (bitów) wektorów selekcjonowanych.
 Zatem jedną z metod rozwiązania zadania selekcji jest redukcja argumentów,
 a cały problem jest określany mianem syntezy funkcji generowania indeksów.
 
 Zagadnienie redukcji argumentów jest tożsame z problemem redukcji atrybutów.
-W tym ujęciu zagadnienie to było badane bardzo intensywnie [1], [2], [3], [12 – 15].
-Jednym z najbardziej znanych algorytmów redukcji atrybutów jest algorytm zastosowany w systemie RSES [11].
-Algorytm ten został skutecznie usprawniony w pracy inżynierskiej [2],
+W tym ujęciu zagadnienie to było badane bardzo intensywnie \cite{fast-algorithm}, \cite{efektywna-procedura}, \cite{new-reduction}, \cite{steinbach-posthoff}, \cite{skowron-rauszer}, \cite{slezak}, \cite{novel-method}.
+Jednym z najbardziej znanych algorytmów redukcji atrybutów jest algorytm zastosowany w systemie RSES \cite{rses}.
+Algorytm ten został skutecznie usprawniony w pracy inżynierskiej \cite{efektywna-procedura},
 natomiast w ramach niniejszej pracy stworzono realizację obliczającą jedno rozwiązanie [rozdz. ??].
 Analogiczne zadanie podjęto w zespole prof. Sasao,
-a w referacie [7] znaczenie redukcji zasygnalizowano informacją,
+a w referacie \cite{sasao-workshop} znaczenie redukcji zasygnalizowano informacją,
 iż opracowanie algorytmu redukcji jest jednym z najważniejszych zadań.
 
 Drugim aktualnym zagadnieniem syntezy logicznej w projektowaniu generatorów adresu jest dekompozycja liniowa.
@@ -31,8 +31,8 @@ w której składowymi dekompozycji G są dwuargumentowe funkcje $EXOR$:
 \begin{equation}
 F = H (x_i \oplus x_j, x_k \oplus x_l, ..., X)
 \end{equation}
-Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w generatorach adresów należy algorytm s-min [8], [9].
-W artykule [5] wykazano, że algorytm s-min jest mało skuteczny i zaproponowano całkowicie inne ujęcie tego zagadnienia.
+Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w generatorach adresów należy algorytm s-min \cite{sasao-recent}, \cite{sasao-s-min}.
+W artykule \cite{redukcja-kompresja} wykazano, że algorytm s-min jest mało skuteczny i zaproponowano całkowicie inne ujęcie tego zagadnienia.
 W niniejszej pracy metodykę tę przystosowano do heurystycznych obliczeń funkcji generowania indeksów.
 Cechą charakterystyczną tej propozycji jest zastosowanie twierdzenia wiążącego dekompozycję liniową z tzw. zbiorem rozróżnialności [rozdz. ??].
 W rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń praktycznych funkcji indeksowania [rozdz. …].
