@@ -6,7 +6,7 @@ Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu.
 W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i kompresję argumentów.
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
 Po wykonaniu takiego procesu,
-usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o różnych decyzjach i tym samym utratę informacji.
+usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o różnych wartościach i tym samym utratę informacji.
 Zbiór argumentów powstały w wyniku redukcji nazywamy reduktem.
 Istnieje wiele sposobów redukcji argumentów,
 zarówno systematycznych,
@@ -29,9 +29,9 @@ Można próbować po kolei usuwać argumenty i weryfikować spójność danych.
 W przypadku utraty spójności taki argument musiałby się znaleźć w końcowym rozwiązaniu.
 W przeciwnym przypadku należałoby go usunąć i kolejne weryfikacje przeprowadzać z jego wyłączeniem.
 Pojedyncza weryfikacja wymaga porównania,
-każdych dwóch wierszy o różnej decyzji.
+każdych dwóch wierszy o różnej wartości funkcji.
 Jeżeli funkcja ma $n$ argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową n.
-Par wierszy do porównania jest w zależności od rozkładu decyzji od $m$ do $m^2$.
+Par wierszy do porównania jest w zależności od rozkładu wartości funkcji od $m$ do $m^2$.
 Zatem złożoność obliczeniowa pojedynczej weryfikacji to $n \cdot m^2$.
 Taką weryfikację trzeba przeprowadzić dla każdego z $n$ argumentów co daje końcową złożoność $n^2 \cdot m^2$.
 Problem takiego podejścia,
@@ -54,13 +54,13 @@ które argumenty są bardziej wartościowe,
 uzyskamy lepsze wyniki.
 Za miarę wartości argumentu w redukcie można przyjąć liczbę rozróżnień,
 których on dostarcza.
-Jeżeli dzięki jednemu argumentowi jesteśmy w stanie rozróżnić tylko jedną parę wierszy o różnych decyzjach to jest on mniej wartościowy od takiego,
+Jeżeli dzięki jednemu argumentowi jesteśmy w stanie rozróżnić tylko jedną parę wierszy o różnych wartościach to jest on mniej wartościowy od takiego,
 który rozróżnia kilka par wierszy.
 Z drugiej strony nawet argument,
 który dostarcza jednego rozróżnienia,
 będzie wartościowy jeżeli żaden inny go nie dostarcza.
 Informacje o tych zależnościach daje nam macierz rozróżnialności, nazywana również tablicą porównań,
-która zawiera wynik operacji XOR wszystkich par wierszy o różnych decyzjach.
+która zawiera wynik operacji XOR wszystkich par wierszy o różnych wartościach funkcji.
 Jedynki w takiej macierzy obrazują,
 które argumenty dostarczają jakich rozróżnień.
 
@@ -128,23 +128,23 @@ Przy zastosowaniu ich rozwiązania jesteśmy w stanie policzyć liczbę jedynek 
 W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
 jednak w ramach tej pracy,
 istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i jedynki wśród wartości argumentów.
-Jedynka w kolumnie macierzy rozróżnialności powstaje kiedy dwa wiersze o różnej decyzji mają różną wartość argumentu.
-Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i kilku decyzji jest stosunkowo łatwa do wyznaczenia.
+Jedynka w kolumnie macierzy rozróżnialności powstaje kiedy dwa wiersze o różnej wartości funkcji mają różną wartość argumentu.
+Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
 W przypadku ogólnym poruszanym w artykule jest jednak dużo łatwiej policzyć,
 kiedy jedynka nie występuje w tablicy i odjąć tą liczbę od liczby wierszy w macierzy.
 Dodatkowo,
 ponieważ liczba wierszy jest identyczna dla każdej kolumny,
 obliczanie liczby wierszy nie jest potrzebne.
 Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o najmniejszej liczbie zer.
-Jeżeli podzielimy wiersze danych na grupy ze względu na wartość decyzji i argumentu,
-powstaną po dwa kubełki dla każdej decyzji.
+Jeżeli podzielimy wiersze danych na grupy ze względu na wartość funkcji i argumentu,
+powstaną po dwa kubełki dla każdej wartości funkcji.
 Jeżeli ich rozmiar oznaczymy $K_{0d}$ i $K_{1d}$ gdzie $0$ i $1$ oznaczają wartość argumentu,
-a $d$ należy do zbioru decyzji,
+a $d$ należy do zbioru wartości,
 liczbę zer w kolumnie można wyrazić następującą sumą:
 \begin{equation}
 \sum_{0<d1<d2<D} K_{0d1} \cdot K_{0d2} + K_{1d1} \cdot K_{1d2}
 \end{equation}
-Obliczenie wyznacznika ma w takim wypadku złożoność pamięciową liniowo zależną od liczby wartości decyzji,
+Obliczenie wyznacznika ma w takim wypadku złożoność pamięciową liniowo zależną od liczby wartości funkcji,
 czyli pomijalnie małą.
 Innymi słowy skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności.
 Dodatkowo mniejsza jest złożoność obliczeniowa.

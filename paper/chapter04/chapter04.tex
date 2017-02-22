@@ -14,7 +14,7 @@ Dodatkowo łatwo zauważyć, że pierwszy i drugi argument można z powodzeniem 
 Zmniejszenie rozmiaru pamięci z trzech argumentów do dwóch nie jest zbyt spektakularne i nie miałoby znaczenia w praktycznym zastosowaniu.
 Jednak dla innego badanego przypadku nieredukowalnej funkcji 41 argumentowej, dekompozycja proponowaną w pracy metodą powoduje zmniejszenie liczby argumentów do 7.
 Problem generowania indeksów posiada pewną specyficzną własność.
-Każdy wektor wejściowy rozważanej funkcji ma inną decyzję.
+Każdy wektor wejściowy rozważanej funkcji ma inną wartość.
 Dotychczasowe rozwiązania problemu dekompozycji liniowej ograniczały się właśnie do takiego przypadku.
 Zaprezentowany w tej pracy algorytm jest pod tym względem bardziej uniwersalny.
 Można go stosować dla wszystkich funkcji boolowskich o dowolnych wyjściach.
@@ -24,9 +24,9 @@ Można go stosować dla wszystkich funkcji boolowskich o dowolnych wyjściach.
 Pierwszym krokiem w dekompozycji liniowej jest wygenerowanie opisanej wcześniej macierzy rozróżnialności.
 Może to oczywiście wiązać się z podobnymi problemami związanymi ze złożonością pamięciową jak w czasie redukcji.
 Tak będzie jednak szczególnie przy problemie generowania indeksów.
-Charakteryzuje się on tym, że wszystkie wiersze w funkcji mają różne decyzje.
+Charakteryzuje się on tym, że wszystkie wiersze w funkcji mają różne wartości.
 Z tego powodu liczba wierszy po redukcji argumentów nie zmaleje.
-Przy zastosowaniu algorytmu w innych problemach, gdzie różnych decyzji jest stosunkowo niewiele, na etapie dekompozycji funkcja zredukowana często nie będzie zawierała wszystkich wierszy.
+Przy zastosowaniu algorytmu w innych problemach, gdzie różnych wartości funkcji jest stosunkowo niewiele, na etapie dekompozycji funkcja zredukowana często nie będzie zawierała wszystkich wierszy.
 Część z nich po usunięciu redundantnych argumentów będzie zduplikowana.
 Dla przykładu badanej funkcji [P5.PLA] na etapie redukcji argumentów nastąpiła redukcja wierszy z 2048 do 128.
 Na takim przykładzie łatwo oszacować, że tablica rozróżnialności wygenerowana na potrzeby dekompozycji będzie miała 250 razy mniejszy rozmiar.
