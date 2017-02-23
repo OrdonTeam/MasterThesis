@@ -63,7 +63,7 @@ Z drugiej strony nawet argument,
 który dostarcza jednego rozróżnienia,
 będzie wartościowy jeżeli żaden inny go nie dostarcza.
 
-Informacje o tych zależnościach daje nam macierz rozróżnialności, nazywana również tablicą porównań,
+Informacje o tych zależnościach uzyskuje się z macierz rozróżnialności, nazywana również tablicą porównań,
 która zawiera wynik operacji XOR wszystkich par wierszy o różnych wartościach funkcji.
 Jedynki w takiej macierzy obrazują,
 które argumenty dostarczają jakich rozróżnień.
@@ -85,7 +85,7 @@ Najprostszy algorytm znajdujący rozwiązanie sprowadzałby się do następując
 \item Powtarzanie aż do uzyskania pustej macierzy.
 \end{enumerate}
 Nie uwzględnia on jednak rozróżnień,
-które są dostarczane przez niewiele argumentów.
+które są dostarczane przez niewielką liczbę argumentów.
 Najłatwiej zauważyć to na przykładzie argumentów niezbędnych.
 W ich przypadku istnieje taki wiersz,
 który zawiera wyłącznie jedną jedynkę.
@@ -103,11 +103,11 @@ które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wartość inn
 Aby uwzględnić ten problem,
 w ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy.
 Najpierw znajdowany jest wiersz o najmniejszej liczbie jedynek,
-następnie wybierana jest taka kolumna,
+następnie wybierana jest kolumna,
 która ma najwięcej jedynek oraz jedynkę w wybranym wierszu.
-Takie rozwiązanie wyboru kolumn jest najbardziej optymalne i często prowadzi do uzyskania reduktu o najmniejszej liczności.
-Niestety w bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe w dalszym ciągu zawiera nadmiarowe argumenty.
-Z tego powodu na koniec wymagane jest przeprowadzenie weryfikacji rozwiązania.
+\textbf{Takie rozwiązanie wyboru kolumn jest optymalne i często prowadzi do uzyskania reduktu o najmniejszej liczności.}%TODO: CR:
+Niestety w bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe również zawiera nadmiarowe argumenty.
+Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
 
 \begin{algorithm}[H]
@@ -141,7 +141,7 @@ Z tego powodu na koniec wymagane jest przeprowadzenie weryfikacji rozwiązania.
 \end{algorithm}
 
 Dla takiej samej funkcji o $n$ argumentach i $m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
-Następne kroki algorytmu operują na macierzy porównań dlatego przy szacowaniu ich złożoności musimy pamiętać o tym,
+Następne kroki algorytmu operują na macierzy rozróżnialności dlatego przy szacowaniu ich złożoności musimy pamiętać o tym,
 że tablica ma $m^2$ wierszy.
 Także kolejne złożoności znajdowania wiersza o najmniejszej liczbie jedynek oraz kolumny o największej liczbie jedynek wynoszą $n \cdot m^2$ każda.
 Maksymalna liczba powtórzeń,
@@ -168,14 +168,14 @@ otrzymana złożoność nie stanowiła problemu.
 Warto jednak zauważyć,
 że rozmiar tablicy porównań dla bazy sygnatur wirusów o 1,3 mln wierszy,
 byłby zbyt duży dla większości komputerów.
-Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów) to o ile sama baza zajmowałaby ok 6 MB pamięci to tablica porównań ok 8 TB.
+Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), to o ile sama baza zajmowałaby ok 6 MB pamięci to tablica porównań ok 8 TB.
 
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w tym konkretnym przypadku,
 ale również w wielu innych również poza domeną generowania indeksów.
 Powstały z tego powodu algorytmy niewymagające generowania tablicy porównań.
 Jednym z nich jest algorytm Marcina Korzenia i Szymona Jaroszewicza dokładnie przedstawiony w artykule “Finding Reducts Without Building the Discernibility Matrix”.
 
-Przy zastosowaniu ich rozwiązania jesteśmy w stanie policzyć liczbę jedynek w kolumnach tablicy rozróżnialności z praw kombinatoryki.
+Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w kolumnach tablicy rozróżnialności z praw kombinatoryki.
 W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
 jednak w ramach tej pracy,
 istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i jedynki wśród wartości argumentów.
@@ -202,7 +202,7 @@ Innymi słowy skutecznie rozwiązuje to problem pamięci zajmowanej przez tablic
 Dodatkowo mniejsza jest złożoność obliczeniowa.
 Znalezienie najlepszej kolumny do uwzględnienia w redukcie odbywa się ze złożonością $n \cdot m$ w porównaniu do poprzedniego $n \cdot m^2$.
 
-Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w pracy.
+Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w niniejszej pracy.
 Gdyby jednak dalsze badania lub konkretne zastosowania wymagały operacji na dużych bazach danych,
 wymagane byłoby użycie tego lub podobnego algorytmu o mniejszej złożoności pamięciowej.
 
@@ -219,7 +219,7 @@ Do takich zastosowań należą problemy dziedziny eksploracji danych,
 gdzie często dane są zbierane na długo przed przeprowadzeniem obliczeń,
 lub implementacji funkcji w układach FPGA czy też innych z pamięciami ROM.
 
-W zadaniach gdzie na wynik obliczeń możemy poczekać oraz nawet najmniejsza optymalizacja końcowego wyniku jest strasznie istotna,
+W zadaniach, gdzie na wynik obliczeń możemy poczekać oraz nawet najmniejsza optymalizacja końcowego wyniku jest istotna,
 rozwiązania systematyczne pokazują prawdziwą potęgę.
 Na przykładzie redukcji argumentów,
 takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt,
@@ -247,5 +247,5 @@ Sam algorytm składa się z czterech kroków:
 \item Usunięcia nadmiarowych reduktów,
 czyli takich które zawierają się w innych zgodnie z rachunkiem kostek.
 \end{enumerate}
-Prace nad tym algorytmem zostały opisane w “Implementacja Algorytmu Uzupełnienia Funkcji Boolowskich z Wykorzystaniem Programowania Współbieżnego”,
+Prace nad tym algorytmem zostały opisane w \textbf{“Implementacja Algorytmu Uzupełnienia Funkcji Boolowskich z Wykorzystaniem Programowania Współbieżnego”},%TODO: CR:
 a gotowy program służył do weryfikacji poprawności działania użytego algorytmu redukcji argumentów.
