@@ -126,7 +126,6 @@ Brak takiego wiersza jest w takim razie warunkiem wystarczającym do istnienia d
 \centering
 \includegraphics[width = 13cm]{chapter04/single-decomposition.png}
 \caption{Przykład dekompozycji pojedynczą bramką XOR (Źródło własne).}
-\label{fig:xor}
 \end{figure}
 
 \section{Dekompozycja wieloma bramki XOR}
@@ -185,7 +184,6 @@ Tym samym udowodniliśmy,
 \centering
 \includegraphics[width = 13cm]{chapter04/multiple-decomposition.png}
 \caption{Przykład dekompozycji dwoma bramkami XOR (Źródło własne).}
-\label{fig:xor}
 \end{figure}
 
 \section{Dekompozycja wielokrotna i wielopoziomowa}
@@ -194,14 +192,22 @@ Tym samym udowodniliśmy,
 	- przykład wielokrotnej
 
 Problem dekompozycji liniowej nie kończy się na znalezieniu pojedynczej dekompozycji.
-Dekompozycję można przeprowadzać wielokrotnie tworząc kaskadę jak na rysunku NUMER.
+Dekompozycję można przeprowadzać wielokrotnie tworząc kaskadę jak na rysunku numer \ref{fig:multiple-levels}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 5cm]{chapter04/multiple-levels.png}
+\caption{Przykład dekompozycji wielopoziomowej (Źródło własne).}
+\label{fig:multiple-levels}
+\end{figure}
+
 W takim przypadku wejściem niektórych bramek XOR są wyjścia poprzednich.
 Wartość na wyjściu takiej kaskadowej bramki przyjmuje wtedy postać:
 \begin{equation}
 (x_1 \oplus x_2) \oplus x_3
 \end{equation}
 Co jest równoznaczne użyciu bramki XOR o trzech wejściach.
-Z tego powodu schemat z rysunku NUMER można uprościć do postaci przedstawionej na rysunku NUMER.
+Z tego powodu schemat z rysunku numer \ref{fig:multiple-levels} można uprościć do postaci przedstawionej na rysunku numer NUMER.
 
 Jest to istotne,
 ponieważ dzięki takiej własności operacji XOR i wykorzystaniu bramek o wielu wejściach,
