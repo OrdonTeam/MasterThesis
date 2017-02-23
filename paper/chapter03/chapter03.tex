@@ -109,20 +109,6 @@ Takie rozwiązanie wyboru kolumn jest najbardziej optymalne i często prowadzi d
 Niestety w bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe w dalszym ciągu zawiera nadmiarowe argumenty.
 Z tego powodu na koniec wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
-%Algorytm redukcji:
-%dla każdego wiersza
-%dla pozostałych wierszy o różnej decyzji
-%XOR
-%dopóki nie pusta
-%znajdź wiersz o najmniejszej liczbie jedynek
-%znajdź kolumnę o największej liczbie jedynek
-%dodaj do reduktu
-%usuń uwzględnione pokrycia
-%dla każdego argumentu w redukcie (a)
-%dla każdego wiersza w tablicy porównań
-%sprawdź czy redukt bez (a) zawiera jedynkę
-%jeżeli nie przejdź do następnego (a)
-%jeżeli żaden wiersz nie był pusty usuń (a) z reduktu
 
 \begin{algorithm}[H]
     \KwData{$F$}
