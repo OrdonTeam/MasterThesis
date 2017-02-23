@@ -76,7 +76,8 @@ Dzieje się dlatego,
 więc operacja XOR,
 używana przy tworzeniu macierzy zwraca same zera.
 
-Dekompozycję liniową bramką XOR w celu weryfikacji jej poprawności można przeprowadzić zarówno bezpośrednio na funkcji F jak i powstałej na jej podstawie tablicy rozróżnialności.
+Dekompozycję liniową bramką XOR w celu weryfikacji jej poprawności można przeprowadzić zarówno bezpośrednio na funkcji F,
+jak i powstałej na jej podstawie tablicy rozróżnialności.
 Jest tak ze względu na to,
 że operacja XOR,
 użyta przy tworzeniu tablicy rozróżnialności i dekompozycji,
@@ -111,9 +112,10 @@ x_{1_{w_1}} \oplus x_{2_{w_1}} \oplus x_{1_{w_2}} \oplus x_{2_{w_2}}.
 
 Pośrednim warunkiem zachowania spójności danych jest niepowstanie żadnego wiersza samych zer w tablicy rozróżnialności.
 Wiersze,
-które po dekompozycji bramką XOR zawierają same zera musiały przed dekompozycją przede wszystkim zawierać same zera dla argumentów,
+które po dekompozycji bramką XOR zawierają same zera,
+musiały przed dekompozycją przede wszystkim zawierać same zera dla argumentów,
 które nie uległy zmianie.
-Z pośród tych wierszy jedynie te,
+Spośród tych wierszy jedynie te,
 które zawierają dwa zera lub dwie jedynki dają wiersz samych zer.
 W pierwszym wypadku wiersz już wcześniej zawierał same zera.
 Czyli już wcześniej dane były sprzeczne.
@@ -131,7 +133,8 @@ Brak takiego wiersza jest w takim razie warunkiem wystarczającym do istnienia d
 \section{Dekompozycja wieloma bramki XOR}
 
 Na podobnej zasadzie możliwa jest również dekompozycja z użyciem wielu bramek XOR.
-W przypadku jeżeli wszystkie pary jedynek występują w macierzy rozróżnialności,
+W przypadku,
+jeżeli wszystkie pary jedynek występują w macierzy rozróżnialności,
 możemy przystąpić do szukania brakujących trójek.
 Każdą taką trójkę argumentów,
 dla której brakuje trzech jedynek pośród wierszy tablicy porównań,
@@ -155,20 +158,24 @@ który w obrębie modyfikowanych argumentów zawierał co najmniej jedną jedynk
 lecz po dekompozycji zostały w nim same zera.
 
 Dowód przez zaprzeczenie zacznijmy od pierwszej pary argumentów.
-Aby w wyniku operacji XOR argumentów pierwszego z drugim powstało 0 w pierwotnej macierzy porównań musiały znajdować się albo dwa zera albo dwie jedynki.
+Aby w wyniku operacji XOR argumentów pierwszego z drugim powstało 0,
+w pierwotnej macierzy porównań musiały znajdować się albo dwa zera,
+albo dwie jedynki.
 
 Zacznijmy od przypadku dwóch zer.
 Przechodząc do kolejnej pary (2 i 3),
 aby otrzymać kolejne zero w wyniku operacji XOR,
 ponieważ argument drugi był zerem,
 również trzeci argument musiał być zerem.
-Przechodząc w ten sposób po wszystkich parach argumentów biorących udział w dekompozycji okazuje się,
+Przechodząc w ten sposób po wszystkich parach argumentów biorących udział w dekompozycji,
+okazuje się,
 że wszystkie z nich musiały być zerami.
 Z tego wynika,
 że w tym przypadku nie została naruszona spójność danych.
 
 Drugim przypadkiem jest para jedynek dla argumentów 1 i 2.
-W takim wypadku aby para 2 i 3 w wyniku operacji XOR dawała zero,
+W takim wypadku,
+aby para 2 i 3 w wyniku operacji XOR dawała zero,
 również argument 3 musiał być zerem.
 Podobnie jak w poprzednim przypadku przechodząc przez wszystkie pary otrzymujemy,
 że wejściowym wierszem tablicy rozróżnialności,
