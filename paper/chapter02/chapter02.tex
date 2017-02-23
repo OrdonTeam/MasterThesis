@@ -27,7 +27,7 @@ Inaczej mówiąc mając próbkę danych w postaci pojedynczego wektora boolowski
 Dla niewielkich wektorów można ten problem rozwiązać tablicując wynik dla wszystkich możliwy wektorów binarnych.
 Wiąże się to z dużym zużyciem pamięci.
 Przykładowo przy funkcji o 6 argumentach wszystkich wektorów binarnych jest 64 (26).
-Jeżeli spośród wszystkich wektorów poszukiwanych jest np 6 konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
+Jeżeli spośród wszystkich wektorów poszukiwanych jest np. 6 konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
 Dla takiego przykładu minimalna potrzebna pamięć to 192 bity.
 Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z 1.3 miliona poszukiwanych wektorów o 40 argumentach, taka pamięć miałaby rozmiar 21 terabitów.
 \begin{multline} \\
@@ -54,7 +54,8 @@ Potrzebne jest zatem przechowanie wszystkich kompletnych wektorów poszukiwanych
 W naszym przykładzie wektorów jest 1,3 miliona i każdy ma 40 bitów.
 Rozmiar dodatkowej pamięci wyniósłby w takim razie 50 megabitów.
 
-W zaproponowanym rozwiązaniu częścią, która ma największe znaczenie na rozmiar niezbędnej pamięci jest wyznaczenie funkcji pozwalającej na jak największe zmniejszenie liczby wejść do głównej pamięci.
+W zaproponowanym rozwiązaniu częścią, która ma największe znaczenie na rozmiar niezbędnej pamięci,
+jest wyznaczenie funkcji pozwalającej na jak największe zmniejszenie liczby wejść do głównej pamięci.
 \textbf{(Wymaga uzupełnienia z artykułem)} W pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z \textbf{N do X}.
 Sposobem zaproponowanym w pracy uzyskujemy zmniejszenie z \textbf{N do Y}.
 Warto zauważyć, że zmniejszenie o jeden argument powoduje dwukrotne zmniejszenie wymaganej pamięci.
