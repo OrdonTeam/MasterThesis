@@ -16,7 +16,8 @@ jak i heurystycznych,
 charakteryzujących się szybszym działaniem.
 Sama redukcja nie zawsze przynosi spektakularne rezultaty.
 W skrajnych przypadkach funkcji,
-w których każdy argument dostarcza niewielkiej ale niezbędnej porcji informacji,
+w których każdy argument dostarcza niewielkiej,
+ale niezbędnej porcji informacji,
 redukcja może nie przynieść żadnego efektu.
 W takich przypadkach niezbędna jest,
 opisana w dalszej części pracy,
@@ -39,8 +40,8 @@ Taką weryfikację trzeba przeprowadzić dla każdego z $n$ argumentów co daje 
 Problem takiego podejścia,
 poza złożonością,
 leży dodatkowo w jakości uzyskiwanego rozwiązania.
-W procesie redukcji argumentów,
-część z nich może być ważniejsza i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
+W procesie redukcji argumentów część z nich może być ważniejsza
+i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
 Innymi słowami wynik takiej redukcji,
 mimo że jest prawidłowy,
 często jest nieoptymalny.
@@ -57,11 +58,13 @@ uzyskamy lepsze wyniki.
 
 Za miarę wartości argumentu w redukcie można przyjąć liczbę rozróżnień,
 których on dostarcza.
-Jeżeli dzięki jednemu argumentowi jesteśmy w stanie rozróżnić tylko jedną parę wierszy o różnych wartościach to jest on mniej wartościowy od takiego,
+Jeżeli dzięki jednemu argumentowi jesteśmy w stanie rozróżnić tylko jedną parę wierszy o różnych wartościach,
+to jest on mniej wartościowy od takiego,
 który rozróżnia kilka par wierszy.
 Z drugiej strony nawet argument,
 który dostarcza jednego rozróżnienia,
-będzie wartościowy jeżeli żaden inny go nie dostarcza.
+będzie wartościowy,
+jeżeli żaden inny go nie dostarcza.
 
 Informacje o tych zależnościach uzyskuje się z macierz rozróżnialności, nazywana również tablicą porównań,
 która zawiera wynik operacji XOR wszystkich par wierszy o różnych wartościach funkcji.
@@ -119,7 +122,7 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
         $MR\gets MR + W$\;
     }
     $MR2\gets MR$\;
-    \While{$MR2$ nie pusta}{
+    \While{$MR2$ niepusta}{
         \For{dla każdego wiersza $MR2$}{
             $W\gets$ znajdź wiersz o najmniejszej liczbie jedynek\;
         }
@@ -141,7 +144,8 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
 \end{algorithm}
 
 Dla takiej samej funkcji o $n$ argumentach i $m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
-Następne kroki algorytmu operują na macierzy rozróżnialności dlatego przy szacowaniu ich złożoności musimy pamiętać o tym,
+Następne kroki algorytmu operują na macierzy rozróżnialności,
+dlatego przy szacowaniu ich złożoności musimy pamiętać o tym,
 że tablica ma $m^2$ wierszy.
 Także kolejne złożoności znajdowania wiersza o najmniejszej liczbie jedynek oraz kolumny o największej liczbie jedynek wynoszą $n \cdot m^2$ każda.
 Maksymalna liczba powtórzeń,
@@ -156,19 +160,19 @@ Ostatni krok ma taką złożoność jak poprzednio liczona złożoność weryfik
 Ponownie warto zauważyć,
 że obliczenia przeprowadzane są już na redukcie,
 czyli zbiorze argumentów często mniejszym od $n$.
-Podsumowując końcowa złożoność obliczeniowa wynosi $n \cdot m^2 + n^2 \cdot m^2 + n^2 \cdot m^2$ czyli w dalszym ciągu $n^2 \cdot m^2$.
+Podsumowując końcowa złożoność obliczeniowa wynosi $n \cdot m^2 + n^2 \cdot m^2 + n^2 \cdot m^2$,
+czyli w dalszym ciągu $n^2 \cdot m^2$.
 Wynika stąd,
 że dzięki takiemu podejściu udało się uzyskać statystycznie lepszy redukt przy takiej samej złożoności obliczeniowej.
 
 
 \section{Problem tablicy rozróżnialności}
 
-W czasie przeprowadzania badań,
-otrzymana złożoność nie stanowiła problemu.
+W czasie przeprowadzania badań otrzymana złożoność nie stanowiła problemu.
 Warto jednak zauważyć,
 że rozmiar tablicy porównań dla bazy sygnatur wirusów o 1,3 mln wierszy,
 byłby zbyt duży dla większości komputerów.
-Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), to o ile sama baza zajmowałaby ok 6 MB pamięci to tablica porównań ok 8 TB.
+Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), to o ile sama baza zajmowałaby około 6 MB pamięci to tablica porównań około 8 TB.
 
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w tym konkretnym przypadku,
 ale również w wielu innych również poza domeną generowania indeksów.
@@ -179,11 +183,12 @@ Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w kolumnach 
 W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
 jednak w ramach tej pracy,
 istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i jedynki wśród wartości argumentów.
-Jedynka w kolumnie macierzy rozróżnialności powstaje kiedy dwa wiersze o różnej wartości funkcji mają różną wartość argumentu.
+Jedynka w kolumnie macierzy rozróżnialności powstaje,
+kiedy dwa wiersze o różnej wartości funkcji mają różną wartość argumentu.
 Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
 W przypadku ogólnym poruszanym w artykule jest jednak dużo łatwiej policzyć,
-kiedy jedynka nie występuje w tablicy i odjąć tą liczbę od liczby wierszy w macierzy.
-Dodatkowo,
+kiedy jedynka nie występuje w tablicy i odjąć tę liczbę od liczby wierszy w macierzy.
+Co więcej,
 ponieważ liczba wierszy jest identyczna dla każdej kolumny,
 obliczanie liczby wierszy nie jest potrzebne.
 Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o najmniejszej liczbie zer.
@@ -199,7 +204,7 @@ liczbę zer w kolumnie można wyrazić następującą sumą:
 \end{equation}
 Obliczenie wyznacznika ma w takim wypadku złożoność pamięciową liniowo zależną od liczby wartości funkcji,
 czyli pomijalnie małą.
-Innymi słowy skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności.
+Innymi słowy, skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności.
 Dodatkowo mniejsza jest złożoność obliczeniowa.
 Znalezienie najlepszej kolumny do uwzględnienia w redukcie odbywa się ze złożonością $n \cdot m$ w porównaniu do poprzedniego $n \cdot m^2$.
 
@@ -211,8 +216,9 @@ wymagane byłoby użycie tego lub podobnego algorytmu o mniejszej złożoności 
 
 Żadne z przedstawionych do tej pory rozwiązań nie było systematyczne.
 Wszystko ze względu na zdecydowanie większą złożoność obliczeniową takich algorytmów.
-W przypadku problemu generowania indeksów,
-dane dla których przeprowadza się obliczenia zmieniają się w czasie,
+W przypadku problemu generowania indeksów dane,
+dla których przeprowadza się obliczenia,
+zmieniają się w czasie,
 dlatego czas tych obliczeń jest bardzo istotny.
 Są jednak inne problemy,
 w których czas optymalizacji nie jest czynnikiem istotnym.
@@ -225,7 +231,7 @@ rozwiązania systematyczne pokazują prawdziwą potęgę.
 Na przykładzie redukcji argumentów,
 takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt,
 ale wszystkie najmniejsze redukty.
-Otwierają więc możliwość przeprowadzenia dalszych optymalizacji (np kompresji argumentów) z różnymi danymi początkowymi pozornie równie dobrymi.
+Otwierają więc możliwość przeprowadzenia dalszych optymalizacji (np. kompresji argumentów) z różnymi danymi początkowymi pozornie równie dobrymi.
 
 \section{Unate Complement}
 
@@ -246,7 +252,8 @@ Sam algorytm składa się z czterech kroków:
 \item Obliczania dopełnień w liściach zgodnie z prawami De Morgana,
 \item Rekurencyjnego łączenia powstałych dopełnień ponownie przy wykorzystaniu wzoru Shannona,
 \item Usunięcia nadmiarowych reduktów,
-czyli takich które zawierają się w innych zgodnie z rachunkiem kostek.
+czyli takich,
+które zawierają się w innych zgodnie z rachunkiem kostek.
 \end{enumerate}
 Badania nad tym algorytmem zostały opisane w pracy inżynierskiej \cite{inzynierka},
 a gotowy program służył do weryfikacji poprawności działania użytego algorytmu redukcji argumentów.
