@@ -9,13 +9,20 @@ Jest to istotne,
 gdyż prowadzi do dalszego redukowania liczby wejść w generatorach indeksu.
 I pewnie z tych powodów dekompozycja liniowa jest intensywnie wykorzystywana w syntezie funkcji generowania indeksów [12-15].
 
-Dobrym przykładem gdzie wyraźnie widać zastosowania dekompozycji liniowej jest funkcja przedstawiona na rysunku [NUMER].
+Dobrym przykładem gdzie wyraźnie widać zastosowania dekompozycji liniowej jest funkcja przedstawiona na rysunku \ref{fig:required-decomposition}.
 Została ona celowo spreparowana w taki sposób,
 że wszystkie argumenty są niezbędne.
 W takim wypadku redukcja argumentów nie przynosi żadnych rezultatów.
 Dodatkowo łatwo zauważyć,
 że pierwszy i drugi argument można z powodzeniem zastąpić innym,
 będącym wynikiem zwykłej funkcji XOR tych argumentów.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width = 13cm]{chapter04/required-decomposition.png}
+\caption{Przykład obrazujący zlety dekompozycji funkcji z argumentami niezbędnymi (Źródło własne).}
+\label{fig:required-decomposition}
+\end{figure}
 
 Zmniejszenie rozmiaru pamięci z trzech argumentów do dwóch nie jest zbyt spektakularne i nie miałoby znaczenia w praktycznym zastosowaniu.
 Jednak dla innego badanego przypadku nieredukowalnej funkcji 41 argumentowej,
