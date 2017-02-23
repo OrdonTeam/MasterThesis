@@ -109,6 +109,51 @@ Takie rozwiązanie wyboru kolumn jest najbardziej optymalne i często prowadzi d
 Niestety w bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe w dalszym ciągu zawiera nadmiarowe argumenty.
 Z tego powodu na koniec wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
+%Algorytm redukcji:
+%dla każdego wiersza
+%dla pozostałych wierszy o różnej decyzji
+%XOR
+%dopóki nie pusta
+%znajdź wiersz o najmniejszej liczbie jedynek
+%znajdź kolumnę o największej liczbie jedynek
+%dodaj do reduktu
+%usuń uwzględnione pokrycia
+%dla każdego argumentu w redukcie (a)
+%dla każdego wiersza w tablicy porównań
+%sprawdź czy redukt bez (a) zawiera jedynkę
+%jeżeli nie przejdź do następnego (a)
+%jeżeli żaden wiersz nie był pusty usuń (a) z reduktu
+
+\begin{algorithm}[H]
+    \KwData{$F$}
+    \KwResult{$R$}
+    $MR\gets$ pusta\;
+    \For{dla każdej pary wierszy $F$ o różnej wartosci}{
+        $W\gets$ wykonaj operację XOR poszczególnych bitów\;
+        $MR\gets MR + W$\;
+    }
+    $MR2\gets MR$\;
+    \While{$MR2$ nie pusta}{
+        \For{dla każdego wiersza $MR2$}{
+            $W\gets$ znajdź wiersz o najmniejszej liczbie jedynek\;
+        }
+        \For{dla kolumn z jedynekami w $W$}{
+            $K\gets$ znajdź kolumnę o największej liczbie jedynek\;
+        }
+        $R\gets R + K$\;
+        \For{dla każdego wiersza $W$ w $MR2$}{
+            \If{$W$ zawiera jedynkę na $K$}{
+                $MR2\gets MR2 - W$\;
+            }
+        }
+    }
+    \For{dla każdego argumentu $K$ w $R$}{
+        \If{$MR$ dla argumentów z $R$ bez $K$ jest spójna}{
+            $R\gets R - K$\;
+        }
+    }
+\end{algorithm}
+
 Dla takiej samej funkcji o $n$ argumentach i $m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
 Następne kroki algorytmu operują na macierzy porównań dlatego przy szacowaniu ich złożoności musimy pamiętać o tym,
 że tablica ma $m^2$ wierszy.
