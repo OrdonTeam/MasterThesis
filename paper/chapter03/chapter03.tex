@@ -225,14 +225,34 @@ ponieważ dzięki takiej własności operacji XOR i wykorzystaniu bramek o wielu
 nigdy nie powstaną długie ścieżki krytyczne.
 
 \section{Algorytm}
-- rekurencja, wytłumaczenie schematu dekompozycji przy rekurencji
-- zapis w pseudokodzie
-- przykład
 
-Kroki:
-Generowanie tablicy rozróżnialności
-Poszukiwanie brakujących zbiorów n-elementowych w macierzy porównań (n=2)
-Jeżeli nie znaleziono
-Koniec jeżeli n >= liczba kolumn
-Powrót do punktu 2 i poszukiwanie brakujących zbiorów o jeden liczniejszych
-Modyfikacja danych oraz zapamiętanie znalezionej dekompozycji
+\begin{algorithm}[H]
+    \KwData{$F$}
+    $MR\gets$ pusta\;
+    \For{dla każdej pary wierszy $F$ o różnej wartosci}{
+        $W\gets$ wykonaj operację XOR poszczególnych bitów\;
+        $MR\gets MR + W$\;
+    }
+    $x\gets 2$\;
+    \While{$x <= n$}{
+        \For{dla każdego $x$ elementowego podzbioru zbioru argumentów}{
+            \If{$MR$ nie zwiera danego podzbioru}{
+                zastosuj do $F$ dekompozycję zgodnie ze znaleienoym podzbiorem\;
+                ponów algorytm dla zdekmponowanej funkcji\;
+            }
+        }
+    }
+\end{algorithm}
+%- rekurencja, wytłumaczenie schematu dekompozycji przy rekurencji
+%- zapis w pseudokodzie
+%- przykład
+%
+%Kroki:
+%Generowanie tablicy rozróżnialności
+%Poszukiwanie brakujących zbiorów n-elementowych w macierzy porównań (n=2)
+%Jeżeli nie znaleziono
+%Koniec jeżeli n >= liczba kolumn
+%Powrót do punktu 2 i poszukiwanie brakujących zbiorów o jeden liczniejszych
+%Modyfikacja danych oraz zapamiętanie znalezionej dekompozycji
+%
+%
