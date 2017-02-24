@@ -5,7 +5,8 @@ pozwala na zastosowanie pamięci o mniejszym rozmiarze niż wskazywałaby na to 
 Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu.
 W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i kompresję argumentów.
 
-Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
+Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
+poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
 Po wykonaniu takiego procesu,
 usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o różnych wartościach i tym samym utratę informacji.
 Zbiór argumentów powstały w wyniku redukcji nazywamy reduktem.
@@ -100,7 +101,8 @@ które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wartość inn
 \begin{figure}[H]
 \centering
 \includegraphics[width = 5cm]{chapter02/required-arguments.png}
-\caption{Przykład obrazujący niedoskonałości algorytmu największej liczby jedynek. Argument $x_2$ posiada najwięcej jedynek i jednocześnie jest nadmiarowy. (Źródło własne).}
+\caption{Przykład obrazujący niedoskonałości algorytmu największej liczby jedynek.
+Argument $x_2$ posiada najwięcej jedynek i jednocześnie jest nadmiarowy. (Źródło własne).}
 \end{figure}
 
 Aby uwzględnić ten problem,
@@ -177,7 +179,7 @@ Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), t
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w tym konkretnym przypadku,
 ale również w wielu innych również poza domeną generowania indeksów.
 Powstały z tego powodu algorytmy niewymagające generowania tablicy porównań.
-Jednym z nich jest algorytm Marcina Korzenia i Szymona Jaroszewicza dokładnie przedstawiony w artykule “Finding Reducts Without Building the Discernibility Matrix”.
+Jednym z nich jest algorytm Marcina Korzenia i Szymona Jaroszewicza dokładnie przedstawiony w artykule \cite{without-matrix}.
 
 Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w kolumnach tablicy rozróżnialności z praw kombinatoryki.
 W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
