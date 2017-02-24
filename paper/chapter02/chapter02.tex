@@ -71,6 +71,11 @@ Informacje o tych zależnościach uzyskuje się z macierz rozróżnialności, na
 która zawiera wynik operacji XOR wszystkich par wierszy o różnych wartościach funkcji.
 Jedynki w takiej macierzy obrazują,
 które argumenty dostarczają jakich rozróżnień.
+Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z rachunkiem kostek boolowskich.
+Takie wiersze nie są istotne z punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
+ale ich usunięcie wymaga porównania wszystkich wierszy każdy z każdym
+i co za tym idzie jest nie opłacalne ze względu na złożoność obliczeniową.
+Z drugiej strony w przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i również nie mogą być usunięte.
 
 \begin{figure}[H]
 \centering
