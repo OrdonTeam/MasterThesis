@@ -52,23 +52,20 @@ są związane częstymi zmianami danych.Indeksy często muszą być generowane w
 Ponadto ze względu na dużą liczbę argumentów,
 które muszą być brane pod uwagę (32 bity - adresy IPv4, 48 bitów - adresy mac),
 wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w strukturach programowalnych.
+Przykładowo przy funkcji o $n=6$ argumentach wszystkich wektorów binarnych jest 64 ($2^6$).
+Jeżeli spośród wszystkich wektorów poszukiwanych jest $k=6$ konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
+Dla takiego przykładu minimalna potrzebna pamięć to 192 bity.
+Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z $k=1\,300\,000$ poszukiwanych wektorów o $n=40$ argumentach, taka pamięć miałaby rozmiar 21 terabitów.
+\begin{multline} \\
+2^n \cdot \log_2 k = \\
+= 2^{40} \cdot \log_2 1\,300\,000 = \\
+= 2^{10} \cdot 2^{10} \cdot 2^{10} \cdot 2^{10} \cdot 21 = \\
+=21 \cdot 2^{10} \cdot 2^{10} \cdot 2^{10} k = \\
+=21 \cdot 2^{10} \cdot 2^{10} M = \\
+=21 \cdot 2^{10} G = \\
+=21 [Tbit] \\
+\end{multline}
 
-\section{Cel pracy - do usunięcia}
-
-Celem pracy było opracowanie algorytmu generowania indeksów na podstawie istniejących algorytmów z dziedziny syntezy logicznej
-oraz porównanie nowej metody z wynikami aktualnych prac badawczych z zakresu generowania indeksów.
-Wyniki obliczeń dla przykładu referencyjnego,
-przeprowadzone przed przystąpieniem do właściwych badań,
-potwierdziły konkurencyjność algorytmu opartego na połączeniu redukcji argumentów oraz dekompozycji liniowej.
-W porównaniu z aktualnymi artykułami Profesora Sasao,
-nowa metoda pozwala na zmniejszenie zużycia zasobów potrzebnych do realizacji funkcji w strukturach programowalnych.
-Tym samym pozwala wykorzysywać mniejsze i tańsze urządzenie do rozwiązywania tych samych problemów,
-albo na obsługę przoblemów, które wcześniej były zbyt zlożone,
-za pomocą do tej pory używanego sprzętu komputerowego.
-
-%%% Previous chapter 2.
-\chapter{Przedstawienie problemu}
-(O popularności problemu)
 
 \section{Zastosowania}
 - Tablica trasowania
@@ -89,24 +86,6 @@ Jako że adresy IP są reprezentowane przez 32 bity, tyle właśnie jest argumen
 Dodatkowo w wielu routerach mamy do czynienia z dynamicznymi protokołami trasowania, które wymagają częstych zmian w tablicy adresów.
 Jest to w związku z tym bardzo dobry przykład zastosowania funkcji generowania indeksów.
 
-\section{Generowanie indeksów}
-
-Problem generowania indeksów można porównać do potrzeby znajdowania wzorca w strumieniu danych.
-Inaczej mówiąc mając próbkę danych w postaci pojedynczego wektora boolowskiego, musimy stwierdzić czy jest on zgodny z którymś z wektorów poszukiwanych w strumieniu.
-Dla niewielkich wektorów można ten problem rozwiązać tablicując wynik dla wszystkich możliwy wektorów binarnych.
-Wiąże się to z dużym zużyciem pamięci.
-Przykładowo przy funkcji o 6 argumentach wszystkich wektorów binarnych jest 64 (26).
-Jeżeli spośród wszystkich wektorów poszukiwanych jest np. 6 konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
-Dla takiego przykładu minimalna potrzebna pamięć to 192 bity.
-Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z 1.3 miliona poszukiwanych wektorów o 40 argumentach, taka pamięć miałaby rozmiar 21 terabitów.
-\begin{multline} \\
-2^{40} \cdot \log_2 1300000 = \\
-= 2^{10} \cdot 2^{10} \cdot 2^{10} \cdot 2^{10} \cdot 21 = \\
-=21 \cdot 2^{10} \cdot 2^{10} \cdot 2^{10} k = \\
-=21 \cdot 2^{10} \cdot 2^{10} M = \\
-=21 \cdot 2^{10} G = \\
-=21 [Tbit] \\
-\end{multline}
 
 \section{Algorytm Sasao}
 Rozwiązanie problemu nadmiernej pojemności pamięci o $n$ wejściach adresowych przy wykrywaniu $k$ wekrtorów indeksowanych ($k<<2^n$),
@@ -134,9 +113,25 @@ jak też prcedura obliczania dekompozycji liniowej nie są najskuteczniejsze.
 %Potrzebne jest zatem przechowanie wszystkich kompletnych wektorów poszukiwanych w drugiej pamięci.
 %W naszym przykładzie wektorów jest 1,3 miliona i każdy ma 40 bitów.
 %Rozmiar dodatkowej pamięci wyniósłby w takim razie 50 megabitów.
-%
+
+
 %W zaproponowanym rozwiązaniu częścią, która ma największe znaczenie na rozmiar niezbędnej pamięci,
 %jest wyznaczenie funkcji pozwalającej na jak największe zmniejszenie liczby wejść do głównej pamięci.
 %\textbf{(Wymaga uzupełnienia z artykułem)} W pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z \textbf{N do X}.
 %Sposobem zaproponowanym w pracy uzyskujemy zmniejszenie z \textbf{N do Y}.
 %Warto zauważyć, że zmniejszenie o jeden argument powoduje dwukrotne zmniejszenie wymaganej pamięci.
+
+
+
+%\section{Cel pracy - do usunięcia}
+%
+%Celem pracy było opracowanie algorytmu generowania indeksów na podstawie istniejących algorytmów z dziedziny syntezy logicznej
+%oraz porównanie nowej metody z wynikami aktualnych prac badawczych z zakresu generowania indeksów.
+%Wyniki obliczeń dla przykładu referencyjnego,
+%przeprowadzone przed przystąpieniem do właściwych badań,
+%potwierdziły konkurencyjność algorytmu opartego na połączeniu redukcji argumentów oraz dekompozycji liniowej.
+%W porównaniu z aktualnymi artykułami Profesora Sasao,
+%nowa metoda pozwala na zmniejszenie zużycia zasobów potrzebnych do realizacji funkcji w strukturach programowalnych.
+%Tym samym pozwala wykorzysywać mniejsze i tańsze urządzenie do rozwiązywania tych samych problemów,
+%albo na obsługę przoblemów, które wcześniej były zbyt zlożone,
+%za pomocą do tej pory używanego sprzętu komputerowego.
