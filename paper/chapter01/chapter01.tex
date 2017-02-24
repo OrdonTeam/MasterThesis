@@ -97,11 +97,35 @@ Istotą tego rozwiązania jest
 \item Dekompozycja liniowa funkcji obliczonej w punkcie a)
 \end{enumerate}
 
-Z punktu widzenie syntezy funkcji generowania indeksów propozycja Sasao jest jak najbardziej prawidłowa. Niestety zastosowany w tej metodzie algorytm redukcji argumentów,
-jak też prcedura obliczania dekompozycji liniowej nie są najskuteczniejsze.
+Dekompozycja liniowa polega na łączeniu argumentów w grupy i podawaniu ich na wejście dwu lub więcej argumentowych bramek XOR.
+Algorytm s-Min, profesora Sasao, znajduje takie grupy.
+Istnieją jednak przykłady,
+dla których wskazanie żadnego takiego zbioru argumentów nie jest możliwe,
+lub występuje ich mało w stosunku do całkowitej liczby argumentów.
+Z tego powodu częscią algorytmu Sasao są przekształcenia linowe,
+mające na celu zwiększenie dostępnej liczby grup do dekompozycji bramkami XOR.
+Dla funkcji ,,1 z 20'' (tabela numer \ref{fig:1of20}),
+posiadającej $n=20$ argumentów oraz $k=20$ wierszy,
+algorytm Sasao,
+dla różnych wersji s-Min,
+uzyskuje wynik kompresji argumentów od 14 do 8.
 
-%Rozwiązanie problemu rosnącej pamięci zaproponował Profesor Tsutomu Sasao.
-%Częścią jego pomysłu jest ograniczenie liczby argumentów potrzebnych do adresowania pamięci.
+\begin{table}
+\centering
+\includegraphics[width = 13cm]{chapter01/1of20.png}
+\caption{Przygład funkcji 1 z 20 (Źródło własne).}
+\label{fig:1of20}
+\end{table}
+
+Z punktu widzenie syntezy funkcji generowania indeksów propozycja Sasao jest jak najbardziej prawidłowa.
+Niestety zastosowany w tej metodzie algorytm redukcji argumentów,
+jak też prcedura obliczania dekompozycji liniowej nie są najskuteczniejsze.
+Nowa metoda powstała na podstawie istniejących algorytmów z dziedziny syntezy logicznej,
+dla tego samego przykładu osiąga kompresję do 6 argumentów.
+Tym samym pozwala wykorzysywać mniejsze i tańsze urządzenie do rozwiązywania tych samych problemów,
+albo na obsługę przoblemów, które wcześniej były zbyt zlożone,
+za pomocą do tej pory używanego sprzętu komputerowego.
+
 %Idea stojąca za takim rozwiązaniem bierze się stąd, że do rozróżnienia 1.3 miliona wektorów z poprzedniego przykładu może wystarczyć jedynie 21 bitów.
 %Gdyby udało się faktycznie zredukować liczbę wejść z 40 do 21 bitów, rozmiar pamięci zmniejszyłby się z 21 terabitów do 42 megabitów.
 %\begin{multline} \\
