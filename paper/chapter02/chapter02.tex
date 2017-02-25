@@ -185,47 +185,49 @@ byłby zbyt duży dla większości komputerów.
 Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), to o~ile sama baza zajmowałaby około 6 MB pamięci to tablica porównań około 8 TB.
 
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w~tym konkretnym przypadku,
-ale również w~wielu innych również poza domeną generowania indeksów.
+ale również w~wielu innych poza domeną generowania indeksów.
 Powstały z~tego powodu algorytmy niewymagające generowania tablicy porównań.
 Jednym z~nich jest algorytm Marcina Korzenia i~Szymona Jaroszewicza dokładnie przedstawiony w~artykule \cite{without-matrix}.
 
 Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w~kolumnach tablicy rozróżnialności z~praw kombinatoryki.
 W~artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
-jednak w~ramach tej pracy,
+jednak w~ramach niniejszej pracy,
 istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i~jedynki wśród wartości argumentów.
 Jedynka w~kolumnie macierzy rozróżnialności powstaje,
 kiedy dwa wiersze o~różnej wartości funkcji mają różną wartość argumentu.
-Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i~kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
-W~przypadku ogólnym poruszanym w~artykule jest jednak dużo łatwiej policzyć,
+Suma jedynek przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i~kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
+W~przypadku ogólnym,
+poruszanym w~artykule,
+jest jednak dużo łatwiej policzyć,
 kiedy jedynka nie występuje w~tablicy i~odjąć tę liczbę od liczby wierszy w~macierzy.
 Co więcej,
-ponieważ liczba wierszy jest identyczna dla każdej kolumny,
-obliczanie liczby wierszy nie jest potrzebne.
+ponieważ liczba wierszy o określonej wartości funkcji jest identyczna dla każdej kolumny,
+obliczanie tej liczby wierszy nie jest potrzebne.
 Wystarczy zastosować odwrotne podejście przy wyborze kolumny i~wybierać te o~najmniejszej liczbie zer.
 
-Jeżeli podzielimy wiersze danych na grupy ze względu na wartość funkcji i~argumentu,
+Jeżeli podzielimy wiersze zawierające dane na grupy ze względu na wartość funkcji i~argumentu,
 powstaną po dwa kubełki dla każdej wartości funkcji.
-Jeżeli ich rozmiar oznaczymy $K_{0_d}$ i~$K_{1_d}$,
+Jeżeli ich rozmiar oznaczymy $K_{0_y}$ i~$K_{1_y}$,
  gdzie $0$ i~$1$ oznaczają wartość argumentu,
-a $d$ należy do zbioru wartości funkcji,
+a $y$ należy do zbioru wartości funkcji $Y$,
 liczbę zer w~kolumnie można wyrazić następującą sumą:
 \begin{equation}
-\sum_{0<d_1<d_2<D} K_{0_{d_1}} \cdot K_{0_{d_2}} + K_{1_{d_1}} \cdot K_{1_{d_2}}
+\sum_{0<y_1<y_2<Y} K_{0_{y_1}} \cdot K_{0_{y_2}} + K_{1_{y_1}} \cdot K_{1_{y_2}}
 \end{equation}
-Obliczenie wyznacznika ma w~takim wypadku złożoność pamięciową liniowo zależną od liczby wartości funkcji,
+Obliczenie wyznacznika ma w~takim wypadku złożoność pamięciową liniowo zależną od liczby wartości funkcji $O(\left\vert{Y}\right\vert)$,
 czyli pomijalnie małą.
 Innymi słowy, skutecznie rozwiązuje to problem pamięci zajmowanej przez tablicę rozróżnialności.
 Dodatkowo mniejsza jest złożoność obliczeniowa.
-Znalezienie najlepszej kolumny do uwzględnienia w~redukcie odbywa się ze złożonością $n \cdot m$ w~porównaniu do poprzedniego $n \cdot m^2$.
+Znalezienie najlepszej kolumny do uwzględnienia w~redukcie odbywa się ze złożonością $O(n \cdot m)$ w~porównaniu do poprzedniego $O(n \cdot m^2)$.
 
-Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i~czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w~niniejszej pracy.
+Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i~czasami będzie prowadzić do gorszych wyników niż algorytm użyty w~niniejszej pracy.
 Gdyby jednak dalsze badania lub konkretne zastosowania wymagały operacji na dużych bazach danych,
 wymagane byłoby użycie tego lub podobnego algorytmu o~mniejszej złożoności pamięciowej.
 
 \section{Rozwiązania systematyczne}
 
-Żadne z~przedstawionych do tej pory rozwiązań nie było systematyczne.
-Wszystko ze względu na zdecydowanie większą złożoność obliczeniową takich algorytmów.
+Żadne z~przedstawionych do tej pory rozwiązań nie było systematyczne,
+ze względu na zdecydowanie większą złożoność obliczeniową takich algorytmów.
 W~przypadku problemu generowania indeksów dane,
 dla których przeprowadza się obliczenia,
 zmieniają się w~czasie,
@@ -233,13 +235,12 @@ dlatego czas tych obliczeń jest bardzo istotny.
 Są jednak inne problemy,
 w~których czas optymalizacji nie jest czynnikiem istotnym.
 Do takich zastosowań należą problemy dziedziny eksploracji danych,
-gdzie często dane są zbierane na długo przed przeprowadzeniem obliczeń,
+gdzie często dane są zbierane na długo przed przeprowadzeniem obliczeń
 lub implementacji funkcji w~układach FPGA czy też innych z~pamięciami ROM.
 
-W~zadaniach, gdzie na wynik obliczeń możemy poczekać oraz nawet najmniejsza optymalizacja końcowego wyniku jest istotna,
+W~zadaniach, w których na wynik obliczeń możemy poczekać oraz nawet niewielka poprawa końcowego wyniku jest istotna,
 rozwiązania systematyczne pokazują prawdziwą potęgę.
-Na przykładzie redukcji argumentów,
-takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt,
+Na przykładzie redukcji argumentów takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt,
 ale wszystkie najmniejsze redukty.
 Otwierają więc możliwość przeprowadzenia dalszych optymalizacji (np. kompresji argumentów) z~różnymi danymi początkowymi pozornie równie dobrymi.
 
