@@ -2,42 +2,45 @@
 
 W~dzisiejszych czasach gromadzimy ogromne ilości danych.
 W~związku z~tym obserwujemy rozwój dziedziny eksploracji i~analizy danych.
-Pewna część tych problemów jest ściśle związana z~koniecznością precyzyjnego wyodrębniania właściwych danych z~ogromnej masy danych niepotrzebnych.
-Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektorami binarnymi o~stosunkowo dużej liczbie bitów a małej liczbie danych,
-które trzeba wyselekcjonować.
-Jeżeli na dodatek zbiór danych selekcjonowanych podlega częstym zmianom,
-to strukturę sprzętową takich układów trzeba często zmieniać.
-W~związku z~tym rozwiązaniem tego problemu są struktury FPGA z~wbudowanymi pamięciami ROM.
-Ale kolejną barierą w~realizacji tych układów są ograniczenia w~nadmiernej pojemności pamięci ROM o~dużej liczbie wejść – np. 40,
-co byłoby wymagane przy selekcji niewielkiej liczby wektorów (wzorców), np. 10.
-Można jednak przypuszczać, że binarna tablica takich wektorów: 40 kolumn oznaczanych $x_1,…,x_{40}$ i~10 wierszy zawiera kolumny $x_i, x_j, ..., x_k$,
+Wraz z tym rozwojem pojawia się coraz więcej problemów ściśle związanych z~koniecznością precyzyjnego wyodrębniania właściwych informacji z~ogromnej masy niepotrzebnych danych.
+Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektorami binarnymi, o~stosunkowo dużej liczbie bitów i małej ilości informacji,
+którą należy wyselekcjonować.
+Jeżeli na dodatek zbiór danych selekcjonowanych podlega częstym aktualizacjom,
+to strukturę sprzętową układów dokonujących wyszukiwania trzeba często zmieniać.
+Rozwiązaniem problemu częstych aktualizacji sprzętowych są struktury programowalne FPGA z~wbudowanymi pamięciami ROM.
+Niestety w~przypadku takiego rozwiązania barierą może okazać się zbyt mała pojemność pamięci,
+niewystarczająca do realizacji funkcji przykładowo o 40 argumentach i 10 wierszach.
+Można jednak przypuszczać, że binarna tablica takich wektorów zawiera kolumny $x_i, x_j, ..., x_k$,
 które ustawione obok siebie reprezentują różne liczby binarne \cite{sasao-workshop}.
-Zwykle takich kolumn jest wyraźnie mniej od liczby zmiennych (bitów) wektorów selekcjonowanych.
+Zwykle takich kolumn jest znacznie mniej od liczby zmiennych wektorów selekcjonowanych.
 Zatem jedną z~metod rozwiązania zadania selekcji jest redukcja argumentów,
-a cały problem jest określany mianem syntezy funkcji generowania indeksów.
+a cały problem jest określany mianem syntezy funkcji generowania indeksów (adresów).
 
 Zagadnienie redukcji argumentów jest tożsame z~problemem redukcji atrybutów.
-W~tym ujęciu zagadnienie to było badane bardzo intensywnie \cite{fast-algorithm, efektywna-procedura, new-reduction, steinbach-posthoff, skowron-rauszer, slezak, novel-method}.
+W~tym ujęciu zagadnienie to było badane bardzo intensywnie, między innymi w pracach \cite{fast-algorithm, efektywna-procedura, new-reduction, steinbach-posthoff, skowron-rauszer, slezak, novel-method}.
 Jednym z~najbardziej znanych algorytmów redukcji atrybutów jest algorytm zastosowany w~systemie RSES \cite{rses}.
-Algorytm ten został skutecznie usprawniony w~pracy inżynierskiej \cite{efektywna-procedura},
-natomiast w~ramach niniejszej pracy stworzono realizację obliczającą jedno rozwiązanie [rozdz. ??].
-Analogiczne zadanie podjęto w~zespole prof. Sasao,
-a w~referacie \cite{sasao-workshop} znaczenie redukcji zasygnalizowano informacją,
-iż opracowanie algorytmu redukcji jest jednym z~najważniejszych zadań.
+Algorytm ten został usprawniony w~artykule \cite{efektywna-procedura}.
+Wynikiem jego działania jest zbiór wszystkich minimalnych rozwiązań zadanego problemu redukcji atrybutów.
+W~ramach niniejszej pracy stworzono realizację obliczającą wyłącznie jedno minimalne rozwiązanie (rozdział \ref{chapter:reduction}).
+Analogiczne zadanie podjęto w~zespole prof. Sasao.
+W~referacie \cite{sasao-workshop} zasygnalizowano,
+że jednym z~najważniejszych zadań z dziedziny wykrywania wzorców jest opracowanie szybkiego algorytmu redukcji.
 
 Drugim aktualnym zagadnieniem syntezy logicznej w~projektowaniu generatorów adresu jest dekompozycja liniowa.
-Przez dekompozycję liniową rozumie się dekompozycję $F = H(G1, G2, ...,  X)$,
-w~której składowymi dekompozycji G są dwuargumentowe funkcje $EXOR$:
+Przez dekompozycję liniową funkcji $F$ rozumie się przedstawienie jej w postaci złożeń funkcji $H$ oraz $G_i$ ($F = H(G_1, G_2, ...,  X)$),
+w~której składowymi $G_i$ dekompozycji są dwuargumentowe funkcje $XOR$:
 \begin{equation}
 F = H (x_i \oplus x_j, x_k \oplus x_l, ..., X)
 \end{equation}
-Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w~generatorach adresów należy algorytm s-min \cite{sasao-recent, sasao-s-min}.
-W~artykule \cite{redukcja-kompresja} wykazano, że algorytm s-min jest mało skuteczny i~zaproponowano całkowicie inne ujęcie tego zagadnienia.
+W powyższym równaniu $X$ oznacza zbiór argumentów nie wykorzystany w procesie dekmpozycji.
+
+Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w~generatorach adresów należy algorytm s-Min \cite{sasao-recent, sasao-s-min}.
+W~artykule \cite{redukcja-kompresja} wykazano, że algorytm s-Min jest mało skuteczny i~zaproponowano całkowicie inne ujęcie tego zagadnienia.
 W~niniejszej pracy metodykę tę przystosowano do heurystycznych obliczeń funkcji generowania indeksów.
 Cechą charakterystyczną tej propozycji jest zastosowanie twierdzenia wiążącego dekompozycję liniową
-z~tzw. zbiorem rozróżnialności [rozdz. \ref{section:single-decomposition}].
-W~rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń praktycznych funkcji indeksowania [rozdz. \ref{chapter:decomposition}].
-Przykłady takich dekompozycji podano w~rozdziale \ref{section:decomposition-alorithm}.
+z~tak zwanym zbiorem rozróżnialności [rozdział \ref{section:single-decomposition}].
+W~rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń funkcji indeksowania możliwych do wykorzystania w praktyce [rozdział \ref{chapter:decomposition}].
+Przykłady takich dekompozycji podano w~rozdziale \ref{chapter:research}.
 
 \section{Problem generowania indeksów w~technice cyfrowej}
 
