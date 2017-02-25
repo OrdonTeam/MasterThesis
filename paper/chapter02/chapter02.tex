@@ -123,31 +123,24 @@ Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnow
 Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
 \begin{algorithm}[H]
-    \KwData{$F$}
-    \KwResult{$R$}
-    $MR\gets$ pusta\;
-    \For{dla każdej pary wierszy w $F$ o~różnej wartosci}{
-        $W\gets$ wykonaj operację XOR poszczególnych bitów\;
-        $MR\gets MR + W$\;
+    \KwIn{$F$}
+    \KwOut{$R$}
+    $MR=\emptyset$\;
+    \For{$\forall(w_i, w_j): w_i, w_j \in{F} \land w_i \neq w_j \land F(w_i) \neq F(w_j)$}{
+        $MR = MR \cup \{w_i \oplus w_j\}$ \;
     }
-    $MR2\gets MR$\;
-    \While{$MR2$ niepusta}{
-        \For{dla każdego wiersza $MR2$}{
-            $W\gets$ znajdź wiersz o~najmniejszej liczbie jedynek\;
-        }
-        \For{dla kolumn z~jedynekami w~$W$}{
-            $K\gets$ znajdź kolumnę o~największej liczbie jedynek\;
-        }
-        $R\gets R + K$\;
-        \For{dla każdego wiersza $W$ w~$MR2$}{
-            \If{$W$ zawiera jedynkę na $K$}{
-                $MR2\gets MR2 - W$\;
-            }
+    $MR_2 = MR$\;
+    \While{$MR_2 \neq \emptyset$}{
+        $i : w_i \in{MR_2} \land \min \sum_{j=1}^{n} MR_2[i][j]$ \;
+        $j : x_j \in{X} \land x_{j_{w_i}} = 1 \land \max \sum_{k=1}^{m} MR_2[k][j]$ \;
+        $R = R \cup \{x_j \}$\;
+        \For{$\forall w_l \in{MR_2} : x_{j_{w_l}} = 1$}{
+            $MR_2 = MR_2 \backslash \{ w_l \}$\;
         }
     }
-    \For{dla każdego argumentu $K$ w~$R$}{
-        \If{$MR$ dla argumentów z~$R$ bez $K$ jest spójna}{
-            $R\gets R - K$\;
+    \For{$\forall x_i \in{R}$}{
+        \If{$\forall w_j \in{MR} : \exists x_l \in{R \backslash \{x_i\}} : MR[j][l] = 1$}{
+            $R = R \backslash \{ x_i \}$\;
         }
     }
 \end{algorithm}
