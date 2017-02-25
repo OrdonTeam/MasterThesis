@@ -33,16 +33,16 @@ W~przypadku utraty spójności taki argument musiałby się znaleźć w~końcowy
 W~przeciwnym przypadku należałoby go usunąć i~kolejne weryfikacje przeprowadzać z~jego wyłączeniem.
 Pojedyncza weryfikacja wymaga porównania,
 każdych dwóch wierszy o~różnej wartości funkcji.
-Jeżeli funkcja ma $n$ argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $n$.
+Jeżeli funkcja ma $n$~argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $n$.
 Par wierszy do porównania jest w~zależności od rozkładu wartości funkcji od $m$ do $m^2$.
 Zatem złożoność obliczeniowa pojedynczej weryfikacji to $n \cdot m^2$.
-Taką weryfikację trzeba przeprowadzić dla każdego z~$n$ argumentów co daje końcową złożoność $n^2 \cdot m^2$.
+Taką weryfikację trzeba przeprowadzić dla każdego z~$n$~argumentów co daje końcową złożoność $n^2 \cdot m^2$.
 
 Problem takiego podejścia,
 poza złożonością,
 leży dodatkowo w~jakości uzyskiwanego rozwiązania.
 W~procesie redukcji argumentów część z~nich może być ważniejsza
-i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
+i~tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
 Innymi słowami wynik takiej redukcji,
 mimo że jest prawidłowy,
 często jest nieoptymalny.
@@ -74,8 +74,8 @@ które argumenty dostarczają jakich rozróżnień.
 Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z~rachunkiem kostek boolowskich.
 Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
 ale ich usunięcie wymaga porównania wszystkich wierszy każdy z~każdym
-i co za tym idzie jest nie opłacalne ze względu na złożoność obliczeniową.
-Z drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~również nie mogą być usunięte.
+i~co za tym idzie jest nie opłacalne ze względu na złożoność obliczeniową.
+Z~drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~również nie mogą być usunięte.
 Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}
 
 \begin{figure}[H]
