@@ -1,4 +1,5 @@
 \chapter{Dekompozycja liniowa}
+\label{chapter:decomposition}
 
 Redukcja argumentów umożliwia zmniejszenie liczby wejść potrzebnych do realizacji funkcji w~układzie kombinacyjnym.
 Jednak wyniki uzyskane w~czasie takiej optymalizacji nie są ostateczne.
@@ -52,7 +53,7 @@ Na takim przykładzie łatwo oszacować,
 że tablica rozróżnialności wygenerowana na potrzeby dekompozycji będzie miała 250 razy mniejszy rozmiar.
 
 \section{Dekompozycja pojedynczą bramką XOR}
-
+\label{section:single-decomposition}
 Celem dekompozycji liniowej pojedynczą bramką XOR jest znalezienie takich dwóch argumentów,
 które można zastąpić jednym.
 Miałby on być wynikiem operacji XOR tych dwóch argumentów.
@@ -225,6 +226,7 @@ ponieważ dzięki takiej własności operacji XOR i~wykorzystaniu bramek o~wielu
 nigdy nie powstaną długie ścieżki krytyczne.
 
 \section{Algorytm}
+\label{section:decomposition-alorithm}
 
 \begin{algorithm}[H]
     \KwData{$F$}
