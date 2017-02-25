@@ -1,52 +1,51 @@
 \chapter{Redukcja argumentów}
 \label{chapter:reduction}
 
-Algorytm generowania indeksów zaproponowany przez profesora Sasao,
-pozwala na zastosowanie pamięci o~mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
-Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu.
-W~tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i~kompresję argumentów.
+Algorytm generowania indeksów zaproponowany przez profesora Sasao pozwala na zastosowanie pamięci o~mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
+Nie jest to oczywiście jedyna metoda pozwalająca na uzyskanie takiego efektu.
+W~niniejszej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i~kompresję argumentów.
 
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
 poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
 Po wykonaniu takiego procesu,
-usunięcie dowolnego argumentu z~funkcji powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
-Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem.
-Istnieje wiele sposobów redukcji argumentów,
-zarówno systematycznych,
-pozwalających na znalezienie wszystkich minimalnych rozwiązań,
-jak i~heurystycznych,
-charakteryzujących się szybszym działaniem.
+próba usunięcie kolejnego argumentu z~funkcji wyjściowej powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
+Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem i oznaczamy $R$.
+Istnieje wiele sposobów redukcji argumentów.
+Należą do nich metody systematyczne
+pozwalające na znalezienie wszystkich minimalnych rozwiązań,
+jak i~heurystyczne,
+charakteryzujące się szybszym działaniem.
 Sama redukcja nie zawsze przynosi spektakularne rezultaty.
-W~skrajnych przypadkach funkcji,
-w~których każdy argument dostarcza niewielkiej,
-ale niezbędnej porcji informacji,
+Dla skrajnych przypadków funkcji $F$,
+w~których każdy argument dostarcza niezbędnej informacji,
 redukcja może nie przynieść żadnego efektu.
-W~takich przypadkach niezbędna jest,
+Niezbędna wtedy jest,
 opisana w~dalszej części pracy,
-kompresja argumentów,
-świetnie sprawdzająca się właśnie w~takich przypadkach.
+kompresja argumentów.
 
 \section{Problem złożoności}
 
 Do problemu redukcji argumentów można podejść w~sposób intuicyjny.
 Można próbować po kolei usuwać argumenty i~weryfikować spójność danych.
-W~przypadku utraty spójności taki argument musiałby się znaleźć w~końcowym rozwiązaniu.
+W~przypadku utraty spójności usuwany argument musiałby się znaleźć w~końcowym rozwiązaniu.
 W~przeciwnym przypadku należałoby go usunąć i~kolejne weryfikacje przeprowadzać z~jego wyłączeniem.
-Pojedyncza weryfikacja wymaga porównania,
-każdych dwóch wierszy o~różnej wartości funkcji.
-Jeżeli funkcja ma $n$~argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $n$.
-Par wierszy do porównania jest w~zależności od rozkładu wartości funkcji od $m$ do $m^2$.
-Zatem złożoność obliczeniowa pojedynczej weryfikacji to $n \cdot m^2$.
-Taką weryfikację trzeba przeprowadzić dla każdego z~$n$~argumentów co daje końcową złożoność $n^2 \cdot m^2$.
+Pojedyncza weryfikacja wymaga porównania każdych dwóch wierszy o~różnej wartości funkcji.
+Jeżeli funkcja ma $n$~argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $O(n)$.
+Liczba par wierszy do porównania wynosi,
+w~zależności od rozkładu wartości funkcji,
+od $m$ do $m^2$.
+Zatem złożoność obliczeniowa pojedynczej weryfikacji to $O(n \cdot m^2)$.
+Taką weryfikację trzeba przeprowadzić dla każdego z~$n$~argumentów co daje końcową złożoność $O(n^2 \cdot m^2)$.
 
 Problem takiego podejścia,
 poza złożonością,
 leży dodatkowo w~jakości uzyskiwanego rozwiązania.
 W~procesie redukcji argumentów część z~nich może być ważniejsza
 i~tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
-Innymi słowami wynik takiej redukcji,
-mimo że jest prawidłowy,
-często jest nieoptymalny.
+Oznacza to,
+że wynik takiej redukcji,
+mimo iż jest prawidłowy,
+często nie jest optymalny.
 
 \section{Minimalne pokrycie kolumnowe}
 
