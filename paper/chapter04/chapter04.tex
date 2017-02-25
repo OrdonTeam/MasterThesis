@@ -2,7 +2,7 @@
 \label{chapter:research}
 
 W rozdziale tym zostały zaprezentowane wyniki badań przeprowadzone dla przykładowych funkcji referencyjnych.
-Wszystkie funkcjie opisane w tym rozdziale znajdują się w załącznikach niniejszej pracy dyplomowej.
+Wszystkie funkcje opisane w tym rozdziale znajdują się w załącznikach niniejszej pracy dyplomowej.
 
 \section{Filtr f5}
 
@@ -20,21 +20,21 @@ w strukturze zajmującej 9 komórek 6-wejściowych oraz po jednej 5, 4 i 2-wejś
 
 \section{Przykład Sasao}
 
-Eksperyment dotyczy generatora indeksów analizowanego w referacie Sasao [8].
-Dla funkcji tej prof. Sasao wyznaczył 5-argumentowy redukt – Tab. Xb.
-Program RedKomp wyznaczył redukt 4-argumentowy Tab. Xc.
+Eksperyment opisany w tym rozdziale dotyczy generatora indeksów analizowanego w referacie Sasao [8].
+Dla funkcji przedstawionej w tableli ??a profesor Sasao wyznaczył 5-argumentowy redukt – tabela ??b.
+Dzięki zastosowaniu program RedKomp udało się ten wynik poprawić uzyskując redukt 4-argumentowy,
+przedstawiony w tabeli ??c.
 
-Rezultatem tego wyniku jest możliwość zrealizowania tej
-funkcji w strukturze zaproponowanej w referacie Sasao (rys. 1) [9],
+Rezultatem tego wyniku jest możliwość zrealizowania tej funkcji w strukturze zaproponowanej w referacie Sasao (rysunek ??saosao) [9],
 zbudowanej z dwóch pamięci: pamięć głównej i pomocniczej,
 które mają zaledwie 4 wejścia adresowe.
 
 W~strukturze tej blok selekcji zmiennych wybiera spośród wszystkich zmiennych podzbiór $X_1$,
-reprezentujący minimalną liczbę zmiennych realizowanej Funkcji Generowania Indeksów (FGI).
+reprezentujący minimalną liczbę zmiennych realizowanej funkcji generowania indeksów.
 Liczność reduktu jest r.
 Jest to jednocześnie liczba wejść do pamięci głównej.
-Na wyjściach pamięci głównej pojawia się indeks wektora wejściowego $X = X_1 \cup X_2$.
-Jest on reprezentowany wektorem binarnym o liczbie bitów $p = log_2 (k+1)$.
+Na wyjściach pamięci głównej pojawia się indeks wektora wejściowego. % $X = X_1 \cup X_2$.
+Jest on reprezentowany wektorem binarnym o liczbie bitów $p = \lceil log_2 (k+1)\rceil$.
 Indeks ten jest poprawnym indeksem wektora wejściowego wtedy,
 jeżeli jest to wektor rejestrowany.
 I tylko wtedy indeks ten pojawi sie na wyjściach generatora.
@@ -50,7 +50,7 @@ Wtedy komparator sygnałem wyjściowym 0 zablokuje pojawienie się na wyjściach
 
 \section{Permutacje 1 z 10}
 
-Kolejny eksperyment dotyczy funkcji ,,1 z 10'' analizowanej w artykule [10].
+Eksperyment opisany w tym rozdziale dotyczył funkcji ,,1 z 10'' analizowanej w artykule [10].
 Ponieważ funkcję tę można zredukować do 9 zmiennych,
 bez zmiennej $x_2$ - w Tab. 6 podano tę funkcję przy oznaczeniach $a_1, ..., a_9$.
 
@@ -62,7 +62,7 @@ Rezultat uzyskany metodą RedKomp jest 4-bitowy (patrz Dodatek):
 
 \section{Permutacje 2 z 16}
 
-Eksperyment 4 dotyczy funkcji ,,2 z 16''.
+Eksperyment opisany w tym rozdziale dotyczył funkcji ,,2 z 16''.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min [10] tworzy układ o 11 wejściach.
 Liczby wejść do poszczególnych bramek XOR nie są podane.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
@@ -81,7 +81,7 @@ y9 = x8 \oplus x9 \oplus x11 \oplus x12. \\
 
 \section{Permutacje 2 z 20}
 
-Eksperyment 5 dotyczy funkcji ,,2 z 20''.
+Eksperyment opisany w tym rozdziale dotyczył funkcji ,,2 z 20''.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-min oraz 3min [10] tworzy układ o 14 wejściach.
 Liczby wejść do poszczególnych bramek EXOR nie są podane.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 14 wejściach adresowych.
@@ -103,9 +103,9 @@ y13 = x14 \oplus x9 \oplus x10, \\
 y14 = x9 \oplus x10 \oplus x12 \oplus x13. \\
 \end{multline}
 
-Eksperyment 6
+\section{Permutacje 2 z 20}
 
-Eksperyment 6 dotyczy funkcji 2outof20.
+Eksperyment opisany w tym rozdziale dotyczył funkcji 2outof20.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-min oraz 3min [10] tworzy układ o 14 wejściach.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
 Poszczególne wejścia y1 do y9 tej pamięci są następującymi funkcjami EXOR:
