@@ -12,7 +12,7 @@ I pewnie z~tych powodów dekompozycja liniowa jest intensywnie wykorzystywana w~
 Dobrym przykładem gdzie wyraźnie widać zastosowania dekompozycji liniowej jest funkcja przedstawiona na rysunku numer \ref{fig:required-decomposition}.
 Została ona celowo spreparowana w~taki sposób,
 że wszystkie argumenty są niezbędne.
-W takim wypadku redukcja argumentów nie przynosi żadnych rezultatów.
+W~takim wypadku redukcja argumentów nie przynosi żadnych rezultatów.
 Dodatkowo łatwo zauważyć,
 że pierwszy i~drugi argument można z~powodzeniem zastąpić innym,
 będącym wynikiem zwykłej funkcji XOR tych argumentów.
@@ -117,9 +117,9 @@ musiały przed dekompozycją przede wszystkim zawierać same zera dla argumentó
 które nie uległy zmianie.
 Spośród tych wierszy jedynie te,
 które zawierają dwa zera lub dwie jedynki dają wiersz samych zer.
-W pierwszym wypadku wiersz już wcześniej zawierał same zera.
+W~pierwszym wypadku wiersz już wcześniej zawierał same zera.
 Czyli już wcześniej dane były sprzeczne.
-W drugim wypadku,
+W~drugim wypadku,
 kiedy któryś z~wierszy zawiera jedynie dwie jedynki dla dekomponowanych argumentów,
 następuje faktyczna utrata informacji.
 Brak takiego wiersza jest w~takim razie warunkiem wystarczającym do istnienia dekompozycji pojedynczą bramką XOR.
@@ -133,7 +133,7 @@ Brak takiego wiersza jest w~takim razie warunkiem wystarczającym do istnienia d
 \section{Dekompozycja wieloma bramki XOR}
 
 Na podobnej zasadzie możliwa jest również dekompozycja z~użyciem wielu bramek XOR.
-W przypadku,
+W~przypadku,
 jeżeli wszystkie pary jedynek występują w~macierzy rozróżnialności,
 możemy przystąpić do szukania brakujących trójek.
 Każdą taką trójkę argumentów,
@@ -143,7 +143,7 @@ skompresować do dwóch argumentów.
 Nowe argumenty przyjmują wtedy postać np. $x_1 \oplus x_2$ oraz $x_2 \oplus x_3$.
 Z tym rozumowaniem można postępować dalej.
 Brak jakiegokolwiek wiersza w~macierzy rozróżnialność można zamienić przy użyciu pewnej liczby bramek XOR na zysk jednego argumentu w~końcowej funkcji.
-W każdym z~tych przypadków operacja XOR wykonywana jest na kolejnych parach argumentów,
+W~każdym z~tych przypadków operacja XOR wykonywana jest na kolejnych parach argumentów,
 czyli pierwszy z~drugim,
 drugi z~trzecim,
 trzeci z~czwartym itd.
@@ -152,14 +152,14 @@ Dowód,
 że brak dowolnego wiersza w~macierzy rozróżnialności jest warunkiem wystarczającym do istnienia dekompozycji,
 sprowadza się ponownie do analizy zmian w~macierzy rozróżnialności.
 Aby zdekomponowana funkcja pozostała spójna,
-w tablicy porównań nie może pojawić się wiersz samych zer.
+w~tablicy porównań nie może pojawić się wiersz samych zer.
 Czyli nie może istnieć taki wiersz w~tablicy porównań,
 który w~obrębie modyfikowanych argumentów zawierał co najmniej jedną jedynkę,
 lecz po dekompozycji zostały w~nim same zera.
 
 Dowód przez zaprzeczenie zacznijmy od pierwszej pary argumentów.
 Aby w~wyniku operacji XOR argumentów pierwszego z~drugim powstało 0,
-w pierwotnej macierzy porównań musiały znajdować się albo dwa zera,
+w~pierwotnej macierzy porównań musiały znajdować się albo dwa zera,
 albo dwie jedynki.
 
 Zacznijmy od przypadku dwóch zer.
@@ -174,7 +174,7 @@ Z tego wynika,
 że w~tym przypadku nie została naruszona spójność danych.
 
 Drugim przypadkiem jest para jedynek dla argumentów 1 i~2.
-W takim wypadku,
+W~takim wypadku,
 aby para 2 i~3 w~wyniku operacji XOR dawała zero,
 również argument 3 musiał być zerem.
 Podobnie jak w~poprzednim przypadku przechodząc przez wszystkie pary otrzymujemy,
@@ -205,7 +205,7 @@ Dekompozycję można przeprowadzać wielokrotnie tworząc kaskadę jak na rysunk
 \label{fig:multiple-levels}
 \end{figure}
 
-W takim przypadku wejściem niektórych bramek XOR są wyjścia poprzednich.
+W~takim przypadku wejściem niektórych bramek XOR są wyjścia poprzednich.
 Wartość na wyjściu takiej kaskadowej bramki przyjmuje wtedy postać:
 \begin{equation}
 (x_1 \oplus x_2) \oplus x_3
