@@ -8,9 +8,11 @@ Dalsze zmniejszanie rozmiaru pamięci niezbędnej w~procesie generowania indeks�
 Dekompozycja liniowa polega na  łączeniu zmiennych w~pary i~wprowadzaniu ich za pośrednictwem bramek XOR do głównego układu realizującego detekcję i~klasyfikację (czyli indeksowanie) danych.
 Jest to istotne,
 gdyż prowadzi do dalszego redukowania liczby wejść w~generatorach indeksu.
-I pewnie z~tych powodów dekompozycja liniowa jest intensywnie wykorzystywana w~syntezie funkcji generowania indeksów [12-15].
+Z~tych powodów dekompozycja liniowa jest intensywnie wykorzystywana w~syntezie funkcji generowania indeksów [12-15].
 
-Dobrym przykładem gdzie wyraźnie widać zastosowania dekompozycji liniowej jest funkcja przedstawiona na rysunku numer \ref{fig:required-decomposition}.
+Dobrym przykładem,
+gdzie wyraźnie widać zastosowania dekompozycji liniowej,
+jest funkcja przedstawiona na rysunku numer \ref{fig:required-decomposition}.
 Została ona celowo spreparowana w~taki sposób,
 że wszystkie argumenty są niezbędne.
 W~takim wypadku redukcja argumentów nie przynosi żadnych rezultatów.
@@ -21,13 +23,13 @@ będącym wynikiem zwykłej funkcji XOR tych argumentów.
 \begin{figure}
 \centering
 \includegraphics[width = 13cm]{chapter03/required-decomposition.png}
-\caption{Przykład obrazujący zlety dekompozycji funkcji z~argumentami niezbędnymi (źródło własne).}
+\caption{Przykład obrazujący zalety dekompozycji funkcji z~argumentami niezbędnymi (źródło własne).}
 \label{fig:required-decomposition}
 \end{figure}
 
 Zmniejszenie rozmiaru pamięci z~trzech argumentów do dwóch nie jest zbyt spektakularne i~nie miałoby znaczenia w~praktycznym zastosowaniu.
 Jednak dla innego badanego przypadku nieredukowalnej funkcji 41 argumentowej,
-dekompozycja proponowaną w~pracy metodą powoduje zmniejszenie liczby argumentów do 7.
+dekompozycja metodą proponowaną w~niniejszej pracy powoduje zmniejszenie liczby argumentów do 7.
 
 Problem generowania indeksów posiada pewną specyficzną własność.
 Każdy wektor wejściowy rozważanej funkcji ma inną wartość.
@@ -39,16 +41,16 @@ Można go stosować dla wszystkich funkcji boolowskich o~dowolnych wyjściach.
 
 Pierwszym krokiem w~dekompozycji liniowej jest wygenerowanie opisanej wcześniej macierzy rozróżnialności.
 Może to oczywiście wiązać się z~podobnymi problemami związanymi ze złożonością pamięciową jak w~czasie redukcji.
-Tak będzie jednak szczególnie przy problemie generowania indeksów.
+Sytuacja taka będzie miała miejsce przy problemie generowania indeksów.
 Charakteryzuje się on tym,
-że wszystkie wiersze w~funkcji mają różne wartości.
+że wszystkie wiersze funkcji mają różne wartości.
 Z tego powodu liczba wierszy po redukcji argumentów nie zmaleje.
 
 Przy zastosowaniu algorytmu w~innych problemach,
 gdzie różnych wartości funkcji jest stosunkowo niewiele,
 na etapie dekompozycji funkcja zredukowana często nie będzie zawierała wszystkich wierszy.
 Część z~nich po usunięciu redundantnych argumentów będzie zduplikowana.
-Dla przykładu badanej funkcji [P5.PLA] na etapie redukcji argumentów nastąpiła redukcja wierszy z~2048 do 128.
+Dla przykładu badanej funkcji ,,P5.PLA'' na etapie redukcji argumentów nastąpiła redukcja wierszy z~2048 do 128.
 Na takim przykładzie łatwo oszacować,
 że tablica rozróżnialności wygenerowana na potrzeby dekompozycji będzie miała 250 razy mniejszy rozmiar.
 
@@ -62,23 +64,23 @@ które pozwolą na przedstawienie funkcji $F$ w~poniższej postaci:
 \begin{equation}
 F = H( G ( X_a ), X_b)
 \end{equation}
-gdzie: $X_a = {x_i, x_j}, X_b = X / X_a, G = XOR$
+gdzie: $X_a = {x_i, x_j}$, $X_b = X / X_a$, $G = XOR$
 
 Aby taka dekompozycja była możliwa,
 funkcja $G$ nie może powodować utraty niezbędnych informacji.
-Inaczej mówiąc po przekształceniu wierszy danych funkcją $G$ nie mogą powstać wiersze sprzeczne.
+Inaczej mówiąc po przekształceniu wierszy danych funkcją $G$ nie mogą powstać wiersze sprzeczne (identyczne wiersze o różnej wartości funkcji).
 Ze względu na użycie w~dekompozycji funkcji XOR liczba argumentów funkcji $H$ jest mniejsza o~jeden od wyjściowej liczby argumentów funkcji F.
 
 Warunkiem poprawnej dekompozycji jest zachowanie wszystkich rozróżnień funkcji $F$.
 Istnieje możliwość zapewnienia tego warunku poprzez analizę zawartości macierzy porównań.
 Odpowiednikiem pary wierszy sprzecznych na poziomie tablicy rozróżnialności jest wiersz samych zer.
-Dzieje się dlatego,
+Dzieje się tak dlatego,
 że wiersze sprzeczne mają identyczne wartości na wszystkich pozycjach,
 więc operacja XOR,
 używana przy tworzeniu macierzy zwraca same zera.
 
-Dekompozycję liniową bramką XOR w~celu weryfikacji jej poprawności można przeprowadzić zarówno bezpośrednio na funkcji F,
-jak i~powstałej na jej podstawie tablicy rozróżnialności.
+Dekompozycję liniową bramką XOR w~celu weryfikacji jej poprawności można przeprowadzić zarówno bezpośrednio na funkcji $F$,
+jak i~na powstałej na jej podstawie tablicy rozróżnialności.
 Jest tak ze względu na to,
 że operacja XOR,
 użyta przy tworzeniu tablicy rozróżnialności i~dekompozycji,
@@ -90,7 +92,7 @@ co zostało zobrazowane na rysunku numer \ref{fig:xor}.
 \begin{figure}[H]
 \centering
 \includegraphics[width = 13cm]{chapter03/xor.png}
-\caption{Przykład obrazujący przemienność funkcji xor z~generowaniem macierzy rozróżnialności (źródło własne).}
+\caption{Przykład obrazujący przemienność funkcji XOR z~generowaniem macierzy rozróżnialności (źródło własne).}
 \label{fig:xor}
 \end{figure}
 
@@ -111,13 +113,15 @@ Zatem w~nowej tablicy rozróżnialności otrzymujemy wartość:
 x_{1_{w_1}} \oplus x_{2_{w_1}} \oplus x_{1_{w_2}} \oplus x_{2_{w_2}}.
 \end{equation}
 
-Pośrednim warunkiem zachowania spójności danych jest niepowstanie żadnego wiersza samych zer w~tablicy rozróżnialności.
+Pośrednim warunkiem zachowania spójności danych jest niepowstanie ani jednego wiersza samych zer w~tablicy rozróżnialności.
 Wiersze,
 które po dekompozycji bramką XOR zawierają same zera,
 musiały przed dekompozycją przede wszystkim zawierać same zera dla argumentów,
 które nie uległy zmianie.
 Spośród tych wierszy jedynie te,
-które zawierają dwa zera lub dwie jedynki dają wiersz samych zer.
+które zawierają dwa zera lub dwie jedynki,
+na pozycjach uwzględnionych w dekompozycji,
+dają wiersz samych zer.
 W~pierwszym wypadku wiersz już wcześniej zawierał same zera.
 Czyli już wcześniej dane były sprzeczne.
 W~drugim wypadku,
@@ -129,6 +133,8 @@ Brak takiego wiersza jest w~takim razie warunkiem wystarczającym do istnienia d
 \centering
 \includegraphics[width = 13cm]{chapter03/single-decomposition.png}
 \caption{Przykład dekompozycji pojedynczą bramką XOR (źródło własne).}
+%TODO: CR: powiększyć
+%TODO: CR: odwołanie
 \end{figure}
 
 \section{Dekompozycja wieloma bramki XOR}
@@ -136,18 +142,18 @@ Brak takiego wiersza jest w~takim razie warunkiem wystarczającym do istnienia d
 Na podobnej zasadzie możliwa jest również dekompozycja z~użyciem wielu bramek XOR.
 W~przypadku,
 jeżeli wszystkie pary jedynek występują w~macierzy rozróżnialności,
-możemy przystąpić do szukania brakujących trójek.
+możemy przystąpić do szukania brakujących trójek jedynek.
 Każdą taką trójkę argumentów,
-dla której brakuje trzech jedynek pośród wierszy tablicy porównań,
-można z~użyciem dwóch bramek XOR,
+dla której brakuje trójki jedynek pośród wierszy tablicy porównań,
+można, z~użyciem dwóch bramek XOR,
 skompresować do dwóch argumentów.
 Nowe argumenty przyjmują wtedy postać np. $x_1 \oplus x_2$ oraz $x_2 \oplus x_3$.
-Z tym rozumowaniem można postępować dalej.
-Brak jakiegokolwiek wiersza w~macierzy rozróżnialność można zamienić przy użyciu pewnej liczby bramek XOR na zysk jednego argumentu w~końcowej funkcji.
+Analogicznie można postępować dalej.
+Brak jakiegokolwiek wiersza w~macierzy rozróżnialność można zamienić przy użyciu pewnej liczby bramek XOR na redukcję jednego argumentu w~końcowej funkcji.
 W~każdym z~tych przypadków operacja XOR wykonywana jest na kolejnych parach argumentów,
 czyli pierwszy z~drugim,
 drugi z~trzecim,
-trzeci z~czwartym itd.
+trzeci z~czwartym i tak dalej.
 
 Dowód,
 że brak dowolnego wiersza w~macierzy rozróżnialności jest warunkiem wystarczającym do istnienia dekompozycji,
@@ -159,12 +165,12 @@ który w~obrębie modyfikowanych argumentów zawierał co najmniej jedną jedynk
 lecz po dekompozycji zostały w~nim same zera.
 
 Dowód przez zaprzeczenie zacznijmy od pierwszej pary argumentów.
-Aby w~wyniku operacji XOR argumentów pierwszego z~drugim powstało 0,
+Aby w~wyniku operacji XOR argumentów pierwszego z~drugim powstało zero,
 w~pierwotnej macierzy porównań musiały znajdować się albo dwa zera,
 albo dwie jedynki.
 
 Zacznijmy od przypadku dwóch zer.
-Przechodząc do kolejnej pary (2 i~3),
+Przechodząc do kolejnej pary (drugi i~trzeci argument),
 aby otrzymać kolejne zero w~wyniku operacji XOR,
 ponieważ argument drugi był zerem,
 również trzeci argument musiał być zerem.
@@ -174,17 +180,16 @@ okazuje się,
 Z tego wynika,
 że w~tym przypadku nie została naruszona spójność danych.
 
-Drugim przypadkiem jest para jedynek dla argumentów 1 i~2.
+Drugim przypadkiem jest para jedynek dla argumentu pierwszego i~drugiego.
 W~takim wypadku,
-aby para 2 i~3 w~wyniku operacji XOR dawała zero,
-również argument 3 musiał być zerem.
+aby para dwa i~trzy w~wyniku operacji XOR dawała zero,
+również argument trzeci musiał być zerem.
 Podobnie jak w~poprzednim przypadku przechodząc przez wszystkie pary otrzymujemy,
 że wejściowym wierszem tablicy rozróżnialności,
 musiał być wiersz samych jedynek w~obrębie dekomponowanych argumentów.
 Taka sytuacja również nie mogła mieć miejsca ze względu na sposób wyboru tych argumentów.
 
-Podsumowując,
-operacje wykonywane w~czasie tak przeprowadzonej dekompozycji nie mają wpływu na spójność danych.
+Operacje wykonywane w~czasie tak przeprowadzonej dekompozycji nie mają wpływu na spójność danych.
 Tym samym udowodniliśmy,
 że brak dowolnego wiersza w~macierzy rozróżnialności jest warunkiem wystarczającym do istnienia dekompozycji liniowej.
 
@@ -192,6 +197,8 @@ Tym samym udowodniliśmy,
 \centering
 \includegraphics[width = 13cm]{chapter03/multiple-decomposition.png}
 \caption{Przykład dekompozycji dwoma bramkami XOR (źródło własne).}
+%TODO: CR: powiększyć
+%TODO: CR: odwołanie
 \end{figure}
 
 \section{Dekompozycja wielokrotna i~wielopoziomowa}
@@ -206,12 +213,12 @@ Dekompozycję można przeprowadzać wielokrotnie tworząc kaskadę jak na rysunk
 \label{fig:multiple-levels}
 \end{figure}
 
-W~takim przypadku wejściem niektórych bramek XOR są wyjścia poprzednich.
+W~takim przypadku wejściami niektórych bramek XOR są wyjścia poprzednich.
 Wartość na wyjściu takiej kaskadowej bramki przyjmuje wtedy postać:
 \begin{equation}
-(x_1 \oplus x_2) \oplus x_3
+(x_1 \oplus x_2) \oplus x_3.
 \end{equation}
-Co jest równoznaczne użyciu bramki XOR o~trzech wejściach.
+Jest to równoznaczne użyciu bramki XOR o~trzech wejściach.
 Z tego powodu schemat z~rysunku numer \ref{fig:multiple-levels} można uprościć do postaci przedstawionej na rysunku numer \ref{fig:multiple-entries}.
 
 \begin{figure}[H]
@@ -224,6 +231,9 @@ Z tego powodu schemat z~rysunku numer \ref{fig:multiple-levels} można uprości�
 Jest to istotne,
 ponieważ dzięki takiej własności operacji XOR i~wykorzystaniu bramek o~wielu wejściach,
 nigdy nie powstaną długie ścieżki krytyczne.
+Oznacza to,
+że sygnał wchodzący na wejścia pamięci ROM nigdy nie będzie przechodził przez wiele kaskadowo ustawionych bramek,
+co miałoby wpływ na pogorszenie wydajność układu.
 
 \section{Algorytm dekompozycji}
 \label{section:decomposition-alorithm}
