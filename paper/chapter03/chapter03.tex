@@ -235,25 +235,30 @@ Oznacza to,
 że sygnał wchodzący na wejścia pamięci ROM nigdy nie będzie przechodził przez wiele kaskadowo ustawionych bramek,
 co miałoby wpływ na pogorszenie wydajność układu.
 
+Algorytm dekompozycji zapisany w pseudokodzie został przedstawiony poniżej (algorytm \ref{alg:decomposition}).
+
 \section{Algorytm dekompozycji}
 \label{section:decomposition-alorithm}
 
 \begin{algorithm}[H]
-    \KwData{$F$}
-    $MR\gets$ pusta\;
-    \For{dla każdej pary wierszy $F$ o~różnej wartosci}{
-        $W\gets$ wykonaj operację XOR poszczególnych bitów\;
-        $MR\gets MR + W$\;
+    \KwIn{$F$}
+    \KwOut{$F$}
+    $MR=\emptyset$\;
+    \For{$\forall(w_i, w_j): w_i, w_j \in{F} \land w_i \neq w_j \land F(w_i) \neq F(w_j)$}{
+        $MR = MR \cup \{w_i \oplus w_j\}$ \;
     }
-    $x\gets 2$\;
-    \While{$x <= n$}{
-        \For{dla każdego $x$ elementowego podzbioru zbioru argumentów}{
-            \If{$MR$ nie zwiera danego podzbioru}{
-                zastosuj do $F$ dekompozycję zgodnie ze znaleienoym podzbiorem\;
-                ponów algorytm dla zdekmponowanej funkcji\;
+    $a = 2$\;
+    \While{$a <= n$}{
+        \For{$\forall P \subseteq X : \left\vert{P}\right\vert = a$}{
+           %\If{$\forall w_i \in{MR} : \exists x_j \in{X} : MR[i][j] = 0 \land x_j \in{P} \lor MR[i][j] = 1 \land x_j \not\in{P}$}{
+            \If{$\not\exists w_i \in{MR} : \forall x_j \in{X} : MR[i][j] = 1 \iff x_j \in{P}$}{
+                $F = H(XOR(P), X \backslash P)$ \;
+                Ponów algorytm dla funkcji $F=H$\;
             }
         }
     }
+    \caption{Algorytm dekompozycji liniowej}
+    \label{alg:decomposition}
 \end{algorithm}
 %- rekurencja, wytłumaczenie schematu dekompozycji przy rekurencji
 %- zapis w~pseudokodzie
