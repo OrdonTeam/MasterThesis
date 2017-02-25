@@ -54,46 +54,47 @@ aż do zapewnienia pełnej rozróżnialności.
 Zaczynamy z~jednym argumentem i~kolejno wybieramy kolejne,
 które znajdą się w~końcowym rozwiązaniu.
 Jeżeli przy takim podejściu dodatkowo będziemy w~stanie ocenić,
-które argumenty są bardziej wartościowe,
-uzyskamy lepsze wyniki.
+które argumenty są bardziej wartościowe to uzyskamy lepsze wyniki.
 
-Za miarę wartości argumentu w~redukcie można przyjąć liczbę rozróżnień,
+Za wagę argumentu w~redukcie można przyjąć liczbę rozróżnień,
 których on dostarcza.
 Jeżeli dzięki jednemu argumentowi jesteśmy w~stanie rozróżnić tylko jedną parę wierszy o~różnych wartościach,
-to jest on mniej wartościowy od takiego,
+to ma on mniejszą wagę od takiego,
 który rozróżnia kilka par wierszy.
 Z drugiej strony nawet argument,
 który dostarcza jednego rozróżnienia,
-będzie wartościowy,
-jeżeli żaden inny go nie dostarcza.
+będzie istotny,
+jeżeli żaden inny argument nie dostarcza takiego rozróżnienia.
 
-Informacje o~tych zależnościach uzyskuje się z~macierz rozróżnialności, nazywana również tablicą porównań,
+Informacje o~tych zależnościach uzyskuje się z~macierz rozróżnialności (oznaczana $MR$), nazywanej również tablicą porównań,
 która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji.
 Jedynki w~takiej macierzy obrazują,
-które argumenty dostarczają jakich rozróżnień.
+które argumenty dostarczają rozróżnień między zadanymi wierszami.
 Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z~rachunkiem kostek boolowskich.
-Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
+Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,%TODO: CR: opisać dlaczego
 ale ich usunięcie wymaga porównania wszystkich wierszy każdy z~każdym
-i~co za tym idzie jest nie opłacalne ze względu na złożoność obliczeniową.
-Z~drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~również nie mogą być usunięte.
-Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}
+i~jest nie opłacalne ze względu na złożoność obliczeniową.
+Z~drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~nie mogą być usunięte.
+Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width = 13cm]{chapter02/discernibility-table.png}
 \caption{Proces powstawania tablicy rozróżnialności (źródło własne).}
+%TODO: CR: Opisać rysunek
 \end{figure}
 
 Znalezienie reduktu,
 przy użyciu tablicy rozróżnialności sprowadza się do problemu znalezienia minimalnego pokrycia kolumnowego,
 czyli takiego zbioru kolumn,
 dla którego w~każdym z~wierszy znajduje się co najmniej jedna jedynka.
-Najprostszy algorytm znajdujący rozwiązanie sprowadzałby się do następujących kroków:
+Najprostszy algorytm znajdujący takie rozwiązanie sprowadzałby się do następujących kroków:
 \begin{enumerate}
 \item Wybranie kolumny o~największej liczbie jedynek,
 \item Usunięcie wierszy z~jedynkami w~tej kolumnie,
-\item Powtarzanie aż do uzyskania pustej macierzy.
+\item Powtarzanie do uzyskania pustej macierzy.
 \end{enumerate}
+
 Nie uwzględnia on jednak rozróżnień,
 które są dostarczane przez niewielką liczbę argumentów.
 Najłatwiej zauważyć to na przykładzie argumentów niezbędnych.
@@ -102,30 +103,30 @@ który zawiera wyłącznie jedną jedynkę.
 Oznacza to,
 że argument odpowiadający tej jedynce jest niezbędny do uzyskania minimalnego pokrycia kolumnowego.
 Taki argument często dostarcza innych rozróżnień,
-które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wartość innych argumentów.
+które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wagę innych argumentów.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width = 5cm]{chapter02/required-arguments.png}
 \caption{Przykład obrazujący niedoskonałości algorytmu największej liczby jedynek.
-Argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy. (źródło własne).}
+Argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy (źródło własne).}
+%TODO: CR: Opisać rysunek
 \end{figure}
 
-Aby uwzględnić ten problem,
+Aby uwzględnić problem sztucznego zawyżania wag argumentów,
 w~ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy.
-Najpierw znajdowany jest wiersz o~najmniejszej liczbie jedynek,
-następnie wybierana jest kolumna,
-która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu.
-Takie rozwiązanie wyboru kolumn jest optymalne i~często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
-Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe również zawiera nadmiarowe argumenty.
+Najpierw znajdowany jest wiersz o~najmniejszej liczbie jedynek ($w_j$),
+następnie wybierana jest kolumna ($x_i$),
+która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu ($x_{i_{w_j}} = 1$).
+Takie rozwiązanie wyboru kolumn często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
+Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe zawiera również nadmiarowe argumenty.
 Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
-
 
 \begin{algorithm}[H]
     \KwData{$F$}
     \KwResult{$R$}
     $MR\gets$ pusta\;
-    \For{dla każdej pary wierszy $F$ o~różnej wartosci}{
+    \For{dla każdej pary wierszy w $F$ o~różnej wartosci}{
         $W\gets$ wykonaj operację XOR poszczególnych bitów\;
         $MR\gets MR + W$\;
     }
@@ -151,11 +152,11 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
     }
 \end{algorithm}
 
-Dla takiej samej funkcji o~$n$ argumentach i~$m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
+Dla takiej samej funkcji o~$n$ argumentach i~$m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $O(n \cdot m^2)$.
 Następne kroki algorytmu operują na macierzy rozróżnialności,
 dlatego przy szacowaniu ich złożoności musimy pamiętać o~tym,
-że tablica ma $m^2$ wierszy.
-Także kolejne złożoności znajdowania wiersza o~najmniejszej liczbie jedynek oraz kolumny o~największej liczbie jedynek wynoszą $n \cdot m^2$ każda.
+że tablica ma maksymalnie $m^2$ wierszy.
+Także kolejne złożoności znajdowania wiersza o~najmniejszej liczbie jedynek oraz kolumny o~największej liczbie jedynek wynoszą $O(n \cdot m^2)$ każda.
 Maksymalna liczba powtórzeń,
 dla funkcji nieredukowalnej,
 wynosi $n$.
@@ -163,13 +164,14 @@ Warto pamiętać,
 że każdy kolejny krok jest wykonywany dla pomniejszonej liczby wierszy,
 ale na potrzeby szacowania złożoności przyjmijmy skrajnie niekorzystny przykład,
 gdzie każdy argument usuwa tylko po jednym wierszu.
-W~takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie $n^2 \cdot m^2$.
-Ostatni krok ma taką złożoność jak poprzednio liczona złożoność weryfikacji.
+W~takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie $O(n^2 \cdot m^2)$.
+Ostatni krok ma taką złożoność,
+jak poprzednio liczona złożoność weryfikacji.
 Ponownie warto zauważyć,
 że obliczenia przeprowadzane są już na redukcie,
 czyli zbiorze argumentów często mniejszym od $n$.
-Podsumowując końcowa złożoność obliczeniowa wynosi $n \cdot m^2 + n^2 \cdot m^2 + n^2 \cdot m^2$,
-czyli w~dalszym ciągu $n^2 \cdot m^2$.
+Podsumowując końcowa złożoność obliczeniowa wynosi $O(n \cdot m^2 + n^2 \cdot m^2 + n^2 \cdot m^2)$,
+czyli w~dalszym ciągu $O(n^2 \cdot m^2)$.
 Wynika stąd,
 że dzięki takiemu podejściu udało się uzyskać statystycznie lepszy redukt przy takiej samej złożoności obliczeniowej.
 
