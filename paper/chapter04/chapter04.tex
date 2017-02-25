@@ -60,4 +60,21 @@ Następnie po zastosowaniu algorytmu 3-Min indeksowanie zostało poprawione do w
 
 Rezultat uzyskany metodą RedKomp jest 4-bitowy (patrz Dodatek):
 
+\section{Permutacje 2 z 16}
 
+Eksperyment 4 dotyczy funkcji ,,2 z 16''.
+Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min [10] tworzy układ o 11 wejściach.
+Liczby wejść do poszczególnych bramek XOR nie są podane.
+Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
+Poszczególne wejścia y1 do y9 tej pamięci są następującymi funkcjami EXOR:
+\begin{multline} \\
+y1 = x7 \oplus x1 \oplus x2, \\
+y2 = x10 \oplus x2 \oplus x3, \\
+y3 = x13 \oplus x6 \oplus x7, \\
+y4 = x14 \oplus x9 \oplus x10, \\
+y5 = x9 \oplus x10 \oplus x12 \oplus x13, \\
+y6 = x0 \oplus x1 \oplus x3 \oplus x4, \\
+y7 = x3 \oplus x4 \oplus x5 \oplus x6, \\
+y8 = x5 \oplus x6 \oplus x8 \oplus x9, \\
+y9 = x8 \oplus x9 \oplus x11 \oplus x12. \\
+\end{multline}
