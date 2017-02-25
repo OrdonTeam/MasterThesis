@@ -98,43 +98,45 @@ które wymagają częstych zmian w~tablicy adresów.
 Jest to bardzo dobry przykład zastosowania funkcji generowania indeksów.
 
 \section{Algorytm Sasao}
-Rozwiązanie problemu nadmiernej pojemności pamięci o~$n$ wejściach adresowych przy wykrywaniu $k$ wekrtorów indeksowanych ($k<<2^n$),
+Rozwiązanie problemu niewystarczającej puli adresów pamięci ROM przy $n$ wejściach adresowych i wykrywaniu $k$ wektorów indeksowanych ($k<<2^n$),
 spośród $2^n$ możliwych wektorów wejściowych,
 zaproponował Sasao \cite{sasao-workshop, sasao-recent, sasao-s-min, sasao-synthesis}.
-Istotą tego rozwiązania jest
+Istotą tego rozwiązania jest:
 \begin{enumerate}[label=\alph*)]
 \item Obliczanie minimalnej liczby argumentów potrzebnych do reprezentacji funkcji specyfikowanej $k$ wektorami $n$-bitowymi,
-\item Dekompozycja liniowa funkcji obliczonej w~punkcie a)
+\item Dekompozycja liniowa funkcji obliczonej w~punkcie a).
 \end{enumerate}
 
 Dekompozycja liniowa polega na łączeniu argumentów w~grupy i~podawaniu ich na wejście dwu lub więcej argumentowych bramek XOR.
 Algorytm s-Min, profesora Sasao, znajduje takie grupy.
 Istnieją jednak przykłady,
-dla których wskazanie żadnego takiego zbioru argumentów nie jest możliwe,
-lub występuje ich mało w~stosunku do całkowitej liczby argumentów.
-Z tego powodu częscią algorytmu Sasao są przekształcenia linowe,
+dla których wskazanie jakiegokolwiek takiego zbioru argumentów nie jest możliwe lub występuje ich niewiele w~stosunku do całkowitej liczby argumentów.
+Z~tego powodu częscią algorytmu Sasao są przekształcenia linowe,
 mające na celu zwiększenie dostępnej liczby grup do dekompozycji bramkami XOR.
 Dla funkcji ,,1 z~20'' (tabela numer \ref{fig:1of20}),
-posiadającej $n=20$ argumentów oraz $k=20$ wierszy,
+posiadającej $n=20$~argumentów oraz $k=20$~wierszy,
 algorytm Sasao,
 dla różnych wersji s-Min,
-uzyskuje wynik kompresji argumentów od 14 do 8.
+uzyskuje wynik kompresji argumentów od 14~(2-Min) do 8~(4-Min).
 
 \begin{table}
 \centering
 \includegraphics[width = 13cm]{chapter01/1of20.png}
-\caption{Przygład funkcji 1 z~20 (źródło własne).}
+\caption{Przykład funkcji ,,1 z~20'' (źródło własne).}
 \label{fig:1of20}
 \end{table}
 
 Z punktu widzenie syntezy funkcji generowania indeksów propozycja Sasao jest jak najbardziej prawidłowa.
 Niestety zastosowany w~tej metodzie algorytm redukcji argumentów,
-jak też prcedura obliczania dekompozycji liniowej nie są najskuteczniejsze.
-Nowa metoda powstała na podstawie istniejących algorytmów z~dziedziny syntezy logicznej,
-dla tego samego przykładu osiąga kompresję do 6 argumentów.
-Tym samym pozwala wykorzysywać mniejsze i~tańsze urządzenie do rozwiązywania tych samych problemów,
-albo na obsługę przoblemów, które wcześniej były zbyt zlożone,
-za pomocą do tej pory używanego sprzętu komputerowego.
+jak też procedura obliczania dekompozycji liniowej nie jest najskuteczniejsza.
+Nowa metoda,
+opisana w niniejszej pracy,
+powstała na podstawie istniejących algorytmów z~dziedziny syntezy logicznej,
+osiąga lepszą kompresję argumentów.
+Dla tego samego przykładu ,,1 z~20'' wynosi ona 6.
+Tym samym algorytm pozwala wykorzystywać mniejsze i~tańsze urządzenia do rozwiązywania tech samych problemów
+albo na obsługę problemów, które wcześniej były zbyt zlożone,
+dla do tej pory używanego sprzętu komputerowego.
 
 %Idea stojąca za takim rozwiązaniem bierze się stąd, że do rozróżnienia 1.3 miliona wektorów z~poprzedniego przykładu może wystarczyć jedynie 21 bitów.
 %Gdyby udało się faktycznie zredukować liczbę wejść z~40 do 21 bitów, rozmiar pamięci zmniejszyłby się z~21 terabitów do 42 megabitów.
