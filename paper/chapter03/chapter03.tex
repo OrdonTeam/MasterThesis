@@ -193,12 +193,15 @@ Operacje wykonywane w~czasie tak przeprowadzonej dekompozycji nie mają wpływu 
 Tym samym udowodniliśmy,
 że brak dowolnego wiersza w~macierzy rozróżnialności jest warunkiem wystarczającym do istnienia dekompozycji liniowej.
 
-\begin{figure}[H]
+Przykład dekompozycji wieloma bramkami XOR został przedstawiony na rysunku \ref{fig:multiple}.
+Zaprezentowana tam funkcja $F$ została zdekomponowana do postaci $F(x_1, x_2, x_3, x_4) = H(x_1 \oplus x_2, x_2 \oplus x_3, x_4)$.
+
+\begin{figure}[h]
 \centering
 \includegraphics[width = 13cm]{chapter03/multiple-decomposition.png}
 \caption{Przykład dekompozycji dwoma bramkami XOR (źródło własne).}
 %TODO: CR: powiększyć
-%TODO: CR: odwołanie
+\label{fig:multiple}
 \end{figure}
 
 \section{Dekompozycja wielokrotna i~wielopoziomowa}
