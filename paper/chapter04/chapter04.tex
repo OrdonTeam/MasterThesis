@@ -18,3 +18,41 @@ umożliwiając jej realizację
 (wykonywana w tej samej strukturze programem Vivado)
 w strukturze zajmującej 9 komórek 6-wejściowych oraz po jednej 5, 4 i 2-wejściowej.
 
+\section{Przykład Sasao}
+
+Eksperyment dotyczy generatora indeksów analizowanego w referacie Sasao [8].
+Dla funkcji tej prof. Sasao wyznaczył 5-argumentowy redukt – Tab. Xb.
+Program RedKomp wyznaczył redukt 4-argumentowy Tab. Xc.
+
+Rezultatem tego wyniku jest możliwość zrealizowania tej
+funkcji w strukturze zaproponowanej w referacie Sasao (rys. 1) [9],
+zbudowanej z dwóch pamięci: pamięć głównej i pomocniczej,
+które mają zaledwie 4 wejścia adresowe.
+
+W~strukturze tej blok selekcji zmiennych wybiera spośród wszystkich zmiennych podzbiór $X_1$,
+reprezentujący minimalną liczbę zmiennych realizowanej Funkcji Generowania Indeksów (FGI).
+Liczność reduktu jest r.
+Jest to jednocześnie liczba wejść do pamięci głównej.
+Na wyjściach pamięci głównej pojawia się indeks wektora wejściowego $X = X_1 \cup X_2$.
+Jest on reprezentowany wektorem binarnym o liczbie bitów $p = log_2 (k+1)$.
+Indeks ten jest poprawnym indeksem wektora wejściowego wtedy,
+jeżeli jest to wektor rejestrowany.
+I tylko wtedy indeks ten pojawi sie na wyjściach generatora.
+W przypadku,
+gdy wektor wejściowy nie jest wektorem rejestrowanym na wyjściach generator pojawi się 0.
+Sprawdzenie,
+czy wyjścia pamięci głównej reprezentują poprawny indeks jest realizowane w pamięci pomocniczej i komparatorze.
+W pamięci pomocniczej są zapisane wektory reprezentowane zmiennymi należącymi do zbioru $X_2$.
+Wektory te są podawane na wejście komparatora i porównywane z rzeczywistym wektorem $X_2$ podawanym na drugie wejście komparatora.
+Oczywiście wektor pobrany z pamięci pomocniczej będzie różny od rzeczywistego wektora $X_2$ w przypadku,
+gdy nie należy on do wektora rejestrowanego.
+Wtedy komparator sygnałem wyjściowym 0 zablokuje pojawienie się na wyjściach bramy AND wektora wytworzonego w pamięci głównej.
+
+
+
+
+
+
+
+
+
