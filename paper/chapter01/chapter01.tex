@@ -8,7 +8,7 @@ a małej liczbie danych które trzeba wyselekcjonować.
 Jeżeli na dodatek zbiór danych selekcjonowanych podlega częstym zmianom,
 to strukturę sprzętową takich układów trzeba często zmieniać.
 W związku z tym rozwiązaniem tego problemu są struktury FPGA z wbudowanymi pamięciami ROM.
-Ale kolejną barierą w realizacji tych układów są ograniczenia w nadmiernej pojemności pamięci ROM o dużej liczbie wejść – np. 40,
+Ale kolejną barierą w~realizacji tych układów są ograniczenia w~nadmiernej pojemności pamięci ROM o dużej liczbie wejść – np. 40,
 co byłoby wymagane przy selekcji niewielkiej liczby wektorów (wzorców), np. 10.
 Można jednak przypuszczać, że binarna tablica takich wektorów: 40 kolumn oznaczanych $x_1,…,x_{40}$ i 10 wierszy zawiera kolumny $x_i, x_j, ..., x_k$,
 które ustawione obok siebie reprezentują różne liczby binarne \cite{sasao-workshop}.
@@ -18,40 +18,40 @@ a cały problem jest określany mianem syntezy funkcji generowania indeksów.
 
 Zagadnienie redukcji argumentów jest tożsame z problemem redukcji atrybutów.
 W tym ujęciu zagadnienie to było badane bardzo intensywnie \cite{fast-algorithm, efektywna-procedura, new-reduction, steinbach-posthoff, skowron-rauszer, slezak, novel-method}.
-Jednym z najbardziej znanych algorytmów redukcji atrybutów jest algorytm zastosowany w systemie RSES \cite{rses}.
-Algorytm ten został skutecznie usprawniony w pracy inżynierskiej \cite{efektywna-procedura},
-natomiast w ramach niniejszej pracy stworzono realizację obliczającą jedno rozwiązanie [rozdz. ??].
-Analogiczne zadanie podjęto w zespole prof. Sasao,
-a w referacie \cite{sasao-workshop} znaczenie redukcji zasygnalizowano informacją,
+Jednym z najbardziej znanych algorytmów redukcji atrybutów jest algorytm zastosowany w~systemie RSES \cite{rses}.
+Algorytm ten został skutecznie usprawniony w~pracy inżynierskiej \cite{efektywna-procedura},
+natomiast w~ramach niniejszej pracy stworzono realizację obliczającą jedno rozwiązanie [rozdz. ??].
+Analogiczne zadanie podjęto w~zespole prof. Sasao,
+a w~referacie \cite{sasao-workshop} znaczenie redukcji zasygnalizowano informacją,
 iż opracowanie algorytmu redukcji jest jednym z najważniejszych zadań.
 
-Drugim aktualnym zagadnieniem syntezy logicznej w projektowaniu generatorów adresu jest dekompozycja liniowa.
+Drugim aktualnym zagadnieniem syntezy logicznej w~projektowaniu generatorów adresu jest dekompozycja liniowa.
 Przez dekompozycję liniową rozumie się dekompozycję $F = H(G1, G2, ...,  X)$,
 w której składowymi dekompozycji G są dwuargumentowe funkcje $EXOR$:
 \begin{equation}
 F = H (x_i \oplus x_j, x_k \oplus x_l, ..., X)
 \end{equation}
-Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w generatorach adresów należy algorytm s-min \cite{sasao-recent, sasao-s-min}.
+Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w~generatorach adresów należy algorytm s-min \cite{sasao-recent, sasao-s-min}.
 W artykule \cite{redukcja-kompresja} wykazano, że algorytm s-min jest mało skuteczny i zaproponowano całkowicie inne ujęcie tego zagadnienia.
 W niniejszej pracy metodykę tę przystosowano do heurystycznych obliczeń funkcji generowania indeksów.
 Cechą charakterystyczną tej propozycji jest zastosowanie twierdzenia wiążącego dekompozycję liniową z tzw. zbiorem rozróżnialności [rozdz. ??].
 W rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń praktycznych funkcji indeksowania [rozdz. …].
-Przykłady takich dekompozycji podano w rozdz. ??.
+Przykłady takich dekompozycji podano w~rozdz. ??.
 
-\section{Problem generowania indeksów w technice cyfrowej}
+\section{Problem generowania indeksów w~technice cyfrowej}
 
 Problem generowania indeksów (adresu) dotyczy szczególnie tej podgrupy problemów czasu rzeczywistego,
-w których warunki podejmowania decyzji są zmienne w czasie.
-Sztandarowym zastosowaniem algorytmów generowania indeksów jest obsługa pakietów w routerach IP.
+w których warunki podejmowania decyzji są zmienne w~czasie.
+Sztandarowym zastosowaniem algorytmów generowania indeksów jest obsługa pakietów w~routerach IP.
 Spotykamy się tam z problemami filtrowania ruchu z niepożądanych adresów (firewall) lub wybierania portów wyjściowych (routing).
 W obu przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM
-ze względu na połączenie szybkości działania porównywalnej z rozwiązaniami ASIC oraz elastyczności jak w przypadku rozwiązań programowych.
+ze względu na połączenie szybkości działania porównywalnej z rozwiązaniami ASIC oraz elastyczności jak w~przypadku rozwiązań programowych.
 Wyzwania,
 jakie są stawiane przed algorytmami generowania indeksów,
-są związane częstymi zmianami danych.Indeksy często muszą być generowane w czasie rzeczywistym wraz ze zmianami danych.
+są związane częstymi zmianami danych.Indeksy często muszą być generowane w~czasie rzeczywistym wraz ze zmianami danych.
 Ponadto ze względu na dużą liczbę argumentów,
 które muszą być brane pod uwagę (32 bity - adresy IPv4, 48 bitów - adresy mac),
-wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w strukturach programowalnych.
+wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w~strukturach programowalnych.
 Przykładowo przy funkcji o $n=6$ argumentach wszystkich wektorów binarnych jest 64 ($2^6$).
 Jeżeli spośród wszystkich wektorów poszukiwanych jest $k=6$ konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
 Dla takiego przykładu minimalna potrzebna pamięć to 192 bity.
@@ -80,11 +80,11 @@ Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z $k=1\,
 \subsection{Tablica trasowania}
 W Internecie powszechne jest zagadnienie znajdowania ścieżek dla pakietów IP.
 Każdy węzeł sieci przechowuje informacje dotyczące wyboru trasy dla przychodzących pakietów.
-Dla każdego przechowywanego adresu IP w tablicy adresów znajduje się indeks pamięci, w którym przechowywane są wszystkie szczegóły.
-Liczba adresów w takiej pamięci wynosi nierzadko nawet 40 tysięcy.
+Dla każdego przechowywanego adresu IP w~tablicy adresów znajduje się indeks pamięci, w~którym przechowywane są wszystkie szczegóły.
+Liczba adresów w~takiej pamięci wynosi nierzadko nawet 40 tysięcy.
 Jako że adresy IP są reprezentowane przez 32 bity, tyle właśnie jest argumentów funkcji.
-Dodatkowo w wielu routerach mamy do czynienia z dynamicznymi protokołami trasowania, które wymagają częstych zmian w tablicy adresów.
-Jest to w związku z tym bardzo dobry przykład zastosowania funkcji generowania indeksów.
+Dodatkowo w~wielu routerach mamy do czynienia z dynamicznymi protokołami trasowania, które wymagają częstych zmian w~tablicy adresów.
+Jest to w~związku z tym bardzo dobry przykład zastosowania funkcji generowania indeksów.
 
 
 \section{Algorytm Sasao}
@@ -94,14 +94,14 @@ zaproponował Sasao \cite{sasao-workshop, sasao-recent, sasao-s-min, sasao-synth
 Istotą tego rozwiązania jest
 \begin{enumerate}[label=\alph*)]
 \item Obliczanie minimalnej liczby argumentów potrzebnych do reprezentacji funkcji specyfikowanej $k$ wektorami $n$-bitowymi,
-\item Dekompozycja liniowa funkcji obliczonej w punkcie a)
+\item Dekompozycja liniowa funkcji obliczonej w~punkcie a)
 \end{enumerate}
 
-Dekompozycja liniowa polega na łączeniu argumentów w grupy i podawaniu ich na wejście dwu lub więcej argumentowych bramek XOR.
+Dekompozycja liniowa polega na łączeniu argumentów w~grupy i podawaniu ich na wejście dwu lub więcej argumentowych bramek XOR.
 Algorytm s-Min, profesora Sasao, znajduje takie grupy.
 Istnieją jednak przykłady,
 dla których wskazanie żadnego takiego zbioru argumentów nie jest możliwe,
-lub występuje ich mało w stosunku do całkowitej liczby argumentów.
+lub występuje ich mało w~stosunku do całkowitej liczby argumentów.
 Z tego powodu częscią algorytmu Sasao są przekształcenia linowe,
 mające na celu zwiększenie dostępnej liczby grup do dekompozycji bramkami XOR.
 Dla funkcji ,,1 z 20'' (tabela numer \ref{fig:1of20}),
@@ -118,7 +118,7 @@ uzyskuje wynik kompresji argumentów od 14 do 8.
 \end{table}
 
 Z punktu widzenie syntezy funkcji generowania indeksów propozycja Sasao jest jak najbardziej prawidłowa.
-Niestety zastosowany w tej metodzie algorytm redukcji argumentów,
+Niestety zastosowany w~tej metodzie algorytm redukcji argumentów,
 jak też prcedura obliczania dekompozycji liniowej nie są najskuteczniejsze.
 Nowa metoda powstała na podstawie istniejących algorytmów z dziedziny syntezy logicznej,
 dla tego samego przykładu osiąga kompresję do 6 argumentów.
@@ -134,15 +134,15 @@ za pomocą do tej pory używanego sprzętu komputerowego.
 %\end{multline}
 %Zmniejszenie rozmiaru pamięci głównej nie pozwalałoby na jednoznaczne określenie czy dany wektor jest wektorem poszukiwanym.
 %Wskazywałoby jedynie numer jedynego wiersza z poszukiwanych, który ma szansę być identyczny z wektorem sprawdzanym.
-%Potrzebne jest zatem przechowanie wszystkich kompletnych wektorów poszukiwanych w drugiej pamięci.
+%Potrzebne jest zatem przechowanie wszystkich kompletnych wektorów poszukiwanych w~drugiej pamięci.
 %W naszym przykładzie wektorów jest 1,3 miliona i każdy ma 40 bitów.
-%Rozmiar dodatkowej pamięci wyniósłby w takim razie 50 megabitów.
+%Rozmiar dodatkowej pamięci wyniósłby w~takim razie 50 megabitów.
 
 
 %W zaproponowanym rozwiązaniu częścią, która ma największe znaczenie na rozmiar niezbędnej pamięci,
 %jest wyznaczenie funkcji pozwalającej na jak największe zmniejszenie liczby wejść do głównej pamięci.
-%\textbf{(Wymaga uzupełnienia z artykułem)} W pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z \textbf{N do X}.
-%Sposobem zaproponowanym w pracy uzyskujemy zmniejszenie z \textbf{N do Y}.
+%\textbf{(Wymaga uzupełnienia z artykułem)} W~pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z \textbf{N do X}.
+%Sposobem zaproponowanym w~pracy uzyskujemy zmniejszenie z \textbf{N do Y}.
 %Warto zauważyć, że zmniejszenie o jeden argument powoduje dwukrotne zmniejszenie wymaganej pamięci.
 
 
@@ -155,7 +155,7 @@ za pomocą do tej pory używanego sprzętu komputerowego.
 %przeprowadzone przed przystąpieniem do właściwych badań,
 %potwierdziły konkurencyjność algorytmu opartego na połączeniu redukcji argumentów oraz dekompozycji liniowej.
 %W porównaniu z aktualnymi artykułami Profesora Sasao,
-%nowa metoda pozwala na zmniejszenie zużycia zasobów potrzebnych do realizacji funkcji w strukturach programowalnych.
+%nowa metoda pozwala na zmniejszenie zużycia zasobów potrzebnych do realizacji funkcji w~strukturach programowalnych.
 %Tym samym pozwala wykorzysywać mniejsze i tańsze urządzenie do rozwiązywania tych samych problemów,
 %albo na obsługę przoblemów, które wcześniej były zbyt zlożone,
 %za pomocą do tej pory używanego sprzętu komputerowego.
