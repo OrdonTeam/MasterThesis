@@ -3,7 +3,7 @@
 Algorytm generowania indeksów zaproponowany przez profesora Sasao,
 pozwala na zastosowanie pamięci o~mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
 Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu.
-W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i~kompresję argumentów.
+W~tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i~kompresję argumentów.
 
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
 poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
@@ -16,11 +16,11 @@ pozwalających na znalezienie wszystkich minimalnych rozwiązań,
 jak i~heurystycznych,
 charakteryzujących się szybszym działaniem.
 Sama redukcja nie zawsze przynosi spektakularne rezultaty.
-W skrajnych przypadkach funkcji,
-w których każdy argument dostarcza niewielkiej,
+W~skrajnych przypadkach funkcji,
+w~których każdy argument dostarcza niewielkiej,
 ale niezbędnej porcji informacji,
 redukcja może nie przynieść żadnego efektu.
-W takich przypadkach niezbędna jest,
+W~takich przypadkach niezbędna jest,
 opisana w~dalszej części pracy,
 kompresja argumentów,
 świetnie sprawdzająca się właśnie w~takich przypadkach.
@@ -29,8 +29,8 @@ kompresja argumentów,
 
 Do problemu redukcji argumentów można podejść w~sposób intuicyjny.
 Można próbować po kolei usuwać argumenty i~weryfikować spójność danych.
-W przypadku utraty spójności taki argument musiałby się znaleźć w~końcowym rozwiązaniu.
-W przeciwnym przypadku należałoby go usunąć i~kolejne weryfikacje przeprowadzać z~jego wyłączeniem.
+W~przypadku utraty spójności taki argument musiałby się znaleźć w~końcowym rozwiązaniu.
+W~przeciwnym przypadku należałoby go usunąć i~kolejne weryfikacje przeprowadzać z~jego wyłączeniem.
 Pojedyncza weryfikacja wymaga porównania,
 każdych dwóch wierszy o~różnej wartości funkcji.
 Jeżeli funkcja ma $n$ argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $n$.
@@ -41,7 +41,7 @@ Taką weryfikację trzeba przeprowadzić dla każdego z~$n$ argumentów co daje 
 Problem takiego podejścia,
 poza złożonością,
 leży dodatkowo w~jakości uzyskiwanego rozwiązania.
-W procesie redukcji argumentów część z~nich może być ważniejsza
+W~procesie redukcji argumentów część z~nich może być ważniejsza
 i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
 Innymi słowami wynik takiej redukcji,
 mimo że jest prawidłowy,
@@ -97,7 +97,7 @@ Najprostszy algorytm znajdujący rozwiązanie sprowadzałby się do następując
 Nie uwzględnia on jednak rozróżnień,
 które są dostarczane przez niewielką liczbę argumentów.
 Najłatwiej zauważyć to na przykładzie argumentów niezbędnych.
-W ich przypadku istnieje taki wiersz,
+W~ich przypadku istnieje taki wiersz,
 który zawiera wyłącznie jedną jedynkę.
 Oznacza to,
 że argument odpowiadający tej jedynce jest niezbędny do uzyskania minimalnego pokrycia kolumnowego.
@@ -112,7 +112,7 @@ Argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy. (Źr�
 \end{figure}
 
 Aby uwzględnić ten problem,
-w ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy.
+w~ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy.
 Najpierw znajdowany jest wiersz o~najmniejszej liczbie jedynek,
 następnie wybierana jest kolumna,
 która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu.
@@ -163,7 +163,7 @@ Warto pamiętać,
 że każdy kolejny krok jest wykonywany dla pomniejszonej liczby wierszy,
 ale na potrzeby szacowania złożoności przyjmijmy skrajnie niekorzystny przykład,
 gdzie każdy argument usuwa tylko po jednym wierszu.
-W takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie $n^2 \cdot m^2$.
+W~takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie $n^2 \cdot m^2$.
 Ostatni krok ma taką złożoność jak poprzednio liczona złożoność weryfikacji.
 Ponownie warto zauważyć,
 że obliczenia przeprowadzane są już na redukcie,
@@ -176,7 +176,7 @@ Wynika stąd,
 
 \section{Problem macierzy rozróżnialności}
 
-W czasie przeprowadzania badań otrzymana złożoność nie stanowiła problemu.
+W~czasie przeprowadzania badań otrzymana złożoność nie stanowiła problemu.
 Warto jednak zauważyć,
 że rozmiar tablicy porównań dla bazy sygnatur wirusów o~1,3 mln wierszy,
 byłby zbyt duży dla większości komputerów.
@@ -188,13 +188,13 @@ Powstały z~tego powodu algorytmy niewymagające generowania tablicy porównań.
 Jednym z~nich jest algorytm Marcina Korzenia i~Szymona Jaroszewicza dokładnie przedstawiony w~artykule \cite{without-matrix}.
 
 Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w~kolumnach tablicy rozróżnialności z~praw kombinatoryki.
-W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
+W~artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
 jednak w~ramach tej pracy,
 istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i~jedynki wśród wartości argumentów.
 Jedynka w~kolumnie macierzy rozróżnialności powstaje,
 kiedy dwa wiersze o~różnej wartości funkcji mają różną wartość argumentu.
 Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i~kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
-W przypadku ogólnym poruszanym w~artykule jest jednak dużo łatwiej policzyć,
+W~przypadku ogólnym poruszanym w~artykule jest jednak dużo łatwiej policzyć,
 kiedy jedynka nie występuje w~tablicy i~odjąć tę liczbę od liczby wierszy w~macierzy.
 Co więcej,
 ponieważ liczba wierszy jest identyczna dla każdej kolumny,
@@ -224,7 +224,7 @@ wymagane byłoby użycie tego lub podobnego algorytmu o~mniejszej złożoności 
 
 Żadne z~przedstawionych do tej pory rozwiązań nie było systematyczne.
 Wszystko ze względu na zdecydowanie większą złożoność obliczeniową takich algorytmów.
-W przypadku problemu generowania indeksów dane,
+W~przypadku problemu generowania indeksów dane,
 dla których przeprowadza się obliczenia,
 zmieniają się w~czasie,
 dlatego czas tych obliczeń jest bardzo istotny.

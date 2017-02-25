@@ -1,13 +1,13 @@
 \chapter{Wstęp}
 
-W dzisiejszych czasach gromadzimy ogromne ilości danych.
-W związku obserwujemy rozwój dziedziny eksploracji i~analizy danych
+W~dzisiejszych czasach gromadzimy ogromne ilości danych.
+W~związku obserwujemy rozwój dziedziny eksploracji i~analizy danych
 Pewna część tych problemów jest ściśle związana z~koniecznością precyzyjnego wyodrębniania właściwych danych z~ogromnej masy danych niepotrzebnych
 Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektorami binarnymi o~stosunkowo dużej liczbie bitów,
 a małej liczbie danych które trzeba wyselekcjonować.
 Jeżeli na dodatek zbiór danych selekcjonowanych podlega częstym zmianom,
 to strukturę sprzętową takich układów trzeba często zmieniać.
-W związku z~tym rozwiązaniem tego problemu są struktury FPGA z~wbudowanymi pamięciami ROM.
+W~związku z~tym rozwiązaniem tego problemu są struktury FPGA z~wbudowanymi pamięciami ROM.
 Ale kolejną barierą w~realizacji tych układów są ograniczenia w~nadmiernej pojemności pamięci ROM o~dużej liczbie wejść – np. 40,
 co byłoby wymagane przy selekcji niewielkiej liczby wektorów (wzorców), np. 10.
 Można jednak przypuszczać, że binarna tablica takich wektorów: 40 kolumn oznaczanych $x_1,…,x_{40}$ i~10 wierszy zawiera kolumny $x_i, x_j, ..., x_k$,
@@ -17,7 +17,7 @@ Zatem jedną z~metod rozwiązania zadania selekcji jest redukcja argumentów,
 a cały problem jest określany mianem syntezy funkcji generowania indeksów.
 
 Zagadnienie redukcji argumentów jest tożsame z~problemem redukcji atrybutów.
-W tym ujęciu zagadnienie to było badane bardzo intensywnie \cite{fast-algorithm, efektywna-procedura, new-reduction, steinbach-posthoff, skowron-rauszer, slezak, novel-method}.
+W~tym ujęciu zagadnienie to było badane bardzo intensywnie \cite{fast-algorithm, efektywna-procedura, new-reduction, steinbach-posthoff, skowron-rauszer, slezak, novel-method}.
 Jednym z~najbardziej znanych algorytmów redukcji atrybutów jest algorytm zastosowany w~systemie RSES \cite{rses}.
 Algorytm ten został skutecznie usprawniony w~pracy inżynierskiej \cite{efektywna-procedura},
 natomiast w~ramach niniejszej pracy stworzono realizację obliczającą jedno rozwiązanie [rozdz. ??].
@@ -27,24 +27,24 @@ iż opracowanie algorytmu redukcji jest jednym z~najważniejszych zadań.
 
 Drugim aktualnym zagadnieniem syntezy logicznej w~projektowaniu generatorów adresu jest dekompozycja liniowa.
 Przez dekompozycję liniową rozumie się dekompozycję $F = H(G1, G2, ...,  X)$,
-w której składowymi dekompozycji G są dwuargumentowe funkcje $EXOR$:
+w~której składowymi dekompozycji G są dwuargumentowe funkcje $EXOR$:
 \begin{equation}
 F = H (x_i \oplus x_j, x_k \oplus x_l, ..., X)
 \end{equation}
 Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w~generatorach adresów należy algorytm s-min \cite{sasao-recent, sasao-s-min}.
-W artykule \cite{redukcja-kompresja} wykazano, że algorytm s-min jest mało skuteczny i~zaproponowano całkowicie inne ujęcie tego zagadnienia.
-W niniejszej pracy metodykę tę przystosowano do heurystycznych obliczeń funkcji generowania indeksów.
+W~artykule \cite{redukcja-kompresja} wykazano, że algorytm s-min jest mało skuteczny i~zaproponowano całkowicie inne ujęcie tego zagadnienia.
+W~niniejszej pracy metodykę tę przystosowano do heurystycznych obliczeń funkcji generowania indeksów.
 Cechą charakterystyczną tej propozycji jest zastosowanie twierdzenia wiążącego dekompozycję liniową z~tzw. zbiorem rozróżnialności [rozdz. ??].
-W rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń praktycznych funkcji indeksowania [rozdz. …].
+W~rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń praktycznych funkcji indeksowania [rozdz. …].
 Przykłady takich dekompozycji podano w~rozdz. ??.
 
 \section{Problem generowania indeksów w~technice cyfrowej}
 
 Problem generowania indeksów (adresu) dotyczy szczególnie tej podgrupy problemów czasu rzeczywistego,
-w których warunki podejmowania decyzji są zmienne w~czasie.
+w~których warunki podejmowania decyzji są zmienne w~czasie.
 Sztandarowym zastosowaniem algorytmów generowania indeksów jest obsługa pakietów w~routerach IP.
 Spotykamy się tam z~problemami filtrowania ruchu z~niepożądanych adresów (firewall) lub wybierania portów wyjściowych (routing).
-W obu przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM
+W~obu przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM
 ze względu na połączenie szybkości działania porównywalnej z~rozwiązaniami ASIC oraz elastyczności jak w~przypadku rozwiązań programowych.
 Wyzwania,
 jakie są stawiane przed algorytmami generowania indeksów,
@@ -78,7 +78,7 @@ Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,
 - Konwersja kodów
 
 \subsection{Tablica trasowania}
-W Internecie powszechne jest zagadnienie znajdowania ścieżek dla pakietów IP.
+W~Internecie powszechne jest zagadnienie znajdowania ścieżek dla pakietów IP.
 Każdy węzeł sieci przechowuje informacje dotyczące wyboru trasy dla przychodzących pakietów.
 Dla każdego przechowywanego adresu IP w~tablicy adresów znajduje się indeks pamięci, w~którym przechowywane są wszystkie szczegóły.
 Liczba adresów w~takiej pamięci wynosi nierzadko nawet 40 tysięcy.
@@ -135,11 +135,11 @@ za pomocą do tej pory używanego sprzętu komputerowego.
 %Zmniejszenie rozmiaru pamięci głównej nie pozwalałoby na jednoznaczne określenie czy dany wektor jest wektorem poszukiwanym.
 %Wskazywałoby jedynie numer jedynego wiersza z~poszukiwanych, który ma szansę być identyczny z~wektorem sprawdzanym.
 %Potrzebne jest zatem przechowanie wszystkich kompletnych wektorów poszukiwanych w~drugiej pamięci.
-%W naszym przykładzie wektorów jest 1,3 miliona i~każdy ma 40 bitów.
+%W~naszym przykładzie wektorów jest 1,3 miliona i~każdy ma 40 bitów.
 %Rozmiar dodatkowej pamięci wyniósłby w~takim razie 50 megabitów.
 
 
-%W zaproponowanym rozwiązaniu częścią, która ma największe znaczenie na rozmiar niezbędnej pamięci,
+%W~zaproponowanym rozwiązaniu częścią, która ma największe znaczenie na rozmiar niezbędnej pamięci,
 %jest wyznaczenie funkcji pozwalającej na jak największe zmniejszenie liczby wejść do głównej pamięci.
 %\textbf{(Wymaga uzupełnienia z~artykułem)} W~pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z~\textbf{N do X}.
 %Sposobem zaproponowanym w~pracy uzyskujemy zmniejszenie z~\textbf{N do Y}.
