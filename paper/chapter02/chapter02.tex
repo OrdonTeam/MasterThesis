@@ -121,8 +121,9 @@ która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu ($x_{i_{w_j}} = 1$
 Takie rozwiązanie wyboru kolumn często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
 Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe zawiera również nadmiarowe argumenty.
 Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
+Algorytm zapisany w pseudokodzie został przedstawiony poniżej (algorytm \ref{alg:reduction}).
 
-\begin{algorithm}[H]
+\begin{algorithm}[h]
     \KwIn{$F$}
     \KwOut{$R$}
     $MR=\emptyset$\;
@@ -143,6 +144,8 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
             $R = R \backslash \{ x_i \}$\;
         }
     }
+    \caption{Algorytm redukcji argumentów}
+    \label{alg:reduction}
 \end{algorithm}
 
 Dla takiej samej funkcji o~$n$ argumentach i~$m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $O(n \cdot m^2)$.
