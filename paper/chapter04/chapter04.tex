@@ -21,15 +21,16 @@ w strukturze zajmującej 9 komórek 6-wejściowych oraz po jednej 5, 4 i 2-wejś
 \section{Przykład Sasao}
 
 Eksperyment opisany w tym rozdziale dotyczy generatora indeksów analizowanego w referacie Sasao [8].
-Dla funkcji przedstawionej w tableli ??a profesor Sasao wyznaczył 5-argumentowy redukt – tabela ??b.
+Dla funkcji przedstawionej w tableli \ref{sasao-a} profesor Sasao wyznaczył 5-argumentowy redukt – tabela \ref{sasao-b}.
 Dzięki zastosowaniu program RedKomp udało się ten wynik poprawić uzyskując redukt 4-argumentowy,
-przedstawiony w tabeli ??c.
+przedstawiony w tabeli \ref{sasao-c}.
 
 \begin{table}[t]
 \caption{Przykład funkcji generatora indeksów Sasao [8]}
+\begin{subtable}{.64\linewidth}
+\caption{Pełna wersja}
+\label{sasao-a}
 \begin{tabular}{|r@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c|l|}
-%\caption{Pełna wersja}
-%\label{sasao-a}
 \hline
 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0   &   1 \\
 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1   &   2 \\
@@ -43,9 +44,11 @@ przedstawiony w tabeli ??c.
 1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1   &   10 \\
 \hline
 \end{tabular}
+\end{subtable}
+\begin{subtable}{.12\linewidth}
+\caption{Sasao}
+\label{sasao-b}
 \begin{tabular}{|r@{}c@{}c@{}c@{}l|}
-%\caption{Redukt Sasao}
-%\label{sasao-b}
 \hline
 0 & 1 & 1 & 0 & 0 \\
 0 & 1 & 0 & 1 & 1 \\
@@ -59,9 +62,11 @@ przedstawiony w tabeli ??c.
 1 & 0 & 1 & 0 & 1 \\
 \hline
 \end{tabular}
+\end{subtable}
+\begin{subtable}{.16\linewidth}
+\caption{RedKomp}
+\label{sasao-c}
 \begin{tabular}{|r@{}c@{}c@{}l|}
-%\caption{Redukt RedKomp}
-%\label{sasao-c}
 \hline
 0 & 1 & 1 & 0 \\
 0 & 1 & 0 & 1 \\
@@ -75,6 +80,7 @@ przedstawiony w tabeli ??c.
 1 & 0 & 1 & 0 \\
 \hline
 \end{tabular}
+\end{subtable}
 \end{table}
 
 Rezultatem tego wyniku jest możliwość zrealizowania tej funkcji w strukturze zaproponowanej w referacie Sasao (rysunek ??saosao) [9],
