@@ -44,21 +44,23 @@ Przykłady takich dekompozycji podano w~rozdziale \ref{chapter:research}.
 
 \section{Problem generowania indeksów w~technice cyfrowej}
 
-Problem generowania indeksów (adresu) dotyczy szczególnie tej podgrupy problemów czasu rzeczywistego,
+Problem generowania indeksów (adresów) dotyczy szczególnie takiej podgrupy zagadnień czasu rzeczywistego,
 w~których warunki podejmowania decyzji są zmienne w~czasie.
 Sztandarowym zastosowaniem algorytmów generowania indeksów jest obsługa pakietów w~routerach IP.
 Spotykamy się tam z~problemami filtrowania ruchu z~niepożądanych adresów (firewall) lub wybierania portów wyjściowych (routing).
-W~obu przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM
-ze względu na połączenie szybkości działania porównywalnej z~rozwiązaniami ASIC oraz elastyczności jak w~przypadku rozwiązań programowych.
+W~obu tych przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM
+ze względu na połączenie szybkości działania porównywalnej z~rozwiązaniami ASIC oraz elastyczności,
+jak w~przypadku rozwiązań programowych.
 Wyzwania,
 jakie są stawiane przed algorytmami generowania indeksów,
-są związane częstymi zmianami danych.Indeksy często muszą być generowane w~czasie rzeczywistym wraz ze zmianami danych.
+są związane z częstymi zmianami danych.
+Indeksy często muszą być generowane w~czasie rzeczywistym wraz z aktualizacją danych.
 Ponadto ze względu na dużą liczbę argumentów,
-które muszą być brane pod uwagę (32 bity - adresy IPv4, 48 bitów - adresy mac),
+które muszą być brane pod uwagę (32 bity - adresy IPv4, 48 bitów - adresy MAC),
 wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w~strukturach programowalnych.
-Przykładowo przy funkcji o~$n=6$ argumentach wszystkich wektorów binarnych jest 64 ($2^6$).
+Przykładowo przy funkcji o~$n=6$ argumentach wszystkich wektorów binarnych jest $n^n = 2^6 = 64$.
 Jeżeli spośród wszystkich wektorów poszukiwanych jest $k=6$ konkretnych, wtedy dla każdego z~64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
-Dla takiego przykładu minimalna potrzebna pamięć to 192 bity.
+Dla takiego przykładu minimalna potrzebna pamięć to $64 \cdot 3 = 192$ bity.
 Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,300\,000$ poszukiwanych wektorów o~$n=40$ argumentach, taka pamięć miałaby rozmiar 21 terabitów.
 \begin{multline} \\
 2^n \cdot \log_2 k = \\
@@ -69,7 +71,8 @@ Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,
 =21 \cdot 2^{10} G = \\
 =21 [Tbit] \\
 \end{multline}
-
+%TODO: CR: Bibbliografia??
+%TODO: CR: Zaznaczyć że opisany w zastosowaniach
 
 \section{Zastosowania}
 %- Tablica trasowania
