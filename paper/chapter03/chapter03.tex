@@ -2,29 +2,29 @@
 
 Redukcja argumentów umożliwia zmniejszenie liczby wejść potrzebnych do realizacji funkcji w~układzie kombinacyjnym.
 Jednak wyniki uzyskane w~czasie takiej optymalizacji nie są ostateczne.
-Dalsze zmniejszanie rozmiaru pamięci niezbędnej w~procesie generowania indeksów (zgodnie z algorytmem profesora Sasao) można osiągnąć stosując dekompozycję liniową.
+Dalsze zmniejszanie rozmiaru pamięci niezbędnej w~procesie generowania indeksów (zgodnie z~algorytmem profesora Sasao) można osiągnąć stosując dekompozycję liniową.
 
 Dekompozycja liniowa polega na  łączeniu zmiennych w~pary i~wprowadzaniu ich za pośrednictwem bramek XOR do głównego układu realizującego detekcję i~klasyfikację (czyli indeksowanie) danych.
 Jest to istotne,
 gdyż prowadzi do dalszego redukowania liczby wejść w~generatorach indeksu.
-I pewnie z tych powodów dekompozycja liniowa jest intensywnie wykorzystywana w~syntezie funkcji generowania indeksów [12-15].
+I pewnie z~tych powodów dekompozycja liniowa jest intensywnie wykorzystywana w~syntezie funkcji generowania indeksów [12-15].
 
 Dobrym przykładem gdzie wyraźnie widać zastosowania dekompozycji liniowej jest funkcja przedstawiona na rysunku numer \ref{fig:required-decomposition}.
 Została ona celowo spreparowana w~taki sposób,
 że wszystkie argumenty są niezbędne.
 W takim wypadku redukcja argumentów nie przynosi żadnych rezultatów.
 Dodatkowo łatwo zauważyć,
-że pierwszy i~drugi argument można z powodzeniem zastąpić innym,
+że pierwszy i~drugi argument można z~powodzeniem zastąpić innym,
 będącym wynikiem zwykłej funkcji XOR tych argumentów.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width = 13cm]{chapter03/required-decomposition.png}
-\caption{Przykład obrazujący zlety dekompozycji funkcji z argumentami niezbędnymi (Źródło własne).}
+\caption{Przykład obrazujący zlety dekompozycji funkcji z~argumentami niezbędnymi (Źródło własne).}
 \label{fig:required-decomposition}
 \end{figure}
 
-Zmniejszenie rozmiaru pamięci z trzech argumentów do dwóch nie jest zbyt spektakularne i~nie miałoby znaczenia w~praktycznym zastosowaniu.
+Zmniejszenie rozmiaru pamięci z~trzech argumentów do dwóch nie jest zbyt spektakularne i~nie miałoby znaczenia w~praktycznym zastosowaniu.
 Jednak dla innego badanego przypadku nieredukowalnej funkcji 41 argumentowej,
 dekompozycja proponowaną w~pracy metodą powoduje zmniejszenie liczby argumentów do 7.
 
@@ -37,7 +37,7 @@ Można go stosować dla wszystkich funkcji boolowskich o~dowolnych wyjściach.
 \section{Macierz rozróżnialności}
 
 Pierwszym krokiem w~dekompozycji liniowej jest wygenerowanie opisanej wcześniej macierzy rozróżnialności.
-Może to oczywiście wiązać się z podobnymi problemami związanymi ze złożonością pamięciową jak w~czasie redukcji.
+Może to oczywiście wiązać się z~podobnymi problemami związanymi ze złożonością pamięciową jak w~czasie redukcji.
 Tak będzie jednak szczególnie przy problemie generowania indeksów.
 Charakteryzuje się on tym,
 że wszystkie wiersze w~funkcji mają różne wartości.
@@ -46,8 +46,8 @@ Z tego powodu liczba wierszy po redukcji argumentów nie zmaleje.
 Przy zastosowaniu algorytmu w~innych problemach,
 gdzie różnych wartości funkcji jest stosunkowo niewiele,
 na etapie dekompozycji funkcja zredukowana często nie będzie zawierała wszystkich wierszy.
-Część z nich po usunięciu redundantnych argumentów będzie zduplikowana.
-Dla przykładu badanej funkcji [P5.PLA] na etapie redukcji argumentów nastąpiła redukcja wierszy z 2048 do 128.
+Część z~nich po usunięciu redundantnych argumentów będzie zduplikowana.
+Dla przykładu badanej funkcji [P5.PLA] na etapie redukcji argumentów nastąpiła redukcja wierszy z~2048 do 128.
 Na takim przykładzie łatwo oszacować,
 że tablica rozróżnialności wygenerowana na potrzeby dekompozycji będzie miała 250 razy mniejszy rozmiar.
 
@@ -89,7 +89,7 @@ co zostało zobrazowane na rysunku numer \ref{fig:xor}.
 \begin{figure}[H]
 \centering
 \includegraphics[width = 13cm]{chapter03/xor.png}
-\caption{Przykład obrazujący przemienność funkcji xor z generowaniem macierzy rozróżnialności (Źródło własne).}
+\caption{Przykład obrazujący przemienność funkcji xor z~generowaniem macierzy rozróżnialności (Źródło własne).}
 \label{fig:xor}
 \end{figure}
 
@@ -97,7 +97,7 @@ Wartości w~pierwszym wierszu macierzy rozróżnialności można wyrazić w~nast
 \begin{equation}
 x_{1_{w_1}} \oplus x_{1_{w_2}} \quad oraz \quad x_{2_{w_1}} \oplus x_{2_{w_2}}.
 \end{equation}
-Operacje wykonane na argumentach w~czasie dekompozycji dla dwóch pierwszych wierszy można z kolei przedstawić jako:
+Operacje wykonane na argumentach w~czasie dekompozycji dla dwóch pierwszych wierszy można z~kolei przedstawić jako:
 \begin{equation}
 x_{1_{w_1}} \oplus x_{2_{w_1}} \quad oraz \quad x_{1_{w_2}} \oplus x_{2_{w_2}}.
 \end{equation}
@@ -120,7 +120,7 @@ które zawierają dwa zera lub dwie jedynki dają wiersz samych zer.
 W pierwszym wypadku wiersz już wcześniej zawierał same zera.
 Czyli już wcześniej dane były sprzeczne.
 W drugim wypadku,
-kiedy któryś z wierszy zawiera jedynie dwie jedynki dla dekomponowanych argumentów,
+kiedy któryś z~wierszy zawiera jedynie dwie jedynki dla dekomponowanych argumentów,
 następuje faktyczna utrata informacji.
 Brak takiego wiersza jest w~takim razie warunkiem wystarczającym do istnienia dekompozycji pojedynczą bramką XOR.
 
@@ -132,21 +132,21 @@ Brak takiego wiersza jest w~takim razie warunkiem wystarczającym do istnienia d
 
 \section{Dekompozycja wieloma bramki XOR}
 
-Na podobnej zasadzie możliwa jest również dekompozycja z użyciem wielu bramek XOR.
+Na podobnej zasadzie możliwa jest również dekompozycja z~użyciem wielu bramek XOR.
 W przypadku,
 jeżeli wszystkie pary jedynek występują w~macierzy rozróżnialności,
 możemy przystąpić do szukania brakujących trójek.
 Każdą taką trójkę argumentów,
 dla której brakuje trzech jedynek pośród wierszy tablicy porównań,
-można z użyciem dwóch bramek XOR,
+można z~użyciem dwóch bramek XOR,
 skompresować do dwóch argumentów.
 Nowe argumenty przyjmują wtedy postać np. $x_1 \oplus x_2$ oraz $x_2 \oplus x_3$.
 Z tym rozumowaniem można postępować dalej.
 Brak jakiegokolwiek wiersza w~macierzy rozróżnialność można zamienić przy użyciu pewnej liczby bramek XOR na zysk jednego argumentu w~końcowej funkcji.
-W każdym z tych przypadków operacja XOR wykonywana jest na kolejnych parach argumentów,
-czyli pierwszy z drugim,
-drugi z trzecim,
-trzeci z czwartym itd.
+W każdym z~tych przypadków operacja XOR wykonywana jest na kolejnych parach argumentów,
+czyli pierwszy z~drugim,
+drugi z~trzecim,
+trzeci z~czwartym itd.
 
 Dowód,
 że brak dowolnego wiersza w~macierzy rozróżnialności jest warunkiem wystarczającym do istnienia dekompozycji,
@@ -158,7 +158,7 @@ który w~obrębie modyfikowanych argumentów zawierał co najmniej jedną jedynk
 lecz po dekompozycji zostały w~nim same zera.
 
 Dowód przez zaprzeczenie zacznijmy od pierwszej pary argumentów.
-Aby w~wyniku operacji XOR argumentów pierwszego z drugim powstało 0,
+Aby w~wyniku operacji XOR argumentów pierwszego z~drugim powstało 0,
 w pierwotnej macierzy porównań musiały znajdować się albo dwa zera,
 albo dwie jedynki.
 
@@ -169,7 +169,7 @@ ponieważ argument drugi był zerem,
 również trzeci argument musiał być zerem.
 Przechodząc w~ten sposób po wszystkich parach argumentów biorących udział w~dekompozycji,
 okazuje się,
-że wszystkie z nich musiały być zerami.
+że wszystkie z~nich musiały być zerami.
 Z tego wynika,
 że w~tym przypadku nie została naruszona spójność danych.
 
@@ -211,7 +211,7 @@ Wartość na wyjściu takiej kaskadowej bramki przyjmuje wtedy postać:
 (x_1 \oplus x_2) \oplus x_3
 \end{equation}
 Co jest równoznaczne użyciu bramki XOR o~trzech wejściach.
-Z tego powodu schemat z rysunku numer \ref{fig:multiple-levels} można uprościć do postaci przedstawionej na rysunku numer \ref{fig:multiple-entries}.
+Z tego powodu schemat z~rysunku numer \ref{fig:multiple-levels} można uprościć do postaci przedstawionej na rysunku numer \ref{fig:multiple-entries}.
 
 \begin{figure}[H]
 \centering

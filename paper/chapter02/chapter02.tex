@@ -8,7 +8,7 @@ W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redu
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
 poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
 Po wykonaniu takiego procesu,
-usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
+usunięcie dowolnego argumentu z~funkcji powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
 Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem.
 Istnieje wiele sposobów redukcji argumentów,
 zarówno systematycznych,
@@ -30,18 +30,18 @@ kompresja argumentów,
 Do problemu redukcji argumentów można podejść w~sposób intuicyjny.
 Można próbować po kolei usuwać argumenty i~weryfikować spójność danych.
 W przypadku utraty spójności taki argument musiałby się znaleźć w~końcowym rozwiązaniu.
-W przeciwnym przypadku należałoby go usunąć i~kolejne weryfikacje przeprowadzać z jego wyłączeniem.
+W przeciwnym przypadku należałoby go usunąć i~kolejne weryfikacje przeprowadzać z~jego wyłączeniem.
 Pojedyncza weryfikacja wymaga porównania,
 każdych dwóch wierszy o~różnej wartości funkcji.
 Jeżeli funkcja ma $n$ argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $n$.
 Par wierszy do porównania jest w~zależności od rozkładu wartości funkcji od $m$ do $m^2$.
 Zatem złożoność obliczeniowa pojedynczej weryfikacji to $n \cdot m^2$.
-Taką weryfikację trzeba przeprowadzić dla każdego z $n$ argumentów co daje końcową złożoność $n^2 \cdot m^2$.
+Taką weryfikację trzeba przeprowadzić dla każdego z~$n$ argumentów co daje końcową złożoność $n^2 \cdot m^2$.
 
 Problem takiego podejścia,
 poza złożonością,
 leży dodatkowo w~jakości uzyskiwanego rozwiązania.
-W procesie redukcji argumentów część z nich może być ważniejsza
+W procesie redukcji argumentów część z~nich może być ważniejsza
 i tym samym pozostawienie takiego argumentu może pozwolić na usunięcie dwóch (lub nawet więcej) innych.
 Innymi słowami wynik takiej redukcji,
 mimo że jest prawidłowy,
@@ -51,7 +51,7 @@ często jest nieoptymalny.
 
 Innym sposobem wyboru argumentów w~czasie redukcji jest dobieranie argumentów,
 aż do zapewnienia pełnej rozróżnialności.
-Zaczynamy z jednym argumentem i~kolejno wybieramy kolejne,
+Zaczynamy z~jednym argumentem i~kolejno wybieramy kolejne,
 które znajdą się w~końcowym rozwiązaniu.
 Jeżeli przy takim podejściu dodatkowo będziemy w~stanie ocenić,
 które argumenty są bardziej wartościowe,
@@ -67,13 +67,13 @@ który dostarcza jednego rozróżnienia,
 będzie wartościowy,
 jeżeli żaden inny go nie dostarcza.
 
-Informacje o~tych zależnościach uzyskuje się z macierz rozróżnialności, nazywana również tablicą porównań,
+Informacje o~tych zależnościach uzyskuje się z~macierz rozróżnialności, nazywana również tablicą porównań,
 która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji.
 Jedynki w~takiej macierzy obrazują,
 które argumenty dostarczają jakich rozróżnień.
-Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z rachunkiem kostek boolowskich.
-Takie wiersze nie są istotne z punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
-ale ich usunięcie wymaga porównania wszystkich wierszy każdy z każdym
+Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z~rachunkiem kostek boolowskich.
+Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
+ale ich usunięcie wymaga porównania wszystkich wierszy każdy z~każdym
 i co za tym idzie jest nie opłacalne ze względu na złożoność obliczeniową.
 Z drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~również nie mogą być usunięte.
 Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}
@@ -87,11 +87,11 @@ Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśni
 Znalezienie reduktu,
 przy użyciu tablicy rozróżnialności sprowadza się do problemu znalezienia minimalnego pokrycia kolumnowego,
 czyli takiego zbioru kolumn,
-dla którego w~każdym z wierszy znajduje się co najmniej jedna jedynka.
+dla którego w~każdym z~wierszy znajduje się co najmniej jedna jedynka.
 Najprostszy algorytm znajdujący rozwiązanie sprowadzałby się do następujących kroków:
 \begin{enumerate}
 \item Wybranie kolumny o~największej liczbie jedynek,
-\item Usunięcie wierszy z jedynkami w~tej kolumnie,
+\item Usunięcie wierszy z~jedynkami w~tej kolumnie,
 \item Powtarzanie aż do uzyskania pustej macierzy.
 \end{enumerate}
 Nie uwzględnia on jednak rozróżnień,
@@ -134,7 +134,7 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
         \For{dla każdego wiersza $MR2$}{
             $W\gets$ znajdź wiersz o~najmniejszej liczbie jedynek\;
         }
-        \For{dla kolumn z jedynekami w~$W$}{
+        \For{dla kolumn z~jedynekami w~$W$}{
             $K\gets$ znajdź kolumnę o~największej liczbie jedynek\;
         }
         $R\gets R + K$\;
@@ -145,7 +145,7 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
         }
     }
     \For{dla każdego argumentu $K$ w~$R$}{
-        \If{$MR$ dla argumentów z $R$ bez $K$ jest spójna}{
+        \If{$MR$ dla argumentów z~$R$ bez $K$ jest spójna}{
             $R\gets R - K$\;
         }
     }
@@ -184,10 +184,10 @@ Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), t
 
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w~tym konkretnym przypadku,
 ale również w~wielu innych również poza domeną generowania indeksów.
-Powstały z tego powodu algorytmy niewymagające generowania tablicy porównań.
-Jednym z nich jest algorytm Marcina Korzenia i~Szymona Jaroszewicza dokładnie przedstawiony w~artykule \cite{without-matrix}.
+Powstały z~tego powodu algorytmy niewymagające generowania tablicy porównań.
+Jednym z~nich jest algorytm Marcina Korzenia i~Szymona Jaroszewicza dokładnie przedstawiony w~artykule \cite{without-matrix}.
 
-Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w~kolumnach tablicy rozróżnialności z praw kombinatoryki.
+Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w~kolumnach tablicy rozróżnialności z~praw kombinatoryki.
 W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
 jednak w~ramach tej pracy,
 istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i~jedynki wśród wartości argumentów.
@@ -222,7 +222,7 @@ wymagane byłoby użycie tego lub podobnego algorytmu o~mniejszej złożoności 
 
 \section{Rozwiązania systematyczne}
 
-Żadne z przedstawionych do tej pory rozwiązań nie było systematyczne.
+Żadne z~przedstawionych do tej pory rozwiązań nie było systematyczne.
 Wszystko ze względu na zdecydowanie większą złożoność obliczeniową takich algorytmów.
 W przypadku problemu generowania indeksów dane,
 dla których przeprowadza się obliczenia,
@@ -232,20 +232,20 @@ Są jednak inne problemy,
 w których czas optymalizacji nie jest czynnikiem istotnym.
 Do takich zastosowań należą problemy dziedziny eksploracji danych,
 gdzie często dane są zbierane na długo przed przeprowadzeniem obliczeń,
-lub implementacji funkcji w~układach FPGA czy też innych z pamięciami ROM.
+lub implementacji funkcji w~układach FPGA czy też innych z~pamięciami ROM.
 
 W zadaniach, gdzie na wynik obliczeń możemy poczekać oraz nawet najmniejsza optymalizacja końcowego wyniku jest istotna,
 rozwiązania systematyczne pokazują prawdziwą potęgę.
 Na przykładzie redukcji argumentów,
 takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt,
 ale wszystkie najmniejsze redukty.
-Otwierają więc możliwość przeprowadzenia dalszych optymalizacji (np. kompresji argumentów) z różnymi danymi początkowymi pozornie równie dobrymi.
+Otwierają więc możliwość przeprowadzenia dalszych optymalizacji (np. kompresji argumentów) z~różnymi danymi początkowymi pozornie równie dobrymi.
 
 \section{Unate Complement}
 
 Ze względu na to,
 że algorytmy systematyczne dostarczają wszystkich rozwiązań,
-mogą w~czasie badań służyć do weryfikacji jakości rozwiązań pochodzących z algorytmów heurystycznych.
+mogą w~czasie badań służyć do weryfikacji jakości rozwiązań pochodzących z~algorytmów heurystycznych.
 Algorytmem użytym w~tym celu w~ramach pracy był algorytm Unate Complement.
 
 Algorytm Unate Complement służy do wyznaczania dopełnienia funkcji jednorodnej,
@@ -254,14 +254,14 @@ dla której w~żadnej kolumnie nie występują jednocześnie zera i~jedynki.
 Tym samym pozwala na znalezienie wszystkich największych (najbardziej ogólnych) kostek dopełnienia funkcji jednorodnej,
 a zastosowany do tablicy porównań pozwala na wyznaczenie wszystkich minimalnych pokryć kolumnowych.
 
-Sam algorytm składa się z czterech kroków:
+Sam algorytm składa się z~czterech kroków:
 \begin{enumerate}
 \item Rekurencyjnego rozkładu funkcji zgodnie ze wzorem Shannona,
-\item Obliczania dopełnień w~liściach zgodnie z prawami De Morgana,
+\item Obliczania dopełnień w~liściach zgodnie z~prawami De Morgana,
 \item Rekurencyjnego łączenia powstałych dopełnień ponownie przy wykorzystaniu wzoru Shannona,
 \item Usunięcia nadmiarowych reduktów,
 czyli takich,
-które zawierają się w~innych zgodnie z rachunkiem kostek.
+które zawierają się w~innych zgodnie z~rachunkiem kostek.
 \end{enumerate}
 Badania nad tym algorytmem zostały opisane w~pracy inżynierskiej \cite{inzynierka},
 a gotowy program służył do weryfikacji poprawności działania użytego algorytmu redukcji argumentów.
