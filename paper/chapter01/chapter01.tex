@@ -86,14 +86,16 @@ Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,
 
 
 \subsection{Tablica trasowania}
-W~Internecie powszechne jest zagadnienie znajdowania ścieżek dla pakietów IP.
+Protokołem warstwy sieciowej w modelu warstwowym OSI jest protokół IP.
+W~związku z~tym w~Internecie powszechne jest zagadnienie znajdowania ścieżek dla pakietów IP.
 Każdy węzeł sieci przechowuje informacje dotyczące wyboru trasy dla przychodzących pakietów.
-Dla każdego przechowywanego adresu IP w~tablicy adresów znajduje się indeks pamięci, w~którym przechowywane są wszystkie szczegóły.
+Dla każdego przechowywanego adresu IP w~tablicy adresów znajduje się indeks pamięci,
+w~którym przechowywane są informacje pozwalające na przekazanie pakietu do następnego węzła.
 Liczba adresów w~takiej pamięci wynosi nierzadko nawet 40 tysięcy.
-Jako że adresy IP są reprezentowane przez 32 bity, tyle właśnie jest argumentów funkcji.
-Dodatkowo w~wielu routerach mamy do czynienia z~dynamicznymi protokołami trasowania, które wymagają częstych zmian w~tablicy adresów.
-Jest to w~związku z~tym bardzo dobry przykład zastosowania funkcji generowania indeksów.
-
+Jako że adresy IPv4 są reprezentowane przez 32 bity, tyle właśnie jest argumentów funkcji.
+Dodatkowo w~wielu routerach mamy do czynienia z~dynamicznymi protokołami trasowania,
+które wymagają częstych zmian w~tablicy adresów.
+Jest to bardzo dobry przykład zastosowania funkcji generowania indeksów.
 
 \section{Algorytm Sasao}
 Rozwiązanie problemu nadmiernej pojemności pamięci o~$n$ wejściach adresowych przy wykrywaniu $k$ wekrtorów indeksowanych ($k<<2^n$),
