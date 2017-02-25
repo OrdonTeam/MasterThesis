@@ -3,17 +3,17 @@
 Algorytm generowania indeksów zaproponowany przez profesora Sasao,
 pozwala na zastosowanie pamięci o~mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
 Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu.
-W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i kompresję argumentów.
+W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i~kompresję argumentów.
 
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
 poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
 Po wykonaniu takiego procesu,
-usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o~różnych wartościach i tym samym utratę informacji.
+usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
 Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem.
 Istnieje wiele sposobów redukcji argumentów,
 zarówno systematycznych,
 pozwalających na znalezienie wszystkich minimalnych rozwiązań,
-jak i heurystycznych,
+jak i~heurystycznych,
 charakteryzujących się szybszym działaniem.
 Sama redukcja nie zawsze przynosi spektakularne rezultaty.
 W skrajnych przypadkach funkcji,
@@ -28,9 +28,9 @@ kompresja argumentów,
 \section{Problem złożoności}
 
 Do problemu redukcji argumentów można podejść w~sposób intuicyjny.
-Można próbować po kolei usuwać argumenty i weryfikować spójność danych.
+Można próbować po kolei usuwać argumenty i~weryfikować spójność danych.
 W przypadku utraty spójności taki argument musiałby się znaleźć w~końcowym rozwiązaniu.
-W przeciwnym przypadku należałoby go usunąć i kolejne weryfikacje przeprowadzać z jego wyłączeniem.
+W przeciwnym przypadku należałoby go usunąć i~kolejne weryfikacje przeprowadzać z jego wyłączeniem.
 Pojedyncza weryfikacja wymaga porównania,
 każdych dwóch wierszy o~różnej wartości funkcji.
 Jeżeli funkcja ma $n$ argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $n$.
@@ -51,7 +51,7 @@ często jest nieoptymalny.
 
 Innym sposobem wyboru argumentów w~czasie redukcji jest dobieranie argumentów,
 aż do zapewnienia pełnej rozróżnialności.
-Zaczynamy z jednym argumentem i kolejno wybieramy kolejne,
+Zaczynamy z jednym argumentem i~kolejno wybieramy kolejne,
 które znajdą się w~końcowym rozwiązaniu.
 Jeżeli przy takim podejściu dodatkowo będziemy w~stanie ocenić,
 które argumenty są bardziej wartościowe,
@@ -75,8 +75,8 @@ Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wier
 Takie wiersze nie są istotne z punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
 ale ich usunięcie wymaga porównania wszystkich wierszy każdy z każdym
 i co za tym idzie jest nie opłacalne ze względu na złożoność obliczeniową.
-Z drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i również nie mogą być usunięte.
-Zarówno algorytm usuwania jak i jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}
+Z drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~również nie mogą być usunięte.
+Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}
 
 \begin{figure}[H]
 \centering
@@ -108,7 +108,7 @@ które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wartość inn
 \centering
 \includegraphics[width = 5cm]{chapter02/required-arguments.png}
 \caption{Przykład obrazujący niedoskonałości algorytmu największej liczby jedynek.
-Argument $x_2$ posiada najwięcej jedynek i jednocześnie jest nadmiarowy. (Źródło własne).}
+Argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy. (Źródło własne).}
 \end{figure}
 
 Aby uwzględnić ten problem,
@@ -116,7 +116,7 @@ w ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy.
 Najpierw znajdowany jest wiersz o~najmniejszej liczbie jedynek,
 następnie wybierana jest kolumna,
 która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu.
-Takie rozwiązanie wyboru kolumn jest optymalne i często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
+Takie rozwiązanie wyboru kolumn jest optymalne i~często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
 Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe również zawiera nadmiarowe argumenty.
 Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
@@ -151,7 +151,7 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
     }
 \end{algorithm}
 
-Dla takiej samej funkcji o~$n$ argumentach i $m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
+Dla takiej samej funkcji o~$n$ argumentach i~$m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
 Następne kroki algorytmu operują na macierzy rozróżnialności,
 dlatego przy szacowaniu ich złożoności musimy pamiętać o~tym,
 że tablica ma $m^2$ wierszy.
@@ -185,26 +185,26 @@ Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), t
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w~tym konkretnym przypadku,
 ale również w~wielu innych również poza domeną generowania indeksów.
 Powstały z tego powodu algorytmy niewymagające generowania tablicy porównań.
-Jednym z nich jest algorytm Marcina Korzenia i Szymona Jaroszewicza dokładnie przedstawiony w~artykule \cite{without-matrix}.
+Jednym z nich jest algorytm Marcina Korzenia i~Szymona Jaroszewicza dokładnie przedstawiony w~artykule \cite{without-matrix}.
 
 Przy zastosowaniu ich rozwiązania można policzyć liczbę jedynek w~kolumnach tablicy rozróżnialności z praw kombinatoryki.
 W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
 jednak w~ramach tej pracy,
-istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i jedynki wśród wartości argumentów.
+istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i~jedynki wśród wartości argumentów.
 Jedynka w~kolumnie macierzy rozróżnialności powstaje,
 kiedy dwa wiersze o~różnej wartości funkcji mają różną wartość argumentu.
-Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
+Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i~kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
 W przypadku ogólnym poruszanym w~artykule jest jednak dużo łatwiej policzyć,
-kiedy jedynka nie występuje w~tablicy i odjąć tę liczbę od liczby wierszy w~macierzy.
+kiedy jedynka nie występuje w~tablicy i~odjąć tę liczbę od liczby wierszy w~macierzy.
 Co więcej,
 ponieważ liczba wierszy jest identyczna dla każdej kolumny,
 obliczanie liczby wierszy nie jest potrzebne.
-Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o~najmniejszej liczbie zer.
+Wystarczy zastosować odwrotne podejście przy wyborze kolumny i~wybierać te o~najmniejszej liczbie zer.
 
-Jeżeli podzielimy wiersze danych na grupy ze względu na wartość funkcji i argumentu,
+Jeżeli podzielimy wiersze danych na grupy ze względu na wartość funkcji i~argumentu,
 powstaną po dwa kubełki dla każdej wartości funkcji.
-Jeżeli ich rozmiar oznaczymy $K_{0_d}$ i $K_{1_d}$,
- gdzie $0$ i $1$ oznaczają wartość argumentu,
+Jeżeli ich rozmiar oznaczymy $K_{0_d}$ i~$K_{1_d}$,
+ gdzie $0$ i~$1$ oznaczają wartość argumentu,
 a $d$ należy do zbioru wartości funkcji,
 liczbę zer w~kolumnie można wyrazić następującą sumą:
 \begin{equation}
@@ -216,7 +216,7 @@ Innymi słowy, skutecznie rozwiązuje to problem pamięci zajmowanej przez tabli
 Dodatkowo mniejsza jest złożoność obliczeniowa.
 Znalezienie najlepszej kolumny do uwzględnienia w~redukcie odbywa się ze złożonością $n \cdot m$ w~porównaniu do poprzedniego $n \cdot m^2$.
 
-Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w~niniejszej pracy.
+Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i~czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w~niniejszej pracy.
 Gdyby jednak dalsze badania lub konkretne zastosowania wymagały operacji na dużych bazach danych,
 wymagane byłoby użycie tego lub podobnego algorytmu o~mniejszej złożoności pamięciowej.
 
@@ -250,7 +250,7 @@ Algorytmem użytym w~tym celu w~ramach pracy był algorytm Unate Complement.
 
 Algorytm Unate Complement służy do wyznaczania dopełnienia funkcji jednorodnej,
 czyli takiej,
-dla której w~żadnej kolumnie nie występują jednocześnie zera i jedynki.
+dla której w~żadnej kolumnie nie występują jednocześnie zera i~jedynki.
 Tym samym pozwala na znalezienie wszystkich największych (najbardziej ogólnych) kostek dopełnienia funkcji jednorodnej,
 a zastosowany do tablicy porównań pozwala na wyznaczenie wszystkich minimalnych pokryć kolumnowych.
 

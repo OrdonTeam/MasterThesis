@@ -1,7 +1,7 @@
 \chapter{Wstęp}
 
 W dzisiejszych czasach gromadzimy ogromne ilości danych.
-W związku obserwujemy rozwój dziedziny eksploracji i analizy danych
+W związku obserwujemy rozwój dziedziny eksploracji i~analizy danych
 Pewna część tych problemów jest ściśle związana z koniecznością precyzyjnego wyodrębniania właściwych danych z ogromnej masy danych niepotrzebnych
 Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektorami binarnymi o~stosunkowo dużej liczbie bitów,
 a małej liczbie danych które trzeba wyselekcjonować.
@@ -10,7 +10,7 @@ to strukturę sprzętową takich układów trzeba często zmieniać.
 W związku z tym rozwiązaniem tego problemu są struktury FPGA z wbudowanymi pamięciami ROM.
 Ale kolejną barierą w~realizacji tych układów są ograniczenia w~nadmiernej pojemności pamięci ROM o~dużej liczbie wejść – np. 40,
 co byłoby wymagane przy selekcji niewielkiej liczby wektorów (wzorców), np. 10.
-Można jednak przypuszczać, że binarna tablica takich wektorów: 40 kolumn oznaczanych $x_1,…,x_{40}$ i 10 wierszy zawiera kolumny $x_i, x_j, ..., x_k$,
+Można jednak przypuszczać, że binarna tablica takich wektorów: 40 kolumn oznaczanych $x_1,…,x_{40}$ i~10 wierszy zawiera kolumny $x_i, x_j, ..., x_k$,
 które ustawione obok siebie reprezentują różne liczby binarne \cite{sasao-workshop}.
 Zwykle takich kolumn jest wyraźnie mniej od liczby zmiennych (bitów) wektorów selekcjonowanych.
 Zatem jedną z metod rozwiązania zadania selekcji jest redukcja argumentów,
@@ -32,7 +32,7 @@ w której składowymi dekompozycji G są dwuargumentowe funkcje $EXOR$:
 F = H (x_i \oplus x_j, x_k \oplus x_l, ..., X)
 \end{equation}
 Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w~generatorach adresów należy algorytm s-min \cite{sasao-recent, sasao-s-min}.
-W artykule \cite{redukcja-kompresja} wykazano, że algorytm s-min jest mało skuteczny i zaproponowano całkowicie inne ujęcie tego zagadnienia.
+W artykule \cite{redukcja-kompresja} wykazano, że algorytm s-min jest mało skuteczny i~zaproponowano całkowicie inne ujęcie tego zagadnienia.
 W niniejszej pracy metodykę tę przystosowano do heurystycznych obliczeń funkcji generowania indeksów.
 Cechą charakterystyczną tej propozycji jest zastosowanie twierdzenia wiążącego dekompozycję liniową z tzw. zbiorem rozróżnialności [rozdz. ??].
 W rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń praktycznych funkcji indeksowania [rozdz. …].
@@ -97,7 +97,7 @@ Istotą tego rozwiązania jest
 \item Dekompozycja liniowa funkcji obliczonej w~punkcie a)
 \end{enumerate}
 
-Dekompozycja liniowa polega na łączeniu argumentów w~grupy i podawaniu ich na wejście dwu lub więcej argumentowych bramek XOR.
+Dekompozycja liniowa polega na łączeniu argumentów w~grupy i~podawaniu ich na wejście dwu lub więcej argumentowych bramek XOR.
 Algorytm s-Min, profesora Sasao, znajduje takie grupy.
 Istnieją jednak przykłady,
 dla których wskazanie żadnego takiego zbioru argumentów nie jest możliwe,
@@ -122,7 +122,7 @@ Niestety zastosowany w~tej metodzie algorytm redukcji argumentów,
 jak też prcedura obliczania dekompozycji liniowej nie są najskuteczniejsze.
 Nowa metoda powstała na podstawie istniejących algorytmów z dziedziny syntezy logicznej,
 dla tego samego przykładu osiąga kompresję do 6 argumentów.
-Tym samym pozwala wykorzysywać mniejsze i tańsze urządzenie do rozwiązywania tych samych problemów,
+Tym samym pozwala wykorzysywać mniejsze i~tańsze urządzenie do rozwiązywania tych samych problemów,
 albo na obsługę przoblemów, które wcześniej były zbyt zlożone,
 za pomocą do tej pory używanego sprzętu komputerowego.
 
@@ -135,7 +135,7 @@ za pomocą do tej pory używanego sprzętu komputerowego.
 %Zmniejszenie rozmiaru pamięci głównej nie pozwalałoby na jednoznaczne określenie czy dany wektor jest wektorem poszukiwanym.
 %Wskazywałoby jedynie numer jedynego wiersza z poszukiwanych, który ma szansę być identyczny z wektorem sprawdzanym.
 %Potrzebne jest zatem przechowanie wszystkich kompletnych wektorów poszukiwanych w~drugiej pamięci.
-%W naszym przykładzie wektorów jest 1,3 miliona i każdy ma 40 bitów.
+%W naszym przykładzie wektorów jest 1,3 miliona i~każdy ma 40 bitów.
 %Rozmiar dodatkowej pamięci wyniósłby w~takim razie 50 megabitów.
 
 
@@ -156,6 +156,6 @@ za pomocą do tej pory używanego sprzętu komputerowego.
 %potwierdziły konkurencyjność algorytmu opartego na połączeniu redukcji argumentów oraz dekompozycji liniowej.
 %W porównaniu z aktualnymi artykułami Profesora Sasao,
 %nowa metoda pozwala na zmniejszenie zużycia zasobów potrzebnych do realizacji funkcji w~strukturach programowalnych.
-%Tym samym pozwala wykorzysywać mniejsze i tańsze urządzenie do rozwiązywania tych samych problemów,
+%Tym samym pozwala wykorzysywać mniejsze i~tańsze urządzenie do rozwiązywania tych samych problemów,
 %albo na obsługę przoblemów, które wcześniej były zbyt zlożone,
 %za pomocą do tej pory używanego sprzętu komputerowego.

@@ -4,7 +4,7 @@ Redukcja argumentów umożliwia zmniejszenie liczby wejść potrzebnych do reali
 Jednak wyniki uzyskane w~czasie takiej optymalizacji nie są ostateczne.
 Dalsze zmniejszanie rozmiaru pamięci niezbędnej w~procesie generowania indeksów (zgodnie z algorytmem profesora Sasao) można osiągnąć stosując dekompozycję liniową.
 
-Dekompozycja liniowa polega na  łączeniu zmiennych w~pary i wprowadzaniu ich za pośrednictwem bramek XOR do głównego układu realizującego detekcję i klasyfikację (czyli indeksowanie) danych.
+Dekompozycja liniowa polega na  łączeniu zmiennych w~pary i~wprowadzaniu ich za pośrednictwem bramek XOR do głównego układu realizującego detekcję i~klasyfikację (czyli indeksowanie) danych.
 Jest to istotne,
 gdyż prowadzi do dalszego redukowania liczby wejść w~generatorach indeksu.
 I pewnie z tych powodów dekompozycja liniowa jest intensywnie wykorzystywana w~syntezie funkcji generowania indeksów [12-15].
@@ -14,7 +14,7 @@ Została ona celowo spreparowana w~taki sposób,
 że wszystkie argumenty są niezbędne.
 W takim wypadku redukcja argumentów nie przynosi żadnych rezultatów.
 Dodatkowo łatwo zauważyć,
-że pierwszy i drugi argument można z powodzeniem zastąpić innym,
+że pierwszy i~drugi argument można z powodzeniem zastąpić innym,
 będącym wynikiem zwykłej funkcji XOR tych argumentów.
 
 \begin{figure}[H]
@@ -24,7 +24,7 @@ będącym wynikiem zwykłej funkcji XOR tych argumentów.
 \label{fig:required-decomposition}
 \end{figure}
 
-Zmniejszenie rozmiaru pamięci z trzech argumentów do dwóch nie jest zbyt spektakularne i nie miałoby znaczenia w~praktycznym zastosowaniu.
+Zmniejszenie rozmiaru pamięci z trzech argumentów do dwóch nie jest zbyt spektakularne i~nie miałoby znaczenia w~praktycznym zastosowaniu.
 Jednak dla innego badanego przypadku nieredukowalnej funkcji 41 argumentowej,
 dekompozycja proponowaną w~pracy metodą powoduje zmniejszenie liczby argumentów do 7.
 
@@ -56,7 +56,7 @@ Na takim przykładzie łatwo oszacować,
 Celem dekompozycji liniowej pojedynczą bramką XOR jest znalezienie takich dwóch argumentów,
 które można zastąpić jednym.
 Miałby on być wynikiem operacji XOR tych dwóch argumentów.
-Bardziej formalnie poszukujemy takich funkcji $G$ i $H$,
+Bardziej formalnie poszukujemy takich funkcji $G$ i~$H$,
 które pozwolą na przedstawienie funkcji $F$ w~poniższej postaci:
 \begin{equation}
 F = H( G ( X_a ), X_b)
@@ -77,10 +77,10 @@ więc operacja XOR,
 używana przy tworzeniu macierzy zwraca same zera.
 
 Dekompozycję liniową bramką XOR w~celu weryfikacji jej poprawności można przeprowadzić zarówno bezpośrednio na funkcji F,
-jak i powstałej na jej podstawie tablicy rozróżnialności.
+jak i~powstałej na jej podstawie tablicy rozróżnialności.
 Jest tak ze względu na to,
 że operacja XOR,
-użyta przy tworzeniu tablicy rozróżnialności i dekompozycji,
+użyta przy tworzeniu tablicy rozróżnialności i~dekompozycji,
 jest przemienna.
 Inaczej mówiąc,
 kolejność zastosowania dekompozycji oraz generowania macierzy jest przemienna,
@@ -163,7 +163,7 @@ w pierwotnej macierzy porównań musiały znajdować się albo dwa zera,
 albo dwie jedynki.
 
 Zacznijmy od przypadku dwóch zer.
-Przechodząc do kolejnej pary (2 i 3),
+Przechodząc do kolejnej pary (2 i~3),
 aby otrzymać kolejne zero w~wyniku operacji XOR,
 ponieważ argument drugi był zerem,
 również trzeci argument musiał być zerem.
@@ -173,9 +173,9 @@ okazuje się,
 Z tego wynika,
 że w~tym przypadku nie została naruszona spójność danych.
 
-Drugim przypadkiem jest para jedynek dla argumentów 1 i 2.
+Drugim przypadkiem jest para jedynek dla argumentów 1 i~2.
 W takim wypadku,
-aby para 2 i 3 w~wyniku operacji XOR dawała zero,
+aby para 2 i~3 w~wyniku operacji XOR dawała zero,
 również argument 3 musiał być zerem.
 Podobnie jak w~poprzednim przypadku przechodząc przez wszystkie pary otrzymujemy,
 że wejściowym wierszem tablicy rozróżnialności,
@@ -193,7 +193,7 @@ Tym samym udowodniliśmy,
 \caption{Przykład dekompozycji dwoma bramkami XOR (Źródło własne).}
 \end{figure}
 
-\section{Dekompozycja wielokrotna i wielopoziomowa}
+\section{Dekompozycja wielokrotna i~wielopoziomowa}
 
 Problem dekompozycji liniowej nie kończy się na znalezieniu pojedynczej dekompozycji.
 Dekompozycję można przeprowadzać wielokrotnie tworząc kaskadę jak na rysunku numer \ref{fig:multiple-levels}.
@@ -221,7 +221,7 @@ Z tego powodu schemat z rysunku numer \ref{fig:multiple-levels} można uprości�
 \end{figure}
 
 Jest to istotne,
-ponieważ dzięki takiej własności operacji XOR i wykorzystaniu bramek o~wielu wejściach,
+ponieważ dzięki takiej własności operacji XOR i~wykorzystaniu bramek o~wielu wejściach,
 nigdy nie powstaną długie ścieżki krytyczne.
 
 \section{Algorytm}
@@ -252,7 +252,7 @@ nigdy nie powstaną długie ścieżki krytyczne.
 %Poszukiwanie brakujących zbiorów n-elementowych w~macierzy porównań (n=2)
 %Jeżeli nie znaleziono
 %Koniec jeżeli n >= liczba kolumn
-%Powrót do punktu 2 i poszukiwanie brakujących zbiorów o~jeden liczniejszych
+%Powrót do punktu 2 i~poszukiwanie brakujących zbiorów o~jeden liczniejszych
 %Modyfikacja danych oraz zapamiętanie znalezionej dekompozycji
 %
 %
