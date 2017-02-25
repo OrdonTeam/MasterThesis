@@ -32,7 +32,7 @@ Problem generowania indeksów posiada pewną specyficzną własność.
 Każdy wektor wejściowy rozważanej funkcji ma inną wartość.
 Dotychczasowe rozwiązania problemu dekompozycji liniowej ograniczały się właśnie do takiego przypadku.
 Zaprezentowany w~tej pracy algorytm jest pod tym względem bardziej uniwersalny.
-Można go stosować dla wszystkich funkcji boolowskich o dowolnych wyjściach.
+Można go stosować dla wszystkich funkcji boolowskich o~dowolnych wyjściach.
 
 \section{Macierz rozróżnialności}
 
@@ -66,7 +66,7 @@ gdzie: $X_a = {x_i, x_j}, X_b = X / X_a, G = XOR$
 Aby taka dekompozycja była możliwa,
 funkcja $G$ nie może powodować utraty niezbędnych informacji.
 Inaczej mówiąc po przekształceniu wierszy danych funkcją $G$ nie mogą powstać wiersze sprzeczne.
-Ze względu na użycie w~dekompozycji funkcji XOR liczba argumentów funkcji $H$ jest mniejsza o jeden od wyjściowej liczby argumentów funkcji F.
+Ze względu na użycie w~dekompozycji funkcji XOR liczba argumentów funkcji $H$ jest mniejsza o~jeden od wyjściowej liczby argumentów funkcji F.
 
 Warunkiem poprawnej dekompozycji jest zachowanie wszystkich rozróżnień funkcji $F$.
 Istnieje możliwość zapewnienia tego warunku poprzez analizę zawartości macierzy porównań.
@@ -210,7 +210,7 @@ Wartość na wyjściu takiej kaskadowej bramki przyjmuje wtedy postać:
 \begin{equation}
 (x_1 \oplus x_2) \oplus x_3
 \end{equation}
-Co jest równoznaczne użyciu bramki XOR o trzech wejściach.
+Co jest równoznaczne użyciu bramki XOR o~trzech wejściach.
 Z tego powodu schemat z rysunku numer \ref{fig:multiple-levels} można uprościć do postaci przedstawionej na rysunku numer \ref{fig:multiple-entries}.
 
 \begin{figure}[H]
@@ -221,7 +221,7 @@ Z tego powodu schemat z rysunku numer \ref{fig:multiple-levels} można uprości�
 \end{figure}
 
 Jest to istotne,
-ponieważ dzięki takiej własności operacji XOR i wykorzystaniu bramek o wielu wejściach,
+ponieważ dzięki takiej własności operacji XOR i wykorzystaniu bramek o~wielu wejściach,
 nigdy nie powstaną długie ścieżki krytyczne.
 
 \section{Algorytm}
@@ -229,7 +229,7 @@ nigdy nie powstaną długie ścieżki krytyczne.
 \begin{algorithm}[H]
     \KwData{$F$}
     $MR\gets$ pusta\;
-    \For{dla każdej pary wierszy $F$ o różnej wartosci}{
+    \For{dla każdej pary wierszy $F$ o~różnej wartosci}{
         $W\gets$ wykonaj operację XOR poszczególnych bitów\;
         $MR\gets MR + W$\;
     }
@@ -252,7 +252,7 @@ nigdy nie powstaną długie ścieżki krytyczne.
 %Poszukiwanie brakujących zbiorów n-elementowych w~macierzy porównań (n=2)
 %Jeżeli nie znaleziono
 %Koniec jeżeli n >= liczba kolumn
-%Powrót do punktu 2 i poszukiwanie brakujących zbiorów o jeden liczniejszych
+%Powrót do punktu 2 i poszukiwanie brakujących zbiorów o~jeden liczniejszych
 %Modyfikacja danych oraz zapamiętanie znalezionej dekompozycji
 %
 %

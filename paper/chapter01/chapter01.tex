@@ -3,12 +3,12 @@
 W dzisiejszych czasach gromadzimy ogromne ilości danych.
 W związku obserwujemy rozwój dziedziny eksploracji i analizy danych
 Pewna część tych problemów jest ściśle związana z koniecznością precyzyjnego wyodrębniania właściwych danych z ogromnej masy danych niepotrzebnych
-Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektorami binarnymi o stosunkowo dużej liczbie bitów,
+Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektorami binarnymi o~stosunkowo dużej liczbie bitów,
 a małej liczbie danych które trzeba wyselekcjonować.
 Jeżeli na dodatek zbiór danych selekcjonowanych podlega częstym zmianom,
 to strukturę sprzętową takich układów trzeba często zmieniać.
 W związku z tym rozwiązaniem tego problemu są struktury FPGA z wbudowanymi pamięciami ROM.
-Ale kolejną barierą w~realizacji tych układów są ograniczenia w~nadmiernej pojemności pamięci ROM o dużej liczbie wejść – np. 40,
+Ale kolejną barierą w~realizacji tych układów są ograniczenia w~nadmiernej pojemności pamięci ROM o~dużej liczbie wejść – np. 40,
 co byłoby wymagane przy selekcji niewielkiej liczby wektorów (wzorców), np. 10.
 Można jednak przypuszczać, że binarna tablica takich wektorów: 40 kolumn oznaczanych $x_1,…,x_{40}$ i 10 wierszy zawiera kolumny $x_i, x_j, ..., x_k$,
 które ustawione obok siebie reprezentują różne liczby binarne \cite{sasao-workshop}.
@@ -52,10 +52,10 @@ są związane częstymi zmianami danych.Indeksy często muszą być generowane w
 Ponadto ze względu na dużą liczbę argumentów,
 które muszą być brane pod uwagę (32 bity - adresy IPv4, 48 bitów - adresy mac),
 wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w~strukturach programowalnych.
-Przykładowo przy funkcji o $n=6$ argumentach wszystkich wektorów binarnych jest 64 ($2^6$).
+Przykładowo przy funkcji o~$n=6$ argumentach wszystkich wektorów binarnych jest 64 ($2^6$).
 Jeżeli spośród wszystkich wektorów poszukiwanych jest $k=6$ konkretnych, wtedy dla każdego z 64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
 Dla takiego przykładu minimalna potrzebna pamięć to 192 bity.
-Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z $k=1\,300\,000$ poszukiwanych wektorów o $n=40$ argumentach, taka pamięć miałaby rozmiar 21 terabitów.
+Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z $k=1\,300\,000$ poszukiwanych wektorów o~$n=40$ argumentach, taka pamięć miałaby rozmiar 21 terabitów.
 \begin{multline} \\
 2^n \cdot \log_2 k = \\
 = 2^{40} \cdot \log_2 1\,300\,000 = \\
@@ -88,7 +88,7 @@ Jest to w~związku z tym bardzo dobry przykład zastosowania funkcji generowania
 
 
 \section{Algorytm Sasao}
-Rozwiązanie problemu nadmiernej pojemności pamięci o $n$ wejściach adresowych przy wykrywaniu $k$ wekrtorów indeksowanych ($k<<2^n$),
+Rozwiązanie problemu nadmiernej pojemności pamięci o~$n$ wejściach adresowych przy wykrywaniu $k$ wekrtorów indeksowanych ($k<<2^n$),
 spośród $2^n$ możliwych wektorów wejściowych,
 zaproponował Sasao \cite{sasao-workshop, sasao-recent, sasao-s-min, sasao-synthesis}.
 Istotą tego rozwiązania jest
@@ -143,7 +143,7 @@ za pomocą do tej pory używanego sprzętu komputerowego.
 %jest wyznaczenie funkcji pozwalającej na jak największe zmniejszenie liczby wejść do głównej pamięci.
 %\textbf{(Wymaga uzupełnienia z artykułem)} W~pracy Profesora Sasao dla konkretnej funkcji ten wynik pozwala na ograniczenie wejść z \textbf{N do X}.
 %Sposobem zaproponowanym w~pracy uzyskujemy zmniejszenie z \textbf{N do Y}.
-%Warto zauważyć, że zmniejszenie o jeden argument powoduje dwukrotne zmniejszenie wymaganej pamięci.
+%Warto zauważyć, że zmniejszenie o~jeden argument powoduje dwukrotne zmniejszenie wymaganej pamięci.
 
 
 

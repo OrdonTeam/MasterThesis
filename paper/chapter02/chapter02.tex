@@ -1,14 +1,14 @@
 \chapter{Redukcja argumentów}
 
 Algorytm generowania indeksów zaproponowany przez profesora Sasao,
-pozwala na zastosowanie pamięci o mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
+pozwala na zastosowanie pamięci o~mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
 Nie jest to oczywiście jedyna metoda pozwalająca na  uzyskanie takiego efektu.
 W tej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i kompresję argumentów.
 
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
 poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
 Po wykonaniu takiego procesu,
-usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o różnych wartościach i tym samym utratę informacji.
+usunięcie dowolnego argumentu z funkcji powoduje kolizję wierszy o~różnych wartościach i tym samym utratę informacji.
 Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem.
 Istnieje wiele sposobów redukcji argumentów,
 zarówno systematycznych,
@@ -32,7 +32,7 @@ Można próbować po kolei usuwać argumenty i weryfikować spójność danych.
 W przypadku utraty spójności taki argument musiałby się znaleźć w~końcowym rozwiązaniu.
 W przeciwnym przypadku należałoby go usunąć i kolejne weryfikacje przeprowadzać z jego wyłączeniem.
 Pojedyncza weryfikacja wymaga porównania,
-każdych dwóch wierszy o różnej wartości funkcji.
+każdych dwóch wierszy o~różnej wartości funkcji.
 Jeżeli funkcja ma $n$ argumentów oraz $m$ wierszy wtedy porównanie dwóch dowolnych wierszy odbywa się ze złożonością liniową $n$.
 Par wierszy do porównania jest w~zależności od rozkładu wartości funkcji od $m$ do $m^2$.
 Zatem złożoność obliczeniowa pojedynczej weryfikacji to $n \cdot m^2$.
@@ -59,7 +59,7 @@ uzyskamy lepsze wyniki.
 
 Za miarę wartości argumentu w~redukcie można przyjąć liczbę rozróżnień,
 których on dostarcza.
-Jeżeli dzięki jednemu argumentowi jesteśmy w~stanie rozróżnić tylko jedną parę wierszy o różnych wartościach,
+Jeżeli dzięki jednemu argumentowi jesteśmy w~stanie rozróżnić tylko jedną parę wierszy o~różnych wartościach,
 to jest on mniej wartościowy od takiego,
 który rozróżnia kilka par wierszy.
 Z drugiej strony nawet argument,
@@ -67,8 +67,8 @@ który dostarcza jednego rozróżnienia,
 będzie wartościowy,
 jeżeli żaden inny go nie dostarcza.
 
-Informacje o tych zależnościach uzyskuje się z macierz rozróżnialności, nazywana również tablicą porównań,
-która zawiera wynik operacji XOR wszystkich par wierszy o różnych wartościach funkcji.
+Informacje o~tych zależnościach uzyskuje się z macierz rozróżnialności, nazywana również tablicą porównań,
+która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji.
 Jedynki w~takiej macierzy obrazują,
 które argumenty dostarczają jakich rozróżnień.
 Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z rachunkiem kostek boolowskich.
@@ -90,7 +90,7 @@ czyli takiego zbioru kolumn,
 dla którego w~każdym z wierszy znajduje się co najmniej jedna jedynka.
 Najprostszy algorytm znajdujący rozwiązanie sprowadzałby się do następujących kroków:
 \begin{enumerate}
-\item Wybranie kolumny o największej liczbie jedynek,
+\item Wybranie kolumny o~największej liczbie jedynek,
 \item Usunięcie wierszy z jedynkami w~tej kolumnie,
 \item Powtarzanie aż do uzyskania pustej macierzy.
 \end{enumerate}
@@ -113,10 +113,10 @@ Argument $x_2$ posiada najwięcej jedynek i jednocześnie jest nadmiarowy. (Źr�
 
 Aby uwzględnić ten problem,
 w ostatecznym rozwiązaniu sposób wyboru kolumny jest dwuetapowy.
-Najpierw znajdowany jest wiersz o najmniejszej liczbie jedynek,
+Najpierw znajdowany jest wiersz o~najmniejszej liczbie jedynek,
 następnie wybierana jest kolumna,
 która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu.
-Takie rozwiązanie wyboru kolumn jest optymalne i często prowadzi do uzyskania reduktu o najmniejszej liczności \cite{unate-artykul}.
+Takie rozwiązanie wyboru kolumn jest optymalne i często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
 Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe również zawiera nadmiarowe argumenty.
 Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
 
@@ -125,17 +125,17 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
     \KwData{$F$}
     \KwResult{$R$}
     $MR\gets$ pusta\;
-    \For{dla każdej pary wierszy $F$ o różnej wartosci}{
+    \For{dla każdej pary wierszy $F$ o~różnej wartosci}{
         $W\gets$ wykonaj operację XOR poszczególnych bitów\;
         $MR\gets MR + W$\;
     }
     $MR2\gets MR$\;
     \While{$MR2$ niepusta}{
         \For{dla każdego wiersza $MR2$}{
-            $W\gets$ znajdź wiersz o najmniejszej liczbie jedynek\;
+            $W\gets$ znajdź wiersz o~najmniejszej liczbie jedynek\;
         }
         \For{dla kolumn z jedynekami w~$W$}{
-            $K\gets$ znajdź kolumnę o największej liczbie jedynek\;
+            $K\gets$ znajdź kolumnę o~największej liczbie jedynek\;
         }
         $R\gets R + K$\;
         \For{dla każdego wiersza $W$ w~$MR2$}{
@@ -151,11 +151,11 @@ Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
     }
 \end{algorithm}
 
-Dla takiej samej funkcji o $n$ argumentach i $m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
+Dla takiej samej funkcji o~$n$ argumentach i $m$ wierszach złożoność obliczeniowa tworzenia tablicy rozróżnialności wynosi $n \cdot m^2$.
 Następne kroki algorytmu operują na macierzy rozróżnialności,
-dlatego przy szacowaniu ich złożoności musimy pamiętać o tym,
+dlatego przy szacowaniu ich złożoności musimy pamiętać o~tym,
 że tablica ma $m^2$ wierszy.
-Także kolejne złożoności znajdowania wiersza o najmniejszej liczbie jedynek oraz kolumny o największej liczbie jedynek wynoszą $n \cdot m^2$ każda.
+Także kolejne złożoności znajdowania wiersza o~najmniejszej liczbie jedynek oraz kolumny o~największej liczbie jedynek wynoszą $n \cdot m^2$ każda.
 Maksymalna liczba powtórzeń,
 dla funkcji nieredukowalnej,
 wynosi $n$.
@@ -178,9 +178,9 @@ Wynika stąd,
 
 W czasie przeprowadzania badań otrzymana złożoność nie stanowiła problemu.
 Warto jednak zauważyć,
-że rozmiar tablicy porównań dla bazy sygnatur wirusów o 1,3 mln wierszy,
+że rozmiar tablicy porównań dla bazy sygnatur wirusów o~1,3 mln wierszy,
 byłby zbyt duży dla większości komputerów.
-Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), to o ile sama baza zajmowałaby około 6 MB pamięci to tablica porównań około 8 TB.
+Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), to o~ile sama baza zajmowałaby około 6 MB pamięci to tablica porównań około 8 TB.
 
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w~tym konkretnym przypadku,
 ale również w~wielu innych również poza domeną generowania indeksów.
@@ -192,14 +192,14 @@ W artykule przedstawione zostały obliczenia dla bardzo ogólnej bazy danych,
 jednak w~ramach tej pracy,
 istotny jest jedynie przypadek funkcji zawierającej wyłącznie zera i jedynki wśród wartości argumentów.
 Jedynka w~kolumnie macierzy rozróżnialności powstaje,
-kiedy dwa wiersze o różnej wartości funkcji mają różną wartość argumentu.
+kiedy dwa wiersze o~różnej wartości funkcji mają różną wartość argumentu.
 Taka suma przy uwzględnieniu jedynie dwóch możliwych wartości argumentu i kilku wartości funkcji jest stosunkowo łatwa do wyznaczenia.
 W przypadku ogólnym poruszanym w~artykule jest jednak dużo łatwiej policzyć,
 kiedy jedynka nie występuje w~tablicy i odjąć tę liczbę od liczby wierszy w~macierzy.
 Co więcej,
 ponieważ liczba wierszy jest identyczna dla każdej kolumny,
 obliczanie liczby wierszy nie jest potrzebne.
-Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o najmniejszej liczbie zer.
+Wystarczy zastosować odwrotne podejście przy wyborze kolumny i wybierać te o~najmniejszej liczbie zer.
 
 Jeżeli podzielimy wiersze danych na grupy ze względu na wartość funkcji i argumentu,
 powstaną po dwa kubełki dla każdej wartości funkcji.
@@ -218,7 +218,7 @@ Znalezienie najlepszej kolumny do uwzględnienia w~redukcie odbywa się ze zło�
 
 Takie rozwiązanie nie uwzględnia jednak argumentów niezbędnych i czasami będzie prowadzić do mniej optymalnych wyników niż algorytm użyty w~niniejszej pracy.
 Gdyby jednak dalsze badania lub konkretne zastosowania wymagały operacji na dużych bazach danych,
-wymagane byłoby użycie tego lub podobnego algorytmu o mniejszej złożoności pamięciowej.
+wymagane byłoby użycie tego lub podobnego algorytmu o~mniejszej złożoności pamięciowej.
 
 \section{Rozwiązania systematyczne}
 
