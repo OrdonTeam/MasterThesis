@@ -78,3 +78,52 @@ y7 = x3 \oplus x4 \oplus x5 \oplus x6, \\
 y8 = x5 \oplus x6 \oplus x8 \oplus x9, \\
 y9 = x8 \oplus x9 \oplus x11 \oplus x12. \\
 \end{multline}
+
+\section{Permutacje 2 z 20}
+
+Eksperyment 5 dotyczy funkcji ,,2 z 20''.
+Dekompozycja liniowa tej funkcji obliczana algorytmem 2-min oraz 3min [10] tworzy układ o 14 wejściach.
+Liczby wejść do poszczególnych bramek EXOR nie są podane.
+Program RedKomp umożliwia realizację tej funkcji na pamięci o 14 wejściach adresowych.
+Poszczególne wejścia y1 do y14 tej pamięci są następującymi funkcjami EXOR:
+\begin{multline} \\
+y1 = x15, \\
+y2 = x16, \\
+y3 = x17, \\
+y4 = x18, \\
+y5 = x0 \oplus x1, \\
+y6 = x3 \oplus x4, \\
+y7 = x5 \oplus x6, \\
+y8 = x7 \oplus x1 \oplus x2, \\
+y9 = x8 \oplus x9, \\
+y10 = x10 \oplus x2 \oplus x3, \\
+y11 = x11 \oplus x12, \\
+y12 = x13 \oplus x6 \oplus x7, \\
+y13 = x14 \oplus x9 \oplus x10, \\
+y14 = x9 \oplus x10 \oplus x12 \oplus x13. \\
+\end{multline}
+
+Eksperyment 6
+
+Eksperyment 6 dotyczy funkcji 2outof20.
+Dekompozycja liniowa tej funkcji obliczana algorytmem 2-min oraz 3min [10] tworzy układ o 14 wejściach.
+Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
+Poszczególne wejścia y1 do y9 tej pamięci są następującymi funkcjami EXOR:
+
+\begin{multline} \\
+y1 = x3 \oplus x4 \oplus x9 \oplus x10 \oplus x12 \oplus x13, \\
+y2 = x10 \oplus x2 \oplus x3 \oplus x15 \oplus x16, \\
+y3 = x15 \oplus x16 \oplus x18 \oplus x0 \oplus x1, \\
+y4 = x13 \oplus x6 \oplus x7 \oplus x14 \oplus x9 \oplus x10, \\
+y5 = x14 \oplus x9 \oplus x10 \oplus x17 \oplus x7 \oplus x1 \oplus x2, \\
+y6 = x17 \oplus x7 \oplus x1 \oplus x2 \oplus x0 \oplus x1 \oplus x3 \oplus x4, \\
+y7 = x0 \oplus x1 \oplus x3 \oplus x4 \oplus x8 \oplus x9 \oplus x11 \oplus x12, \\
+y8 = x8 \oplus x9 \oplus x11 \oplus x12 \oplus x11 \oplus x12 \oplus x16 \oplus x17, \\
+y9 = x11 \oplus x12 \oplus x16 \oplus x17 \oplus x18 \oplus x0 \oplus x1 \oplus x5 \oplus x6 \oplus x8 \oplus x9. \\
+\end{multline} \\
+
+Z eksperymentów 5 i 6 wynika, że program RedKomp ma większe możliwości.
+Potrafi skuteczniej redukować wejścia do pamięci ROM,
+a w szczególności potrafi zmniejszać liczbę wejść do pamięci
+kosztem zwiększania liczby wejść do poszczególnych bramek XOR.
+Wtedy, przy nadmiernej liczbie wejść do XOR – można te wejścia redukować stosując strukturę wielopoziomową.
