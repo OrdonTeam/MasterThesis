@@ -2,7 +2,8 @@
 \label{chapter:research}
 
 W rozdziale tym zostały zaprezentowane wyniki badań przeprowadzone dla przykładowych funkcji referencyjnych.
-Wszystkie funkcje opisane w tym rozdziale znajdują się w załącznikach niniejszej pracy dyplomowej.
+Wszystkie funkcje opisane w tym rozdziale ale nie załączone bezpośrednio,
+znajdują się w załącznikach niniejszej pracy dyplomowej.
 
 \section{Filtr f5}
 
@@ -79,7 +80,7 @@ Eksperyment opisany w tym rozdziale dotyczy funkcji ,,2 z 16''.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min [10] tworzy układ o 11 wejściach.
 Liczby wejść do poszczególnych bramek XOR nie są podane.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
-Poszczególne wejścia y1 do y9 tej pamięci są następującymi funkcjami EXOR:
+Poszczególne wejścia $y_1$ do $y_9$ tej pamięci są wyrażone następującymi funkcjami XOR:
 \begin{multline} \\
 y1 = x7 \oplus x1 \oplus x2, \\
 y2 = x10 \oplus x2 \oplus x3, \\
@@ -95,10 +96,10 @@ y9 = x8 \oplus x9 \oplus x11 \oplus x12. \\
 \section{Permutacje 2 z 20}
 
 Eksperyment opisany w tym rozdziale dotyczy funkcji ,,2 z 20''.
-Dekompozycja liniowa tej funkcji obliczana algorytmem 2-min oraz 3min [10] tworzy układ o 14 wejściach.
-Liczby wejść do poszczególnych bramek EXOR nie są podane.
+Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min [10] tworzy układ o 14 wejściach.
+Liczby wejść do poszczególnych bramek XOR nie są podane.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 14 wejściach adresowych.
-Poszczególne wejścia y1 do y14 tej pamięci są następującymi funkcjami EXOR:
+Poszczególne wejścia $y_1$ do $y_14$ tej pamięci są wyrażone następującymi funkcjami XOR:
 \begin{multline} \\
 y1 = x15, \\
 y2 = x16, \\
@@ -119,9 +120,9 @@ y14 = x9 \oplus x10 \oplus x12 \oplus x13. \\
 \section{Permutacje 2 z 20}
 
 Eksperyment opisany w tym rozdziale dotyczy funkcji 2outof20.
-Dekompozycja liniowa tej funkcji obliczana algorytmem 2-min oraz 3min [10] tworzy układ o 14 wejściach.
+Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min [10] tworzy układ o 14 wejściach.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
-Poszczególne wejścia y1 do y9 tej pamięci są następującymi funkcjami EXOR:
+Poszczególne wejścia $y_1$ do $y_9$ tej pamięci są następującymi funkcjami XOR:
 
 \begin{multline} \\
 y1 = x3 \oplus x4 \oplus x9 \oplus x10 \oplus x12 \oplus x13, \\
@@ -139,4 +140,6 @@ Z eksperymentów 5 i 6 wynika, że program RedKomp ma większe możliwości.
 Potrafi skuteczniej redukować wejścia do pamięci ROM,
 a w szczególności potrafi zmniejszać liczbę wejść do pamięci
 kosztem zwiększania liczby wejść do poszczególnych bramek XOR.
-Wtedy, przy nadmiernej liczbie wejść do XOR – można te wejścia redukować stosując strukturę wielopoziomową.
+Nadmierna liczba wejść do bramek XOR nie będzie nigdy problemem.
+Wielowejściową bramkę XOR niedostępną w układzie ze względu na liczbę wejść,
+zawsze można zastąpić kilkoma mniejszymi bramkami stosując strukturę wielopoziomową.
