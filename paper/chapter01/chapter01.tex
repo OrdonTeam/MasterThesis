@@ -61,7 +61,7 @@ wymagane są optymalizacje pozwalające wykorzystywać pamięci dostępne w~stru
 Przykładowo przy funkcji o~$n=6$ argumentach wszystkich wektorów binarnych jest $2^n = 2^6 = 64$.
 Jeżeli spośród wszystkich wektorów poszukiwanych jest $k=6$ konkretnych, wtedy dla każdego z~64 wektorów musielibyśmy przechować 3 bity ($\log_26$).
 Dla takiego przykładu minimalna potrzebna pamięć to $64 \cdot 3 = 192$ bity.
-Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,300\,000$ poszukiwanych wektorów o~$n=40$ argumentach, taka pamięć miałaby rozmiar 21 terabitów.
+Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,300\,000$ poszukiwanych wektorów o~$n=40$ argumentach \cite{wirusy}, taka pamięć miałaby rozmiar 21 terabitów.
 \begin{multline} \\
 2^n \cdot \log_2 k = \\
 = 2^{40} \cdot \log_2 1\,300\,000 = \\
@@ -71,19 +71,16 @@ Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,
 =21 \cdot 2^{10} G = \\
 =21 [Tbit] \\
 \end{multline}
-%TODO: CR: Bibbliografia??
-%TODO: CR: Zaznaczyć że opisany w zastosowaniach
 
 \section{Zastosowania}
-%- Tablica trasowania
-%- Terminal access controller
-%- Memory patch circuit
-%- Skanowanie wirusów
-%- Dystrybucja adresów IP
-%- Skanowanie wirusów
-%- Wykrywanie niepożądanych danych
-%- Konwersja kodów
 
+Powodem rosnącej popularności funkcji generowania indeksów jest możliwość stosowania ich w rozmaitych problemach syntezy silnie nieokreślonych funkcji boolowski.
+Takie zastosowania bezpośrednio pozwalają na zastosowanie ich w procesie projektowania układów programowalnych,
+ponieważ bazują one właśnie na takich funkcjach.
+Jednak zastosowania funkcji generowania indeksów są dużo szersze.
+Mogą one być częścią wiekszych algorytmów wykorzystujących poszukiwanie wzorca.
+Ponadto funkcje generowania indeksów znajdują zastosowanie w dystrybucji adresów IP,
+skanowaniu wirusów oraz wykrywaniu niepożądanych danych.
 
 \subsection{Tablica trasowania}
 Protokołem warstwy sieciowej w modelu warstwowym OSI jest protokół IP.
@@ -96,6 +93,18 @@ Jako że adresy IPv4 są reprezentowane przez 32 bity, tyle właśnie jest argum
 Dodatkowo w~wielu routerach mamy do czynienia z~dynamicznymi protokołami trasowania,
 które wymagają częstych zmian w~tablicy adresów.
 Jest to bardzo dobry przykład zastosowania funkcji generowania indeksów.
+
+\subsection{Skanowanie wirusów}
+Proces skanowania dysku w poszukiwaniu wirusów bardzo wymagający.
+Skanowanie nawet małych dysków domowych komputerów potrafi zajmować długie godziny.
+W związku z tym powstają nowe rozwiązania wykorzystujące rozwiązania sprzętowe słynące z szybkości przewyższającej rozwiązania programowe.
+Trzeba jednak mieć na uwadze, że zagrożenia ze strony złośliwego oprogramowania zmieniają się w czasie.
+Z tego powodu rozwiązania sprzętowe, o których mowa, wykorzystują struktury programowalne.
+
+Same algorytmy poszukiwania wirusów są mocno skupione wokół zagadnienia wyszukiwania wzorca.
+Każde znane zagrożenie posiada własną unikatową sygnaturę,
+która jest potem poszukiwana w tracie całego procesu.
+Na pewnym etapie przetwarzania do znajdowania częściowych zgodności wykorzysywane są funkcjie generowania indeksów \cite{wirusy}.
 
 \section{Algorytm Sasao}
 Rozwiązanie problemu niewystarczającej puli adresów pamięci ROM przy $n$ wejściach adresowych i wykrywaniu $k$ wektorów indeksowanych ($k<<2^n$),
