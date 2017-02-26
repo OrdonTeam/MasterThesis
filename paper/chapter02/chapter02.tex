@@ -67,9 +67,11 @@ będzie istotny,
 jeżeli żaden inny argument nie dostarcza takiego rozróżnienia.
 
 Informacje o~tych zależnościach uzyskuje się z~macierz rozróżnialności (oznaczana $MR$), nazywanej również tablicą porównań,
-która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji (rysunek \ref{fig:discernibility-table}).
+która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji.
+Przykładowo na rysunku \ref{fig:discernibility-table} pierwszy wiersz macierzy powstaje z porównania wierszy 1 i 3.
+Wiersze 1 z 2 oraz 3 z 4 nie są porównywane ze względu na taką samą wartość funkcji.
 Jedynki w~takiej macierzy obrazują,
-które argumenty dostarczają rozróżnień między zadanymi wierszami.
+które argumenty dostarczają rozróżnień między zadanymi parami wierszy.
 Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z~rachunkiem kostek boolowskich.
 Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
 ponieważ istnieją inne wiersze, których obecność w macierzy zapewnia dostarczenie wystrczających rozróżnień.
@@ -97,18 +99,18 @@ Najprostszy algorytm znajdujący takie rozwiązanie sprowadzałby się do nastę
 \item Powtarzanie do uzyskania pustej macierzy.
 \end{enumerate}
 
-Nie uwzględnia on jednak rozróżnień,
-które są dostarczane przez niewielką liczbę argumentów.
-Najłatwiej zauważyć to na przykładzie argumentów niezbędnych \ref{fig:required-arguments}.
-W~ich przypadku istnieje taki wiersz,
-który zawiera wyłącznie jedną jedynkę.
+Nie uwzględnia on jednak faktu,
+że niektóre rozróżnienia są dostarczane przez mniejszą liczbę argumentów niż inne.
+Najłatwiej zauważyć to na przykładzie argumentów niezbędnych, znajdującym się na rysunku \ref{fig:required-arguments}.
+W~ich przypadku istnieją takie wiersze,
+które zawierają wyłącznie po jednej jedynce (wiersze 1 i 2).
 Oznacza to,
 że argument odpowiadający tej jedynce jest niezbędny do uzyskania minimalnego pokrycia kolumnowego.
 Taki argument często dostarcza innych rozróżnień,
-które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wagę innych argumentów.
+które przy użyciu proponowanego powyżej algorytmu zawyżałyby sztucznie wagę innych argumentów.
 W przypadku fukncju z rysunku \ref{fig:required-arguments},
 argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy,
-gdyż w minimalnym rozwiązaniu i tak muszą znaleść się argumenty $x_1$ i $x_3$.
+gdyż w minimalnym rozwiązaniu i tak muszą znaleźć się argumenty niezbędne $x_1$ i $x_3$.
 
 \begin{figure}[H]
 \centering
@@ -181,7 +183,7 @@ Wynika stąd,
 W~czasie przeprowadzania badań otrzymana złożoność nie stanowiła problemu.
 Warto jednak zauważyć,
 że rozmiar tablicy porównań dla bazy sygnatur wirusów o~1,3 mln wierszy,
-byłby zbyt duży dla większości komputerów.
+byłby zbyt złożony pamięciowo dla większości komputerów.
 Jeżeli za rozmiar pojedynczego wiersza przyjęlibyśmy 5 bajtów (40 bitów), to o~ile sama baza zajmowałaby około 6 MB pamięci to tablica porównań około 8 TB.
 
 Taka złożoność pamięciowa jest niepraktyczna nie tylko w~tym konkretnym przypadku,

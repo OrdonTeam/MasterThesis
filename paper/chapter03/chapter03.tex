@@ -50,9 +50,11 @@ Przy zastosowaniu algorytmu w~innych problemach,
 gdzie różnych wartości funkcji jest stosunkowo niewiele,
 na etapie dekompozycji funkcja zredukowana często nie będzie zawierała wszystkich wierszy.
 Część z~nich po usunięciu redundantnych argumentów będzie zduplikowana.
-Dla przykładu badanej funkcji ,,P5.PLA'' na etapie redukcji argumentów nastąpiła redukcja wierszy z~2048 do 128.
+Na przykładzie badanej funkcji ,,P5.PLA'' w wyniku redukcji argumentów nastąpiło ograniczenie liczby wierszy z~2048 do 128.
 Na takim przykładzie łatwo oszacować,
-że tablica rozróżnialności wygenerowana na potrzeby dekompozycji będzie miała 250 razy mniejszy rozmiar.
+że tablica rozróżnialności,
+wygenerowana na potrzeby dekompozycji,
+będzie miała 250 razy mniejszy rozmiar od pierwotnej.
 
 \section{Dekompozycja pojedynczą bramką XOR}
 \label{section:single-decomposition}
@@ -64,7 +66,7 @@ które pozwolą na przedstawienie funkcji $F$ w~poniższej postaci:
 \begin{equation}
 F = H( G ( X_a ), X_b)
 \end{equation}
-gdzie: $X_a = {x_i, x_j}$, $X_b = X / X_a$, $G = XOR$
+gdzie: $X_a = \{x_i, x_j\}$, $X_b = X / X_a$, $G = XOR$
 
 Aby taka dekompozycja była możliwa,
 funkcja $G$ nie może powodować utraty niezbędnych informacji.
@@ -194,7 +196,10 @@ Tym samym udowodniliśmy,
 że brak dowolnego wiersza w~macierzy rozróżnialności jest warunkiem wystarczającym do istnienia dekompozycji liniowej.
 
 Przykład dekompozycji wieloma bramkami XOR został przedstawiony na rysunku \ref{fig:multiple}.
-Zaprezentowana tam funkcja $F$ została zdekomponowana do postaci $F(x_1, x_2, x_3, x_4) = H(x_1 \oplus x_2, x_2 \oplus x_3, x_4)$.
+Zaprezentowana tam funkcja $F$ została zdekomponowana do postaci:
+\begin{equation}
+F = H(x_1 \oplus x_2, x_2 \oplus x_3, x_4).
+\end{equation}
 
 \begin{figure}[h]
 \centering

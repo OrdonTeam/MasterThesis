@@ -1,7 +1,7 @@
 \chapter{Wstęp}
 
 W~dzisiejszych czasach gromadzimy ogromne ilości danych.
-W~związku z~tym obserwujemy rozwój dziedziny eksploracji i~analizy danych.
+W~związku z~tym obserwujemy rozwój dziedzin eksploracji i~analizy danych.
 Wraz z tym rozwojem pojawia się coraz więcej problemów ściśle związanych z~koniecznością precyzyjnego wyodrębniania właściwych informacji z~ogromnej masy niepotrzebnych danych.
 Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektorami binarnymi, o~stosunkowo dużej liczbie bitów i małej ilości informacji,
 którą należy wyselekcjonować.
@@ -39,7 +39,8 @@ W~artykule \cite{redukcja-kompresja} wykazano, że algorytm s-Min jest mało sku
 W~niniejszej pracy metodykę tę przystosowano do heurystycznych obliczeń funkcji generowania indeksów.
 Cechą charakterystyczną tej propozycji jest zastosowanie twierdzenia wiążącego dekompozycję liniową
 z~tak zwanym zbiorem rozróżnialności [rozdział \ref{section:single-decomposition}].
-W~rezultacie opracowano metodykę oraz algorytm (i jego implementację) do heurystycznych obliczeń funkcji indeksowania możliwych do wykorzystania w praktyce [rozdział \ref{chapter:decomposition}].
+W~rezultacie opracowano metodykę oraz algorytm (i jego implementację),
+do heurystycznych obliczeń funkcji indeksowania, który można wykorzystać w praktyce [rozdział \ref{chapter:decomposition}].
 Przykłady takich dekompozycji podano w~rozdziale \ref{chapter:research}.
 
 \section{Problem generowania indeksów w~technice cyfrowej}
@@ -74,7 +75,8 @@ Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,
 
 \section{Zastosowania}
 
-Powodem rosnącej popularności funkcji generowania indeksów jest możliwość stosowania ich w rozmaitych problemach syntezy silnie nieokreślonych funkcji boolowski.
+Powodem rosnącej popularności funkcji generowania indeksów jest możliwość stosowania ich
+w rozmaitych problemach syntezy silnie nieokreślonych funkcji boolowski (dla których zachodzi zależność $k << 2^n$).
 Takie zastosowania bezpośrednio pozwalają na zastosowanie ich w procesie projektowania układów programowalnych,
 ponieważ bazują one właśnie na takich funkcjach.
 Jednak zastosowania funkcji generowania indeksów są dużo szersze.
@@ -95,15 +97,15 @@ które wymagają częstych zmian w~tablicy adresów.
 Jest to bardzo dobry przykład zastosowania funkcji generowania indeksów.
 
 \subsection{Skanowanie wirusów}
-Proces skanowania dysku w poszukiwaniu wirusów bardzo wymagający.
+Proces skanowania dysku w poszukiwaniu wirusów jest bardzo wymagający.
 Skanowanie nawet małych dysków domowych komputerów potrafi zajmować długie godziny.
-W związku z tym powstają nowe rozwiązania wykorzystujące rozwiązania sprzętowe słynące z szybkości przewyższającej rozwiązania programowe.
+W związku z tym powstają nowe rozwiązania wykorzystujące implementacje sprzętowe słynące z szybkości przewyższającej rozwiązania programowe.
 Trzeba jednak mieć na uwadze, że zagrożenia ze strony złośliwego oprogramowania zmieniają się w czasie.
 Z tego powodu rozwiązania sprzętowe, o których mowa, wykorzystują struktury programowalne.
 
 Same algorytmy poszukiwania wirusów są mocno skupione wokół zagadnienia wyszukiwania wzorca.
 Każde znane zagrożenie posiada własną unikatową sygnaturę,
-która jest potem poszukiwana w tracie całego procesu.
+która jest potem poszukiwana w celu jego rozpoznania.
 Na pewnym etapie przetwarzania do znajdowania częściowych zgodności wykorzysywane są funkcjie generowania indeksów \cite{wirusy}.
 
 \section{Algorytm Sasao}
@@ -120,7 +122,7 @@ Dekompozycja liniowa polega na łączeniu argumentów w~grupy i~podawaniu ich na
 Algorytm s-Min, profesora Sasao, znajduje takie grupy.
 Istnieją jednak przykłady,
 dla których wskazanie jakiegokolwiek takiego zbioru argumentów nie jest możliwe lub występuje ich niewiele w~stosunku do całkowitej liczby argumentów.
-Z~tego powodu częscią algorytmu Sasao są przekształcenia linowe,
+Z~tego powodu częścią algorytmu Sasao są przekształcenia linowe,
 mające na celu zwiększenie dostępnej liczby grup do dekompozycji bramkami XOR.
 Dla funkcji ,,1 z~20'' (tabela numer \ref{fig:1of20}),
 posiadającej $n=20$~argumentów oraz $k=20$~wierszy,
