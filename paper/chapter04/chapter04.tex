@@ -106,48 +106,43 @@ y_9 = x_8 \oplus x_9 \oplus x_{11} \oplus x_{12}. \\
 Eksperyment opisany w tym rozdziale dotyczy funkcji ,,2 z 20''.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min \cite{sasao-s-min} tworzy układ o 14 wejściach.
 Liczby wejść do poszczególnych bramek XOR nie są podane.
-Program RedKomp umożliwia realizację tej funkcji na pamięci o 14 wejściach adresowych.
-Poszczególne wejścia $y_1$ do $y_{14}$ tej pamięci są wyrażone następującymi funkcjami XOR:
+Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
+Poszczególne wejścia $a_1$ do $a_9$ tej pamięci są następującymi funkcjami XOR:
+
 \begin{multline} \\
-y_1 = x_{15}, \\
-y_2 = x_{16}, \\
-y_3 = x_{17}, \\
-y_4 = x_{18}, \\
-y_5 = x_0 \oplus x_1, \\
-y_6 = x_3 \oplus x_4, \\
-y_7 = x_5 \oplus x_6, \\
-y_8 = x_7 \oplus x_1 \oplus x_2, \\
-y_9 = x_8 \oplus x_9, \\
-y_{10} = x_{10} \oplus x_2 \oplus x_3, \\
-y_{11} = x_{11} \oplus x_{12}, \\
-y_{12} = x_{13} \oplus x_6 \oplus x_7, \\
-y_{13} = x_{14} \oplus x_9 \oplus x_{10}, \\
-y_{14} = x_9 \oplus x_{10} \oplus x_{12} \oplus x_{13}. \\
+a_1 = x_{4} \oplus x_{5} \oplus x_{10} \oplus x_{11} \oplus x_{13} \oplus x_{14}, \\
+a_2 = x_{11} \oplus x_{3} \oplus x_{4} \oplus x_{16} \oplus x_{17}, \\
+a_3 = x_{16} \oplus x_{17} \oplus x_{19} \oplus x_{1} \oplus x_{2}, \\
+a_4 = x_{14} \oplus x_{7} \oplus x_{8} \oplus x_{15} \oplus x_{10} \oplus x_{11}, \\
+a_5 = x_{15} \oplus x_{10} \oplus x_{11} \oplus x_{18} \oplus x_{8} \oplus x_{2} \oplus x_{3}, \\
+a_6 = x_{18} \oplus x_{8} \oplus x_{2} \oplus x_{3} \oplus x_{1} \oplus x_{2} \oplus x_{4} \oplus x_{5}, \\
+a_7 = x_{1} \oplus x_{2} \oplus x_{4} \oplus x_{5} \oplus x_{9} \oplus x_{10} \oplus x_{12} \oplus x_{13}, \\
+a_8 = x_{9} \oplus x_{10} \oplus x_{12} \oplus x_{13} \oplus x_{12} \oplus x_{13} \oplus x_{17} \oplus x_{18}, \\
+a_9 = x_{12} \oplus x_{13} \oplus x_{17} \oplus x_{18} \oplus x_{19} \oplus x_{1} \oplus x_{2} \oplus x_{6} \oplus x_{7} \oplus x_{9} \oplus x_{10}. \\
 \end{multline}
 
-\section{Permutacje ,,2 z 20''}
-
-Eksperyment opisany w tym rozdziale dotyczy funkcji ,,2 z 20''.
-Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min \cite{sasao-s-min} tworzy układ o 14 wejściach.
-Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
-Poszczególne wejścia $y_1$ do $y_9$ tej pamięci są następującymi funkcjami XOR:
+Program RedKomp przeprowadza obliczenia sekwencyjnie.
+Dzięki temu możliwe jest uzyskanie wyniku dekompozycji lepiej dopasowanej do potrzeb.
+W przypadku funkcji ,,2 z 20''
+program RedKomp jest wstanie zaproponować rozwiązania realizowalne na pamięciach
+od 19 (obliczone w wyniku samiej redukcji) do 9 wejściach adresowych.
+Dla przykładu poniżej został przedstawiona dekompozycja obliczona programem RedKomp na układ o 14 wejściach,
+jak w przypadku rozwiązania Sasao \cite{sasao-s-min}.
+Poszczególne wejścia $b_1$ do $b_{14}$ tej pamięci są następującymi funkcjami XOR:
 
 \begin{multline} \\
-y_1 = x_3 \oplus x_4 \oplus x_9 \oplus x_{10} \oplus x_{12} \oplus x_{13}, \\
-y_2 = x_{10} \oplus x_2 \oplus x_3 \oplus x_{15} \oplus x_{16}, \\
-y_3 = x_{15} \oplus x_{16} \oplus x_{18} \oplus x_0 \oplus x_1, \\
-y_4 = x_{13} \oplus x_6 \oplus x_7 \oplus x_{14} \oplus x_9 \oplus x_{10}, \\
-y_5 = x_{14} \oplus x_9 \oplus x_{10} \oplus x_{17} \oplus x_7 \oplus x_1 \oplus x_2, \\
-y_6 = x_{17} \oplus x_7 \oplus x_1 \oplus x_2 \oplus x_0 \oplus x_1 \oplus x_3 \oplus x_4, \\
-y_7 = x_0 \oplus x_1 \oplus x_3 \oplus x_4 \oplus x_8 \oplus x_9 \oplus x_{11} \oplus x_{12}, \\
-y_8 = x_8 \oplus x_9 \oplus x_{11} \oplus x_{12} \oplus x_{11} \oplus x_{12} \oplus x_{16} \oplus x_{17}, \\
-y_9 = x_{11} \oplus x_{12} \oplus x_{16} \oplus x_{17} \oplus x_{18} \oplus x_0 \oplus x_1 \oplus x_5 \oplus x_6 \oplus x_8 \oplus x_9. \\
-\end{multline} \\
-
-Z eksperymentów 5 i 6 wynika, że program RedKomp ma większe możliwości.
-Potrafi skuteczniej redukować wejścia do pamięci ROM,
-a w szczególności potrafi zmniejszać liczbę wejść do pamięci
-kosztem zwiększania liczby wejść do poszczególnych bramek XOR.
-Nadmierna liczba wejść do bramek XOR nie będzie nigdy problemem.
-Wielowejściową bramkę XOR niedostępną w układzie ze względu na liczbę wejść,
-zawsze można zastąpić kilkoma mniejszymi bramkami stosując strukturę wielopoziomową.
+b_1 = x_{16}, \\
+b_2 = x_{17}, \\
+b_3 = x_{18}, \\
+b_4 = x_{19}, \\
+b_5 = x_{1} \oplus x_{2}, \\
+b_6 = x_{4} \oplus x_{5}, \\
+b_7 = x_{6} \oplus x_{7}, \\
+b_8 = x_{8} \oplus x_{2} \oplus x_{3}, \\
+b_9 = x_{9} \oplus x_{10}, \\
+b_{10} = x_{11} \oplus x_{3} \oplus x_{4}, \\
+b_{11} = x_{12} \oplus x_{13}, \\
+b_{12} = x_{14} \oplus x_{7} \oplus x_{8}, \\
+b_{13} = x_{15} \oplus x_{10} \oplus x_{11}, \\
+b_{14} = x_{10} \oplus x_{11} \oplus x_{13} \oplus x_{14}. \\
+\end{multline}
