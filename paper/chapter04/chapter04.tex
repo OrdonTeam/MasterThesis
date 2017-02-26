@@ -71,10 +71,18 @@ Funkcję po usunięciu tego argumentu i zmianie oznaczeń na $a_1, ..., a_9$ prz
 \input{chapter04//1of10-reduct.tex}
 
 Przy tych oznaczeniach Sasao, stosując algorytm 2-Min obliczył dekompozycję \cite{sasao-s-min}:
+TODO: CR: Panie Profesorze, nie znalazałem tego przykładu w udostępnionych artykułach i nie mogłem uzupełnić tego miejsca
 
 Następnie po zastosowaniu algorytmu 3-Min indeksowanie zostało poprawione do wektorów 5-bitowych \cite{sasao-s-min}:
+TODO: CR: Panie Profesorze, nie znalazałem tego przykładu w udostępnionych artykułach i nie mogłem uzupełnić tego miejsca
 
-Rezultat uzyskany metodą RedKomp jest 4-bitowy (patrz Dodatek):
+Rezultat uzyskany metodą RedKomp jest 4-bitowy:
+\begin{multline} \\
+y_1 = x_0 \oplus x_1 \oplus x_3 \oplus x_4, \\
+y_2 = x_3 \oplus x_4 \oplus x_6 \oplus x_7, \\
+y_3 = x_1 \oplus x_2 \oplus x_4 \oplus x_5, \\
+y_4 = x_4 \oplus x_5 \oplus x_7 \oplus x_8. \\
+\end{multline}
 
 \section{Permutacje 2 z 16}
 
@@ -84,15 +92,15 @@ Liczby wejść do poszczególnych bramek XOR nie są podane.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
 Poszczególne wejścia $y_1$ do $y_9$ tej pamięci są wyrażone następującymi funkcjami XOR:
 \begin{multline} \\
-y1 = x7 \oplus x1 \oplus x2, \\
-y2 = x10 \oplus x2 \oplus x3, \\
-y3 = x13 \oplus x6 \oplus x7, \\
-y4 = x14 \oplus x9 \oplus x10, \\
-y5 = x9 \oplus x10 \oplus x12 \oplus x13, \\
-y6 = x0 \oplus x1 \oplus x3 \oplus x4, \\
-y7 = x3 \oplus x4 \oplus x5 \oplus x6, \\
-y8 = x5 \oplus x6 \oplus x8 \oplus x9, \\
-y9 = x8 \oplus x9 \oplus x11 \oplus x12. \\
+y_1 = x_7 \oplus x_1 \oplus x_2, \\
+y_2 = x_{10} \oplus x_2 \oplus x_3, \\
+y_3 = x_{13} \oplus x_6 \oplus x_7, \\
+y_4 = x_{14} \oplus x_9 \oplus x_{10}, \\
+y_5 = x_9 \oplus x_{10} \oplus x_{12} \oplus x_{13}, \\
+y_6 = x_0 \oplus x_1 \oplus x_3 \oplus x_4, \\
+y_7 = x_3 \oplus x_4 \oplus x_5 \oplus x_6, \\
+y_8 = x_5 \oplus x_6 \oplus x_8 \oplus x_9, \\
+y_9 = x_8 \oplus x_9 \oplus x_{11} \oplus x_{12}. \\
 \end{multline}
 
 \section{Permutacje 2 z 20}
@@ -103,20 +111,20 @@ Liczby wejść do poszczególnych bramek XOR nie są podane.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 14 wejściach adresowych.
 Poszczególne wejścia $y_1$ do $y_14$ tej pamięci są wyrażone następującymi funkcjami XOR:
 \begin{multline} \\
-y1 = x15, \\
-y2 = x16, \\
-y3 = x17, \\
-y4 = x18, \\
-y5 = x0 \oplus x1, \\
-y6 = x3 \oplus x4, \\
-y7 = x5 \oplus x6, \\
-y8 = x7 \oplus x1 \oplus x2, \\
-y9 = x8 \oplus x9, \\
-y10 = x10 \oplus x2 \oplus x3, \\
-y11 = x11 \oplus x12, \\
-y12 = x13 \oplus x6 \oplus x7, \\
-y13 = x14 \oplus x9 \oplus x10, \\
-y14 = x9 \oplus x10 \oplus x12 \oplus x13. \\
+y_1 = x_{15}, \\
+y_2 = x_{16}, \\
+y_3 = x_{17}, \\
+y_4 = x_{18}, \\
+y_5 = x_0 \oplus x_1, \\
+y_6 = x_3 \oplus x_4, \\
+y_7 = x_5 \oplus x_6, \\
+y_8 = x_7 \oplus x_1 \oplus x_2, \\
+y_9 = x_8 \oplus x_9, \\
+y_{10} = x_{10} \oplus x_2 \oplus x_3, \\
+y_{11} = x_{11} \oplus x_{12}, \\
+y_{12} = x_{13} \oplus x_6 \oplus x_7, \\
+y_{13} = x_{14} \oplus x_9 \oplus x_{10}, \\
+y_{14} = x_9 \oplus x_{10} \oplus x_{12} \oplus x_{13}. \\
 \end{multline}
 
 \section{Permutacje 2 z 20}
@@ -127,15 +135,15 @@ Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach ad
 Poszczególne wejścia $y_1$ do $y_9$ tej pamięci są następującymi funkcjami XOR:
 
 \begin{multline} \\
-y1 = x3 \oplus x4 \oplus x9 \oplus x10 \oplus x12 \oplus x13, \\
-y2 = x10 \oplus x2 \oplus x3 \oplus x15 \oplus x16, \\
-y3 = x15 \oplus x16 \oplus x18 \oplus x0 \oplus x1, \\
-y4 = x13 \oplus x6 \oplus x7 \oplus x14 \oplus x9 \oplus x10, \\
-y5 = x14 \oplus x9 \oplus x10 \oplus x17 \oplus x7 \oplus x1 \oplus x2, \\
-y6 = x17 \oplus x7 \oplus x1 \oplus x2 \oplus x0 \oplus x1 \oplus x3 \oplus x4, \\
-y7 = x0 \oplus x1 \oplus x3 \oplus x4 \oplus x8 \oplus x9 \oplus x11 \oplus x12, \\
-y8 = x8 \oplus x9 \oplus x11 \oplus x12 \oplus x11 \oplus x12 \oplus x16 \oplus x17, \\
-y9 = x11 \oplus x12 \oplus x16 \oplus x17 \oplus x18 \oplus x0 \oplus x1 \oplus x5 \oplus x6 \oplus x8 \oplus x9. \\
+y_1 = x_3 \oplus x_4 \oplus x_9 \oplus x_{10} \oplus x_{12} \oplus x_{13}, \\
+y_2 = x_{10} \oplus x_2 \oplus x_3 \oplus x_{15} \oplus x_{16}, \\
+y_3 = x_{15} \oplus x_{16} \oplus x_{18} \oplus x_0 \oplus x_1, \\
+y_4 = x_{13} \oplus x_6 \oplus x_7 \oplus x_{14} \oplus x_9 \oplus x_{10}, \\
+y_5 = x_{14} \oplus x_9 \oplus x_{10} \oplus x_{17} \oplus x_7 \oplus x_1 \oplus x_2, \\
+y_6 = x_{17} \oplus x_7 \oplus x_1 \oplus x_2 \oplus x_0 \oplus x_1 \oplus x_3 \oplus x_4, \\
+y_7 = x_0 \oplus x_1 \oplus x_3 \oplus x_4 \oplus x_8 \oplus x_9 \oplus x_{11} \oplus x_{12}, \\
+y_8 = x_8 \oplus x_9 \oplus x_{11} \oplus x_{12} \oplus x_{11} \oplus x_{12} \oplus x_{16} \oplus x_{17}, \\
+y_9 = x_{11} \oplus x_{12} \oplus x_{16} \oplus x_{17} \oplus x_{18} \oplus x_0 \oplus x_1 \oplus x_5 \oplus x_6 \oplus x_8 \oplus x_9. \\
 \end{multline} \\
 
 Z eksperymentów 5 i 6 wynika, że program RedKomp ma większe możliwości.
