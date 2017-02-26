@@ -41,16 +41,15 @@ które mają zaledwie 4 wejścia adresowe.
 \end{figure}
 
 W~strukturze tej blok selekcji zmiennych wybiera spośród wszystkich zmiennych podzbiór $X_1$,
-reprezentujący minimalną liczbę zmiennych realizowanej funkcji generowania indeksów.
+reprezentujący minimalną liczbę zmiennych,
+niezbędną do realizowania funkcji generowania indeksów.
 Przez $r$ na rysunku została oznaczona liczność reduktu.
 Jest to jednocześnie liczba wejść do pamięci głównej.
 Na wyjściach pamięci głównej pojawia się indeks wektora wejściowego. % $X = X_1 \cup X_2$.
 Jest on reprezentowany wektorem binarnym o liczbie bitów $p = \lceil log_2 (k+1)\rceil$.
 Indeks ten jest poprawnym indeksem wektora wejściowego wtedy,
 jeżeli jest to wektor rejestrowany.
-W przypadku,
-gdy wektor wejściowy nie jest wektorem rejestrowanym,
-na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wrtość,
+W przeciwnym przypadku na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wrtość,
 na przykład wektor samych zer.
 Ta watorść nie pojawi się jednak na wyjściach generatora.
 Za pomocą pamięci pomocniczej i komparatora,
@@ -66,7 +65,7 @@ Wtedy komparator sygnałem wyjściowym 0 zablokuje pojawienie się na wyjściach
 Eksperyment opisany w tym rozdziale dotyczy funkcji ,,1 z 10'' (tabela \ref{1of10}) analizowanej w artykule \cite{sasao-s-min}.
 Funkcja ta jest redukowalna do 9 zmiennych na wiele sposobów.
 Jednym z nich jest usunięcie z funkcji nadmiarowego argumentu $x_2$.
-Funkcję po usunięciu tego argumentu i zmianie oznaczeń na $a_1, ..., a_9$ przedstawiono w tabeli \ref(1of10-reduct)
+Funkcję po usunięciu tego argumentu i zmianie oznaczeń na $a_1, ..., a_9$ przedstawiono w tabeli \ref{1of10-reduct}
 
 \input{chapter04//1of10.tex}
 \input{chapter04//1of10-reduct.tex}
