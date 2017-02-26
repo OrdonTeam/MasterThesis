@@ -6,10 +6,10 @@ Wszystkie funkcje opisane w tym rozdziale,
 ale nie załączone bezpośrednio,
 znajdują się w załącznikach niniejszej pracy dyplomowej.
 
-\section{Filtr f5}
+\section{Przykład funkcji ,,Filtr f5''}
 
 Przykładem potwierdzającym skuteczność algorytmu opracowanego w ramach niniejszej pracy
-może być układ arytmetyki rozproszonej \cite{memory-capacity} filtru f5 \cite{nine-filters}.
+może być układ arytmetyki rozproszonej \cite{memory-capacity} ,,filtru f5'' \cite{nine-filters}.
 Reprezentacja tego układu za pomocą w pełni określonych funkcji boolowskich
 jest opisana tablicą o 11 zmiennych wejściowych i 11 wyjściach.
 Implementacja tego układu \cite{redukcja-kompresja} w strukturze Virtex-7 wykonana za pomocą programu Vivado 2015.4.2
@@ -36,11 +36,11 @@ które mają zaledwie 4 wejścia adresowe.
 \begin{figure}[H]
 \centering
 \includegraphics[width = 13cm]{chapter04/sasao-structure.jpg}
-\caption{Strukturza zaproponowanej w referacie Sasao (źródło \cite{sasao-workshop}).}
+\caption{Struktura zaproponowana w referacie Sasao (źródło \cite{sasao-workshop}).}
 \label{fig:sasao-structure}
 \end{figure}
 
-W~strukturze tej blok selekcji zmiennych wybiera spośród wszystkich zmiennych podzbiór $X_1$,
+W~strukturze tej blok selekcji zmiennych wybiera spośród wszystkich zmiennych $X$ podzbiór $X_1$,
 reprezentujący minimalną liczbę zmiennych,
 niezbędną do realizowania funkcji generowania indeksów.
 Przez $r$ na rysunku została oznaczona liczność reduktu.
@@ -48,19 +48,19 @@ Jest to jednocześnie liczba wejść do pamięci głównej.
 Na wyjściach pamięci głównej pojawia się indeks wektora wejściowego. % $X = X_1 \cup X_2$.
 Jest on reprezentowany wektorem binarnym o liczbie bitów $p = \lceil log_2 (k+1)\rceil$.
 Indeks ten jest poprawnym indeksem wektora wejściowego wtedy,
-jeżeli jest to wektor rejestrowany.
-W przeciwnym przypadku na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wrtość,
+gdy jest to wektor poszukiwany.
+W przeciwnym przypadku na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wrtość domyślna,
 na przykład wektor samych zer.
 Ta watorść nie pojawi się jednak na wyjściach generatora.
 Za pomocą pamięci pomocniczej i komparatora,
-przeprowadzane jest sprawdzenie czy pozostałe zmienne należące do zbioru $X_2$ są zgodne ze wzorcem.
+przeprowadzane jest sprawdzenie czy pozostałe zmienne należące do zbioru $X_2$ ($X_2 = X \backslash X_1$) są zgodne ze wzorcem.
 Z pamięci pomocniczej podawane są na wejście komparatora wzorcowe wektory.
 Są one porównywane tam z rzeczywistym wektorem $X_2$ podawanym na drugie wejście komparatora.
 Oczywiście wektor pobrany z pamięci pomocniczej będzie różny od rzeczywistego wektora $X_2$ w przypadku,
 gdy nie należy on do wektora rejestrowanego.
 Wtedy komparator sygnałem wyjściowym 0 zablokuje pojawienie się na wyjściach bramy AND wektora wytworzonego w pamięci głównej.
 
-\section{Permutacje 1 z 10}
+\section{Permutacje ,,1 z 10''}
 
 Eksperyment opisany w tym rozdziale dotyczy funkcji ,,1 z 10'' (tabela \ref{1of10}) analizowanej w artykule \cite{sasao-s-min}.
 Funkcja ta jest redukowalna do 9 zmiennych na wiele sposobów.
@@ -77,6 +77,7 @@ Następnie po zastosowaniu algorytmu 3-Min indeksowanie zostało poprawione do w
 TODO: CR: Panie Profesorze, nie znalazałem tego przykładu w udostępnionych artykułach i nie mogłem uzupełnić tego miejsca
 
 Rezultat uzyskany metodą RedKomp jest 4-bitowy:
+%\\TODO: CR: Z maila. nie poprawny wynik
 \begin{multline} \\
 y_1 = x_0 \oplus x_1 \oplus x_3 \oplus x_4, \\
 y_2 = x_3 \oplus x_4 \oplus x_6 \oplus x_7, \\
@@ -84,7 +85,7 @@ y_3 = x_1 \oplus x_2 \oplus x_4 \oplus x_5, \\
 y_4 = x_4 \oplus x_5 \oplus x_7 \oplus x_8. \\
 \end{multline}
 
-\section{Permutacje 2 z 16}
+\section{Permutacje ,,2 z 16''}
 
 Eksperyment opisany w tym rozdziale dotyczy funkcji ,,2 z 16''.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min \cite{sasao-s-min} tworzy układ o 11 wejściach.
@@ -109,7 +110,7 @@ Eksperyment opisany w tym rozdziale dotyczy funkcji ,,2 z 20''.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min \cite{sasao-s-min} tworzy układ o 14 wejściach.
 Liczby wejść do poszczególnych bramek XOR nie są podane.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 14 wejściach adresowych.
-Poszczególne wejścia $y_1$ do $y_14$ tej pamięci są wyrażone następującymi funkcjami XOR:
+Poszczególne wejścia $y_1$ do $y_{14}$ tej pamięci są wyrażone następującymi funkcjami XOR:
 \begin{multline} \\
 y_1 = x_{15}, \\
 y_2 = x_{16}, \\
@@ -127,9 +128,9 @@ y_{13} = x_{14} \oplus x_9 \oplus x_{10}, \\
 y_{14} = x_9 \oplus x_{10} \oplus x_{12} \oplus x_{13}. \\
 \end{multline}
 
-\section{Permutacje 2 z 20}
+\section{Permutacje ,,2 z 20''}
 
-Eksperyment opisany w tym rozdziale dotyczy funkcji 2outof20.
+Eksperyment opisany w tym rozdziale dotyczy funkcji ,,2 z 20''.
 Dekompozycja liniowa tej funkcji obliczana algorytmem 2-Min oraz 3-Min \cite{sasao-s-min} tworzy układ o 14 wejściach.
 Program RedKomp umożliwia realizację tej funkcji na pamięci o 9 wejściach adresowych.
 Poszczególne wejścia $y_1$ do $y_9$ tej pamięci są następującymi funkcjami XOR:
