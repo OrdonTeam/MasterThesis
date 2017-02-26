@@ -67,23 +67,20 @@ Funkcja ta jest redukowalna do 9 zmiennych na wiele sposobów.
 Jednym z nich jest usunięcie z funkcji nadmiarowego argumentu $x_2$.
 Funkcję po usunięciu tego argumentu i zmianie oznaczeń na $a_1, ..., a_9$ przedstawiono w tabeli \ref{1of10-reduct}
 
+Przy tych oznaczeniach Sasao,
+stosując algorytm 2-Min,
+a następnie 3-Min obliczył dekompozycję 5-bitową \cite{sasao-s-min}.
+Została ona przedstawiona w tabeli \ref{1of10-reduct-b}.
+Rezultat uzyskany metodą RedKomp jest 4-bitowy (tabela \ref{1of10-reduct-c}).
+\begin{multline} \\
+b_1 = a_1 \oplus a_2 \oplus a_4 \oplus a_5, \\
+b_2 = a_4 \oplus a_5 \oplus a_7 \oplus a_8, \\
+b_3 = a_2 \oplus a_3 \oplus a_5 \oplus a_6, \\
+b_4 = a_5 \oplus a_6 \oplus a_8 \oplus a_9. \\
+\end{multline}
+
 \input{chapter04//1of10.tex}
 \input{chapter04//1of10-reduct.tex}
-
-Przy tych oznaczeniach Sasao, stosując algorytm 2-Min obliczył dekompozycję \cite{sasao-s-min}:
-TODO: CR: Panie Profesorze, nie znalazałem tego przykładu w udostępnionych artykułach i nie mogłem uzupełnić tego miejsca
-
-Następnie po zastosowaniu algorytmu 3-Min indeksowanie zostało poprawione do wektorów 5-bitowych \cite{sasao-s-min}:
-TODO: CR: Panie Profesorze, nie znalazałem tego przykładu w udostępnionych artykułach i nie mogłem uzupełnić tego miejsca
-
-Rezultat uzyskany metodą RedKomp jest 4-bitowy:
-%\\TODO: CR: Z maila. nie poprawny wynik
-\begin{multline} \\
-y_1 = x_0 \oplus x_1 \oplus x_3 \oplus x_4, \\
-y_2 = x_3 \oplus x_4 \oplus x_6 \oplus x_7, \\
-y_3 = x_1 \oplus x_2 \oplus x_4 \oplus x_5, \\
-y_4 = x_4 \oplus x_5 \oplus x_7 \oplus x_8. \\
-\end{multline}
 
 \section{Permutacje ,,2 z 16''}
 
