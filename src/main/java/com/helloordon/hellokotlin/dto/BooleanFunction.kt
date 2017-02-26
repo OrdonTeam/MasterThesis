@@ -17,4 +17,5 @@ data class BooleanFunctionRow(
 
 fun defaultArgumentsNames(argumentCount: Int): List<String> {
     return (0 until argumentCount).map { "x$it" }
+//    return (0 until argumentCount).map { "x_{${it+1}}" }
 }
