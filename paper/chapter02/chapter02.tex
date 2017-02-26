@@ -71,8 +71,10 @@ która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościac
 Jedynki w~takiej macierzy obrazują,
 które argumenty dostarczają rozróżnień między zadanymi wierszami.
 Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z~rachunkiem kostek boolowskich.
-Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,%TODO: CR: opisać dlaczego
-ale ich usunięcie wymaga porównania wszystkich wierszy każdy z~każdym
+Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
+ponieważ istnieją inne wiersze, których obecność w macierzy zapewnia dostarczenie wystrczających rozróżnień.
+Mimo to szybszym rozwiązaniem jest pozostawienie ich w macierzy,
+gdyż ich usunięcie wymaga porównania wszystkich wierszy każdy z~każdym
 i~jest nie opłacalne ze względu na złożoność obliczeniową.
 Z~drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~nie mogą być usunięte.
 Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}.
