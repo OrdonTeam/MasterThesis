@@ -67,7 +67,7 @@ będzie istotny,
 jeżeli żaden inny argument nie dostarcza takiego rozróżnienia.
 
 Informacje o~tych zależnościach uzyskuje się z~macierz rozróżnialności (oznaczana $MR$), nazywanej również tablicą porównań,
-która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji.
+która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji (rysunek \ref{fig:discernibility-table}).
 Jedynki w~takiej macierzy obrazują,
 które argumenty dostarczają rozróżnień między zadanymi wierszami.
 Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z~rachunkiem kostek boolowskich.
@@ -79,11 +79,11 @@ i~jest nie opłacalne ze względu na złożoność obliczeniową.
 Z~drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~nie mogą być usunięte.
 Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}.
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \includegraphics[width = 13cm]{chapter02/discernibility-table.png}
 \caption{Proces powstawania tablicy rozróżnialności (źródło własne).}
-%TODO: CR: Opisać rysunek
+\label{fig:discernibility-table}
 \end{figure}
 
 Znalezienie reduktu,
@@ -99,20 +99,22 @@ Najprostszy algorytm znajdujący takie rozwiązanie sprowadzałby się do nastę
 
 Nie uwzględnia on jednak rozróżnień,
 które są dostarczane przez niewielką liczbę argumentów.
-Najłatwiej zauważyć to na przykładzie argumentów niezbędnych.
+Najłatwiej zauważyć to na przykładzie argumentów niezbędnych \ref{fig:required-arguments}.
 W~ich przypadku istnieje taki wiersz,
 który zawiera wyłącznie jedną jedynkę.
 Oznacza to,
 że argument odpowiadający tej jedynce jest niezbędny do uzyskania minimalnego pokrycia kolumnowego.
 Taki argument często dostarcza innych rozróżnień,
 które przy użyciu proponowanego algorytmu zawyżałyby sztucznie wagę innych argumentów.
+W przypadku fukncju z rysunku \ref{fig:required-arguments},
+argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy,
+gdyż w minimalnym rozwiązaniu i tak muszą znaleść się argumenty $x_1$ i $x_3$.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width = 5cm]{chapter02/required-arguments.png}
-\caption{Przykład obrazujący niedoskonałości algorytmu największej liczby jedynek.
-Argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy (źródło własne).}
-%TODO: CR: Opisać rysunek
+\caption{Przykład obrazujący niedoskonałości algorytmu największej liczby jedynek (źródło własne).}
+\label{fig:required-arguments}
 \end{figure}
 
 Aby uwzględnić problem sztucznego zawyżania wag argumentów,
