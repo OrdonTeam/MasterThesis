@@ -1,14 +1,14 @@
 \chapter{Redukcja argumentów}
 \label{chapter:reduction}
 
-Algorytm generowania indeksów zaproponowany przez profesora Sasao pozwala na zastosowanie pamięci o~mniejszym rozmiarze niż wskazywałaby na to liczba argumentów.
+Algorytm generowania indeksów zaproponowany przez profesora Sasao pozwala na zastosowanie pamięci o~mniejszym rozmiarze,
+niż wskazywałaby na to liczba argumentów.
 Nie jest to oczywiście jedyna metoda pozwalająca na uzyskanie takiego efektu.
 W~niniejszej pracy przedstawione zostało podejście wykorzystujące jednocześnie redukcję i~kompresję argumentów.
 
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
 poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
-Po wykonaniu takiego procesu,
-próba usunięcie kolejnego argumentu z~funkcji wyjściowej powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
+Po wykonaniu takiego procesu próba usunięcia kolejnego argumentu z~funkcji wyjściowej powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
 Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem i oznaczamy $R$.
 Istnieje wiele sposobów redukcji argumentów.
 Należą do nich metody systematyczne
@@ -54,7 +54,8 @@ aż do zapewnienia pełnej rozróżnialności.
 Zaczynamy z~jednym argumentem i~kolejno wybieramy kolejne,
 które znajdą się w~końcowym rozwiązaniu.
 Jeżeli przy takim podejściu dodatkowo będziemy w~stanie ocenić,
-które argumenty są bardziej wartościowe to uzyskamy lepsze wyniki.
+które argumenty są bardziej wartościowe,
+to uzyskamy lepsze wyniki.
 
 Za wagę argumentu w~redukcie można przyjąć liczbę rozróżnień,
 których on dostarcza.
@@ -77,9 +78,10 @@ Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie
 ponieważ istnieją inne wiersze, których obecność w macierzy zapewnia dostarczenie wystrczających rozróżnień.
 Mimo to szybszym rozwiązaniem jest pozostawienie ich w macierzy,
 gdyż ich usunięcie wymaga porównania wszystkich wierszy każdy z~każdym
-i~jest nie opłacalne ze względu na złożoność obliczeniową.
+i~jest nieopłacalne ze względu na złożoność obliczeniową.
 Z~drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~nie mogą być usunięte.
-Zarówno algorytm usuwania jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}.
+Zarówno algorytm usuwania,
+jak i~jego złożoność zostały dokładnie wyjaśnione w~pracy dyplomowej \cite{inzynierka}.
 
 \begin{figure}[h]
 \centering
@@ -167,8 +169,7 @@ Warto pamiętać,
 ale na potrzeby szacowania złożoności przyjmijmy skrajnie niekorzystny przykład,
 gdzie każdy argument usuwa tylko po jednym wierszu.
 W~takim przypadku bardzo pesymistycznie oszacowana złożoność wyniesie $O(n^2 \cdot m^2)$.
-Ostatni krok ma taką złożoność,
-jak poprzednio liczona złożoność weryfikacji.
+Ostatni krok ma taką złożoność jak poprzednio liczona złożoność weryfikacji.
 Ponownie warto zauważyć,
 że obliczenia przeprowadzane są już na redukcie,
 czyli zbiorze argumentów często mniejszym od $n$.
