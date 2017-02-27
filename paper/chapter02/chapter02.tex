@@ -9,7 +9,7 @@ W~niniejszej pracy przedstawione zostało podejście wykorzystujące jednocześn
 Redukcja argumentów jest to proces pozwalający na zmniejszenie liczby parametrów wejściowych funkcji,
 poprzez odrzucenie argumentów zawierających wyłącznie redundantne dane.
 Po wykonaniu takiego procesu próba usunięcia kolejnego argumentu z~funkcji wyjściowej powoduje kolizję wierszy o~różnych wartościach i~tym samym utratę informacji.
-Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem i oznaczamy $R$.
+Zbiór argumentów powstały w~wyniku redukcji nazywamy reduktem i~oznaczamy $R$.
 Istnieje wiele sposobów redukcji argumentów.
 Należą do nich metody systematyczne
 pozwalające na znalezienie wszystkich minimalnych rozwiązań,
@@ -69,14 +69,14 @@ jeżeli żaden inny argument nie dostarcza takiego rozróżnienia.
 
 Informacje o~tych zależnościach uzyskuje się z~macierz rozróżnialności (oznaczana $MR$), nazywanej również tablicą porównań,
 która zawiera wynik operacji XOR wszystkich par wierszy o~różnych wartościach funkcji.
-Przykładowo na rysunku \ref{fig:discernibility-table} pierwszy wiersz macierzy powstaje z porównania wierszy 1 i 3.
-Wiersze 1 z 2 oraz 3 z 4 nie są porównywane ze względu na taką samą wartość funkcji.
+Przykładowo na rysunku \ref{fig:discernibility-table} pierwszy wiersz macierzy powstaje z~porównania wierszy 1 i~3.
+Wiersze 1 z~2 oraz 3 z~4 nie są porównywane ze względu na taką samą wartość funkcji.
 Jedynki w~takiej macierzy obrazują,
 które argumenty dostarczają rozróżnień między zadanymi parami wierszy.
 Na potrzeby niniejszej pracy macierz rozróżnialności nie jest pozbawiana wierszy pokrywanych przez inne zgodnie z~rachunkiem kostek boolowskich.
 Takie wiersze nie są istotne z~punktu widzenia znajdowania minimalnego pokrycie kolumnowego,
-ponieważ istnieją inne wiersze, których obecność w macierzy zapewnia dostarczenie wystrczających rozróżnień.
-Mimo to szybszym rozwiązaniem jest pozostawienie ich w macierzy,
+ponieważ istnieją inne wiersze, których obecność w~macierzy zapewnia dostarczenie wystrczających rozróżnień.
+Mimo to szybszym rozwiązaniem jest pozostawienie ich w~macierzy,
 gdyż ich usunięcie wymaga porównania wszystkich wierszy każdy z~każdym
 i~jest nieopłacalne ze względu na złożoność obliczeniową.
 Z~drugiej strony w~przypadku dekompozycji liniowej wiersze te są niezbędne do prawidłowego przeprowadzenia algorytmu i~nie mogą być usunięte.
@@ -105,14 +105,14 @@ Nie uwzględnia on jednak faktu,
 że niektóre rozróżnienia są dostarczane przez mniejszą liczbę argumentów niż inne.
 Najłatwiej zauważyć to na przykładzie argumentów niezbędnych, znajdującym się na rysunku \ref{fig:required-arguments}.
 W~ich przypadku istnieją takie wiersze,
-które zawierają wyłącznie po jednej jedynce (wiersze 1 i 2).
+które zawierają wyłącznie po jednej jedynce (wiersze 1 i~2).
 Oznacza to,
 że argument odpowiadający tej jedynce jest niezbędny do uzyskania minimalnego pokrycia kolumnowego.
 Taki argument często dostarcza innych rozróżnień,
 które przy użyciu proponowanego powyżej algorytmu zawyżałyby sztucznie wagę innych argumentów.
-W przypadku fukncju z rysunku \ref{fig:required-arguments},
+W przypadku fukncju z~rysunku \ref{fig:required-arguments},
 argument $x_2$ posiada najwięcej jedynek i~jednocześnie jest nadmiarowy,
-gdyż w minimalnym rozwiązaniu i tak muszą znaleźć się argumenty niezbędne $x_1$ i $x_3$.
+gdyż w~minimalnym rozwiązaniu i~tak muszą znaleźć się argumenty niezbędne $x_1$ i~$x_3$.
 
 \begin{figure}[H]
 \centering
@@ -129,7 +129,7 @@ która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu ($x_{i_{w_j}} = 1$
 Takie rozwiązanie wyboru kolumn często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
 Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe zawiera również nadmiarowe argumenty.
 Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
-Algorytm zapisany w pseudokodzie został przedstawiony poniżej (algorytm \ref{alg:reduction}).
+Algorytm zapisany w~pseudokodzie został przedstawiony poniżej (algorytm \ref{alg:reduction}).
 
 \begin{algorithm}[h]
     \KwIn{$F$}
@@ -204,7 +204,7 @@ poruszanym w~artykule,
 jest jednak dużo łatwiej policzyć,
 kiedy jedynka nie występuje w~tablicy i~odjąć tę liczbę od liczby wierszy w~macierzy.
 Co więcej,
-ponieważ liczba wierszy o określonej wartości funkcji jest identyczna dla każdej kolumny,
+ponieważ liczba wierszy o~określonej wartości funkcji jest identyczna dla każdej kolumny,
 obliczanie tej liczby wierszy nie jest potrzebne.
 Wystarczy zastosować odwrotne podejście przy wyborze kolumny i~wybierać te o~najmniejszej liczbie zer.
 
@@ -241,7 +241,7 @@ Do takich zastosowań należą problemy dziedziny eksploracji danych,
 gdzie często dane są zbierane na długo przed przeprowadzeniem obliczeń
 lub implementacji funkcji w~układach FPGA czy też innych z~pamięciami ROM.
 
-W~zadaniach, w których na wynik obliczeń możemy poczekać oraz nawet niewielka poprawa końcowego wyniku jest istotna,
+W~zadaniach, w~których na wynik obliczeń możemy poczekać oraz nawet niewielka poprawa końcowego wyniku jest istotna,
 rozwiązania systematyczne pokazują prawdziwą potęgę.
 Na przykładzie redukcji argumentów takie algorytmy nie tylko dostarczają zawsze najmniejszy redukt,
 ale wszystkie najmniejsze redukty.

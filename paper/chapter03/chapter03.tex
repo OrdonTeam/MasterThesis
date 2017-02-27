@@ -51,7 +51,7 @@ Przy zastosowaniu algorytmu w~innych problemach,
 gdzie różnych wartości funkcji jest stosunkowo niewiele,
 na etapie dekompozycji funkcja zredukowana często nie będzie zawierała wszystkich wierszy.
 Część z~nich po usunięciu redundantnych argumentów będzie zduplikowana.
-Na przykładzie badanej funkcji ,,P5.PLA'' w wyniku redukcji argumentów nastąpiło ograniczenie liczby wierszy z~2048 do 128.
+Na przykładzie badanej funkcji ,,P5.PLA'' w~wyniku redukcji argumentów nastąpiło ograniczenie liczby wierszy z~2048 do 128.
 Na takim przykładzie łatwo oszacować,
 że tablica rozróżnialności,
 wygenerowana na potrzeby dekompozycji,
@@ -71,7 +71,7 @@ gdzie: $X_a = \{x_i, x_j\}$, $X_b = X / X_a$, $G = XOR$
 
 Aby taka dekompozycja była możliwa,
 funkcja $G$ nie może powodować utraty niezbędnych informacji.
-Inaczej mówiąc po przekształceniu wierszy danych funkcją $G$ nie mogą powstać wiersze sprzeczne (identyczne wiersze o różnej wartości funkcji).
+Inaczej mówiąc po przekształceniu wierszy danych funkcją $G$ nie mogą powstać wiersze sprzeczne (identyczne wiersze o~różnej wartości funkcji).
 Ze względu na użycie w~dekompozycji funkcji XOR liczba argumentów funkcji $H$ jest mniejsza o~jeden od wyjściowej liczby argumentów funkcji $F$.
 
 Warunkiem poprawnej dekompozycji jest zachowanie wszystkich rozróżnień funkcji $F$.
@@ -123,7 +123,7 @@ musiały przed dekompozycją przede wszystkim zawierać same zera dla argumentó
 które nie uległy zmianie.
 Spośród tych wierszy jedynie te,
 które zawierają dwa zera lub dwie jedynki,
-na pozycjach uwzględnionych w dekompozycji,
+na pozycjach uwzględnionych w~dekompozycji,
 dają wiersz samych zer.
 W~pierwszym wypadku wiersz już wcześniej zawierał same zera.
 Czyli już wcześniej dane były sprzeczne.
@@ -156,7 +156,7 @@ Brak jakiegokolwiek wiersza w~macierzy rozróżnialność można zamienić przy 
 W~każdym z~tych przypadków operacja XOR wykonywana jest na kolejnych parach argumentów,
 czyli pierwszy z~drugim,
 drugi z~trzecim,
-trzeci z~czwartym i tak dalej.
+trzeci z~czwartym i~tak dalej.
 
 Dowód,
 że brak dowolnego wiersza w~macierzy rozróżnialności jest warunkiem wystarczającym do istnienia dekompozycji,
@@ -243,7 +243,7 @@ Oznacza to,
 że sygnał wchodzący na wejścia pamięci ROM nigdy nie będzie przechodził przez wiele kaskadowo ustawionych bramek,
 co miałoby wpływ na pogorszenie wydajność układu.
 
-Algorytm dekompozycji zapisany w pseudokodzie został przedstawiony poniżej (algorytm \ref{alg:decomposition}).
+Algorytm dekompozycji zapisany w~pseudokodzie został przedstawiony poniżej (algorytm \ref{alg:decomposition}).
 
 \begin{algorithm}[h]
     \KwIn{$F$}
