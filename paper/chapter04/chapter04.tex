@@ -49,11 +49,12 @@ Na wyjściach pamięci głównej pojawia się indeks wektora wejściowego. % $X 
 Jest on reprezentowany wektorem binarnym o liczbie bitów $p = \lceil log_2 (k+1)\rceil$.
 Indeks ten jest poprawnym indeksem wektora wejściowego wtedy,
 gdy jest to wektor poszukiwany.
-W przeciwnym przypadku na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wrtość domyślna,
+W przeciwnym przypadku na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wartość domyślna,
 na przykład wektor samych zer.
-Ta watorść nie pojawi się jednak na wyjściach generatora.
+Ta wartość nie pojawi się jednak na wyjściach generatora.
 Za pomocą pamięci pomocniczej i komparatora,
-przeprowadzane jest sprawdzenie czy pozostałe zmienne należące do zbioru $X_2$ ($X_2 = X \backslash X_1$) są zgodne ze wzorcem.
+przeprowadzane jest sprawdzenie,
+czy pozostałe zmienne należące do zbioru $X_2$ ($X_2 = X \backslash X_1$) są zgodne ze wzorcem.
 Z pamięci pomocniczej podawane są na wejście komparatora wzorcowe wektory.
 Są one porównywane tam z rzeczywistym wektorem $X_2$ podawanym na drugie wejście komparatora.
 Oczywiście wektor pobrany z pamięci pomocniczej będzie różny od rzeczywistego wektora $X_2$ w przypadku,
@@ -124,10 +125,9 @@ a_9 = x_{12} \oplus x_{13} \oplus x_{17} \oplus x_{18} \oplus x_{19} \oplus x_{1
 Program RedKomp przeprowadza obliczenia sekwencyjnie.
 Dzięki temu możliwe jest uzyskanie wyniku dekompozycji lepiej dopasowanej do potrzeb.
 W przypadku funkcji ,,2 z 20''
-program RedKomp jest wstanie zaproponować rozwiązania realizowalne na pamięciach
-od 19 (obliczone w wyniku samiej redukcji) do 9 wejściach adresowych.
-Dla przykładu poniżej został przedstawiona dekompozycja obliczona programem RedKomp na układ o 14 wejściach,
-jak w przypadku rozwiązania Sasao \cite{sasao-s-min}.
+program RedKomp jest w stanie zaproponować rozwiązania realizowalne na pamięciach
+od 19 (obliczone w wyniku samej redukcji) do 9 wejściach adresowych.
+Dla przykładu poniżej została przedstawiona dekompozycja obliczona programem RedKomp na układ o 14 wejściach jak w przypadku rozwiązania Sasao \cite{sasao-s-min}.
 Poszczególne wejścia $b_1$ do $b_{14}$ tej pamięci są następującymi funkcjami XOR:
 
 \begin{multline} \\
