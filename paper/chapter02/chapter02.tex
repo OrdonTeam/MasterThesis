@@ -62,7 +62,7 @@ których on dostarcza.
 Jeżeli dzięki jednemu argumentowi jesteśmy w~stanie rozróżnić tylko jedną parę wierszy o~różnych wartościach,
 to ma on mniejszą wagę od takiego,
 który rozróżnia kilka par wierszy.
-Z drugiej strony nawet argument,
+Z~drugiej strony nawet argument,
 który dostarcza jednego rozróżnienia,
 będzie istotny,
 jeżeli żaden inny argument nie dostarcza takiego rozróżnienia.
@@ -128,7 +128,7 @@ następnie wybierana jest kolumna ($x_i$),
 która ma najwięcej jedynek oraz jedynkę w~wybranym wierszu ($x_{i_{w_j}} = 1$).
 Takie rozwiązanie wyboru kolumn często prowadzi do uzyskania reduktu o~najmniejszej liczności \cite{unate-artykul}.
 Niestety w~bardzo specyficznych przypadkach końcowe minimalne pokrycie kolumnowe zawiera również nadmiarowe argumenty.
-Z tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
+Z~tego powodu wymagane jest przeprowadzenie weryfikacji rozwiązania.
 Algorytm zapisany w~pseudokodzie został przedstawiony poniżej (algorytm \ref{alg:reduction}).
 
 \begin{algorithm}[h]
@@ -212,7 +212,7 @@ Jeżeli podzielimy wiersze zawierające dane na grupy ze względu na wartość f
 powstaną po dwa kubełki dla każdej wartości funkcji.
 Jeżeli ich rozmiar oznaczymy $K_{0_y}$ i~$K_{1_y}$,
  gdzie $0$ i~$1$ oznaczają wartość argumentu,
-a $y$ należy do zbioru wartości funkcji $Y$,
+a~$y$ należy do zbioru wartości funkcji $Y$,
 liczbę zer w~kolumnie można wyrazić następującą sumą:
 \begin{equation}
 \sum_{0<y_1<y_2<Y} K_{0_{y_1}} \cdot K_{0_{y_2}} + K_{1_{y_1}} \cdot K_{1_{y_2}}
@@ -258,7 +258,7 @@ Algorytm Unate Complement służy do wyznaczania dopełnienia funkcji jednorodne
 czyli takiej,
 dla której w~żadnej kolumnie nie występują jednocześnie zera i~jedynki.
 Tym samym pozwala na znalezienie wszystkich największych (najbardziej ogólnych) kostek dopełnienia funkcji jednorodnej,
-a zastosowany do tablicy porównań pozwala na wyznaczenie wszystkich minimalnych pokryć kolumnowych.
+a~zastosowany do tablicy porównań pozwala na wyznaczenie wszystkich minimalnych pokryć kolumnowych.
 
 Sam algorytm składa się z~czterech kroków:
 \begin{enumerate}
@@ -270,4 +270,4 @@ czyli takich,
 które zawierają się w~innych zgodnie z~rachunkiem kostek.
 \end{enumerate}
 Badania nad tym algorytmem zostały opisane w~pracy inżynierskiej \cite{inzynierka},
-a gotowy program służył do weryfikacji poprawności działania użytego algorytmu redukcji argumentów.
+a~gotowy program służył do weryfikacji poprawności działania użytego algorytmu redukcji argumentów.
