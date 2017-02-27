@@ -19,6 +19,6 @@ deploy:
     secure: d1kcm+VSbKgQnM5GUMbDLitnpyAds6lMES5LUS3O3kqEYsFYsS9/j8ObFGt61bdnYJaXovoXh2kn+bs/vDmtqny9SOObJ2kFfBqrT8L/3tAqfZmj++bjgyyrIAxDICN6D+SLqiAgWbLwRRqdbv9uSE02FXNG6/sw1LUX+ZX0cAdjQI6zZRoP9iULIIjLzTSpPEj7e171fsy4mrNCA1W7Tij5ElOBHIbG5H24jl2kdp86d5Rboi7psIEVAjyCzooQYNk9B7fsq2r9s94IabCm2+XODilzukJoERe6TxHTAJiK96IFYG1FIffPiP3bxCNKSF6W1BQ8C5ZrG5JLZ2TSiZsIADbiWQqHBgPmMrlhtKFrCGIkpMxS3BFTqWYcSxa8imHFYssj0GmqtDvKgL3iXzS93Q8NAgQ6EDqIPrTSuP/iZ0TEuAPfYGMbeGX7h1mLb4/rK9Q+XrnCwoT4qorHa51w9CopgS6KrolLVoUqwhMGCot6jffecS5TEfddZgGJN4Ek1opaWncqWhVBoRZKFrAlCmTRQgWzHQzWfFNAauc6NPkqSNizDmAffC3fNSN5XMFFJWThva/GFAqK+YycTJM23IYG8kz2q6zGu/sp2DCire2tpPcYUtvD7Jpc9dqIvj4rDnqRE83igNCfBADaLPktIRWJvhCtxFJ4dxXkWCM=
   file:
     - package-release/MasterThesis.zip
-    - paper/build/Karol_Kowalski.pdf
+    - paper/build/main.pdf
   on:
     repo: OrdonTeam/MasterThesis
