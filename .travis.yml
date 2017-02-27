@@ -21,4 +21,5 @@ deploy:
     - package-release/MasterThesis.zip
     - paper/build/main.pdf
   on:
+    branch: master
     repo: OrdonTeam/MasterThesis
