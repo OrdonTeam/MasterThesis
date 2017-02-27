@@ -7,7 +7,7 @@ Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektora
 którą należy wyselekcjonować.
 Jeżeli na dodatek zbiór danych selekcjonowanych podlega częstym aktualizacjom,
 to strukturę sprzętową układów dokonujących wyszukiwania trzeba często zmieniać.
-Rozwiązaniem problemu częstych aktualizacji sprzętowych są struktury programowalne FPGA z~wbudowanymi pamięciami ROM.
+Rozwiązaniem problemu częstych aktualizacji sprzętowych są struktury programowalne FPGA ze~wbudowanymi pamięciami ROM.
 Niestety w~przypadku takiego rozwiązania barierą może okazać się zbyt mała pojemność pamięci,
 niewystarczająca do realizacji funkcji przykładowo o 40 argumentach i 10 wierszach.
 Można jednak przypuszczać, że binarna tablica takich wektorów zawiera kolumny $x_i, x_j, ..., x_k$,
@@ -32,7 +32,7 @@ w~której składowymi $G_i$ dekompozycji są dwuargumentowe funkcje $XOR$:
 \begin{equation}
 F = H (x_i \oplus x_j, x_k \oplus x_l, ..., X)
 \end{equation}
-W powyższym równaniu $X$ oznacza zbiór argumentów nie wykorzystany w procesie dekmpozycji.
+W powyższym równaniu $X$ oznacza zbiór argumentów niewykorzystany w procesie dekompozycji.
 
 Do najbardziej znanych algorytmów dekompozycji liniowej stosowanej w~generatorach adresów należy algorytm s-Min \cite{sasao-recent, sasao-s-min}.
 W~artykule \cite{redukcja-kompresja} wykazano, że algorytm s-Min jest mało skuteczny i~zaproponowano całkowicie inne ujęcie tego zagadnienia.
@@ -50,7 +50,7 @@ w~których warunki podejmowania decyzji są zmienne w~czasie.
 Sztandarowym zastosowaniem algorytmów generowania indeksów jest obsługa pakietów w~routerach IP.
 Spotykamy się tam z~problemami filtrowania ruchu z~niepożądanych adresów (firewall) lub wybierania portów wyjściowych (routing).
 W~obu tych przypadkach znajdują zastosowanie struktury programowalne FPGA lub EEPROM
-ze względu na połączenie szybkości działania porównywalnej z~rozwiązaniami ASIC oraz elastyczności,
+ze względu na połączenie szybkości działania porównywalnej z~rozwiązaniami ASIC oraz elastyczności
 jak w~przypadku rozwiązań programowych.
 Wyzwania,
 jakie są stawiane przed algorytmami generowania indeksów,
@@ -80,7 +80,7 @@ w rozmaitych problemach syntezy silnie nieokreślonych funkcji boolowski (dla kt
 Takie zastosowania bezpośrednio pozwalają na zastosowanie ich w procesie projektowania układów programowalnych,
 ponieważ bazują one właśnie na takich funkcjach.
 Jednak zastosowania funkcji generowania indeksów są dużo szersze.
-Mogą one być częścią wiekszych algorytmów wykorzystujących poszukiwanie wzorca.
+Mogą one być częścią większych algorytmów wykorzystujących poszukiwanie wzorca.
 Ponadto funkcje generowania indeksów znajdują zastosowanie w dystrybucji adresów IP,
 skanowaniu wirusów oraz wykrywaniu niepożądanych danych.
 
@@ -106,7 +106,7 @@ Z tego powodu rozwiązania sprzętowe, o których mowa, wykorzystują struktury 
 Same algorytmy poszukiwania wirusów są mocno skupione wokół zagadnienia wyszukiwania wzorca.
 Każde znane zagrożenie posiada własną unikatową sygnaturę,
 która jest potem poszukiwana w celu jego rozpoznania.
-Na pewnym etapie przetwarzania do znajdowania częściowych zgodności wykorzysywane są funkcjie generowania indeksów \cite{wirusy}.
+Na pewnym etapie przetwarzania do znajdowania częściowych zgodności wykorzystywane są funkcje generowania indeksów \cite{wirusy}.
 
 \section{Algorytm Sasao}
 Rozwiązanie problemu niewystarczającej puli adresów pamięci ROM przy $n$ wejściach adresowych i wykrywaniu $k$ wektorów indeksowanych ($k<<2^n$),
@@ -146,7 +146,7 @@ powstała na podstawie istniejących algorytmów z~dziedziny syntezy logicznej,
 osiąga lepszą kompresję argumentów.
 Dla tego samego przykładu ,,1 z~20'' wynosi ona 6.
 Tym samym algorytm pozwala wykorzystywać mniejsze i~tańsze urządzenia do rozwiązywania tech samych problemów
-albo na obsługę problemów, które wcześniej były zbyt zlożone,
+albo na obsługę problemów, które wcześniej były zbyt złożone,
 dla do tej pory używanego sprzętu komputerowego.
 
 %Idea stojąca za takim rozwiązaniem bierze się stąd, że do rozróżnienia 1.3 miliona wektorów z~poprzedniego przykładu może wystarczyć jedynie 21 bitów.
