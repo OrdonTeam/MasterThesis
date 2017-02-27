@@ -1,7 +1,7 @@
 \chapter{Badania}
 \label{chapter:research}
 
-W rozdziale tym zostały zaprezentowane wyniki badań przeprowadzone dla przykładowych funkcji referencyjnych.
+W~rozdziale tym zostały zaprezentowane wyniki badań przeprowadzone dla przykładowych funkcji referencyjnych.
 Wszystkie funkcje opisane w~tym rozdziale,
 ale nie załączone bezpośrednio,
 znajdują się w~załącznikach niniejszej pracy dyplomowej.
@@ -18,7 +18,7 @@ Opracowany algorytm redukcji i~kompresji argumentów (dalej nazywany algorytmem 
 redukuje tę funkcję do 7 argumentów,
 umożliwiając jej realizację
 (wykonywana w~tej samej strukturze programem Vivado)
-w strukturze zajmującej 9 komórek 6-wejściowych oraz po jednej 5, 4 i~2-wejściowej.
+w~strukturze zajmującej 9 komórek 6-wejściowych oraz po jednej 5, 4 i~2-wejściowej.
 
 \section{Przykład Sasao}
 
@@ -49,7 +49,7 @@ Na wyjściach pamięci głównej pojawia się indeks wektora wejściowego. % $X 
 Jest on reprezentowany wektorem binarnym o~liczbie bitów $p = \lceil log_2 (k+1)\rceil$.
 Indeks ten jest poprawnym indeksem wektora wejściowego wtedy,
 gdy jest to wektor poszukiwany.
-W przeciwnym przypadku na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wartość domyślna,
+W~przeciwnym przypadku na wyjściach pamięci głównej pojawi się zarezerwowana na tą sytuację wartość domyślna,
 na przykład wektor samych zer.
 Ta wartość nie pojawi się jednak na wyjściach generatora.
 Za pomocą pamięci pomocniczej i~komparatora,
@@ -124,7 +124,7 @@ a_9 = x_{12} \oplus x_{13} \oplus x_{17} \oplus x_{18} \oplus x_{19} \oplus x_{1
 
 Program RedKomp przeprowadza obliczenia sekwencyjnie.
 Dzięki temu możliwe jest uzyskanie wyniku dekompozycji lepiej dopasowanej do potrzeb.
-W przypadku funkcji ,,2 z~20''
+W~przypadku funkcji ,,2 z~20''
 program RedKomp jest w~stanie zaproponować rozwiązania realizowalne na pamięciach
 od 19 (obliczone w~wyniku samej redukcji) do 9 wejściach adresowych.
 Dla przykładu poniżej została przedstawiona dekompozycja obliczona programem RedKomp na układ o~14 wejściach jak w~przypadku rozwiązania Sasao \cite{sasao-s-min}.
