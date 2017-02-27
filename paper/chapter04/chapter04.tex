@@ -30,7 +30,7 @@ przedstawiony w~tabeli \ref{sasao-c}.
 \input{chapter04//sasao-table.tex}
 
 Rezultatem tego wyniku jest możliwość zrealizowania tej funkcji w~strukturze zaproponowanej w~referacie Sasao (rysunek \ref{fig:sasao-structure}) \cite{sasao-workshop},
-zbudowanej z~dwóch pamięci: pamięć głównej i~pomocniczej,
+zbudowanej z~dwóch pamięci: pamięci głównej i~pomocniczej,
 które mają zaledwie 4 wejścia adresowe.
 
 \begin{figure}[H]
@@ -70,7 +70,7 @@ Funkcję po usunięciu tego argumentu i~zmianie oznaczeń na $a_1, ..., a_9$ prz
 
 Przy tych oznaczeniach Sasao,
 stosując algorytm 2-Min,
-a~następnie 3-Min obliczył dekompozycję 5-bitową \cite{sasao-s-min}.
+a~następnie 3-Min obliczył dekompozycję z adresem 5-bitowym \cite{sasao-s-min}.
 Została ona przedstawiona w~tabeli \ref{1of10-reduct-b}.
 Rezultat uzyskany metodą RedKomp jest 4-bitowy (tabela \ref{1of10-reduct-c}).
 \begin{multline} \\
@@ -126,7 +126,7 @@ Program RedKomp przeprowadza obliczenia sekwencyjnie.
 Dzięki temu możliwe jest uzyskanie wyniku dekompozycji lepiej dopasowanej do potrzeb.
 W~przypadku funkcji ,,2 z~20''
 program RedKomp jest w~stanie zaproponować rozwiązania realizowalne na pamięciach
-od 19 (obliczone w~wyniku samej redukcji argumentów) do 9 wejściach adresowych.
+od 19 (obliczonych w~wyniku samej redukcji argumentów) do 9 wejść adresowych.
 Dla przykładu poniżej została przedstawiona dekompozycja obliczona programem RedKomp na układ o~14 wejściach jak w~przypadku rozwiązania Sasao \cite{sasao-s-min}.
 Poszczególne wejścia $b_1$ do $b_{14}$ tej pamięci są następującymi funkcjami XOR:
 

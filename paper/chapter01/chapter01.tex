@@ -7,7 +7,7 @@ Szczególnym przypadkiem analizy danych są dane binarne, reprezentowane wektora
 którą należy wyselekcjonować.
 Jeżeli na dodatek zbiór danych selekcjonowanych podlega częstym aktualizacjom,
 to strukturę sprzętową układów dokonujących wyszukiwania trzeba często zmieniać.
-Rozwiązaniem problemu częstych aktualizacji sprzętowych są struktury programowalne FPGA ze~wbudowanymi pamięciami ROM.
+Rozwiązaniem problemu częstych aktualizacji sprzętowych są struktury programowalne FPGA z~wbudowanymi pamięciami ROM.
 Niestety w~przypadku takiego rozwiązania barierą może okazać się zbyt mała pojemność pamięci,
 niewystarczająca do realizacji funkcji przykładowo o~40 argumentach i~10 wierszach.
 Można jednak przypuszczać, że binarna tablica takich wektorów zawiera kolumny $x_i, x_j, ..., x_k$,
@@ -76,9 +76,8 @@ Jednak dla mechanizmu znajdowania sygnatur wirusów składającego się z~$k=1\,
 \section{Zastosowania}
 
 Powodem rosnącej popularności funkcji generowania indeksów jest możliwość stosowania ich
-w~rozmaitych problemach syntezy silnie nieokreślonych funkcji boolowski (dla których zachodzi zależność $k << 2^n$).
-Takie zastosowania bezpośrednio pozwalają na zastosowanie ich w~procesie projektowania układów programowalnych,
-ponieważ bazują one właśnie na takich funkcjach.
+w~rozmaitych problemach syntezy silnie nieokreślonych funkcji boolowskich (dla których zachodzi zależność $k << 2^n$).
+Takie zastosowania bezpośrednio pozwalają na zastosowanie do ich projektowania układów programowalnych.
 Jednak zastosowania funkcji generowania indeksów są dużo szersze.
 Mogą one być częścią większych algorytmów wykorzystujących poszukiwanie wzorca.
 Ponadto funkcje generowania indeksów znajdują zastosowanie w~dystrybucji adresów IP,
@@ -119,7 +118,7 @@ Istotą tego rozwiązania jest:
 \end{enumerate}
 
 Dekompozycja liniowa polega na łączeniu argumentów w~grupy i~podawaniu ich na wejście dwu lub więcej argumentowych bramek XOR.
-Algorytm s-Min, profesora Sasao, znajduje takie grupy.
+Algorytm s-Min profesora Sasao znajduje takie grupy.
 Istnieją jednak przykłady,
 dla których wskazanie jakiegokolwiek takiego zbioru argumentów nie jest możliwe lub występuje ich niewiele w~stosunku do całkowitej liczby argumentów.
 Z~tego powodu częścią algorytmu Sasao są przekształcenia linowe,

@@ -33,7 +33,7 @@ Jednak dla innego badanego przypadku nieredukowalnej funkcji 41 argumentowej,
 dekompozycja metodą proponowaną w~niniejszej pracy powoduje zmniejszenie liczby argumentów do 7.
 
 Problem generowania indeksów posiada pewną specyficzną własność.
-Każdy wektor wejściowy rozważanej funkcji ma inną wartość.
+Każdy wektor wyjściowy rozważanej funkcji ma inną wartość.
 Dotychczasowe rozwiązania problemu dekompozycji liniowej ograniczały się właśnie do takiego przypadku.
 Zaprezentowany w~tej pracy algorytm jest pod tym względem bardziej uniwersalny.
 Można go stosować dla wszystkich funkcji boolowskich o~dowolnych wyjściach.
@@ -57,9 +57,9 @@ Na takim przykładzie łatwo oszacować,
 wygenerowana na potrzeby dekompozycji,
 będzie miała 250 razy mniejszy rozmiar od pierwotnej.
 
-\section{Dekompozycja pojedynczą bramką XOR}
+\section{Dekompozycja z bramką XOR o dwóch zmiennych}
 \label{section:single-decomposition}
-Celem dekompozycji liniowej pojedynczą bramką XOR jest znalezienie takich dwóch argumentów,
+Celem dekompozycji liniowej z dwuwejściową bramką XOR jest znalezienie takich dwóch argumentów,
 które można zastąpić jednym.
 Miałby on być wynikiem operacji XOR tych dwóch argumentów.
 Bardziej formalnie poszukujemy takich funkcji $G$ i~$H$,
@@ -140,7 +140,7 @@ Na rysunku \ref{fig:single-decomposition} widać jak brak pary $x_2$, $x_4$ pozw
 \label{fig:single-decomposition}
 \end{figure}
 
-\section{Dekompozycja wieloma bramki XOR}
+\section{Dekompozycja z wieloma bramkami XOR}
 
 Na podobnej zasadzie możliwa jest również dekompozycja z~użyciem wielu bramek XOR.
 W~przypadku,
